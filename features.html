@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>U-BSOL | Features – Everything Your Business Needs</title>
+  <meta name="description" content="Explore U-BSOL's full feature set: corporate identity, full design capabilities, dashboards, payment methods, order management, business promotion and more." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .features-nav {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      margin-bottom: 48px; justify-content: center;
+    }
+    .fnav-btn {
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      color: var(--text-muted); border-radius: 8px; padding: 8px 18px;
+      font-size: 13px; font-weight: 500; cursor: pointer;
+      transition: var(--transition); text-decoration: none;
+    }
+    .fnav-btn:hover, .fnav-btn.active {
+      background: rgba(99,102,241,0.12); border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .feature-block {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+      align-items: start; margin-bottom: 64px;
+      padding: 48px; background: var(--bg-card);
+      border: 1px solid var(--border); border-radius: 24px;
+    }
+    .feature-block.reverse { direction: rtl; }
+    .feature-block.reverse > * { direction: ltr; }
+    .feature-block-icon {
+      font-size: 48px; margin-bottom: 20px; display: block;
+    }
+    .feature-block-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 26px; font-weight: 700; margin-bottom: 12px;
+    }
+    .feature-block-desc { font-size: 15px; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.8; }
+    .feature-sub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .feature-sub-item {
+      background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.12);
+      border-radius: 10px; padding: 14px; font-size: 13px; color: var(--text-secondary);
+    }
+    .feature-sub-item strong { display: block; color: var(--text-primary); margin-bottom: 4px; font-size: 14px; }
+
+    .feature-visual {
+      background: var(--bg-card2); border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .fv-row {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(255,255,255,0.03); border-radius: 10px; padding: 14px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .fv-icon { font-size: 22px; flex-shrink: 0; }
+    .fv-label { font-size: 13px; font-weight: 500; color: var(--text-secondary); }
+    .fv-badge {
+      margin-left: auto; background: rgba(16,185,129,0.15);
+      color: var(--success); font-size: 11px; font-weight: 600;
+      padding: 3px 10px; border-radius: 100px;
+    }
+
+    @media (max-width: 768px) {
+      .feature-block { grid-template-columns: 1fr; }
+      .feature-block.reverse { direction: ltr; }
+      .feature-sub-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-container"></div>
+
+  <div class="page-wrapper">
+    <div class="page-hero">
+      <div class="hero-badge" style="justify-content:center;display:inline-flex;"><span class="dot"></span> Platform Features</div>
+      <h1 class="page-hero-title">Everything Your Business<br><span style="background:linear-gradient(135deg,var(--primary-light),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Needs to Thrive</span></h1>
+      <p class="page-hero-desc">A comprehensive suite of tools built to create, manage, promote and scale any business — online or offline.</p>
+    </div>
+
+    <div class="section">
+      <!-- Feature Navigation -->
+      <div class="features-nav">
+        <a href="#identity" class="fnav-btn">🏷️ Corporate Identity</a>
+        <a href="#design" class="fnav-btn">🎨 Design</a>
+        <a href="#dashboard" class="fnav-btn">📊 Dashboards</a>
+        <a href="#promotion" class="fnav-btn">📣 Promotion</a>
+        <a href="#products" class="fnav-btn">📦 Products</a>
+        <a href="#payments" class="fnav-btn">💳 Payments</a>
+        <a href="#orders" class="fnav-btn">🧾 Orders</a>
+        <a href="#support" class="fnav-btn">🛡️ Support</a>
+      </div>
+
+      <!-- 1. Corporate Identity -->
+      <div id="identity" class="feature-block">
+        <div>
+          <span class="feature-block-icon">🏷️</span>
+          <h2 class="feature-block-title">Corporate Identity</h2>
+          <p class="feature-block-desc">Your business, your brand. We provide your own digital platform under your brand name — we promote your brand, not ours. Get your domain, logo, colors and mobile app all personalized.</p>
+          <ul class="feature-list">
+            <li>Dynamic responsive website with attractive, user-friendly design</li>
+            <li>Mobile applications with elegant UI and your logo on Play Store</li>
+            <li>Easily customize design patterns and color combinations</li>
+            <li>Your brand name reflected across website and all apps</li>
+          </ul>
+        </div>
+        <div class="feature-visual">
+          <div class="fv-row"><span class="fv-icon">🌐</span><span class="fv-label">Custom Domain Website</span><span class="fv-badge">Active</span></div>
+          <div class="fv-row"><span class="fv-icon">📱</span><span class="fv-label">Branded Android App</span><span class="fv-badge">Live</span></div>
+          <div class="fv-row"><span class="fv-icon">🎨</span><span class="fv-label">Custom Logo & Colors</span><span class="fv-badge">Set</span></div>
+          <div class="fv-row"><span class="fv-icon">🔐</span><span class="fv-label">Free SSL Certificate</span><span class="fv-badge">Secured</span></div>
+        </div>
+      </div>
+
+      <!-- 2. Full Design Capabilities -->
+      <div id="design" class="feature-block reverse">
+        <div>
+          <span class="feature-block-icon">🎨</span>
+          <h2 class="feature-block-title">Full Design Capabilities</h2>
+          <p class="feature-block-desc">Change your website's look and feel without any technical knowledge. Choose from 6 homepage slider styles, various ad & category layouts, and a powerful content editor.</p>
+          <div class="feature-sub-grid">
+            <div class="feature-sub-item"><strong>Responsive Design</strong>Works perfectly on desktop, tablet & mobile</div>
+            <div class="feature-sub-item"><strong>Dynamic Layouts</strong>6 homepage slider styles, click to change</div>
+            <div class="feature-sub-item"><strong>Auto Resize Media</strong>Images auto-resized on upload</div>
+            <div class="feature-sub-item"><strong>Powerful Editor</strong>MS-Word style content formatting</div>
+            <div class="feature-sub-item"><strong>Dynamic Navigation</strong>Multi-level menu management</div>
+            <div class="feature-sub-item"><strong>Module Control</strong>Show/hide any section by clicks</div>
+          </div>
+        </div>
+        <div class="feature-visual">
+          <div class="fv-row"><span class="fv-icon">📐</span><span class="fv-label">Responsive Templates</span><span class="fv-badge">6 Styles</span></div>
+          <div class="fv-row"><span class="fv-icon">🖼️</span><span class="fv-label">Auto Image Resize</span><span class="fv-badge">Auto</span></div>
+          <div class="fv-row"><span class="fv-icon">🗂️</span><span class="fv-label">Navigation Builder</span><span class="fv-badge">Drag & Drop</span></div>
+          <div class="fv-row"><span class="fv-icon">✏️</span><span class="fv-label">Visual Page Editor</span><span class="fv-badge">WYSIWYG</span></div>
+        </div>
+      </div>
+
+      <!-- 3. Dashboards -->
+      <div id="dashboard" class="feature-block">
+        <div>
+          <span class="feature-block-icon">📊</span>
+          <h2 class="feature-block-title">Powerful Dashboards</h2>
+          <p class="feature-block-desc">Two dedicated dashboards — Admin and Customer — both highly responsive and user-friendly. Real-time notifications for every business event, full order tracking and team messaging built-in.</p>
+          <ul class="feature-list">
+            <li>Admin dashboard: full control over products, orders, customers</li>
+            <li>Customer dashboard: order history, messages, reviews</li>
+            <li>Real-time web & mobile push notifications</li>
+            <li>Order timeline tracking and in-order messaging</li>
+            <li>Pending task badges on all menu sections</li>
+          </ul>
+        </div>
+        <div class="feature-visual">
+          <div class="fv-row"><span class="fv-icon">👤</span><span class="fv-label">Admin Dashboard</span><span class="fv-badge">Full Access</span></div>
+          <div class="fv-row"><span class="fv-icon">🛍️</span><span class="fv-label">Customer Portal</span><span class="fv-badge">Self-Service</span></div>
+          <div class="fv-row"><span class="fv-icon">🔔</span><span class="fv-label">Push Notifications</span><span class="fv-badge">Real-Time</span></div>
+          <div class="fv-row"><span class="fv-icon">💬</span><span class="fv-label">In-Order Messaging</span><span class="fv-badge">Live</span></div>
+        </div>
+      </div>
+
+      <!-- 4. Business Promotion -->
+      <div id="promotion" class="feature-block reverse">
+        <div>
+          <span class="feature-block-icon">📣</span>
+          <h2 class="feature-block-title">Business Promotion</h2>
+          <p class="feature-block-desc">Turn new visitors into loyal buyers with a complete set of marketing tools. Hot sales, seasonal offers, coupons, product reviews, automated SEO and social media integrations.</p>
+          <ul class="feature-list">
+            <li>Automated SEO — products listed on Google automatically</li>
+            <li>Google Analytics & Facebook Pixel integrated</li>
+            <li>Abandoned cart recovery tools</li>
+            <li>Time-based hot sales & seasonal promotions</li>
+            <li>Flexible coupon system for campaigns</li>
+            <li>Reviews & ratings (post-purchase only)</li>
+          </ul>
+        </div>
+        <div class="feature-visual">
+          <div class="fv-row"><span class="fv-icon">🔍</span><span class="fv-label">Automated SEO</span><span class="fv-badge">Always On</span></div>
+          <div class="fv-row"><span class="fv-icon">📈</span><span class="fv-label">Google Analytics</span><span class="fv-badge">Integrated</span></div>
+          <div class="fv-row"><span class="fv-icon">🏷️</span><span class="fv-label">Coupon Engine</span><span class="fv-badge">Active</span></div>
+          <div class="fv-row"><span class="fv-icon">⭐</span><span class="fv-label">Reviews & Ratings</span><span class="fv-badge">Moderated</span></div>
+        </div>
+      </div>
+
+      <!-- 5. Products -->
+      <div id="products" class="feature-block">
+        <div>
+          <span class="feature-block-icon">📦</span>
+          <h2 class="feature-block-title">Products & Inventory</h2>
+          <p class="feature-block-desc">Create unlimited products with multiple variations, pricing options, images and categories. Automated inventory management, delivery zone restrictions and special tax support.</p>
+          <div class="feature-sub-grid">
+            <div class="feature-sub-item"><strong>Multiple Variations</strong>Color & size variants for one product</div>
+            <div class="feature-sub-item"><strong>Multiple Images</strong>Upload as many product photos as needed</div>
+            <div class="feature-sub-item"><strong>Inventory Tracking</strong>Auto-updates on every sale</div>
+            <div class="feature-sub-item"><strong>Delivery Zones</strong>Restrict delivery by pincode</div>
+            <div class="feature-sub-item"><strong>Special Tax</strong>Set custom tax per product</div>
+            <div class="feature-sub-item"><strong>Product SEO</strong>Per-product keywords & description</div>
+          </div>
+        </div>
+        <div class="feature-visual">
+          <div class="fv-row"><span class="fv-icon">🎨</span><span class="fv-label">Color & Size Variants</span><span class="fv-badge">Unlimited</span></div>
+          <div class="fv-row"><span class="fv-icon">📸</span><span class="fv-label">Multi-Image Upload</span><span class="fv-badge">Auto Resize</span></div>
+          <div class="fv-row"><span class="fv-icon">📉</span><span class="fv-label">Stock Alerts</span><span class="fv-badge">Auto</span></div>
+          <div class="fv-row"><span class="fv-icon">🗺️</span><span class="fv-label">Delivery Zone Control</span><span class="fv-badge">Pincode</span></div>
+        </div>
+      </div>
+
+      <!-- 6. Payments -->
+      <div id="payments" class="feature-block reverse">
+        <div>
+          <span class="feature-block-icon">💳</span>
+          <h2 class="feature-block-title">Payment Methods</h2>
+          <p class="feature-block-desc">5 payment gateways pre-integrated. Accept online, COD or walk-in payments. Repayment on failure. All transactions secured and PCI-compliant.</p>
+          <ul class="feature-list">
+            <li>PayTM, PayUMoney, PayPal, RazorPay & Stripe — all pre-integrated</li>
+            <li>Cash on Delivery for local customers</li>
+            <li>Shop billing for walk-in / counter sales</li>
+            <li>Automatic repay link on payment failure</li>
+          </ul>
+          <div class="badge-row">
+            <span class="badge">PayTM</span>
+            <span class="badge">RazorPay</span>
+            <span class="badge">Stripe</span>
+            <span class="badge">PayPal</span>
+            <span class="badge">PayUMoney</span>
+          </div>
+        </div>
+        <div class="feature-visual">
+          <div class="fv-row"><span class="fv-icon">💰</span><span class="fv-label">Online Payment</span><span class="fv-badge">5 Gateways</span></div>
+          <div class="fv-row"><span class="fv-icon">🚪</span><span class="fv-label">Cash on Delivery</span><span class="fv-badge">Supported</span></div>
+          <div class="fv-row"><span class="fv-icon">🏪</span><span class="fv-label">Shop/Counter Billing</span><span class="fv-badge">POS Ready</span></div>
+          <div class="fv-row"><span class="fv-icon">🔄</span><span class="fv-label">Retry on Failure</span><span class="fv-badge">Auto</span></div>
+        </div>
+      </div>
+
+      <!-- 7. Orders -->
+      <div id="orders" class="feature-block">
+        <div>
+          <span class="feature-block-icon">🧾</span>
+          <h2 class="feature-block-title">Order, Invoice & Delivery</h2>
+          <p class="feature-block-desc">Complete order lifecycle management — from WhatsApp orders to invoices, PDF downloads, delivery tracking, sales returns and credit notes.</p>
+          <ul class="feature-list">
+            <li>3 order types: WhatsApp, Online & Shop/Counter</li>
+            <li>PDF invoices with custom header, footer & logo</li>
+            <li>Real-time delivery notifications to customer</li>
+            <li>Sales returns with partial/full credit notes</li>
+            <li>Minimum order processing time configuration</li>
+          </ul>
+        </div>
+        <div class="feature-visual">
+          <div class="fv-row"><span class="fv-icon">📋</span><span class="fv-label">Order Management</span><span class="fv-badge">3 Channels</span></div>
+          <div class="fv-row"><span class="fv-icon">🧾</span><span class="fv-label">PDF Invoices</span><span class="fv-badge">Custom</span></div>
+          <div class="fv-row"><span class="fv-icon">🚚</span><span class="fv-label">Delivery Tracking</span><span class="fv-badge">Real-Time</span></div>
+          <div class="fv-row"><span class="fv-icon">↩️</span><span class="fv-label">Sales Returns</span><span class="fv-badge">Credit Notes</span></div>
+        </div>
+      </div>
+
+      <!-- 8. Support -->
+      <div id="support" class="feature-block reverse">
+        <div>
+          <span class="feature-block-icon">🛡️</span>
+          <h2 class="feature-block-title">Support & Maintenance</h2>
+          <p class="feature-block-desc">We handle all IT so you can focus on your business. LiteSpeed cloud hosting, multi-level firewall, regular updates, online ticket support, training videos and webinars.</p>
+          <div class="feature-sub-grid">
+            <div class="feature-sub-item"><strong>LiteSpeed Hosting</strong>Fast, stable cloud performance</div>
+            <div class="feature-sub-item"><strong>Multi-Level Security</strong>Firewall + regular backups</div>
+            <div class="feature-sub-item"><strong>Free Updates</strong>R&D improvements at no extra cost</div>
+            <div class="feature-sub-item"><strong>24/7 Ticket Support</strong>Answered with immediate effect</div>
+            <div class="feature-sub-item"><strong>Training Videos</strong>Full operation guides on dashboard</div>
+            <div class="feature-sub-item"><strong>Scalable Storage</strong>Upgrade space as you grow</div>
+          </div>
+        </div>
+        <div class="feature-visual">
+          <div class="fv-row"><span class="fv-icon">⚡</span><span class="fv-label">LiteSpeed Cloud</span><span class="fv-badge">99.9% Uptime</span></div>
+          <div class="fv-row"><span class="fv-icon">🔒</span><span class="fv-label">Firewall Protection</span><span class="fv-badge">Active</span></div>
+          <div class="fv-row"><span class="fv-icon">🎓</span><span class="fv-label">Training & Webinars</span><span class="fv-badge">Included</span></div>
+          <div class="fv-row"><span class="fv-icon">🎫</span><span class="fv-label">Support Tickets</span><span class="fv-badge">24/7</span></div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-banner" style="margin-top: 40px;">
+        <h2 class="cta-banner-title">Ready to Experience These Features?</h2>
+        <p class="cta-banner-desc">Pick a plan and get your fully-featured business platform running today.</p>
+        <div class="cta-banner-actions">
+          <a href="packages.html" class="btn-primary btn-large">See Packages</a>
+          <a href="contact.html" class="btn-outline-large">Book a Demo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-container"></div>
+  <script src="components.js"></script>
+  <script>injectComponents('features');</script>
+</body>
+</html>
