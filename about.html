@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>U-BSOL | About Us – Your Business Solution Partner</title>
-  <meta name="description" content="U-BSOL was founded in 2020 by Shihabudheen Uruniyan. We are an Indian IT company delivering complete digital solutions for business automation. Meet our team." />
+  <title>U-BSOL | About-us</title>
+  <meta name="description" content="U-BSOL is a cloud based SAS modal business application which contains collection of business operations for various needs." />
   <link rel="stylesheet" href="style.css" />
   <style>
     .mission-grid {
@@ -21,60 +21,28 @@
     }
     .mission-card-icon { font-size: 36px; margin-bottom: 16px; display: block; }
     .mission-card-title { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 12px; }
-    .mission-card-text { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+    .mission-card-text { font-size: 15px; color: var(--text-secondary); line-height: 1.8; }
+
+    .story-wrap { display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 80px; }
+    .story-text { font-size: 16px; color: var(--text-secondary); line-height: 1.9; }
+    .story-text p { margin-bottom: 20px; }
 
     .stats-row {
-      display: grid; grid-template-columns: repeat(4,1fr); gap: 24px;
-      margin: 60px 0;
+      display: grid; grid-template-columns: 1fr; gap: 24px;
+      margin: 60px 0; max-width: 600px; margin-left: auto; margin-right: auto;
     }
     .stat-card {
       background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 28px; text-align: center;
+      border-radius: 16px; padding: 36px; text-align: center;
       transition: var(--transition);
     }
     .stat-card:hover { border-color: rgba(99,102,241,0.4); transform: translateY(-4px); }
-    .stat-card-num { font-family: 'Space Grotesk', sans-serif; font-size: 40px; font-weight: 700; background: linear-gradient(135deg, var(--primary-light), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .stat-card-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
-
-    .story-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-bottom: 80px; }
-    .story-text { font-size: 15px; color: var(--text-secondary); line-height: 1.9; }
-    .story-text p { margin-bottom: 20px; }
-    .timeline { display: flex; flex-direction: column; gap: 0; }
-    .timeline-item { display: flex; gap: 20px; padding-bottom: 28px; position: relative; }
-    .timeline-item:not(:last-child)::before {
-      content: ''; position: absolute; left: 19px; top: 44px; bottom: 0;
-      width: 2px; background: var(--border);
-    }
-    .timeline-dot {
-      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px; box-shadow: 0 0 20px rgba(99,102,241,0.3); z-index: 1;
-    }
-    .timeline-content { padding-top: 8px; }
-    .timeline-year { font-size: 12px; color: var(--primary); font-weight: 600; margin-bottom: 4px; }
-    .timeline-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-    .timeline-desc { font-size: 13px; color: var(--text-muted); }
-
-    .values-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 80px; }
-    .value-chip {
-      background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.12);
-      border-radius: 12px; padding: 16px 20px; font-size: 14px; font-weight: 500;
-      color: var(--text-secondary); display: flex; align-items: center; gap: 10px;
-      transition: var(--transition);
-    }
-    .value-chip:hover { border-color: rgba(99,102,241,0.3); color: var(--text-primary); }
-    .value-chip-icon { font-size: 20px; }
+    .stat-card-num { font-family: 'Space Grotesk', sans-serif; font-size: 48px; font-weight: 700; background: linear-gradient(135deg, var(--primary-light), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .stat-card-label { font-size: 18px; font-weight: 600; color: var(--text-primary); margin-top: 8px; margin-bottom: 16px; }
+    .stat-card-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
 
     @media (max-width: 768px) {
       .mission-grid { grid-template-columns: 1fr; }
-      .stats-row { grid-template-columns: repeat(2,1fr); }
-      .story-wrap { grid-template-columns: 1fr; }
-      .values-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 480px) {
-      .stats-row { grid-template-columns: 1fr 1fr; }
-      .values-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -83,118 +51,63 @@
 
   <div class="page-wrapper">
     <div class="page-hero">
-      <div class="hero-badge" style="justify-content:center;display:inline-flex;"><span class="dot"></span> About U-BSOL</div>
-      <h1 class="page-hero-title">Your Business<br><span style="background:linear-gradient(135deg,var(--primary-light),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Solution Partner</span></h1>
-      <p class="page-hero-desc">An Indian IT company delivering complete digital solutions for business automation and digitalization since 2020.</p>
+      <h1 class="page-hero-title">About-us</h1>
+      <p class="page-hero-desc">U-BSOL is a cloud based SAS modal business application which contains collection of business operations for various needs. We have gathered most frequently using all business operation and align into different business domains such as Trading, Hospitality and Services</p>
     </div>
 
     <div class="section">
 
-      <!-- Stats -->
-      <div class="stats-row">
-        <div class="stat-card"><div class="stat-card-num">700+</div><div class="stat-card-label">Satisfied Customers</div></div>
-        <div class="stat-card"><div class="stat-card-num">15+</div><div class="stat-card-label">Years Combined Experience</div></div>
-        <div class="stat-card"><div class="stat-card-num">6+</div><div class="stat-card-label">Years in Operation</div></div>
-        <div class="stat-card"><div class="stat-card-num">24/7</div><div class="stat-card-label">Customer Support</div></div>
-      </div>
-
-      <!-- Mission & Vision -->
+      <!-- Who Are We -->
       <div class="section-header">
-        <div class="section-tag">🎯 Mission & Vision</div>
-        <h2 class="section-title">What Drives Us</h2>
+        <h2 class="section-title">Who Are We?</h2>
+        <div class="section-tag" style="margin-top:8px;">U-BSOL - Your Business Solution Partner</div>
       </div>
-      <div class="mission-grid">
-        <div class="mission-card">
-          <span class="mission-card-icon">🎯</span>
-          <h3 class="mission-card-title">Our Mission</h3>
-          <p class="mission-card-text">Provide the best IT solution for any small or medium business to help them grow and succeed through innovative ideas and modern technology — within a very limited budget. Open wide range of online business possibilities for our merchants and provide a very easy, attractive online shopping experience for their customers.</p>
-        </div>
-        <div class="mission-card">
-          <span class="mission-card-icon">🔭</span>
-          <h3 class="mission-card-title">Our Vision</h3>
-          <p class="mission-card-text">To provide a wonderful, user-friendly business solution that makes everyone's life easier. Whether you're a merchant or customer — reach your needs through your fingertips, from anywhere in the world. Open wide business possibilities and help every business use its maximum potential in a proper manner.</p>
+      <div class="story-wrap" style="margin-bottom: 40px;">
+        <div class="story-text">
+          <p>U-BSOL is an Indian information technology company that delivers complete solution for business automation and digitalization for any level of business. U-BSOL was founded by Shihabudheen Uruniyan in 2020 for implementing the innovative ideas for the business automation by the help of modern information technology. U-BSOL is a collection of applications for various needs which contain Billing software, Mobile applications, Web applications, Tracking applications, Market place, etc.</p>
+          <p>We provide a comprehensive platform that provides widespread digital solutions to all business ventures seeking for digital transformation into the modern World. We never compromise on the technology, performance and quality of our application. We will frequently add many services and features in upcoming releases. Our primary aim is to provide a complete features rich solution into public and help them to grow their business with every affordable price.</p>
         </div>
       </div>
 
       <!-- Our Story -->
       <div class="section-header">
-        <div class="section-tag">📖 Our Story</div>
-        <h2 class="section-title">How U-BSOL Came to Be</h2>
+        <h2 class="section-title">Our Story</h2>
       </div>
       <div class="story-wrap">
         <div class="story-text">
-          <p>U-BSOL was founded by <strong style="color:var(--text-primary)">Shihabudheen Uruniyan</strong> in 2020, born out of a decade-long journey of building international IT projects and seeing a clear gap in the market.</p>
-          <p>We are a group of technical professionals who started working together from 2011 to the present. We have successfully completed numerous domestic and international IT projects across system analysis, design and development, deployment and server management.</p>
-          <p>From 2015, we witnessed the e-commerce sector boom dramatically. We focused on e-commerce projects, developed platforms using various technologies including open-source. Our customers always needed more — advanced features within their budget.</p>
-          <p>That challenge inspired us to build our own platform — <strong style="color:var(--primary)">U-BSOL</strong> — a complete, affordable, white-label business solution that we wish existed when we started.</p>
-        </div>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot">🌱</div>
-            <div class="timeline-content">
-              <div class="timeline-year">2011</div>
-              <div class="timeline-title">Team Formation</div>
-              <div class="timeline-desc">Core team started working together on domestic and international IT projects.</div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot">📈</div>
-            <div class="timeline-content">
-              <div class="timeline-year">2015</div>
-              <div class="timeline-title">eCommerce Focus</div>
-              <div class="timeline-desc">Pivoted to eCommerce as the sector boomed. Built multiple platforms for clients.</div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot">💡</div>
-            <div class="timeline-content">
-              <div class="timeline-year">2019</div>
-              <div class="timeline-title">The Idea</div>
-              <div class="timeline-desc">Identified the gap: no affordable, complete, white-label SaaS solution for SMEs.</div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot">🚀</div>
-            <div class="timeline-content">
-              <div class="timeline-year">2020</div>
-              <div class="timeline-title">U-BSOL Launch</div>
-              <div class="timeline-desc">U-BSOL officially launched, offering complete business solutions under your brand.</div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot">🏆</div>
-            <div class="timeline-content">
-              <div class="timeline-year">2026</div>
-              <div class="timeline-title">700+ Customers</div>
-              <div class="timeline-desc">Serving 700+ businesses across India and growing every month.</div>
-            </div>
-          </div>
+          <p>We are a group of technical professionals who started work together from 2011 till present. We have successfully completed lot of domestic and international IT projects in various aspects. We have contributed in major part of several IT projects. Such as System analysis, Designing and development, Deployment and Server management etc. From beginning of 2015 we have witnessed the e-commerce business sector has been marginally boomed. Then we focus mainly e-commerce projects. We have developed several e-commerce projects with several technologies including open source platforms.</p>
+          <p>Our customers where always looking for advanced features and services which is not economical for them. It was really challenging us to provide best service for our customer within their budget. So that we have decided to build our own platform to fulfill their needs which is named as U-BSOL.</p>
         </div>
       </div>
 
-      <!-- Core Values -->
+      <!-- Mission & Vision -->
       <div class="section-header">
-        <div class="section-tag">💎 Core Values</div>
-        <h2 class="section-title">What We Stand For</h2>
+        <h2 class="section-title">Mission & Vision</h2>
       </div>
-      <div class="values-grid">
-        <div class="value-chip"><span class="value-chip-icon">🤝</span> Customer Relationship</div>
-        <div class="value-chip"><span class="value-chip-icon">🏅</span> Loyalty & Trust</div>
-        <div class="value-chip"><span class="value-chip-icon">👥</span> Teamwork</div>
-        <div class="value-chip"><span class="value-chip-icon">💡</span> Innovative Ideas</div>
-        <div class="value-chip"><span class="value-chip-icon">❤️</span> Humanity & Ethics</div>
-        <div class="value-chip"><span class="value-chip-icon">✅</span> Responsibility</div>
-        <div class="value-chip"><span class="value-chip-icon">✨</span> Simplicity</div>
-        <div class="value-chip"><span class="value-chip-icon">🎨</span> Creativity</div>
-        <div class="value-chip"><span class="value-chip-icon">🔥</span> Passion</div>
+      <div class="mission-grid">
+        <div class="mission-card">
+          <span class="mission-card-icon">🎯</span>
+          <h3 class="mission-card-title">Mission</h3>
+          <p class="mission-card-text">Provide the best IT solution for any small / medium businesses owners to help them for their business growth and success by innovative ideas and modern technology wthin very limited budjet. Open the wide range of online business possibility for our merchants. Provide very easy and attractive online shopping experience for their customer.</p>
+        </div>
+        <div class="mission-card">
+          <span class="mission-card-icon">🔭</span>
+          <h3 class="mission-card-title">Vision</h3>
+          <p class="mission-card-text">U-BSOL vision is to provide a wonderful and user-friendly business solution to make everyone life easier. Also Either merchant or customer, provides very easy solution for reaching to their needs through fingertips from anywhere sitting in the world. Open wide range of business possibilities and help them to use their maximum potential in proper manner.</p>
+        </div>
+      </div>
+      <p style="text-align: center; color: var(--text-secondary); font-size: 15px; margin-bottom: 60px;">Our core values are belongs to many other factors, such as customer relationship, loyalty, teamwork, innovative ideas, humanity and ethics, trust and responsibility, simplicity and creativity, passion etc.</p>
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-card-num">700+</div>
+          <div class="stat-card-label">Satisfied Customers</div>
+          <div class="stat-card-desc">Our team is our strength. We are a group of professionals that having worked experience from 1 year till 20+ years. Our members are very experienced in online business solutions as they developed many international online projects in the past. We are a family and respect each other’s potentials and efforts. We are working together with passion for great success .</div>
+        </div>
       </div>
 
       <!-- Team -->
-      <div class="section-header">
-        <div class="section-tag">👥 Our Team</div>
-        <h2 class="section-title">The People Behind U-BSOL</h2>
-        <p class="section-desc">A family of passionate professionals with experience ranging from 1 to 20+ years. Our team is our greatest strength.</p>
-      </div>
       <div class="team-grid">
         <div class="team-card">
           <div class="team-avatar">SU</div>
@@ -204,7 +117,7 @@
         <div class="team-card">
           <div class="team-avatar">BA</div>
           <div class="team-name">Bushra Amyan</div>
-          <div class="team-quote">"Push yourself, because no one else is going to do it for you."</div>
+          <div class="team-quote">"Push yourself, because no one else if going to do it for you."</div>
         </div>
         <div class="team-card">
           <div class="team-avatar">SR</div>
@@ -219,29 +132,20 @@
         <div class="team-card">
           <div class="team-avatar">JT</div>
           <div class="team-name">Jayadevan TVN</div>
-          <div class="team-quote">"Team work is the heart of any big achievement"</div>
+          <div class="team-quote">"Team works is the heart of any big achievements"</div>
         </div>
         <div class="team-card">
           <div class="team-avatar">MS</div>
           <div class="team-name">Mohammed Shibili</div>
-          <div class="team-quote">"Coding is not about what you learn, it's about how you think"</div>
+          <div class="team-quote">"Coding is not about what you learn, it is about how you think"</div>
         </div>
         <div class="team-card">
           <div class="team-avatar">SS</div>
           <div class="team-name">Sahal Shihabudheen</div>
-          <div class="team-quote">"The beauty of creativity is to hide the source"</div>
+          <div class="team-quote">"The beauty of the creativity is hide the source"</div>
         </div>
       </div>
 
-      <!-- CTA -->
-      <div class="cta-banner" style="margin-top:60px;">
-        <h2 class="cta-banner-title">Ready to Partner with Us?</h2>
-        <p class="cta-banner-desc">Join 700+ businesses and take your brand digital with U-BSOL today.</p>
-        <div class="cta-banner-actions">
-          <a href="packages.html" class="btn-primary btn-large">View Packages</a>
-          <a href="contact.html" class="btn-outline-large">Contact Us</a>
-        </div>
-      </div>
     </div>
   </div>
 

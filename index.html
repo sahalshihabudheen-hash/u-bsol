@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>U-BSOL | Cloud-Based Business Solution Platform</title>
-  <meta name="description" content="U-BSOL is a cloud-based SaaS business application providing web applications, mobile apps, eCommerce, booking, billing and more under your own brand." />
+  <title>U-BSOL | Home</title>
+  <meta name="description" content="U-BSOL is a cloud based SAS modal business application which provides web application and mobile apps for any business. It contains collection of business operations for various needs." />
   <link rel="stylesheet" href="style.css" />
   <style>
     /* ===== HERO FLOATING ELEMENTS ===== */
@@ -19,65 +19,19 @@
     .fc1 { width: 500px; height: 500px; background: var(--primary); top: -100px; right: -100px; }
     .fc2 { width: 300px; height: 300px; background: var(--accent); bottom: 50px; right: 200px; }
 
-    /* ===== HOW IT WORKS ===== */
-    .steps-wrap { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; position: relative; }
-    .steps-wrap::before {
-      content: ''; position: absolute;
-      top: 32px; left: 12.5%; right: 12.5%; height: 2px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      z-index: 0;
+    .bullet-list {
+      list-style: none; display: flex; flex-direction: column; gap: 16px;
     }
-    .step { text-align: center; padding: 0 16px; position: relative; z-index: 1; }
-    .step-num {
-      width: 64px; height: 64px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 20px; font-weight: 700; font-size: 20px;
-      box-shadow: 0 0 30px rgba(99,102,241,0.4);
-      font-family: 'Space Grotesk', sans-serif;
+    .bullet-list li {
+      display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);
     }
-    .step-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
-    .step-desc { font-size: 13px; color: var(--text-muted); }
-
-    /* ===== TESTIMONIAL ===== */
-    .testimonial-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-    .testimonial-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 24px; transition: var(--transition);
+    .bullet-list li::before {
+      content: '✓'; color: var(--primary); font-weight: 700; background: rgba(99,102,241,0.1); border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
     }
-    .testimonial-card:hover { border-color: rgba(99,102,241,0.35); transform: translateY(-4px); }
-    .testimonial-stars { color: var(--accent2); font-size: 14px; margin-bottom: 12px; }
-    .testimonial-text { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px; }
-    .testimonial-author { display: flex; align-items: center; gap: 12px; }
-    .testimonial-avatar {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 14px; color: #fff;
+    .feature-text-block {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 36px; margin-bottom: 24px; transition: var(--transition);
     }
-    .testimonial-name { font-size: 14px; font-weight: 600; }
-    .testimonial-role { font-size: 12px; color: var(--text-muted); }
-
-    /* ===== CTA BANNER ===== */
-    .cta-banner {
-      background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(6,182,212,0.08));
-      border: 1px solid rgba(99,102,241,0.25); border-radius: 28px;
-      padding: 64px 48px; text-align: center; position: relative; overflow: hidden;
-    }
-    .cta-banner::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(99,102,241,0.12), transparent);
-    }
-    .cta-banner-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px,4vw,44px); font-weight: 700; margin-bottom: 16px; position: relative; }
-    .cta-banner-desc { font-size: 17px; color: var(--text-secondary); margin-bottom: 36px; position: relative; }
-    .cta-banner-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
-
-    @media (max-width: 768px) {
-      .steps-wrap { grid-template-columns: repeat(2,1fr); }
-      .steps-wrap::before { display: none; }
-      .testimonial-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 480px) { .steps-wrap { grid-template-columns: 1fr; } }
+    .feature-text-block:hover { border-color: rgba(99,102,241,0.3); transform: translateY(-2px); }
   </style>
 </head>
 <body>
@@ -92,32 +46,15 @@
       </div>
       <div class="hero-grid">
         <div>
-          <div class="hero-badge"><span class="dot"></span> Cloud-Based SaaS Platform</div>
-          <h1 class="hero-title">
-            Your Complete<br>
-            <span class="gradient-text">Business Solution</span><br>
-            In One Platform
+          <h1 class="hero-title" style="font-size: clamp(32px, 4vw, 52px);">
+            A smarter way to create, manage and grow your business through online platform.
           </h1>
           <p class="hero-desc">
-            U-BSOL delivers web apps, mobile apps, eCommerce, billing, booking & more — all under your own brand name. No tech headaches, just business growth.
+            U-BSOL is a cloud based SAS modal business application which provides web application, mobile apps and desktop applications for any business. It has wide range of eCommerce system, booking system, tracking system and billing system, etc…
           </p>
           <div class="hero-actions">
-            <a href="packages.html" class="btn-primary btn-large">Start Free Trial</a>
-            <a href="features.html" class="btn-outline-large">Explore Features</a>
-          </div>
-          <div class="hero-stats">
-            <div class="stat">
-              <span class="stat-num">700+</span>
-              <span class="stat-label">Happy Clients</span>
-            </div>
-            <div class="stat">
-              <span class="stat-num">3</span>
-              <span class="stat-label">Flexible Plans</span>
-            </div>
-            <div class="stat">
-              <span class="stat-num">24/7</span>
-              <span class="stat-label">Support</span>
-            </div>
+            <a href="packages.html" class="btn-primary btn-large">Try Now</a>
+            <a href="features.html" class="btn-outline-large">Explore</a>
           </div>
         </div>
         <div class="hero-visual">
@@ -126,117 +63,119 @@
               <div class="hero-card-dot" style="background:#ef4444;"></div>
               <div class="hero-card-dot" style="background:#f59e0b;"></div>
               <div class="hero-card-dot" style="background:#10b981;"></div>
-              <span style="margin-left:8px;font-size:13px;color:var(--text-muted)">U-BSOL Platform</span>
+              <span style="margin-left:8px;font-size:13px;color:var(--text-muted)">U-BSOL Modules</span>
             </div>
             <div class="feature-grid">
-              <div class="feature-chip"><span class="chip-icon">🛒</span>eCommerce System</div>
-              <div class="feature-chip"><span class="chip-icon">📅</span>Booking System</div>
-              <div class="feature-chip"><span class="chip-icon">📦</span>Order Tracking</div>
-              <div class="feature-chip"><span class="chip-icon">💳</span>Billing & POS</div>
-              <div class="feature-chip"><span class="chip-icon">📱</span>Mobile Apps</div>
-              <div class="feature-chip"><span class="chip-icon">📊</span>Analytics & CRM</div>
+              <div class="feature-chip"><span class="chip-icon">🛒</span>Ecommerce system</div>
+              <div class="feature-chip"><span class="chip-icon">📅</span>Booking or Appointment System</div>
+              <div class="feature-chip"><span class="chip-icon">🚚</span>Delivery service</div>
+              <div class="feature-chip"><span class="chip-icon">🧾</span>Billing System</div>
+              <div class="feature-chip"><span class="chip-icon">📈</span>ERP, POS & CRM</div>
+              <div class="feature-chip"><span class="chip-icon">📊</span>BI tools, Job order manager</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== LOGO MARQUEE ===== -->
-    <div class="marquee-wrap">
-      <div class="marquee-track">
-        <span class="marquee-item"><span class="mi">🛒</span> eCommerce</span>
-        <span class="marquee-item"><span class="mi">📱</span> Mobile Apps</span>
-        <span class="marquee-item"><span class="mi">💳</span> Payment Gateway</span>
-        <span class="marquee-item"><span class="mi">📅</span> Booking System</span>
-        <span class="marquee-item"><span class="mi">📊</span> Analytics</span>
-        <span class="marquee-item"><span class="mi">🚚</span> Delivery Tracking</span>
-        <span class="marquee-item"><span class="mi">🔐</span> SSL Security</span>
-        <span class="marquee-item"><span class="mi">🎯</span> SEO Tools</span>
-        <span class="marquee-item"><span class="mi">🏷️</span> Coupon System</span>
-        <span class="marquee-item"><span class="mi">📧</span> Notifications</span>
-        <!-- Duplicate for infinite loop -->
-        <span class="marquee-item"><span class="mi">🛒</span> eCommerce</span>
-        <span class="marquee-item"><span class="mi">📱</span> Mobile Apps</span>
-        <span class="marquee-item"><span class="mi">💳</span> Payment Gateway</span>
-        <span class="marquee-item"><span class="mi">📅</span> Booking System</span>
-        <span class="marquee-item"><span class="mi">📊</span> Analytics</span>
-        <span class="marquee-item"><span class="mi">🚚</span> Delivery Tracking</span>
-        <span class="marquee-item"><span class="mi">🔐</span> SSL Security</span>
-        <span class="marquee-item"><span class="mi">🎯</span> SEO Tools</span>
-        <span class="marquee-item"><span class="mi">🏷️</span> Coupon System</span>
-        <span class="marquee-item"><span class="mi">📧</span> Notifications</span>
+    <!-- ===== KEY FEATURES GRID ===== -->
+    <div class="section">
+      <div class="grid-4">
+        <div class="card">
+          <div class="card-icon">🏪</div>
+          <h3 class="card-title">All in one platform</h3>
+          <p class="card-desc">U-BSOL provide a complete business solution under one digital platform including website and mobile application which will be under your own brand name.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔬</div>
+          <h3 class="card-title">Continues R & D</h3>
+          <p class="card-desc">Our dedicated Research & Development team will enable customers to be at par with latest technology updates and ongoing market trends.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎨</div>
+          <h3 class="card-title">Best user experience</h3>
+          <p class="card-desc">We provide beautiful templates for your website with latest design pattern. Which can be customized as per customer requirements.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔐</div>
+          <h3 class="card-title">Secure and fast</h3>
+          <p class="card-desc">U-BSOL offers high security and full data protection and a high level of performance, it is equipped with the best technology and hosted in the fastest cloud storage.</p>
+        </div>
       </div>
     </div>
 
     <!-- ===== WHAT IS U-BSOL ===== -->
-    <div class="section">
-      <div class="section-header">
-        <div class="section-tag">⚡ What We Offer</div>
-        <h2 class="section-title">All-In-One Digital Platform<br>for Any Business</h2>
-        <p class="section-desc">From eCommerce to delivery tracking, all under your own brand — no technical knowledge required.</p>
-      </div>
-      <div class="grid-3">
-        <div class="card">
-          <div class="card-icon">🏪</div>
-          <h3 class="card-title">All in One Platform</h3>
-          <p class="card-desc">Complete digital solution under one platform including website and mobile app under your own brand name.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🔬</div>
-          <h3 class="card-title">Continuous R&D</h3>
-          <p class="card-desc">Our dedicated R&D team keeps you at par with latest technology and ongoing market trends at no extra cost.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🎨</div>
-          <h3 class="card-title">Best User Experience</h3>
-          <p class="card-desc">Beautiful, customizable templates designed to convert visitors into loyal customers.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🔐</div>
-          <h3 class="card-title">Secure & Fast</h3>
-          <p class="card-desc">High-level security, full data protection, LiteSpeed hosting and best-in-class cloud infrastructure.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">📈</div>
-          <h3 class="card-title">Built-in Marketing</h3>
-          <p class="card-desc">Automated SEO, Facebook Pixel, Google Analytics, coupons, hot sales & social media integrations included.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🤝</div>
-          <h3 class="card-title">Dedicated Support</h3>
-          <p class="card-desc">24/7 online support via tickets, training videos, help docs and regular webinars for all customers.</p>
+    <div class="section-full" style="background: rgba(255,255,255,0.01); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+      <div class="section" style="padding-top: 60px; padding-bottom: 60px;">
+        <div class="grid-2">
+          <div>
+            <h2 class="section-title">What is U-BSOL?</h2>
+            <p class="section-desc" style="margin-bottom: 24px;">We provides complete digital solutions to any business for digital transformation into the modern world by web and mobile application.</p>
+            <p class="section-desc">U-Bsol is a cloud based SAS modal business application which contains collection of business operations for various needs. We have gathered most frequently using all business operation and align into different business domains such as Trading, Hospitality and Services which we made as module and add-ons as follows.</p>
+            <ul class="bullet-list" style="margin-top: 24px;">
+              <li>Ecommerce system.</li>
+              <li>Booking or Appointment System.</li>
+              <li>Delivery service.</li>
+              <li>Billing System.</li>
+              <li>ERP, POS & CRM.</li>
+              <li>BI tools, Job order manager</li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="section-title">A perfect IT solution will make you more organized</h2>
+            <p class="section-desc" style="margin-bottom: 16px;">A perfect IT solution is very essential for any business growth. Spending time and money for building an efficient solution without proper IT knowledge may result to fail the business. There are many solutions including Open-source platforms are available, may not be compatible with exact needs or many not scalable. So that sometime you might need to use multiple applications from different vendors which always become very expensive.</p>
+            <p class="section-desc">Also there will be data migration issues, regular updates and maintenance issues, licensing issues etc…We came up into this point with our solution (U-BSOL) to resolve all of these issues without any further headache.</p>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- ===== HOW IT WORKS ===== -->
-    <div class="section-full" style="background: rgba(255,255,255,0.01); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-      <div class="section" style="padding-top:0;padding-bottom:0;">
-        <div class="section-header center">
-          <div class="section-tag">🚀 How It Works</div>
-          <h2 class="section-title">Get Online in 4 Simple Steps</h2>
-          <p class="section-desc">From signup to live business in record time — no developers needed.</p>
+    <!-- ===== DETAILED INFO BLOCKS ===== -->
+    <div class="section">
+      <div class="feature-text-block">
+        <p class="section-desc" style="max-width: 100%;">U-BSOL is a feature rich advance level business solution having tools you require to Create, Manage, Promote, Analyze and Scale your business with e-commerce platform. Our special features will stimulate your customer’s passion for shopping and gives them an enjoyable e-commerce experience. <a href="features.html" style="color:var(--primary);text-decoration:none;">Read More >></a></p>
+      </div>
+      <div class="grid-2">
+        <div class="feature-text-block">
+          <p class="section-desc" style="max-width: 100%;">U-BSOL online application (web application) will be loaded under your own domain that will make your own brand's online presence in perfect way. This will enable you to gain massive exposure over the internet.</p>
         </div>
-        <div class="steps-wrap">
-          <div class="step">
-            <div class="step-num">1</div>
-            <div class="step-title">Choose a Plan</div>
-            <div class="step-desc">Pick the package that fits your business size and needs.</div>
+        <div class="feature-text-block">
+          <p class="section-desc" style="max-width: 100%;">U-BSOL is built with various tools for marketing. Such as automated SEO, Facebook pixel, Google analytical tool, Other Social media integrations, etc.</p>
+        </div>
+        <div class="feature-text-block">
+          <p class="section-desc" style="max-width: 100%;">You can change your website look and feel without having technical knowledge. We provide 6 different styles of home page sider and various styles for ads and categories.</p>
+        </div>
+        <div class="feature-text-block">
+          <p class="section-desc" style="max-width: 100%;">U-BSOL offer 3 different methods of checkout methods. Whatsapp checkout for the gust user, Regular checkout for the registered user and Shop checkout for your waking customer.</p>
+        </div>
+        <div class="feature-text-block">
+          <p class="section-desc" style="max-width: 100%;">U-BSOL offer 3 different methods of payment. Cash on delivery, Pay at shop, Online payment gateways (PayTM, PayUMoney, PayPal, Stripe, Razor pay) are already integrated…. .</p>
+        </div>
+        <div class="feature-text-block">
+          <p class="section-desc" style="max-width: 100%;">Our dedicated support team will available in all office hours. You can easily create support tickets through your dashboard that will be answered as quickly as possible.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== JOIN US ===== -->
+    <div class="section-full" style="background: rgba(255,255,255,0.01); border-top: 1px solid var(--border);">
+      <div class="section" style="padding-top: 60px; padding-bottom: 60px;">
+        <div class="grid-2">
+          <div>
+            <div class="section-tag">🤝 Join Us</div>
+            <h2 class="section-title">You can fully concentrate of your business without having panic about IT related matters.</h2>
+            <p class="section-desc" style="margin-bottom: 24px;">Our technical team will handle your task without any further cost.</p>
+            <a href="packages.html" class="btn-primary btn-large">Join Us Now</a>
           </div>
-          <div class="step">
-            <div class="step-num">2</div>
-            <div class="step-title">Brand It Yours</div>
-            <div class="step-desc">Add your logo, colors and domain to make it truly your own.</div>
-          </div>
-          <div class="step">
-            <div class="step-num">3</div>
-            <div class="step-title">Add Products</div>
-            <div class="step-desc">Upload your catalog — products, services, bookings or menu items.</div>
-          </div>
-          <div class="step">
-            <div class="step-num">4</div>
-            <div class="step-title">Go Live!</div>
-            <div class="step-desc">Launch your website and mobile app to the world and start selling.</div>
+          <div>
+            <ul class="bullet-list">
+              <li>Affordable cost, one of the lowest in the industry.</li>
+              <li>Easy to scale up your applications as per the needs.</li>
+              <li>Single solution for online / offline business.</li>
+              <li>Manage your website, mobile app from single dashboard.</li>
+              <li>Create offers, coupons, and seasonal promotions.</li>
+              <li>Track your customer behavior and inspire them by rewards.</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -245,118 +184,56 @@
     <!-- ===== PRICING PREVIEW ===== -->
     <div class="section">
       <div class="section-header center">
-        <div class="section-tag">💎 Pricing</div>
-        <h2 class="section-title">Simple, Transparent Pricing</h2>
-        <p class="section-desc">Great features, premium quality, affordable price. Choose what fits your business.</p>
+        <h2 class="section-title">Our Packages</h2>
       </div>
       <div class="pricing-cards">
         <div class="pricing-card">
           <div class="pricing-name">Basic</div>
-          <div class="pricing-price"><sup>₹</sup>Contact Us<sub>/mo</sub></div>
-          <div class="pricing-desc">Perfect for small businesses getting started online.</div>
+          <div class="pricing-price" style="font-size:24px;">Monthly / Yearly</div>
           <ul class="pricing-features">
-            <li><span class="check">✓</span> Responsive Website (Your Brand)</li>
-            <li><span class="check">✓</span> Android Customer App</li>
-            <li><span class="check">✓</span> Free SSL Certificate</li>
-            <li><span class="check">✓</span> 1 GB File Storage</li>
-            <li><span class="check">✓</span> 1 Store Location</li>
-            <li><span class="cross">✗</span> Advanced Analytics</li>
+            <li><span class="check">✓</span> Responsive website under your brand name</li>
+            <li><span class="check">✓</span> Order notification mobile app (Android)</li>
+            <li><span class="check">✓</span> Customer mobile app (Android)<br><small>To be uploaded in play store with your logo & brand name</small></li>
+            <li><span class="check">✓</span> Free SSL</li>
+            <li><span class="check">✓</span> Customer registration</li>
+            <li><span class="check">✓</span> 1 GB File storage</li>
+            <li><span class="check">✓</span> 1 No Store pickup location<br><small>Store branches in diffrent location</small></li>
           </ul>
-          <a href="packages.html" class="btn-outline-large" style="display:block;text-align:center;">View Details</a>
+          <a href="packages.html" class="btn-outline-large" style="display:block;text-align:center;">Vew Details</a>
         </div>
         <div class="pricing-card featured">
-          <div class="pricing-badge">Most Popular</div>
           <div class="pricing-name">Starter</div>
-          <div class="pricing-price"><sup>₹</sup>Contact Us<sub>/mo</sub></div>
-          <div class="pricing-desc">Great for growing businesses with multiple locations.</div>
+          <div class="pricing-price" style="font-size:24px;">Monthly / Yearly</div>
           <ul class="pricing-features">
-            <li><span class="check">✓</span> Responsive Website (Your Brand)</li>
-            <li><span class="check">✓</span> Android Customer App</li>
-            <li><span class="check">✓</span> Free SSL Certificate</li>
-            <li><span class="check">✓</span> 1.5 GB File Storage</li>
-            <li><span class="check">✓</span> 3 Store Locations</li>
-            <li><span class="check">✓</span> Advanced Analytics</li>
+            <li><span class="check">✓</span> Responsive website under your brand name</li>
+            <li><span class="check">✓</span> Order notification mobile app (Android)</li>
+            <li><span class="check">✓</span> Customer mobile app (Android)<br><small>To be uploaded in play store with your logo & brand name</small></li>
+            <li><span class="check">✓</span> Free SSL</li>
+            <li><span class="check">✓</span> Customer registration</li>
+            <li><span class="check">✓</span> 1.5 GB File storage</li>
+            <li><span class="check">✓</span> 3 Nos Store pickup location<br><small>Store branches in diffrent location</small></li>
           </ul>
-          <a href="packages.html" class="btn-primary btn-large" style="display:block;text-align:center;">View Details</a>
+          <a href="packages.html" class="btn-primary btn-large" style="display:block;text-align:center;">Vew Details</a>
         </div>
         <div class="pricing-card">
           <div class="pricing-name">Premier</div>
-          <div class="pricing-price"><sup>₹</sup>Contact Us<sub>/mo</sub></div>
-          <div class="pricing-desc">Full power for scaling businesses and enterprises.</div>
+          <div class="pricing-price" style="font-size:24px;">Monthly / Yearly</div>
           <ul class="pricing-features">
-            <li><span class="check">✓</span> Responsive Website (Your Brand)</li>
-            <li><span class="check">✓</span> Android Customer App</li>
-            <li><span class="check">✓</span> Free SSL Certificate</li>
-            <li><span class="check">✓</span> 3.5 GB File Storage</li>
-            <li><span class="check">✓</span> 5 Store Locations</li>
-            <li><span class="check">✓</span> Full ERP & CRM Suite</li>
+            <li><span class="check">✓</span> Responsive website under your brand name</li>
+            <li><span class="check">✓</span> Order notification mobile app (Android)</li>
+            <li><span class="check">✓</span> Customer mobile app (Android)<br><small>To be uploaded in play store with your logo & brand name</small></li>
+            <li><span class="check">✓</span> Free SSL</li>
+            <li><span class="check">✓</span> Customer registration</li>
+            <li><span class="check">✓</span> 3.5 GB File storage</li>
+            <li><span class="check">✓</span> 5 Nos Store pickup location<br><small>Store branches in diffrent location</small></li>
           </ul>
-          <a href="packages.html" class="btn-outline-large" style="display:block;text-align:center;">View Details</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== TESTIMONIALS ===== -->
-    <div class="section-full" style="background: rgba(255,255,255,0.01); border-top: 1px solid var(--border);">
-      <div class="section" style="padding-top:0;padding-bottom:0;">
-        <div class="section-header center">
-          <div class="section-tag">💬 Testimonials</div>
-          <h2 class="section-title">Trusted by 700+ Businesses</h2>
-          <p class="section-desc">Real results from real customers who transformed their business with U-BSOL.</p>
-        </div>
-        <div class="testimonial-grid">
-          <div class="testimonial-card">
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">"U-BSOL transformed our retail store completely. We now have a beautiful website and mobile app under our brand. Sales doubled in 3 months!"</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">AR</div>
-              <div>
-                <div class="testimonial-name">Ahmed Rashid</div>
-                <div class="testimonial-role">Retail Store Owner, Kerala</div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">"The booking system is perfect for my salon. Customers can book appointments online, and I manage everything from one dashboard. Amazing!"</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">PM</div>
-              <div>
-                <div class="testimonial-name">Priya Menon</div>
-                <div class="testimonial-role">Salon Owner, Bangalore</div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">"Affordable, feature-rich and the support team is incredibly responsive. Best IT investment I've made for my restaurant business."</p>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar">SK</div>
-              <div>
-                <div class="testimonial-name">Suresh Kumar</div>
-                <div class="testimonial-role">Restaurant Owner, Chennai</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== CTA BANNER ===== -->
-    <div class="section">
-      <div class="cta-banner">
-        <h2 class="cta-banner-title">Ready to Grow Your Business?</h2>
-        <p class="cta-banner-desc">Join 700+ businesses already running on U-BSOL. Get your own branded platform today.</p>
-        <div class="cta-banner-actions">
-          <a href="packages.html" class="btn-primary btn-large">View Packages</a>
-          <a href="contact.html" class="btn-outline-large">Talk to Us</a>
+          <a href="packages.html" class="btn-outline-large" style="display:block;text-align:center;">Vew Details</a>
         </div>
       </div>
     </div>
   </div>
 
   <div id="footer-container"></div>
-
   <script src="components.js"></script>
   <script>injectComponents('home');</script>
 </body>
