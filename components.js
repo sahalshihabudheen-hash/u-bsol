@@ -131,3 +131,61 @@ document.addEventListener('DOMContentLoaded', () => {
   document.documentElement.setAttribute('data-theme', savedTheme);
   setTimeout(() => updateThemeIcon(savedTheme), 50);
 });
+
+// ===== TYPING ANIMATION =====
+const words = ["Market Place", "Corporate Identity", "E-Commerce System", "Billing System"];
+let wordIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typeTimer;
+
+function typeEffect() {
+  const typingElement = document.querySelector('.typing-text');
+  if (!typingElement) return;
+
+  const currentWord = words[wordIndex];
+  
+  if (isDeleting) {
+    typingElement.textContent = currentWord.substring(0, charIndex - 1);
+    charIndex--;
+  } else {
+    typingElement.textContent = currentWord.substring(0, charIndex + 1);
+    charIndex++;
+  }
+
+  let typeSpeed = isDeleting ? 50 : 100;
+
+  if (!isDeleting && charIndex === currentWord.length) {
+    typeSpeed = 2000; // Pause at end
+    isDeleting = true;
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    wordIndex = (wordIndex + 1) % words.length;
+    typeSpeed = 500; // Pause before new word
+  }
+
+  typeTimer = setTimeout(typeEffect, typeSpeed);
+}
+
+// ===== VIDEO MODAL =====
+function openVideoModal() {
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('videoIframe');
+  // Sample video URL (YouTube embed)
+  iframe.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
+  if(modal) modal.classList.add('active');
+}
+
+function closeVideoModal() {
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('videoIframe');
+  if(modal) modal.classList.remove('active');
+  if(iframe) iframe.src = ""; // Stop video
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Init typing effect
+  if (document.querySelector('.typing-text')) {
+    setTimeout(typeEffect, 1000);
+  }
+});

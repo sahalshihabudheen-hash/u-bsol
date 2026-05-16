@@ -44,41 +44,54 @@
         <div class="float-circle fc1"></div>
         <div class="float-circle fc2"></div>
       </div>
-      <div class="hero-grid">
-        <div>
-          <h1 class="hero-title" style="font-size: clamp(32px, 4vw, 52px);">
-            A smarter way to create, manage and grow your business through online platform.
+      <div class="hero-grid" style="grid-template-columns: 1fr 1fr; align-items: center;">
+        
+        <!-- Left: Visual -->
+        <div class="hero-visual" style="position: relative;">
+          <div class="hero-image-container" style="position: relative; display: flex; justify-content: center; align-items: center; min-height: 400px;">
+            <!-- Placeholder illustration mimicking the screenshot -->
+            <img src="https://cdni.iconscout.com/illustration/premium/thumb/e-commerce-business-illustration-download-in-svg-png-gif-file-formats--shopping-online-store-retail-startup-pack-illustrations-3317133.png?f=webp" alt="E-commerce Business" style="max-width: 100%; height: auto; animation: floatAnim 6s ease-in-out infinite; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.1));">
+            
+            <!-- Play Button Overlay -->
+            <div class="play-btn-wrapper" onclick="openVideoModal()" style="position: absolute; bottom: 20%; right: 20%;">
+              <div class="play-pulse"></div>
+              <div class="play-btn">
+                <svg viewBox="0 0 24 24" fill="white" width="24" height="24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Text & Actions -->
+        <div style="padding-left: 20px;">
+          <h1 class="hero-title" style="font-size: clamp(38px, 4vw, 56px); line-height: 1.2; margin-bottom: 20px;">
+            Grow Your Business With<br>Our Solutions<br>
+            <span class="typing-text" style="color: var(--primary);"></span><span class="cursor" style="color: var(--primary); font-weight: 300;">|</span>
           </h1>
-          <p class="hero-desc">
-            U-BSOL is a cloud based SAS modal business application which provides web application, mobile apps and desktop applications for any business. It has wide range of eCommerce system, booking system, tracking system and billing system, etc…
+          <p class="hero-desc" style="font-size: 18px; color: var(--text-secondary); margin-bottom: 36px; max-width: 500px;">
+            A smarter way to create, manage and grow your business through online platform.
           </p>
           <div class="hero-actions">
-            <a href="packages.html" class="btn-primary btn-large">Try Now</a>
-            <a href="features.html" class="btn-outline-large">Explore</a>
+            <a href="packages.html" class="btn-primary btn-large" style="border-radius: 30px; padding: 14px 36px;">Try Now</a>
+            <a href="features.html" class="btn-outline-large" style="border-radius: 30px; padding: 14px 36px; border-color: var(--primary); color: var(--primary);">Explore</a>
           </div>
         </div>
-        <div class="hero-visual">
-          <div class="hero-card">
-            <div class="hero-card-header">
-              <div class="hero-card-dot" style="background:#ef4444;"></div>
-              <div class="hero-card-dot" style="background:#f59e0b;"></div>
-              <div class="hero-card-dot" style="background:#10b981;"></div>
-              <span style="margin-left:8px;font-size:13px;color:var(--text-muted)">U-BSOL Modules</span>
-            </div>
-            <div class="feature-grid">
-              <div class="feature-chip"><span class="chip-icon">🛒</span>Ecommerce system</div>
-              <div class="feature-chip"><span class="chip-icon">📅</span>Booking or Appointment System</div>
-              <div class="feature-chip"><span class="chip-icon">🚚</span>Delivery service</div>
-              <div class="feature-chip"><span class="chip-icon">🧾</span>Billing System</div>
-              <div class="feature-chip"><span class="chip-icon">📈</span>ERP, POS & CRM</div>
-              <div class="feature-chip"><span class="chip-icon">📊</span>BI tools, Job order manager</div>
-            </div>
-          </div>
-        </div>
+
       </div>
     </section>
 
-    <!-- ===== KEY FEATURES GRID ===== -->
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal">
+      <div class="video-modal-backdrop" onclick="closeVideoModal()"></div>
+      <div class="video-modal-content">
+        <span class="close-video" onclick="closeVideoModal()">&times;</span>
+        <div class="video-container">
+          <iframe id="videoIframe" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+    
     <div class="section">
       <div class="grid-4">
         <div class="card">
