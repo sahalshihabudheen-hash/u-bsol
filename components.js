@@ -278,7 +278,7 @@ function typeEffect() {
 function openVideoModal() {
   const modal = document.getElementById('videoModal');
   const iframe = document.getElementById('videoIframe');
-  iframe.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
+  iframe.src = "https://www.youtube.com/embed/vDNPcdE5iWQ?autoplay=1";
   if(modal) modal.classList.add('active');
 }
 

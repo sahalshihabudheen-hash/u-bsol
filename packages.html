@@ -7,48 +7,74 @@
   <meta name="description" content="U-BSOL offer great pricings, premium features and quality service for your business. For our customer convenient we offer monthly and yearly pricing strategy" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    .billing-toggle-wrap {
-      display: flex; align-items: center; gap: 16px;
-      justify-content: center; margin-bottom: 52px;
+    /* ===== MODERN PRICING TABLE ===== */
+    .comparison-container {
+      max-width: 1200px;
+      margin: 0 auto 100px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.2);
     }
-    .btw-label {
-      font-size: 15px; font-weight: 500;
-      cursor: pointer; transition: var(--transition);
+    
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
     }
-    .btw-label.active { color: var(--primary); }
-    .btw-label.inactive { color: var(--text-muted); }
-    .btw-toggle {
-      width: 56px; height: 30px; background: rgba(99,102,241,0.2);
-      border-radius: 100px; position: relative; cursor: pointer;
-      border: 1px solid rgba(99,102,241,0.35); transition: var(--transition);
+    
+    .table-head {
+      position: sticky;
+      top: 72px; /* Navbar height */
+      background: var(--bg-card);
+      z-index: 100;
+      border-bottom: 2px solid var(--border);
     }
-    .btw-toggle.yearly { background: rgba(99,102,241,0.35); }
-    .btw-knob {
-      width: 22px; height: 22px; background: var(--primary);
-      border-radius: 50%; position: absolute; top: 3px; left: 4px;
-      transition: var(--transition); box-shadow: 0 2px 8px rgba(99,102,241,0.5);
+    
+    .th-cell {
+      padding: 30px 20px;
+      text-align: center;
+      font-family: 'Space Grotesk', sans-serif;
     }
-    .btw-toggle.yearly .btw-knob { transform: translateX(26px); }
+    .th-name { font-size: 24px; font-weight: 700; color: var(--text-primary); }
+    .th-price { font-size: 16px; color: var(--primary); margin-top: 5px; }
+    
+    .cat-row {
+      background: linear-gradient(90deg, var(--primary), var(--accent2));
+      color: #fff;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 2px;
+    }
+    .cat-cell { padding: 15px 30px; text-align: left; }
+    
+    .feat-row {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .feat-row:hover { background: rgba(255,255,255,0.02); }
+    
+    .feat-cell {
+      padding: 18px 20px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .feat-name { text-align: left; padding-left: 30px; color: var(--text-primary); font-weight: 500; }
+    .val-cell { text-align: center; }
+    
+    .check { color: var(--success); font-weight: 700; font-size: 18px; }
+    .cross { color: var(--text-muted); font-size: 16px; opacity: 0.5; }
+    
+    .highlight-col { background: rgba(var(--primary-rgb), 0.03); }
+    
+    .cta-row { background: var(--bg-card); }
+    .cta-cell { padding: 30px 20px; text-align: center; }
 
-    /* Pricing Table */
-    .pricing-full-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 80px; }
-    .pfc {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 24px; overflow: hidden; transition: var(--transition);
-      position: relative;
-    }
-    .pfc:hover { box-shadow: var(--glow); transform: translateY(-6px); }
-    .pfc-header { padding: 32px 28px 24px; border-bottom: 1px solid var(--border); }
-    .pfc-name { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; }
-    .pfc-price-wrap { padding: 24px 28px; border-bottom: 1px solid var(--border); }
-    .pfc-price { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--primary); }
-    .pfc-features-wrap { padding: 24px 28px; }
-    .pfc-feature-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 16px; font-size: 14px; color: var(--text-secondary); line-height: 1.5; }
-    .pfc-feature-item .fi-check { color: var(--success); font-weight: 700; flex-shrink: 0; }
-    .pfc-cta { padding: 0 28px 28px; }
-
-    @media (max-width: 1024px) {
-      .pricing-full-grid { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
+    @media (max-width: 768px) {
+      .th-name { font-size: 18px; }
+      .feat-name { padding-left: 15px; font-size: 13px; }
+      .cat-cell { padding: 12px 15px; }
     }
   </style>
 </head>
@@ -57,118 +83,155 @@
 
   <div class="page-wrapper">
     <div class="page-hero">
-      <h1 class="page-hero-title">Our Packages</h1>
-      <p class="page-hero-desc">We offer great prices, premium features and quality service for your business.</p>
+      <div class="section-tag animate-on-scroll">PRICING PLANS</div>
+      <h1 class="page-hero-title animate-on-scroll delay-100">Our Packages</h1>
+      <p class="page-hero-desc animate-on-scroll delay-200">We offer great prices, premium features and quality service for your business. Choose the plan that fits your needs.</p>
     </div>
 
     <div class="section">
-      <!-- Billing Toggle -->
-      <div class="billing-toggle-wrap">
-        <span class="btw-label active" id="monthlyLabel" onclick="setBilling('monthly')">Monthly</span>
-        <div class="btw-toggle" id="billingToggle" onclick="toggleBilling()">
-          <div class="btw-knob" id="billingKnob"></div>
-        </div>
-        <span class="btw-label inactive" id="yearlyLabel" onclick="setBilling('yearly')">Yearly</span>
-      </div>
+      <div class="comparison-container animate-on-scroll delay-300">
+        <table class="comparison-table">
+          <thead class="table-head">
+            <tr>
+              <th class="th-cell" style="width: 40%;"></th>
+              <th class="th-cell" style="width: 20%;">
+                <div class="th-name">Basic</div>
+                <div class="th-price">Contact Us</div>
+              </th>
+              <th class="th-cell" style="width: 20%;">
+                <div class="th-name">Starter</div>
+                <div class="th-price">Contact Us</div>
+              </th>
+              <th class="th-cell highlight-col" style="width: 20%;">
+                <div class="th-name">Premier</div>
+                <div class="th-price">Contact Us</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- CATEGORY: DELIVERABLE -->
+            <tr class="cat-row"><td colspan="4" class="cat-cell">Deliverable</td></tr>
+            <tr class="feat-row">
+              <td class="feat-cell feat-name">Responsive Website</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check highlight-col">✓</td>
+            </tr>
+            <tr class="feat-row">
+              <td class="feat-cell feat-name">Admin Dashboard</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check highlight-col">✓</td>
+            </tr>
+            <tr class="feat-row">
+              <td class="feat-cell feat-name">Order Notification App (Android)</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check highlight-col">✓</td>
+            </tr>
+            <tr class="feat-row">
+              <td class="feat-cell feat-name">Customer Mobile App (Android)</td>
+              <td class="feat-cell val-cell cross">✕</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check highlight-col">✓</td>
+            </tr>
+            <tr class="feat-row">
+              <td class="feat-cell feat-name">Customer Mobile App (iOS)</td>
+              <td class="feat-cell val-cell cross">✕</td>
+              <td class="feat-cell val-cell cross">✕</td>
+              <td class="feat-cell val-cell check highlight-col">✓</td>
+            </tr>
 
-      <!-- Pricing Cards -->
-      <div class="pricing-full-grid">
+            <!-- CATEGORY: GENERAL -->
+            <tr class="cat-row"><td colspan="4" class="cat-cell">General</td></tr>
+            <tr class="feat-row">
+              <td class="feat-cell feat-name">Custom Domain Setup</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check highlight-col">✓</td>
+            </tr>
+            <tr class="feat-row">
+              <td class="feat-cell feat-name">Free SSL Certificate</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check highlight-col">✓</td>
+            </tr>
+            <tr class="feat-row">
+              <td class="feat-cell feat-name">Store Pickups</td>
+              <td class="feat-cell val-cell">1 No</td>
+              <td class="feat-cell val-cell">3 Nos</td>
+              <td class="feat-cell val-cell highlight-col">5 Nos</td>
+            </tr>
+            <tr class="feat-row">
+              <td class="feat-cell feat-name">File Storage</td>
+              <td class="feat-cell val-cell">1 GB</td>
+              <td class="feat-cell val-cell">1.5 GB</td>
+              <td class="feat-cell val-cell highlight-col">3.5 GB</td>
+            </tr>
 
-        <!-- Basic -->
-        <div class="pfc">
-          <div class="pfc-header">
-            <div class="pfc-name">Basic</div>
-          </div>
-          <div class="pfc-price-wrap">
-            <div class="pfc-price" id="priceBasic">Contact Us</div>
-          </div>
-          <div class="pfc-features-wrap">
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>Responsive website under your brand name</span></div>
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>Order notification mobile app (Android)</span></div>
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>Customer mobile app (Android)<br><small>To be uploaded in play store with your logo & brand name</small></span></div>
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>Free SSL</span></div>
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>Customer registration</span></div>
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>1 GB File storage</span></div>
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>1 No Store pickup location<br><small>Store branches in diffrent location</small></span></div>
-          </div>
-          <div class="pfc-cta">
-            <a href="https://u-bsol.com/join-us/basic/yearly" class="btn-primary btn-large" style="display:block;text-align:center;" target="_blank">Choose Plan</a>
-            <a href="https://u-bsol.com/package/basic" target="_blank" style="display:block;text-align:center;margin-top:10px;font-size:13px;color:var(--text-muted);text-decoration:none;">View Details →</a>
-          </div>
-        </div>
+            <!-- CATEGORY: PRODUCT MANAGEMENT -->
+            <tr class="cat-row"><td colspan="4" class="cat-cell">Product Management</td></tr>
+            <tr class="feat-row">
+              <td class="feat-cell feat-name">Unlimited Products</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check highlight-col">✓</td>
+            </tr>
+            <tr class="feat-row">
+              <td class="feat-cell feat-name">Product Variants & Options</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check highlight-col">✓</td>
+            </tr>
+            <tr class="feat-row">
+              <td class="feat-cell feat-name">Inventory Management</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check highlight-col">✓</td>
+            </tr>
+            <tr class="feat-row">
+              <td class="feat-cell feat-name">Import/Export Products</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check highlight-col">✓</td>
+            </tr>
 
-        <!-- Starter -->
-        <div class="pfc">
-          <div class="pfc-header">
-            <div class="pfc-name">Starter</div>
-          </div>
-          <div class="pfc-price-wrap">
-            <div class="pfc-price" id="priceStarter">Contact Us</div>
-          </div>
-          <div class="pfc-features-wrap">
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>Responsive website under your brand name</span></div>
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>Order notification mobile app (Android)</span></div>
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>Customer mobile app (Android)<br><small>To be uploaded in play store with your logo & brand name</small></span></div>
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>Free SSL</span></div>
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>Customer registration</span></div>
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>1.5 GB File storage</span></div>
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>3 Nos Store pickup location<br><small>Store branches in diffrent location</small></span></div>
-          </div>
-          <div class="pfc-cta">
-            <a href="https://u-bsol.com/join-us/starter/yearly" class="btn-primary btn-large" style="display:block;text-align:center;" target="_blank">Choose Plan</a>
-            <a href="https://u-bsol.com/package/starter" target="_blank" style="display:block;text-align:center;margin-top:10px;font-size:13px;color:var(--text-muted);text-decoration:none;">View Details →</a>
-          </div>
-        </div>
+            <!-- CATEGORY: CHECKOUT & DELIVERY -->
+            <tr class="cat-row"><td colspan="4" class="cat-cell">Checkout & Delivery</td></tr>
+            <tr class="feat-row">
+              <td class="feat-cell feat-name">WhatsApp Checkout</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check highlight-col">✓</td>
+            </tr>
+            <tr class="feat-row">
+              <td class="feat-cell feat-name">Multiple Payment Gateways</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check highlight-col">✓</td>
+            </tr>
+            <tr class="feat-row">
+              <td class="feat-cell feat-name">Dynamic Delivery Charges</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check">✓</td>
+              <td class="feat-cell val-cell check highlight-col">✓</td>
+            </tr>
 
-        <!-- Premier -->
-        <div class="pfc">
-          <div class="pfc-header">
-            <div class="pfc-name">Premier</div>
-          </div>
-          <div class="pfc-price-wrap">
-            <div class="pfc-price" id="pricePremier">Contact Us</div>
-          </div>
-          <div class="pfc-features-wrap">
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>Responsive website under your brand name</span></div>
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>Order notification mobile app (Android)</span></div>
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>Customer mobile app (Android)<br><small>To be uploaded in play store with your logo & brand name</small></span></div>
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>Free SSL</span></div>
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>Customer registration</span></div>
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>3.5 GB File storage</span></div>
-            <div class="pfc-feature-item"><span class="fi-check">✓</span> <span>5 Nos Store pickup location<br><small>Store branches in diffrent location</small></span></div>
-          </div>
-          <div class="pfc-cta">
-            <a href="https://u-bsol.com/join-us/premier/yearly" class="btn-primary btn-large" style="display:block;text-align:center;" target="_blank">Choose Plan</a>
-            <a href="https://u-bsol.com/package/premier" target="_blank" style="display:block;text-align:center;margin-top:10px;font-size:13px;color:var(--text-muted);text-decoration:none;">View Details →</a>
-          </div>
-        </div>
+            <!-- CTA ROW -->
+            <tr class="cta-row">
+              <td class="cta-cell"></td>
+              <td class="cta-cell"><a href="contact.html" class="btn-ghost">Contact Us</a></td>
+              <td class="cta-cell"><a href="contact.html" class="btn-ghost">Contact Us</a></td>
+              <td class="cta-cell highlight-col"><a href="contact.html" class="btn-primary">Get Started</a></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 
   <div id="footer-container"></div>
   <script src="components.js"></script>
-  <script>
-    injectComponents('packages');
-    let isYearly = false;
-    function toggleBilling() {
-      isYearly = !isYearly;
-      updateBillingUI();
-    }
-    function setBilling(type) {
-      isYearly = (type === 'yearly');
-      updateBillingUI();
-    }
-    function updateBillingUI() {
-      const toggle = document.getElementById('billingToggle');
-      const mLabel = document.getElementById('monthlyLabel');
-      const yLabel = document.getElementById('yearlyLabel');
-      toggle.classList.toggle('yearly', isYearly);
-      mLabel.classList.toggle('active', !isYearly);
-      mLabel.classList.toggle('inactive', isYearly);
-      yLabel.classList.toggle('active', isYearly);
-      yLabel.classList.toggle('inactive', !isYearly);
-    }
-  </script>
+  <script>injectComponents('packages');</script>
 </body>
 </html>
