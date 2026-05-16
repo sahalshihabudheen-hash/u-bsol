@@ -257,18 +257,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
- / /   = = = = =   A C C O R D I O N   T O G G L E   = = = = = 
- f u n c t i o n   t o g g l e A c c o r d i o n ( e l e m e n t )   { 
-     c o n s t   i t e m   =   e l e m e n t . p a r e n t E l e m e n t ; 
-     c o n s t   i s A c t i v e   =   i t e m . c l a s s L i s t . c o n t a i n s ( ' a c t i v e ' ) ; 
-     
-     / /   C l o s e   a l l   o t h e r   i t e m s 
-     d o c u m e n t . q u e r y S e l e c t o r A l l ( ' . a c c o r d i o n - i t e m ' ) . f o r E a c h ( i   = >   i . c l a s s L i s t . r e m o v e ( ' a c t i v e ' ) ) ; 
-     
-     / /   T o g g l e   c u r r e n t   i t e m 
-     i f   ( ! i s A c t i v e )   { 
-         i t e m . c l a s s L i s t . a d d ( ' a c t i v e ' ) ; 
-     } 
- } 
-  
- 
+// ===== ACCORDION TOGGLE =====
+function toggleAccordion(element) {
+  const item = element.parentElement;
+  const isActive = item.classList.contains('active');
+  
+  // Close all other items
+  document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+  
+  // Toggle current item
+  if (!isActive) {
+    item.classList.add('active');
+  }
+}
