@@ -406,9 +406,15 @@ body::before {
   width: 38px; height: 38px; border-radius: 10px;
   background: rgba(var(--text-rgb),0.05); border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center; font-size: 16px;
-  cursor: pointer; transition: var(--transition); text-decoration: none; color: var(--text-muted);
+  cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); text-decoration: none; color: var(--text-muted);
 }
-.social-btn:hover { background: rgba(var(--primary-rgb),0.15); border-color: var(--primary); color: var(--primary); transform: translateY(-2px); }
+.social-btn:hover { 
+  background: rgba(var(--primary-rgb),0.15); 
+  border-color: var(--primary); 
+  color: var(--primary); 
+  transform: translateY(-4px) scale(1.1) rotate(5deg);
+  box-shadow: 0 10px 20px rgba(var(--primary-rgb), 0.2); 
+}
 .footer-heading { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-primary); margin-bottom: 16px; }
 .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
 .footer-links a { text-decoration: none; color: var(--text-muted); font-size: 14px; transition: var(--transition); }
@@ -681,9 +687,14 @@ body::before {
   50% { transform: translateY(-15px); }
 }
 .continuous-float {
+  transition: transform 0.4s ease;
+}
+.continuous-float:hover {
   animation: continuousFloat 5s ease-in-out infinite;
 }
 .continuous-float-delayed {
+  transition: transform 0.4s ease;
+}
+.continuous-float-delayed:hover {
   animation: continuousFloat 5s ease-in-out infinite;
-  animation-delay: 2.5s;
 }
