@@ -631,15 +631,17 @@ body::before {
   background: var(--bg-card);
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  transition: var(--transition);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-style: preserve-3d;
 }
 .card.text-center {
   text-align: center;
   padding: 40px 24px;
+  perspective: 1000px;
 }
 .card.text-center:hover .card-icon-modern {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 35px rgba(var(--primary-rgb), 0.15);
+  transform: rotateX(10deg) rotateY(-10deg) translateY(-15px) scale(1.1);
+  box-shadow: 0 20px 40px rgba(var(--primary-rgb), 0.25);
 }
 [data-theme="dark"] .card-icon-modern {
   background: var(--bg-card2);
@@ -686,15 +688,17 @@ body::before {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-15px); }
 }
-.continuous-float {
-  transition: transform 0.4s ease;
+.continuous-float, .continuous-float-delayed {
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.6s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
-.continuous-float:hover {
-  animation: continuousFloat 5s ease-in-out infinite;
+
+.continuous-float:hover, .continuous-float-delayed:hover {
+  transform: perspective(1000px) rotateX(8deg) rotateY(-8deg) translateY(-20px) scale(1.05);
+  filter: drop-shadow(0 25px 40px rgba(var(--primary-rgb), 0.2));
 }
-.continuous-float-delayed {
-  transition: transform 0.4s ease;
-}
-.continuous-float-delayed:hover {
-  animation: continuousFloat 5s ease-in-out infinite;
+
+[data-theme="dark"] .continuous-float:hover, [data-theme="dark"] .continuous-float-delayed:hover {
+  filter: drop-shadow(0 25px 40px rgba(0, 0, 0, 0.5));
 }
