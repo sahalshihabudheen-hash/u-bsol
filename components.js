@@ -99,10 +99,50 @@ function injectComponents(activePage) {
   const footerContainer = document.getElementById('footer-container');
   if (footerContainer) footerContainer.innerHTML = getFooterHTML();
 
+  // Inject Floating Theme Toggle
+  if (!document.getElementById('floating-theme-toggle')) {
+    const toggle = document.createElement('div');
+    toggle.id = 'floating-theme-toggle';
+    toggle.className = 'theme-toggle-floating';
+    toggle.onclick = toggleTheme;
+    toggle.innerHTML = `
+      <div class="icon-sun">☀️</div>
+      <div class="icon-moon">🌙</div>
+    `;
+    document.body.appendChild(toggle);
+  }
+
   // Scroll effect on navbar
   const nav = document.getElementById('mainNav');
   window.addEventListener('scroll', () => {
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // Init Tilt effect
+  initTilt();
+}
+
+function initTilt() {
+  const tiltElements = document.querySelectorAll('.tilt-3d');
+  
+  tiltElements.forEach(el => {
+    el.addEventListener('mousemove', (e) => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * -15; // Max 15 deg
+      const rotateY = ((x - centerX) / centerX) * 15;
+      
+      el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+    });
+    
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+    });
   });
 }
 

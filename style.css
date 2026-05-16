@@ -699,6 +699,48 @@ body::before {
   filter: drop-shadow(0 25px 40px rgba(var(--primary-rgb), 0.2));
 }
 
-[data-theme="dark"] .continuous-float:hover, [data-theme="dark"] .continuous-float-delayed:hover {
-  filter: drop-shadow(0 25px 40px rgba(0, 0, 0, 0.5));
+.tilt-3d {
+  transition: transform 0.15s ease-out, filter 0.5s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+  cursor: pointer;
 }
+
+.theme-toggle-floating {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 56px;
+  height: 56px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 10px 25px rgba(var(--primary-rgb), 0.4);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.theme-toggle-floating:hover {
+  transform: scale(1.1) translateY(-5px);
+  box-shadow: 0 15px 30px rgba(var(--primary-rgb), 0.5);
+}
+
+.theme-toggle-floating .icon-sun, .theme-toggle-floating .icon-moon {
+  position: absolute;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] .theme-toggle-floating {
+  background: #f1c40f; /* Sun yellow */
+  box-shadow: 0 10px 25px rgba(241, 196, 15, 0.3);
+}
+
+[data-theme="light"] .theme-toggle-floating {
+  background: #2c3e50; /* Dark night */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
