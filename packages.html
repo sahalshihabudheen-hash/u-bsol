@@ -4,100 +4,51 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>U-BSOL | Packages</title>
-  <meta name="description" content="U-BSOL offer great pricings, premium features and quality service for your business. For our customer convenient we offer monthly and yearly pricing strategy" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* ===== MODERN PRICING TABLE ===== */
-    .comparison-container {
-      max-width: 1200px;
-      margin: 0 auto 100px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      overflow: hidden;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+    /* Toggle switch styles */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 26px;
     }
-    
-    .comparison-table {
-      width: 100%;
-      border-collapse: collapse;
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+      background-color: var(--primary); transition: .4s; border-radius: 34px;
     }
-    
-    .table-head {
-      position: sticky;
-      top: 72px; /* Navbar height */
-      background: var(--bg-card);
-      z-index: 100;
-      border-bottom: 2px solid var(--border);
+    .slider:before {
+      position: absolute; content: ""; height: 18px; width: 18px; left: 4px; bottom: 4px;
+      background-color: white; transition: .4s; border-radius: 50%;
     }
-    
-    .th-cell {
-      padding: 30px 20px;
-      text-align: center;
-      font-family: 'Space Grotesk', sans-serif;
-    }
-    .th-name { font-size: 24px; font-weight: 700; color: var(--text-primary); }
-    .th-price { font-size: 16px; color: var(--primary); margin-top: 5px; }
-    
-    .cat-row {
-      background: linear-gradient(90deg, #ff6600, #ff4500);
-      color: #fff;
-      font-weight: 800;
-      text-transform: uppercase;
-      font-size: 14px;
-      letter-spacing: 2px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
-    }
-    .cat-cell { padding: 18px 30px; text-align: left; }
-    
-    .feat-row {
-      border-bottom: 1px solid var(--border);
-      transition: background 0.3s;
-    }
-    .feat-row:hover { background: rgba(255,255,255,0.02); }
-    
-    .feat-cell {
-      padding: 18px 20px;
-      font-size: 14px;
-      color: var(--text-secondary);
-    }
-    .feat-name { text-align: left; padding-left: 30px; color: var(--text-primary); font-weight: 500; }
-    .val-cell { text-align: center; }
-    
-    .check { color: var(--success); font-weight: 700; font-size: 18px; }
-    .cross { color: var(--text-muted); font-size: 16px; opacity: 0.5; }
-    
-    .highlight-col { background: rgba(var(--primary-rgb), 0.03); }
-    
-    .cta-row { background: var(--bg-card); }
-    .cta-cell { padding: 30px 20px; text-align: center; }
-
-    @media (max-width: 768px) {
-      .th-name { font-size: 18px; }
-      .feat-name { padding-left: 15px; font-size: 13px; }
-      .cat-cell { padding: 12px 15px; }
-    }
+    input:checked + .slider:before { transform: translateX(24px); }
   </style>
 </head>
 <body>
   <div id="nav-container"></div>
 
   <div class="page-wrapper">
-    <div class="page-hero">
-      <div class="section-tag animate-on-scroll">PRICING PLANS</div>
-      <h1 class="page-hero-title animate-on-scroll delay-100">Our Packages</h1>
-      <p class="page-hero-desc animate-on-scroll delay-200">We offer great prices, premium features and quality service for your business. Choose the plan that fits your needs.</p>
+    
+    <!-- Hero Section -->
+    <div class="section" style="padding-top: 140px; padding-bottom: 60px; background: var(--bg-dark); text-align: center;">
+      <div class="container">
+        <div class="section-tag">Flexible Pricing</div>
+        <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(32px, 5vw, 56px); font-weight: 700; margin-bottom: 24px;">Simple Plans for Everyone</h1>
+        <p style="font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto 40px;">Choose the perfect plan that fits your business needs. No hidden fees, just pure growth.</p>
+      </div>
     </div>
 
     <div class="section">
       <div class="container">
         <!-- Billing Toggle -->
         <div style="display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 60px;">
-          <span style="font-size: 14px; font-weight: 600; color: var(--text-secondary);">Monthly</span>
-          <div style="width: 50px; height: 26px; background: var(--primary); border-radius: 100px; position: relative; cursor: pointer;">
-            <div style="width: 20px; height: 20px; background: #fff; border-radius: 50%; position: absolute; top: 3px; left: 27px;"></div>
-          </div>
-          <span style="font-size: 14px; font-weight: 600; color: var(--text-primary);">Yearly</span>
+          <span id="monthly-label" style="font-size: 14px; font-weight: 600; color: var(--primary);">Monthly</span>
+          <label class="switch">
+            <input type="checkbox" id="billing-toggle" onchange="togglePricing()">
+            <span class="slider"></span>
+          </label>
+          <span id="yearly-label" style="font-size: 14px; font-weight: 600; color: var(--text-secondary);">Yearly <span style="font-size: 11px; background: rgba(255,102,0,0.1); padding: 2px 8px; border-radius: 10px; margin-left: 4px;">SAVE 20%</span></span>
         </div>
 
         <!-- Pricing Cards -->
@@ -110,7 +61,7 @@
             </div>
             <div style="padding: 40px 30px; text-align: center;">
               <div style="font-size: 18px; color: var(--text-secondary); margin-bottom: 30px;">
-                <span style="font-size: 32px; font-weight: 700; color: var(--text-primary);">₹ 2,500</span> / monthly
+                <span style="font-size: 32px; font-weight: 700; color: var(--text-primary);">₹ <span class="price-basic">2,500</span></span> / <span class="period">monthly</span>
               </div>
               <ul style="list-style: none; text-align: left; display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px;">
                 <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Responsive website under your brand name</li>
@@ -121,7 +72,7 @@
                 <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> 1 GB File storage</li>
                 <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> 1 No Store pickup location</li>
               </ul>
-              <a href="#details" class="btn-primary" style="width: 100%; padding: 14px;">View Details</a>
+              <a href="https://wa.me/+918330011641" target="_blank" class="btn-primary" style="width: 100%; padding: 14px;">Contact Us</a>
             </div>
           </div>
 
@@ -132,7 +83,7 @@
             </div>
             <div style="padding: 40px 30px; text-align: center;">
               <div style="font-size: 18px; color: var(--text-secondary); margin-bottom: 30px;">
-                <span style="font-size: 32px; font-weight: 700; color: var(--text-primary);">₹ 3,500</span> / monthly
+                <span style="font-size: 32px; font-weight: 700; color: var(--text-primary);">₹ <span class="price-starter">3,500</span></span> / <span class="period">monthly</span>
               </div>
               <ul style="list-style: none; text-align: left; display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px;">
                 <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Responsive website under your brand name</li>
@@ -143,7 +94,7 @@
                 <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> 1.5 GB File storage</li>
                 <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> 3 Nos Store pickup location</li>
               </ul>
-              <a href="#details" class="btn-primary" style="width: 100%; padding: 14px;">View Details</a>
+              <a href="https://wa.me/+918330011641" target="_blank" class="btn-primary" style="width: 100%; padding: 14px;">Contact Us</a>
             </div>
           </div>
 
@@ -154,7 +105,7 @@
             </div>
             <div style="padding: 40px 30px; text-align: center;">
               <div style="font-size: 18px; color: var(--text-secondary); margin-bottom: 30px;">
-                <span style="font-size: 32px; font-weight: 700; color: var(--text-primary);">₹ 5,000</span> / monthly
+                <span style="font-size: 32px; font-weight: 700; color: var(--text-primary);">₹ <span class="price-premier">5,000</span></span> / <span class="period">monthly</span>
               </div>
               <ul style="list-style: none; text-align: left; display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px;">
                 <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Responsive website under your brand name</li>
@@ -165,13 +116,13 @@
                 <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> 3.5 GB File storage</li>
                 <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> 5 Nos Store pickup location</li>
               </ul>
-              <a href="#details" class="btn-primary" style="width: 100%; padding: 14px;">View Details</a>
+              <a href="https://wa.me/+918330011641" target="_blank" class="btn-primary" style="width: 100%; padding: 14px;">Contact Us</a>
             </div>
           </div>
 
         </div>
 
-        <!-- Comparison Details Table (Target for View Details) -->
+        <!-- Comparison Details Table -->
         <div id="details" style="padding-top: 40px; margin-bottom: 40px; text-align: center;">
           <div class="section-tag">FULL COMPARISON</div>
           <h2 class="section-title">Deep Dive Into Features</h2>
@@ -180,148 +131,84 @@
 
       <div class="container">
         <div class="comparison-container animate-on-scroll">
-        <table class="comparison-table">
-          <thead class="table-head">
-            <tr>
-              <th class="th-cell" style="width: 40%;"></th>
-              <th class="th-cell" style="width: 20%;">
-                <div class="th-name">Basic</div>
-                <div class="th-price">Contact Us</div>
-              </th>
-              <th class="th-cell" style="width: 20%;">
-                <div class="th-name">Starter</div>
-                <div class="th-price">Contact Us</div>
-              </th>
-              <th class="th-cell highlight-col" style="width: 20%;">
-                <div class="th-name">Premier</div>
-                <div class="th-price">Contact Us</div>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- CATEGORY: DELIVERABLE -->
-            <tr class="cat-row"><td colspan="4" class="cat-cell">Deliverable</td></tr>
-            <tr class="feat-row">
-              <td class="feat-cell feat-name">Responsive Website</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check highlight-col">✓</td>
-            </tr>
-            <tr class="feat-row">
-              <td class="feat-cell feat-name">Admin Dashboard</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check highlight-col">✓</td>
-            </tr>
-            <tr class="feat-row">
-              <td class="feat-cell feat-name">Order Notification App (Android)</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check highlight-col">✓</td>
-            </tr>
-            <tr class="feat-row">
-              <td class="feat-cell feat-name">Customer Mobile App (Android)</td>
-              <td class="feat-cell val-cell cross">✕</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check highlight-col">✓</td>
-            </tr>
-            <tr class="feat-row">
-              <td class="feat-cell feat-name">Customer Mobile App (iOS)</td>
-              <td class="feat-cell val-cell cross">✕</td>
-              <td class="feat-cell val-cell cross">✕</td>
-              <td class="feat-cell val-cell check highlight-col">✓</td>
-            </tr>
-
-            <!-- CATEGORY: GENERAL -->
-            <tr class="cat-row"><td colspan="4" class="cat-cell">General</td></tr>
-            <tr class="feat-row">
-              <td class="feat-cell feat-name">Custom Domain Setup</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check highlight-col">✓</td>
-            </tr>
-            <tr class="feat-row">
-              <td class="feat-cell feat-name">Free SSL Certificate</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check highlight-col">✓</td>
-            </tr>
-            <tr class="feat-row">
-              <td class="feat-cell feat-name">Store Pickups</td>
-              <td class="feat-cell val-cell">1 No</td>
-              <td class="feat-cell val-cell">3 Nos</td>
-              <td class="feat-cell val-cell highlight-col">5 Nos</td>
-            </tr>
-            <tr class="feat-row">
-              <td class="feat-cell feat-name">File Storage</td>
-              <td class="feat-cell val-cell">1 GB</td>
-              <td class="feat-cell val-cell">1.5 GB</td>
-              <td class="feat-cell val-cell highlight-col">3.5 GB</td>
-            </tr>
-
-            <!-- CATEGORY: PRODUCT MANAGEMENT -->
-            <tr class="cat-row"><td colspan="4" class="cat-cell">Product Management</td></tr>
-            <tr class="feat-row">
-              <td class="feat-cell feat-name">Unlimited Products</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check highlight-col">✓</td>
-            </tr>
-            <tr class="feat-row">
-              <td class="feat-cell feat-name">Product Variants & Options</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check highlight-col">✓</td>
-            </tr>
-            <tr class="feat-row">
-              <td class="feat-cell feat-name">Inventory Management</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check highlight-col">✓</td>
-            </tr>
-            <tr class="feat-row">
-              <td class="feat-cell feat-name">Import/Export Products</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check highlight-col">✓</td>
-            </tr>
-
-            <!-- CATEGORY: CHECKOUT & DELIVERY -->
-            <tr class="cat-row"><td colspan="4" class="cat-cell">Checkout & Delivery</td></tr>
-            <tr class="feat-row">
-              <td class="feat-cell feat-name">WhatsApp Checkout</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check highlight-col">✓</td>
-            </tr>
-            <tr class="feat-row">
-              <td class="feat-cell feat-name">Multiple Payment Gateways</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check highlight-col">✓</td>
-            </tr>
-            <tr class="feat-row">
-              <td class="feat-cell feat-name">Dynamic Delivery Charges</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check">✓</td>
-              <td class="feat-cell val-cell check highlight-col">✓</td>
-            </tr>
-
-            <!-- CTA ROW -->
-            <tr class="cta-row">
-              <td class="cta-cell"></td>
-              <td class="cta-cell"><a href="contact.html" class="btn-ghost">Contact Us</a></td>
-              <td class="cta-cell"><a href="contact.html" class="btn-ghost">Contact Us</a></td>
-              <td class="cta-cell highlight-col"><a href="contact.html" class="btn-primary">Get Started</a></td>
-            </tr>
-          </tbody>
-        </table>
+          <table class="comparison-table">
+            <thead class="table-head">
+              <tr>
+                <th class="feature-cell">Feature</th>
+                <th>Basic</th>
+                <th>Starter</th>
+                <th>Premier</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Row 1 -->
+              <tr>
+                <td class="feature-cell">Mobile Optimized</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <!-- Row 2 -->
+              <tr>
+                <td class="feature-cell">Custom Branding</td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <!-- Row 3 -->
+              <tr>
+                <td class="feature-cell">Admin Dashboard</td>
+                <td><span class="cross">✕</span></td>
+                <td><span class="check">✓</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+              <!-- Row 4 -->
+              <tr>
+                <td class="feature-cell">Analytics</td>
+                <td><span class="cross">✕</span></td>
+                <td><span class="cross">✕</span></td>
+                <td><span class="check">✓</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
+
   </div>
 
   <div id="footer-container"></div>
   <script src="components.js"></script>
-  <script>injectComponents('packages');</script>
+  <script>
+    injectComponents('packages');
+    function togglePricing() {
+      const toggle = document.getElementById('billing-toggle');
+      const isYearly = toggle.checked;
+      
+      const basic = document.querySelectorAll('.price-basic');
+      const starter = document.querySelectorAll('.price-starter');
+      const premier = document.querySelectorAll('.price-premier');
+      const periods = document.querySelectorAll('.period');
+      
+      const mLabel = document.getElementById('monthly-label');
+      const yLabel = document.getElementById('yearly-label');
+      
+      if(isYearly) {
+        basic.forEach(el => el.innerText = '25,000');
+        starter.forEach(el => el.innerText = '35,000');
+        premier.forEach(el => el.innerText = '50,000');
+        periods.forEach(el => el.innerText = 'yearly');
+        mLabel.style.color = 'var(--text-secondary)';
+        yLabel.style.color = 'var(--primary)';
+      } else {
+        basic.forEach(el => el.innerText = '2,500');
+        starter.forEach(el => el.innerText = '3,500');
+        premier.forEach(el => el.innerText = '5,000');
+        periods.forEach(el => el.innerText = 'monthly');
+        mLabel.style.color = 'var(--primary)';
+        yLabel.style.color = 'var(--text-secondary)';
+      }
+    }
+  </script>
 </body>
 </html>

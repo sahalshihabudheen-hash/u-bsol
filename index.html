@@ -6,6 +6,25 @@
   <title>U-BSOL | Home</title>
   <meta name="description" content="U-BSOL is a cloud based SAS modal business application which provides web application and mobile apps for any business. It contains collection of business operations for various needs." />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Toggle switch styles */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 26px;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+      background-color: var(--primary); transition: .4s; border-radius: 34px;
+    }
+    .slider:before {
+      position: absolute; content: ""; height: 18px; width: 18px; left: 4px; bottom: 4px;
+      background-color: white; transition: .4s; border-radius: 50%;
+    }
+    input:checked + .slider:before { transform: translateX(24px); }
+  </style>
 </head>
 <body>
   <div id="nav-container"></div>
@@ -20,8 +39,6 @@
       </div>
       <div class="container">
         <div class="hero-grid" style="display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 48px;">
-          
-          <!-- Left: Text & Actions -->
           <div class="animate-on-scroll">
             <h1 class="hero-title" style="font-size: clamp(38px, 4.5vw, 64px); line-height: 1.1; margin-bottom: 24px;">
               Grow Your Business With<br>Our Solutions<br>
@@ -35,21 +52,16 @@
               <a href="features.html" class="btn-outline-large" style="border-radius: 30px; padding: 16px 42px; font-size: 16px; border-color: var(--primary); color: var(--primary);">Explore Features</a>
             </div>
           </div>
-
-          <!-- Right: Visual -->
           <div class="hero-visual animate-on-scroll delay-200" style="position: relative;">
             <div class="hero-image-container" style="position: relative; display: flex; justify-content: center; align-items: center; min-height: 400px;">
               <img src="https://img.youtube.com/vi/vDNPcdE5iWQ/maxresdefault.jpg" alt="Welcome to U-BSOL" class="tilt-3d" style="width: 100%; height: auto; border-radius: 24px; box-shadow: 0 40px 80px rgba(0,0,0,0.4); cursor: pointer;" onclick="openVideoModal()">
               <div class="play-btn-wrapper" onclick="openVideoModal()">
                 <div class="play-pulse"></div>
-                <div class="play-btn">
-                  <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
+                <div class="play-btn"><svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
               </div>
             </div>
             <div style="text-align: center; margin-top: 20px; font-weight: 600; font-size: 18px; color: var(--text-primary); opacity: 0.8;">Providing a complete business solution for growing your business.</div>
           </div>
-
         </div>
       </div>
     </section>
@@ -59,9 +71,7 @@
       <div class="video-modal-backdrop" onclick="closeVideoModal()"></div>
       <div class="video-modal-content">
         <span class="close-video" onclick="closeVideoModal()">&times;</span>
-        <div class="video-container">
-          <iframe id="videoIframe" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
+        <div class="video-container"><iframe id="videoIframe" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
       </div>
     </div>
 
@@ -70,30 +80,22 @@
       <div class="container">
         <div class="grid-4">
           <div class="card text-center animate-on-scroll">
-            <div class="card-icon-modern">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><path d="M2 11h20" stroke="var(--primary)" stroke-width="2"></path></svg>
-            </div>
+            <div class="card-icon-modern"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><path d="M2 11h20" stroke="var(--primary)" stroke-width="2"></path></svg></div>
             <h3 class="card-title">All in one platform</h3>
             <p class="card-desc">U-BSOL provide a complete business solution under one digital platform including website and mobile application.</p>
           </div>
           <div class="card text-center animate-on-scroll delay-100">
-            <div class="card-icon-modern">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path><circle cx="15" cy="9" r="1" fill="var(--primary)" stroke="var(--primary)"></circle></svg>
-            </div>
+            <div class="card-icon-modern"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path><circle cx="15" cy="9" r="1" fill="var(--primary)" stroke="var(--primary)"></circle></svg></div>
             <h3 class="card-title">Continues R & D</h3>
             <p class="card-desc">Our dedicated team will enable customers to be at par with latest technology updates and ongoing market trends.</p>
           </div>
           <div class="card text-center animate-on-scroll delay-200">
-            <div class="card-icon-modern">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5" fill="var(--primary)" stroke="var(--primary)"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-            </div>
+            <div class="card-icon-modern"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5" fill="var(--primary)" stroke="var(--primary)"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></div>
             <h3 class="card-title">Best user experience</h3>
             <p class="card-desc">We provide beautiful templates for your website with latest design pattern. Which can be customized easily.</p>
           </div>
           <div class="card text-center animate-on-scroll delay-300">
-            <div class="card-icon-modern">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4" stroke="var(--primary)" stroke-width="2.5"></path></svg>
-            </div>
+            <div class="card-icon-modern"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4" stroke="var(--primary)" stroke-width="2.5"></path></svg></div>
             <h3 class="card-title">Secure and fast</h3>
             <p class="card-desc">High security and full data protection with a high level of performance, hosted in the fastest cloud storage.</p>
           </div>
@@ -160,12 +162,51 @@
       </div>
     </div>
 
-    <!-- PRICING CARDS (THE PACKAGE) -->
+    <!-- WHY WE ARE DIFFERENT -->
+    <div class="section" style="background: rgba(255,102,0,0.03);">
+      <div class="container">
+        <div class="grid-2 align-items-center">
+          <div>
+            <div class="section-tag">WHY WE ARE DIFFERENT ?</div>
+            <h2 class="section-title animate-on-scroll">We make your spending stress-free for you to have the perfect control.</h2>
+            <p class="section-desc animate-on-scroll delay-100" style="margin-bottom: 32px;">
+              You can fully concentrate of your business without having panic about IT related matters. Our technical team will handle your task without any further cost.
+            </p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+              <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div style="font-size: 15px; color: var(--text-secondary);">Affordable cost, one of the lowest in the industry.</div>
+                <div style="font-size: 15px; color: var(--text-secondary);">Easy to scale up your applications as per the needs.</div>
+                <div style="font-size: 15px; color: var(--text-secondary);">Single solution for online / offline business.</div>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div style="font-size: 15px; color: var(--text-secondary);">Manage your website, mobile app from single dashboard.</div>
+                <div style="font-size: 15px; color: var(--text-secondary);">Create offers, coupons, and seasonal promotions.</div>
+                <div style="font-size: 15px; color: var(--text-secondary);">Track your customer behavior and inspire them by rewards.</div>
+              </div>
+            </div>
+          </div>
+          <div style="text-align: center;" class="animate-on-scroll delay-200">
+            <img src="https://u-bsol.com/assets/frontend/img/illustrations/difrnt.png" alt="Why We Are Different" style="max-width: 100%; height: auto;" class="tilt-3d">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRICING CARDS -->
     <div class="section" style="background: var(--bg-dark); border-top: 1px solid var(--border);">
       <div class="container">
         <div class="text-center" style="margin-bottom: 60px;">
           <div class="section-tag">PRICING PLANS</div>
           <h2 class="section-title">Ready to grow your business?</h2>
+          <!-- Billing Toggle -->
+          <div style="display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 30px;">
+            <span id="monthly-label" style="font-size: 14px; font-weight: 600; color: var(--primary);">Monthly</span>
+            <label class="switch">
+              <input type="checkbox" id="billing-toggle" onchange="togglePricing()">
+              <span class="slider"></span>
+            </label>
+            <span id="yearly-label" style="font-size: 14px; font-weight: 600; color: var(--text-secondary);">Yearly <span style="font-size: 11px; background: rgba(255,102,0,0.1); padding: 2px 8px; border-radius: 10px; margin-left: 4px;">2 MONTHS FREE</span></span>
+          </div>
         </div>
         <div class="grid-3">
           <!-- Basic -->
@@ -175,7 +216,7 @@
             </div>
             <div style="padding: 40px 30px; text-align: center;">
               <div style="font-size: 18px; color: var(--text-secondary); margin-bottom: 30px;">
-                <span style="font-size: 32px; font-weight: 700; color: var(--text-primary);">₹ 2,500</span> / monthly
+                <span style="font-size: 32px; font-weight: 700; color: var(--text-primary);">₹ <span class="price-basic">2,500</span></span> / <span class="period">monthly</span>
               </div>
               <ul style="list-style: none; text-align: left; display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px;">
                 <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Responsive website</li>
@@ -192,7 +233,7 @@
             </div>
             <div style="padding: 40px 30px; text-align: center;">
               <div style="font-size: 18px; color: var(--text-secondary); margin-bottom: 30px;">
-                <span style="font-size: 32px; font-weight: 700; color: var(--text-primary);">₹ 3,500</span> / monthly
+                <span style="font-size: 32px; font-weight: 700; color: var(--text-primary);">₹ <span class="price-starter">3,500</span></span> / <span class="period">monthly</span>
               </div>
               <ul style="list-style: none; text-align: left; display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px;">
                 <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Order notification app</li>
@@ -209,7 +250,7 @@
             </div>
             <div style="padding: 40px 30px; text-align: center;">
               <div style="font-size: 18px; color: var(--text-secondary); margin-bottom: 30px;">
-                <span style="font-size: 32px; font-weight: 700; color: var(--text-primary);">₹ 5,000</span> / monthly
+                <span style="font-size: 32px; font-weight: 700; color: var(--text-primary);">₹ <span class="price-premier">5,000</span></span> / <span class="period">monthly</span>
               </div>
               <ul style="list-style: none; text-align: left; display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px;">
                 <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Customer app (iOS/Android)</li>
@@ -227,6 +268,36 @@
 
   <div id="footer-container"></div>
   <script src="components.js"></script>
-  <script>injectComponents('home');</script>
+  <script>
+    injectComponents('home');
+    function togglePricing() {
+      const toggle = document.getElementById('billing-toggle');
+      const isYearly = toggle.checked;
+      
+      const basic = document.querySelectorAll('.price-basic');
+      const starter = document.querySelectorAll('.price-starter');
+      const premier = document.querySelectorAll('.price-premier');
+      const periods = document.querySelectorAll('.period');
+      
+      const mLabel = document.getElementById('monthly-label');
+      const yLabel = document.getElementById('yearly-label');
+      
+      if(isYearly) {
+        basic.forEach(el => el.innerText = '25,000');
+        starter.forEach(el => el.innerText = '35,000');
+        premier.forEach(el => el.innerText = '50,000');
+        periods.forEach(el => el.innerText = 'yearly');
+        mLabel.style.color = 'var(--text-secondary)';
+        yLabel.style.color = 'var(--primary)';
+      } else {
+        basic.forEach(el => el.innerText = '2,500');
+        starter.forEach(el => el.innerText = '3,500');
+        premier.forEach(el => el.innerText = '5,000');
+        periods.forEach(el => el.innerText = 'monthly');
+        mLabel.style.color = 'var(--primary)';
+        yLabel.style.color = 'var(--text-secondary)';
+      }
+    }
+  </script>
 </body>
 </html>
