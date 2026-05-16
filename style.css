@@ -744,3 +744,59 @@ body::before {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
+/* ===== WHY WE ARE SPECIAL SECTION ===== */
+.section-special {
+  position: relative;
+  width: 100%;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('assets/img/mockup_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 120px 5%;
+  overflow: hidden;
+  margin: 0;
+}
+
+.section-special::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.9) 100%);
+  z-index: 1;
+}
+
+.special-container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+}
+
+.special-tag {
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  margin-bottom: 24px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.special-heading {
+  font-size: clamp(22px, 4.5vw, 44px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.4;
+  margin-bottom: 48px;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.section-special:hover .special-heading {
+  transform: scale(1.02);
+  transition: transform 0.5s ease;
+}
+
+
