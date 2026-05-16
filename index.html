@@ -24,6 +24,23 @@
       background-color: white; transition: .4s; border-radius: 50%;
     }
     input:checked + .slider:before { transform: translateX(24px); }
+    
+    .price-card-list {
+      list-style: none;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+    .price-card-list li {
+      display: flex;
+      gap: 10px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .status-icon.yes { color: var(--success); }
+    .status-icon.no { color: #ff4444; }
   </style>
 </head>
 <body>
@@ -163,7 +180,7 @@
     </div>
 
     <!-- WHY WE ARE DIFFERENT -->
-    <div class="section" style="background: rgba(255,102,0,0.03);">
+    <div class="section" style="background: var(--bg-dark);">
       <div class="container">
         <div class="grid-2 align-items-center">
           <div>
@@ -193,7 +210,7 @@
     </div>
 
     <!-- PRICING CARDS -->
-    <div class="section" style="background: var(--bg-dark); border-top: 1px solid var(--border);">
+    <div class="section" style="background: rgba(255,102,0,0.02); border-top: 1px solid var(--border);">
       <div class="container">
         <div class="text-center" style="margin-bottom: 60px;">
           <div class="section-tag">PRICING PLANS</div>
@@ -205,10 +222,11 @@
               <input type="checkbox" id="billing-toggle" onchange="togglePricing()">
               <span class="slider"></span>
             </label>
-            <span id="yearly-label" style="font-size: 14px; font-weight: 600; color: var(--text-secondary);">Yearly <span style="font-size: 11px; background: rgba(255,102,0,0.1); padding: 2px 8px; border-radius: 10px; margin-left: 4px;">2 MONTHS FREE</span></span>
+            <span id="yearly-label" style="font-size: 14px; font-weight: 600; color: var(--text-secondary);">Yearly <span style="font-size: 11px; background: rgba(255,102,0,0.1); padding: 2px 8px; border-radius: 10px; margin-left: 4px;">SAVE 20%</span></span>
           </div>
         </div>
         <div class="grid-3">
+          
           <!-- Basic -->
           <div class="card animate-on-scroll" style="padding: 0; overflow: hidden; border-radius: 20px;">
             <div style="background: linear-gradient(to right, #ff6600, #ff8800); padding: 24px; text-align: center; color: #fff;">
@@ -218,14 +236,19 @@
               <div style="font-size: 18px; color: var(--text-secondary); margin-bottom: 30px;">
                 <span style="font-size: 32px; font-weight: 700; color: var(--text-primary);">₹ <span class="price-basic">2,500</span></span> / <span class="period">monthly</span>
               </div>
-              <ul style="list-style: none; text-align: left; display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px;">
-                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Responsive website</li>
-                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Customer registration</li>
-                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> 1 GB File storage</li>
+              <ul class="price-card-list">
+                <li><span class="status-icon yes">✓</span> Responsive website under your brand name</li>
+                <li><span class="status-icon no">✕</span> Order notification mobile app (Android)</li>
+                <li><span class="status-icon no">✕</span> Customer mobile app (Android)</li>
+                <li><span class="status-icon yes">✓</span> Free SSL</li>
+                <li><span class="status-icon yes">✓</span> Customer registration</li>
+                <li><span class="status-icon yes">✓</span> 1 GB File storage</li>
+                <li><span class="status-icon yes">✓</span> 1 No Store pickup location</li>
               </ul>
               <a href="packages.html" class="btn-primary" style="width: 100%; padding: 14px;">Choose Plan</a>
             </div>
           </div>
+
           <!-- Starter -->
           <div class="card animate-on-scroll delay-100" style="padding: 0; overflow: hidden; border-radius: 20px; border-color: var(--primary); transform: scale(1.05); box-shadow: 0 20px 40px rgba(255,102,0,0.2);">
             <div style="background: linear-gradient(to right, #ff6600, #ff8800); padding: 24px; text-align: center; color: #fff;">
@@ -235,14 +258,19 @@
               <div style="font-size: 18px; color: var(--text-secondary); margin-bottom: 30px;">
                 <span style="font-size: 32px; font-weight: 700; color: var(--text-primary);">₹ <span class="price-starter">3,500</span></span> / <span class="period">monthly</span>
               </div>
-              <ul style="list-style: none; text-align: left; display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px;">
-                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Order notification app</li>
-                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> 1.5 GB File storage</li>
-                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> 3 Nos Pickup locations</li>
+              <ul class="price-card-list">
+                <li><span class="status-icon yes">✓</span> Responsive website under your brand name</li>
+                <li><span class="status-icon yes">✓</span> Order notification mobile app (Android)</li>
+                <li><span class="status-icon no">✕</span> Customer mobile app (Android)</li>
+                <li><span class="status-icon yes">✓</span> Free SSL</li>
+                <li><span class="status-icon yes">✓</span> Customer registration</li>
+                <li><span class="status-icon yes">✓</span> 1.5 GB File storage</li>
+                <li><span class="status-icon yes">✓</span> 3 Nos Store pickup location</li>
               </ul>
               <a href="packages.html" class="btn-primary" style="width: 100%; padding: 14px;">Choose Plan</a>
             </div>
           </div>
+
           <!-- Premier -->
           <div class="card animate-on-scroll delay-200" style="padding: 0; overflow: hidden; border-radius: 20px;">
             <div style="background: linear-gradient(to right, #ff6600, #ff8800); padding: 24px; text-align: center; color: #fff;">
@@ -252,14 +280,19 @@
               <div style="font-size: 18px; color: var(--text-secondary); margin-bottom: 30px;">
                 <span style="font-size: 32px; font-weight: 700; color: var(--text-primary);">₹ <span class="price-premier">5,000</span></span> / <span class="period">monthly</span>
               </div>
-              <ul style="list-style: none; text-align: left; display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px;">
-                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Customer app (iOS/Android)</li>
-                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> 3.5 GB File storage</li>
-                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> 5 Nos Pickup locations</li>
+              <ul class="price-card-list">
+                <li><span class="status-icon yes">✓</span> Responsive website under your brand name</li>
+                <li><span class="status-icon yes">✓</span> Order notification mobile app (Android)</li>
+                <li><span class="status-icon yes">✓</span> Customer mobile app (Android)</li>
+                <li><span class="status-icon yes">✓</span> Free SSL</li>
+                <li><span class="status-icon yes">✓</span> Customer registration</li>
+                <li><span class="status-icon yes">✓</span> 3.5 GB File storage</li>
+                <li><span class="status-icon yes">✓</span> 5 Nos Store pickup location</li>
               </ul>
               <a href="packages.html" class="btn-primary" style="width: 100%; padding: 14px;">Choose Plan</a>
             </div>
           </div>
+
         </div>
       </div>
     </div>
