@@ -17,17 +17,19 @@ function getNavHTML(activePage) {
 
   return `
   <nav class="navbar" id="mainNav">
-    <a href="index.html" class="nav-brand">
-      <div class="nav-logo-icon">UB</div>
-      <span class="nav-brand-text">U-<span>BSOL</span></span>
-    </a>
-    <ul class="nav-links">${links}</ul>
-    <div class="nav-cta">
-      <a href="https://u-bsol.com/login" class="btn-ghost" target="_blank">Sign In</a>
-      <a href="packages.html" class="btn-primary">Get Started</a>
-    </div>
-    <div class="hamburger" id="hamburger" onclick="toggleMobileNav()">
-      <span></span><span></span><span></span>
+    <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
+      <a href="index.html" class="nav-brand">
+        <div class="nav-logo-icon">UB</div>
+        <span class="nav-brand-text">U-<span>BSOL</span></span>
+      </a>
+      <ul class="nav-links">${links}</ul>
+      <div class="nav-cta">
+        <a href="https://u-bsol.com/login" class="btn-ghost" target="_blank">Sign In</a>
+        <a href="packages.html" class="btn-primary">Get Started</a>
+      </div>
+      <div class="hamburger" id="hamburger" onclick="toggleMobileNav()">
+        <span></span><span></span><span></span>
+      </div>
     </div>
   </nav>
   <div class="mobile-nav" id="mobileNav">
@@ -40,7 +42,8 @@ function getNavHTML(activePage) {
 function getFooterHTML() {
   return `
   <footer class="footer">
-    <div class="footer-grid">
+    <div class="container">
+      <div class="footer-grid">
       <div>
         <a href="index.html" class="nav-brand" style="text-decoration:none;">
           <div class="nav-logo-icon">UB</div>
@@ -82,10 +85,13 @@ function getFooterHTML() {
           <li><a href="https://wa.me/+918330011641" target="_blank">WhatsApp Us</a></li>
         </ul>
       </div>
+      </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">© 2026 U-BSOL. All rights reserved.</span>
-      <span class="footer-copy">Made with ❤️ in Kerala, India</span>
+      <div class="container">
+        <span class="footer-copy">© 2026 U-BSOL. All rights reserved.</span>
+        <span class="footer-copy">Made with ❤️ in Kerala, India</span>
+      </div>
     </div>
   </footer>`;
 }

@@ -90,7 +90,96 @@
     </div>
 
     <div class="section">
-      <div class="comparison-container animate-on-scroll delay-300">
+      <div class="container">
+        <!-- Billing Toggle -->
+        <div style="display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 60px;">
+          <span style="font-size: 14px; font-weight: 600; color: var(--text-secondary);">Monthly</span>
+          <div style="width: 50px; height: 26px; background: var(--primary); border-radius: 100px; position: relative; cursor: pointer;">
+            <div style="width: 20px; height: 20px; background: #fff; border-radius: 50%; position: absolute; top: 3px; left: 27px;"></div>
+          </div>
+          <span style="font-size: 14px; font-weight: 600; color: var(--text-primary);">Yearly</span>
+        </div>
+
+        <!-- Pricing Cards -->
+        <div class="grid-3" style="margin-bottom: 80px;">
+          
+          <!-- Basic -->
+          <div class="card" style="padding: 0; overflow: hidden; border-radius: 20px;">
+            <div style="background: linear-gradient(to right, #ff6600, #ff8800); padding: 24px; text-align: center; color: #fff;">
+              <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700;">Basic</h3>
+            </div>
+            <div style="padding: 40px 30px; text-align: center;">
+              <div style="font-size: 18px; color: var(--text-secondary); margin-bottom: 30px;">
+                <span style="font-size: 32px; font-weight: 700; color: var(--text-primary);">₹ 2,500</span> / monthly
+              </div>
+              <ul style="list-style: none; text-align: left; display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px;">
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Responsive website under your brand name</li>
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-muted);"><span style="color: #ff4444;">✕</span> Order notification mobile app (Android)</li>
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-muted);"><span style="color: #ff4444;">✕</span> Customer mobile app (Android)</li>
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Free SSL</li>
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Customer registration</li>
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> 1 GB File storage</li>
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> 1 No Store pickup location</li>
+              </ul>
+              <a href="#details" class="btn-primary" style="width: 100%; padding: 14px;">View Details</a>
+            </div>
+          </div>
+
+          <!-- Starter -->
+          <div class="card" style="padding: 0; overflow: hidden; border-radius: 20px; transform: scale(1.05); border-color: var(--primary); box-shadow: 0 20px 40px rgba(255,102,0,0.2);">
+            <div style="background: linear-gradient(to right, #ff6600, #ff8800); padding: 24px; text-align: center; color: #fff;">
+              <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700;">Starter</h3>
+            </div>
+            <div style="padding: 40px 30px; text-align: center;">
+              <div style="font-size: 18px; color: var(--text-secondary); margin-bottom: 30px;">
+                <span style="font-size: 32px; font-weight: 700; color: var(--text-primary);">₹ 3,500</span> / monthly
+              </div>
+              <ul style="list-style: none; text-align: left; display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px;">
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Responsive website under your brand name</li>
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Order notification mobile app (Android)</li>
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-muted);"><span style="color: #ff4444;">✕</span> Customer mobile app (Android)</li>
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Free SSL</li>
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Customer registration</li>
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> 1.5 GB File storage</li>
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> 3 Nos Store pickup location</li>
+              </ul>
+              <a href="#details" class="btn-primary" style="width: 100%; padding: 14px;">View Details</a>
+            </div>
+          </div>
+
+          <!-- Premier -->
+          <div class="card" style="padding: 0; overflow: hidden; border-radius: 20px;">
+            <div style="background: linear-gradient(to right, #ff6600, #ff8800); padding: 24px; text-align: center; color: #fff;">
+              <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700;">Premier</h3>
+            </div>
+            <div style="padding: 40px 30px; text-align: center;">
+              <div style="font-size: 18px; color: var(--text-secondary); margin-bottom: 30px;">
+                <span style="font-size: 32px; font-weight: 700; color: var(--text-primary);">₹ 5,000</span> / monthly
+              </div>
+              <ul style="list-style: none; text-align: left; display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px;">
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Responsive website under your brand name</li>
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Order notification mobile app (Android)</li>
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Customer mobile app (Android/iOS)</li>
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Free SSL</li>
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> Customer registration</li>
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> 3.5 GB File storage</li>
+                <li style="display: flex; gap: 10px; font-size: 14px; color: var(--text-secondary);"><span style="color: var(--success);">✓</span> 5 Nos Store pickup location</li>
+              </ul>
+              <a href="#details" class="btn-primary" style="width: 100%; padding: 14px;">View Details</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Comparison Details Table (Target for View Details) -->
+        <div id="details" style="padding-top: 40px; margin-bottom: 40px; text-align: center;">
+          <div class="section-tag">FULL COMPARISON</div>
+          <h2 class="section-title">Deep Dive Into Features</h2>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="comparison-container animate-on-scroll">
         <table class="comparison-table">
           <thead class="table-head">
             <tr>
