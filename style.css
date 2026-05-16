@@ -674,3 +674,16 @@ body::before {
 }
 .theme-toggle:hover .icon-sun { transform: rotate(90deg); }
 .theme-toggle:hover .icon-moon { transform: rotate(-30deg); }
+
+/* ===== CONTINUOUS IMAGE ANIMATIONS ===== */
+@keyframes continuousFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+.continuous-float {
+  animation: continuousFloat 5s ease-in-out infinite;
+}
+.continuous-float-delayed {
+  animation: continuousFloat 5s ease-in-out infinite;
+  animation-delay: 2.5s;
+}
