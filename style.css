@@ -641,3 +641,36 @@ body::before {
 }
 
 .align-items-center { align-items: center; }
+
+/* ===== SCROLL ANIMATIONS ===== */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delay modifiers */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+
+/* ===== THEME TOGGLE IMAGE ANIMATION ===== */
+@keyframes imgThemeBounce {
+  0% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(0.95) rotate(-2deg); filter: brightness(0.7) blur(2px); }
+  100% { transform: scale(1) rotate(0deg); filter: brightness(1) blur(0); }
+}
+.theme-toggling img, .theme-toggling svg {
+  animation: imgThemeBounce 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Rotate Toggle Icon */
+.theme-toggle .icon-sun, .theme-toggle .icon-moon {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.theme-toggle:hover .icon-sun { transform: rotate(90deg); }
+.theme-toggle:hover .icon-moon { transform: rotate(-30deg); }

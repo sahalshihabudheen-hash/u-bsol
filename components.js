@@ -116,6 +116,11 @@ function toggleMobileNav() {
 function toggleTheme() {
   const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  
+  // Add animation class to body
+  document.body.classList.add('theme-toggling');
+  setTimeout(() => document.body.classList.remove('theme-toggling'), 600);
+  
   document.documentElement.setAttribute('data-theme', newTheme);
   localStorage.setItem('theme', newTheme);
   updateThemeIcon(newTheme);
@@ -188,4 +193,26 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.querySelector('.typing-text')) {
     setTimeout(typeEffect, 1000);
   }
+});
+
+// ===== SCROLL OBSERVER =====
+document.addEventListener('DOMContentLoaded', () => {
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.15
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.animate-on-scroll').forEach(el => {
+    observer.observe(el);
+  });
 });
