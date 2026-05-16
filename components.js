@@ -118,9 +118,54 @@ function injectComponents(activePage) {
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 30);
   });
 
-  // Init Tilt effect
+  // Init next-level features
   initTilt();
+  initCustomCursor();
+  initMagneticButtons();
 }
+
+function initCustomCursor() {
+  if (window.innerWidth < 768) return; // Disable on mobile
+  
+  const cursor = document.createElement('div');
+  cursor.className = 'custom-cursor';
+  document.body.appendChild(cursor);
+  
+  const cursorDot = document.createElement('div');
+  cursorDot.className = 'custom-cursor-dot';
+  document.body.appendChild(cursorDot);
+  
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    cursorDot.style.left = e.clientX + 'px';
+    cursorDot.style.top = e.clientY + 'px';
+  });
+  
+  document.querySelectorAll('a, button, .social-btn, .accordion-header, .theme-toggle-floating').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+  });
+}
+
+function initMagneticButtons() {
+  const buttons = document.querySelectorAll('.btn-primary, .btn-outline-large, .theme-toggle-floating');
+  
+  buttons.forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px) scale(1.05)`;
+    });
+    
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = `translate(0, 0) scale(1)`;
+    });
+  });
+}
+
 
 function initTilt() {
   const tiltElements = document.querySelectorAll('.tilt-3d');
