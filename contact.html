@@ -3,465 +3,547 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>U-BSOL | Contact Us</title>
-  <meta name="description" content="Let's build something amazing together. Have questions, ideas, or business inquiries? Reach out to us." />
+  <title>Contact | U-BSOL</title>
+  <meta name="description" content="Let's build something amazing together. Premium SaaS Contact Page." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Base Variables & Overrides for this Premium Page */
     :root {
-      --accent-color: #ff8a00;
-      --accent-secondary: #ff6a00;
-      --glass-bg: rgba(255, 255, 255, 0.03);
-      --glass-border: rgba(255, 255, 255, 0.08);
-      --font-heading: 'Space Grotesk', sans-serif;
-      --font-body: 'Inter', sans-serif;
+      --orange: #ff8a00;
+      --orange-dim: rgba(255,138,0,0.15);
+      --dark-bg: #050505;
+      --card-bg: rgba(20, 20, 25, 0.4);
+      --glass-border: rgba(255, 255, 255, 0.05);
+      --text-main: #f8fafc;
+      --text-muted: #9ca3af;
     }
 
-    body { font-family: var(--font-body); scroll-behavior: smooth; }
-    h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
-
-    /* Animated Background Mesh */
-    .hero-bg {
-      position: absolute; top: 0; left: 0; right: 0; height: 1000px; z-index: -2; overflow: hidden;
-      background: var(--bg-dark);
-    }
-    .hero-bg-blob1 {
-      position: absolute; top: -10%; left: -10%; width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(255,138,0,0.12) 0%, transparent 60%);
-      border-radius: 50%; filter: blur(60px); animation: floatBlob 15s ease-in-out infinite alternate;
-    }
-    .hero-bg-blob2 {
-      position: absolute; top: 20%; right: -10%; width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(138,43,226,0.1) 0%, transparent 60%);
-      border-radius: 50%; filter: blur(60px); animation: floatBlob 20s ease-in-out infinite alternate-reverse;
+    body {
+      background-color: var(--dark-bg);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      margin: 0; scroll-behavior: smooth;
     }
 
-    @keyframes floatBlob {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(100px, 50px) scale(1.2); }
-    }
+    h1, h2, h3, h4, .font-heading { font-family: 'Space Grotesk', sans-serif; }
 
-    /* Hero Section */
-    .premium-hero { padding: 180px 24px 80px; position: relative; max-width: 1300px; margin: 0 auto; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    /* --- GLOBAL EFFECTS --- */
+    #page-loader {
+      position: fixed; inset: 0; background: var(--dark-bg); z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    .loader-ring { width: 40px; height: 40px; border: 2px solid transparent; border-top-color: var(--orange); border-radius: 50%; animation: spin 1s linear infinite; }
     
-    .hero-content { max-width: 600px; }
-    .status-badge {
-      display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 50px;
-      background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2);
-      color: #10b981; font-size: 13px; font-weight: 600; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px;
+    .bg-grid {
+      position: fixed; inset: 0; z-index: -3;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      mask-image: radial-gradient(circle at center, black 10%, transparent 80%);
+      -webkit-mask-image: radial-gradient(circle at center, black 10%, transparent 80%);
     }
-    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 10px #10b981; animation: pulseDot 2s infinite; }
-    @keyframes pulseDot { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
-    
-    .premium-title { font-size: clamp(40px, 5.5vw, 64px); font-weight: 800; line-height: 1.1; margin-bottom: 24px; color: #fff; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-    .premium-title span { background: linear-gradient(135deg, var(--accent-color) 0%, #ff5e00 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .premium-desc { font-size: 18px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 32px; }
+    .ambient-glow {
+      position: fixed; width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, var(--orange-dim) 0%, transparent 70%);
+      filter: blur(80px); z-index: -2; pointer-events: none;
+      transition: transform 0.1s ease-out; top: -300px; left: -300px;
+    }
+    .noise-overlay {
+      position: fixed; inset: 0; z-index: 9998; pointer-events: none; opacity: 0.03;
+      background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+    }
 
-    /* Orbit Visual (Right Side) */
-    .orbit-visual { position: relative; width: 450px; height: 450px; margin: 0 auto; display: flex; align-items: center; justify-content: center; }
+    .reveal-up { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal-up.active { opacity: 1; transform: translateY(0); }
+
+    /* --- HERO --- */
+    .hero-section {
+      position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 120px 24px; max-width: 1400px; margin: 0 auto; z-index: 10;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; width: 100%; }
+
+    .status-pill {
+      display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 100px;
+      background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2);
+      color: #10b981; font-size: 13px; font-weight: 600; margin-bottom: 24px; letter-spacing: 0.5px;
+      backdrop-filter: blur(10px);
+    }
+    .status-dot { width: 6px; height: 6px; background: #10b981; border-radius: 50%; box-shadow: 0 0 10px #10b981; animation: pulse 2s infinite; }
+
+    .hero-title { font-size: clamp(48px, 6vw, 80px); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 24px; color: #fff; }
+    .hero-title .glow-text {
+      background: linear-gradient(135deg, #fff 0%, var(--orange) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      animation: gradientShift 5s ease infinite alternate; background-size: 200% 200%;
+    }
+    .hero-sub { font-size: 18px; color: var(--text-muted); line-height: 1.6; max-width: 500px; margin-bottom: 40px; }
+    
+    .btn-magnetic {
+      display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+      padding: 16px 32px; background: #fff; color: #000; border-radius: 100px;
+      font-weight: 600; font-size: 16px; text-decoration: none; position: relative; overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s;
+      box-shadow: 0 0 0 0 rgba(255,255,255,0); z-index: 1;
+    }
+    .btn-magnetic::before {
+      content: ''; position: absolute; inset: 0; background: var(--orange); z-index: -1;
+      transform: scaleY(0); transform-origin: bottom; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .btn-magnetic:hover { color: #fff; box-shadow: 0 20px 40px rgba(255,138,0,0.3); }
+    .btn-magnetic:hover::before { transform: scaleY(1); }
+
+    @keyframes gradientShift { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.5); } }
+
+    /* --- ORBIT VISUAL --- */
+    .orbit-container { position: relative; width: 500px; height: 500px; margin: 0 auto; display: flex; align-items: center; justify-content: center; }
     
     .orbit-core {
-      width: 100px; height: 100px; background: linear-gradient(135deg, var(--accent-color), #ff5e00);
+      width: 120px; height: 120px; background: linear-gradient(135deg, var(--orange), #ff4500);
       border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 0 40px rgba(255,138,0,0.5), inset 0 0 20px rgba(255,255,255,0.4); z-index: 10; position: relative;
-      animation: corePulse 3s ease-in-out infinite alternate;
+      box-shadow: 0 0 60px rgba(255,138,0,0.6), inset 0 0 20px rgba(255,255,255,0.4); z-index: 10;
+      animation: coreBreath 4s ease-in-out infinite alternate; position: relative; cursor: pointer;
     }
-    @keyframes corePulse { 0% { transform: scale(1); box-shadow: 0 0 40px rgba(255,138,0,0.5); } 100% { transform: scale(1.05); box-shadow: 0 0 60px rgba(255,138,0,0.7); } }
-    .orbit-core svg { width: 40px; height: 40px; color: #fff; }
-
-    .orbit-ring { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; border: 1px dashed rgba(255,255,255,0.1); pointer-events: none; }
-    .orbit-ring.r1 { width: 220px; height: 220px; }
-    .orbit-ring.r2 { width: 340px; height: 340px; border: 1px solid rgba(255,138,0,0.15); }
-    .orbit-ring.r3 { width: 450px; height: 450px; }
+    .orbit-core::before {
+      content: ''; position: absolute; inset: -20px; border-radius: 50%; border: 1px solid var(--orange);
+      animation: ripple 2s linear infinite; opacity: 0;
+    }
+    .orbit-core svg { width: 48px; height: 48px; color: #fff; }
+    
+    .orbit-ring { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; border: 1px dashed rgba(255,255,255,0.05); pointer-events: none; }
+    .orbit-ring.r1 { width: 260px; height: 260px; }
+    .orbit-ring.r2 { width: 400px; height: 400px; border: 1px solid rgba(255,138,0,0.1); box-shadow: inset 0 0 40px rgba(255,138,0,0.02); }
+    .orbit-ring.r3 { width: 540px; height: 540px; }
 
     .orbit-planet { position: absolute; top: 50%; left: 50%; pointer-events: none; }
-    .orbit-planet.p1 { width: 220px; height: 220px; margin-left: -110px; margin-top: -110px; animation: spin 15s linear infinite; }
-    .orbit-planet.p2 { width: 340px; height: 340px; margin-left: -170px; margin-top: -170px; animation: spinReverse 25s linear infinite; }
-    .orbit-planet.p3 { width: 450px; height: 450px; margin-left: -225px; margin-top: -225px; animation: spin 35s linear infinite; }
-    .orbit-planet.p4 { width: 340px; height: 340px; margin-left: -170px; margin-top: -170px; animation: spinReverse 25s linear infinite; animation-delay: -12.5s; }
+    .orbit-planet.p1 { width: 260px; height: 260px; margin-left: -130px; margin-top: -130px; animation: spin 18s linear infinite; }
+    .orbit-planet.p2 { width: 400px; height: 400px; margin-left: -200px; margin-top: -200px; animation: spinReverse 28s linear infinite; }
+    .orbit-planet.p3 { width: 540px; height: 540px; margin-left: -270px; margin-top: -270px; animation: spin 38s linear infinite; }
+    .orbit-planet.p4 { width: 400px; height: 400px; margin-left: -200px; margin-top: -200px; animation: spinReverse 28s linear infinite; animation-delay: -14s; }
 
     .orbit-chip-wrapper { position: absolute; top: -20px; left: 50%; transform: translateX(-50%) rotate(0deg); pointer-events: auto; }
     
-    /* Keep chips upright */
-    .orbit-planet.p1 .orbit-chip-wrapper { animation: spinCounter 15s linear infinite; }
-    .orbit-planet.p2 .orbit-chip-wrapper { animation: spinClockwise 25s linear infinite; }
-    .orbit-planet.p3 .orbit-chip-wrapper { animation: spinCounter 35s linear infinite; }
-    .orbit-planet.p4 .orbit-chip-wrapper { animation: spinClockwise 25s linear infinite; animation-delay: -12.5s; }
+    .orbit-planet.p1 .orbit-chip-wrapper { animation: spinCounter 18s linear infinite; }
+    .orbit-planet.p2 .orbit-chip-wrapper { animation: spinClockwise 28s linear infinite; }
+    .orbit-planet.p3 .orbit-chip-wrapper { animation: spinCounter 38s linear infinite; }
+    .orbit-planet.p4 .orbit-chip-wrapper { animation: spinClockwise 28s linear infinite; animation-delay: -14s; }
+
+    .orbit-chip {
+      padding: 12px 24px; background: rgba(10,10,12,0.8); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px; color: #fff; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 10px;
+      cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.5); backdrop-filter: blur(12px);
+      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .orbit-chip:hover { transform: scale(1.1) translateY(-5px); border-color: var(--orange); background: rgba(255,138,0,0.1); box-shadow: 0 0 30px rgba(255,138,0,0.3); }
 
     @keyframes spin { 100% { transform: rotate(360deg); } }
     @keyframes spinReverse { 100% { transform: rotate(-360deg); } }
-
     @keyframes spinCounter { 0% { transform: translateX(-50%) rotate(0deg); } 100% { transform: translateX(-50%) rotate(-360deg); } }
     @keyframes spinClockwise { 0% { transform: translateX(-50%) rotate(0deg); } 100% { transform: translateX(-50%) rotate(360deg); } }
+    @keyframes coreBreath { 0% { box-shadow: 0 0 40px rgba(255,138,0,0.4); transform: scale(1); } 100% { box-shadow: 0 0 80px rgba(255,138,0,0.8); transform: scale(1.05); } }
+    @keyframes ripple { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(1.5); opacity: 0; } }
 
-    .orbit-chip {
-      padding: 10px 20px; background: rgba(20,20,25,0.8); border: 1px solid rgba(255,138,0,0.3);
-      border-radius: 30px; color: #fff; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px;
-      cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.3); backdrop-filter: blur(10px);
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    .orbit-chip:hover { transform: scale(1.1); border-color: var(--accent-color); background: rgba(255,138,0,0.1); box-shadow: 0 0 20px rgba(255,138,0,0.4); }
-    .orbit-chip svg { width: 16px; height: 16px; color: var(--accent-color); }
-
-    /* Glass Cards Grid */
-    .cards-section { max-width: 1300px; margin: 0 auto 80px; padding: 0 24px; position: relative; z-index: 1; }
+    /* --- PREMIUM INFO CARDS --- */
+    .cards-section { max-width: 1400px; margin: 0 auto 120px; padding: 0 24px; position: relative; z-index: 10; }
     .glass-cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
     
     .glass-card {
-      background: var(--glass-bg); border: 1px solid var(--glass-border); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-radius: 20px; padding: 32px 24px; text-align: center; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative; overflow: hidden; text-decoration: none; display: flex; flex-direction: column; align-items: center;
+      background: var(--card-bg); border: 1px solid var(--glass-border);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      border-radius: 24px; padding: 32px 24px; position: relative; overflow: hidden;
+      text-decoration: none; display: flex; flex-direction: column; align-items: flex-start;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s, box-shadow 0.5s;
     }
     .glass-card::before {
-      content: ""; position: absolute; top: var(--mouse-y, -100px); left: var(--mouse-x, -100px);
-      transform: translate(-50%, -50%); width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(255,138,0,0.15) 0%, transparent 70%);
-      opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 0;
+      content: ""; position: absolute; inset: 0; background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%);
+      opacity: 0; transition: opacity 0.5s; pointer-events: none;
     }
+    .glass-card::after {
+      content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.03), transparent);
+      transform: skewX(-20deg); transition: 0.7s; pointer-events: none;
+    }
+    .glass-card:hover { transform: translateY(-8px); border-color: rgba(255,138,0,0.3); box-shadow: 0 30px 60px rgba(0,0,0,0.4), 0 0 40px rgba(255,138,0,0.1); }
     .glass-card:hover::before { opacity: 1; }
-    .glass-card:hover { transform: translateY(-10px); border-color: rgba(255,138,0,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
-    
-    /* Highlight effect when triggered from orbit */
-    .glass-card.highlight { animation: highlightCard 2s ease-out; }
-    @keyframes highlightCard {
-      0% { transform: translateY(0); box-shadow: 0 0 0 rgba(255,138,0,0); border-color: var(--glass-border); }
-      20% { transform: translateY(-15px) scale(1.05); box-shadow: 0 0 40px rgba(255,138,0,0.6); border-color: var(--accent-color); background: rgba(255,138,0,0.05); }
-      100% { transform: translateY(0); box-shadow: 0 0 0 rgba(255,138,0,0); border-color: var(--glass-border); background: var(--glass-bg); }
-    }
+    .glass-card:hover::after { left: 150%; }
+
+    .card-mini-label { position: absolute; top: 24px; right: 24px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--orange); font-weight: 700; background: rgba(255,138,0,0.1); padding: 4px 10px; border-radius: 100px; }
     
     .card-icon {
-      width: 60px; height: 60px; background: rgba(0,0,0,0.3); border-radius: 16px;
-      display: flex; align-items: center; justify-content: center; color: var(--accent-color);
-      border: 1px solid rgba(255,138,0,0.1); z-index: 1; margin-bottom: 20px;
-      transition: all 0.3s ease;
+      width: 56px; height: 56px; background: rgba(255,255,255,0.03); border-radius: 16px;
+      display: flex; align-items: center; justify-content: center; color: #fff;
+      border: 1px solid rgba(255,255,255,0.05); margin-bottom: 24px; transition: all 0.5s;
     }
-    .glass-card:hover .card-icon { background: rgba(255,138,0,0.1); transform: scale(1.1) rotate(5deg); box-shadow: 0 0 20px rgba(255,138,0,0.2); }
-    .card-icon svg { width: 28px; height: 28px; }
+    .glass-card:hover .card-icon { background: var(--orange); border-color: var(--orange); color: #000; transform: scale(1.1) rotate(-5deg); }
+    .card-icon svg { width: 24px; height: 24px; }
     
-    .card-content { z-index: 1; }
-    .card-label { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; color: var(--text-muted); margin-bottom: 12px; }
-    .card-value { font-size: 15px; color: var(--text-primary); line-height: 1.6; }
-    .card-value a { color: var(--text-primary); text-decoration: none; transition: color 0.3s ease; }
-    .card-value a:hover { color: var(--accent-color); }
+    .card-label { font-size: 18px; font-weight: 600; color: #fff; margin-bottom: 8px; font-family: 'Space Grotesk', sans-serif; }
+    .card-value { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
 
-    /* Futuristic Form Section */
-    .form-section { max-width: 900px; margin: 0 auto 100px; padding: 0 24px; position: relative; z-index: 1; }
-    .section-header { text-align: center; margin-bottom: 50px; }
-    .section-eyebrow { display: inline-block; font-size: 14px; font-weight: 600; color: var(--accent-color); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
-    .section-title { font-size: 36px; font-weight: 700; color: #fff; margin-bottom: 16px; }
-    .section-title span { color: var(--accent-color); }
-
-    .form-panel {
-      background: var(--glass-bg); border: 1px solid var(--glass-border); backdrop-filter: blur(30px);
-      border-radius: 32px; padding: 50px; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.2);
-    }
-    .form-panel::after {
-      content: ''; position: absolute; top: -1px; left: 10%; width: 80%; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent-color), transparent); opacity: 0.5;
+    /* Highlight effect */
+    .glass-card.highlight { animation: cardPulse 2s cubic-bezier(0.16, 1, 0.3, 1); }
+    @keyframes cardPulse {
+      0% { transform: translateY(0); border-color: var(--glass-border); }
+      15% { transform: translateY(-15px) scale(1.02); border-color: var(--orange); background: rgba(255,138,0,0.05); box-shadow: 0 0 60px rgba(255,138,0,0.3); }
+      100% { transform: translateY(0); border-color: var(--glass-border); background: var(--card-bg); box-shadow: none; }
     }
 
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    /* --- FORM SECTION --- */
+    .form-map-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1400px; margin: 0 auto 120px; padding: 0 24px; z-index: 10; position: relative; }
+    
+    .premium-form-panel {
+      background: var(--card-bg); border: 1px solid var(--glass-border);
+      backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+      border-radius: 32px; padding: 48px; box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+    }
+    
+    .form-header { margin-bottom: 40px; }
+    .form-header h2 { font-size: 32px; color: #fff; margin-bottom: 8px; }
+    .form-header p { color: var(--text-muted); font-size: 15px; }
+
     .form-group { position: relative; margin-bottom: 24px; }
-    .form-group.full { grid-column: 1 / -1; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
     
     .form-input {
-      width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 16px; padding: 20px 24px; color: #fff; font-size: 16px;
-      font-family: var(--font-body); transition: all 0.3s ease; outline: none; box-sizing: border-box;
+      width: 100%; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px; padding: 20px 24px; color: #fff; font-size: 16px; font-family: 'Inter', sans-serif;
+      transition: all 0.3s; outline: none; box-sizing: border-box;
     }
-    .form-textarea { resize: vertical; min-height: 160px; }
+    .form-textarea { resize: vertical; min-height: 140px; }
     
     .form-label {
-      position: absolute; top: 20px; left: 24px; color: var(--text-muted); font-size: 16px;
-      pointer-events: none; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      background: transparent; padding: 0 4px;
+      position: absolute; top: 20px; left: 24px; color: var(--text-muted); font-size: 15px;
+      pointer-events: none; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     }
     
     .form-input:focus, .form-input:not(:placeholder-shown) {
-      border-color: var(--accent-color); background: rgba(255,138,0,0.02);
-      box-shadow: 0 0 0 4px rgba(255,138,0,0.05), inset 0 0 20px rgba(255,138,0,0.02);
+      border-color: rgba(255,138,0,0.5); background: rgba(255,138,0,0.02);
+      box-shadow: 0 0 0 4px rgba(255,138,0,0.05);
     }
     .form-input:focus ~ .form-label, .form-input:not(:placeholder-shown) ~ .form-label {
-      top: -10px; left: 20px; font-size: 12px; color: var(--accent-color); font-weight: 700; background: #1a1a24; border-radius: 4px;
+      top: -12px; left: 20px; font-size: 12px; color: var(--orange); font-weight: 600; background: var(--dark-bg); padding: 0 8px; border-radius: 4px;
     }
-    .form-input:valid:not(:placeholder-shown) { border-color: #10b981; }
-    .form-input:valid:not(:placeholder-shown) ~ .form-label { color: #10b981; }
+
+    .form-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+    
+    .typing-agent { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); opacity: 0; transition: 0.3s; }
+    .typing-agent.active { opacity: 1; }
+    .typing-dots { display: flex; gap: 3px; }
+    .tdot { width: 4px; height: 4px; background: var(--orange); border-radius: 50%; animation: tBounce 1.4s infinite ease-in-out both; }
+    .tdot:nth-child(1) { animation-delay: -0.32s; } .tdot:nth-child(2) { animation-delay: -0.16s; }
+    @keyframes tBounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
 
     .btn-submit {
-      width: 100%; padding: 20px; border-radius: 16px; font-family: var(--font-heading); font-size: 18px; font-weight: 700;
-      background: linear-gradient(135deg, var(--accent-color) 0%, #ff5e00 100%); color: #fff; border: none;
-      cursor: pointer; transition: all 0.4s ease; box-shadow: 0 10px 20px rgba(255,138,0,0.3);
-      position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 12px;
+      padding: 18px 40px; border-radius: 100px; font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700;
+      background: #fff; color: #000; border: none; cursor: pointer; transition: all 0.4s;
+      display: inline-flex; align-items: center; gap: 10px; position: relative; overflow: hidden;
     }
-    .btn-submit::after {
-      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); transition: all 0.6s ease;
-    }
-    .btn-submit:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(255,138,0,0.4); }
-    .btn-submit:hover::after { left: 100%; }
+    .btn-submit::before { content: ''; position: absolute; inset: 0; background: var(--orange); z-index: 1; transform: translateY(100%); transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
+    .btn-submit span, .btn-submit svg { position: relative; z-index: 2; transition: 0.4s; }
+    .btn-submit:hover::before { transform: translateY(0); }
+    .btn-submit:hover span, .btn-submit:hover svg { color: #fff; }
+    .btn-submit:hover svg { transform: translateX(5px); }
 
-    /* Map Section */
-    .map-section { width: 100%; padding: 0 24px; margin-bottom: 100px; max-width: 1300px; margin: 0 auto 100px; }
-    .map-frame { border-radius: 32px; overflow: hidden; border: 1px solid var(--glass-border); position: relative; line-height: 0; box-shadow: 0 30px 60px rgba(0,0,0,0.2); filter: grayscale(0.8) invert(0.9) hue-rotate(180deg); transition: filter 0.5s ease; }
-    .map-frame:hover { filter: grayscale(0.3) invert(0.9) hue-rotate(180deg); }
+    /* --- MAP SECTION --- */
+    .map-panel {
+      background: var(--card-bg); border: 1px solid var(--glass-border); border-radius: 32px;
+      padding: 12px; position: relative; display: flex; flex-direction: column; overflow: hidden;
+    }
+    .map-frame { border-radius: 24px; overflow: hidden; flex: 1; position: relative; filter: grayscale(0.9) invert(1) hue-rotate(180deg); transition: 0.8s; }
+    .map-panel:hover .map-frame { filter: grayscale(0.2) invert(1) hue-rotate(180deg); }
+    .map-overlay-btn {
+      position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+      background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);
+      padding: 12px 24px; border-radius: 100px; color: #fff; font-size: 14px; font-weight: 600;
+      text-decoration: none; display: flex; align-items: center; gap: 8px; transition: 0.3s;
+    }
+    .map-overlay-btn:hover { background: #fff; color: #000; }
 
     @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 60px; }
+      .hero-sub { margin: 0 auto 40px; }
+      .orbit-container { margin: 0 auto; transform: scale(0.8); }
       .glass-cards-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 991px) {
-      .premium-hero { grid-template-columns: 1fr; text-align: center; gap: 80px; }
-      .hero-content { margin: 0 auto; }
-      .status-badge { margin: 0 auto 24px; }
-      .orbit-visual { transform: scale(0.8); }
+      .form-map-grid { grid-template-columns: 1fr; }
+      .map-panel { height: 400px; }
     }
     @media (max-width: 768px) {
-      .form-grid { grid-template-columns: 1fr; }
       .glass-cards-grid { grid-template-columns: 1fr; }
-      .form-panel { padding: 40px 24px; }
-      .orbit-visual { transform: scale(0.6); margin-top: -50px; margin-bottom: -50px; }
+      .form-row { grid-template-columns: 1fr; }
+      .premium-form-panel { padding: 32px 20px; }
+      .hero-title { font-size: 40px; }
     }
   </style>
 </head>
 <body>
-  <div class="hero-bg">
-    <div class="hero-bg-blob1"></div>
-    <div class="hero-bg-blob2"></div>
+
+  <div id="page-loader">
+    <div class="loader-ring"></div>
   </div>
+
+  <div class="bg-grid"></div>
+  <div class="ambient-glow" id="ambientGlow"></div>
+  <div class="noise-overlay"></div>
 
   <div id="nav-container"></div>
 
-  <div class="page-wrapper">
-    
-    <!-- Hero Section with Orbit -->
-    <div class="premium-hero animate-on-scroll">
-      <div class="hero-content">
-        <div class="status-badge">
+  <!-- HERO -->
+  <section class="hero-section">
+    <div class="hero-grid">
+      <div class="hero-text reveal-up">
+        <div class="status-pill">
           <div class="status-dot"></div> Online & Ready to Help
         </div>
-        <h1 class="premium-title">Let’s build <span>something great</span> together.</h1>
-        <p class="premium-desc">Have a question, a project, or just want to say hi? Drop us a line and our team will get back to you faster than you can finish your coffee.</p>
-        <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px;">
-          <a href="mailto:info@u-bsol.com" class="btn-primary" style="padding: 16px 32px; border-radius: 12px; font-weight: 600;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px;"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            Email Us
-          </a>
-          <a href="https://wa.me/+919746026547" class="btn-outline-large" style="padding: 16px 32px; border-radius: 12px; font-weight: 600;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px;"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" /><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" /></svg>
-            WhatsApp
-          </a>
-        </div>
-      </div>
-
-      <!-- Orbit Visual -->
-      <div class="orbit-visual tilt-3d">
-        <div class="orbit-ring r1"></div>
-        <div class="orbit-ring r2"></div>
-        <div class="orbit-ring r3"></div>
-        
-        <div class="orbit-core">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
-        </div>
-
-        <div class="orbit-planet p1">
-          <div class="orbit-chip-wrapper">
-            <div class="orbit-chip" onclick="highlightCard('visit')">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-              Visit
-            </div>
-          </div>
-        </div>
-
-        <div class="orbit-planet p2">
-          <div class="orbit-chip-wrapper" style="top: 80px; left: 0;">
-            <div class="orbit-chip" onclick="highlightCard('email')">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-              Email
-            </div>
-          </div>
-        </div>
-
-        <div class="orbit-planet p3">
-          <div class="orbit-chip-wrapper" style="top: auto; bottom: -20px;">
-            <div class="orbit-chip" onclick="highlightCard('call')">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
-              Call
-            </div>
-          </div>
-        </div>
-
-        <div class="orbit-planet p4">
-          <div class="orbit-chip-wrapper" style="top: auto; bottom: -20px;">
-            <div class="orbit-chip" onclick="highlightCard('whatsapp')" style="border-color: rgba(37,211,102,0.3);">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" /><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" /></svg>
-              WhatsApp
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Glass Cards Section -->
-    <div class="cards-section animate-on-scroll delay-100">
-      <div class="glass-cards-grid">
-        <div id="card-visit" class="glass-card track-mouse">
-          <div class="card-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div class="card-content">
-            <div class="card-label">Address</div>
-            <div class="card-value">U-BSOL - LLP<br>Malappuram-Manjeri Road,<br>Kerala, India - 676509</div>
-          </div>
-        </div>
-
-        <div id="card-call" class="glass-card track-mouse">
-          <div class="card-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </div>
-          <div class="card-content">
-            <div class="card-label">Phone</div>
-            <div class="card-value">
-              <a href="tel:+919746026547">+91 9746026547</a><br>
-              <a href="tel:+918330011641">+91 8330011641</a>
-            </div>
-          </div>
-        </div>
-
-        <div id="card-email" class="glass-card track-mouse">
-          <div class="card-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          </div>
-          <div class="card-content">
-            <div class="card-label">E-mail</div>
-            <div class="card-value"><a href="mailto:info@u-bsol.com">info@u-bsol.com</a></div>
-          </div>
-        </div>
-
-        <a id="card-whatsapp" href="https://wa.me/+918330011641" target="_blank" class="glass-card track-mouse">
-          <div class="card-icon" style="color: #25D366; border-color: rgba(37,211,102,0.1);">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" /><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" /></svg>
-          </div>
-          <div class="card-content">
-            <div class="card-label">WhatsApp</div>
-            <div class="card-value">+91 8330011641<br>Online 24/7</div>
-          </div>
+        <h1 class="hero-title font-heading">Let's build <br><span class="glow-text">something great</span><br> together.</h1>
+        <p class="hero-sub">Have questions, ideas, or business inquiries? Reach out to our global team and experience industry-leading support.</p>
+        <a href="#contactForm" class="btn-magnetic magnetic">
+          <span>Get in Touch</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
       </div>
-    </div>
 
-    <!-- Contact Form Section -->
-    <div class="form-section animate-on-scroll">
-      <div class="section-header">
-        <span class="section-eyebrow">Drop us a line</span>
-        <h2 class="section-title">Tell us about <span>your idea</span></h2>
-        <p style="color: var(--text-secondary); font-size: 16px;">Fill out the form and we'll route your message to the right human within hours.</p>
-      </div>
-
-      <div class="form-panel">
-        <form id="contactForm" onsubmit="handleSubmit(event)">
-          <div class="form-grid">
-            <div class="form-group">
-              <input type="text" id="name" class="form-input" placeholder=" " required />
-              <label for="name" class="form-label">Full Name</label>
-            </div>
-            <div class="form-group">
-              <input type="tel" id="contact" class="form-input" placeholder=" " required />
-              <label for="contact" class="form-label">Contact Number</label>
-            </div>
-          </div>
+      <div class="hero-visual reveal-up" style="transition-delay: 0.2s;">
+        <div class="orbit-container">
+          <div class="orbit-ring r1"></div>
+          <div class="orbit-ring r2"></div>
+          <div class="orbit-ring r3"></div>
           
-          <div class="form-group full">
-            <input type="email" id="email" class="form-input" placeholder=" " required />
-            <label for="email" class="form-label">Email Address</label>
+          <div class="orbit-core" onclick="document.getElementById('contactForm').scrollIntoView()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
           </div>
 
-          <div class="form-group full">
-            <textarea id="message" class="form-input form-textarea" placeholder=" " required></textarea>
-            <label for="message" class="form-label">Message</label>
+          <div class="orbit-planet p1">
+            <div class="orbit-chip-wrapper">
+              <div class="orbit-chip" onclick="triggerHighlight('visit')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                Visit
+              </div>
+            </div>
           </div>
 
-          <button type="submit" id="submitBtn" class="btn-submit">
-            Send Message
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" x2="11" y1="2" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          <div class="orbit-planet p2">
+            <div class="orbit-chip-wrapper">
+              <div class="orbit-chip" onclick="triggerHighlight('email')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                Email
+              </div>
+            </div>
+          </div>
+
+          <div class="orbit-planet p3">
+            <div class="orbit-chip-wrapper">
+              <div class="orbit-chip" onclick="triggerHighlight('call')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+                Call
+              </div>
+            </div>
+          </div>
+
+          <div class="orbit-planet p4">
+            <div class="orbit-chip-wrapper">
+              <div class="orbit-chip" onclick="triggerHighlight('whatsapp')" style="border-color: rgba(37,211,102,0.3);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg>
+                WhatsApp
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO CARDS -->
+  <section class="cards-section reveal-up">
+    <div class="glass-cards-grid">
+      
+      <div id="card-visit" class="glass-card hover-glow">
+        <div class="card-mini-label">HQ</div>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="card-label">Headquarters</div>
+        <div class="card-value">U-BSOL - LLP<br>Malappuram-Manjeri Road,<br>Kerala, India - 676509</div>
+      </div>
+
+      <div id="card-call" class="glass-card hover-glow">
+        <div class="card-mini-label">24/7 Support</div>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div class="card-label">Phone Support</div>
+        <div class="card-value"><a href="tel:+919746026547" style="color:inherit;text-decoration:none;">+91 9746026547</a><br><a href="tel:+918330011641" style="color:inherit;text-decoration:none;">+91 8330011641</a></div>
+      </div>
+
+      <div id="card-email" class="glass-card hover-glow">
+        <div class="card-mini-label">Inquiries</div>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+        <div class="card-label">Email Us</div>
+        <div class="card-value"><a href="mailto:info@u-bsol.com" style="color:inherit;text-decoration:none;">info@u-bsol.com</a><br>Replies within 2 hours</div>
+      </div>
+
+      <a id="card-whatsapp" href="https://wa.me/+918330011641" target="_blank" class="glass-card hover-glow">
+        <div class="card-mini-label" style="color:#25D366; background:rgba(37,211,102,0.1);">Live Chat</div>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></svg></div>
+        <div class="card-label">WhatsApp</div>
+        <div class="card-value">+91 8330011641<br>Direct messaging</div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- FORM & MAP -->
+  <section class="form-map-grid reveal-up">
+    
+    <div class="premium-form-panel" id="contactForm">
+      <div class="form-header">
+        <h2>Drop us a line</h2>
+        <p>Fill out the form and we'll route your message to the right human.</p>
+      </div>
+
+      <form onsubmit="handleFormSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <input type="text" id="fname" class="form-input" placeholder=" " required oninput="triggerTyping()" />
+            <label for="fname" class="form-label">Full Name</label>
+          </div>
+          <div class="form-group">
+            <input type="tel" id="fphone" class="form-input" placeholder=" " required oninput="triggerTyping()" />
+            <label for="fphone" class="form-label">Phone Number</label>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <input type="email" id="femail" class="form-input" placeholder=" " required oninput="triggerTyping()" />
+          <label for="femail" class="form-label">Email Address</label>
+        </div>
+
+        <div class="form-group">
+          <textarea id="fmsg" class="form-input form-textarea" placeholder=" " required oninput="triggerTyping()"></textarea>
+          <label for="fmsg" class="form-label">How can we help?</label>
+        </div>
+
+        <div class="form-footer">
+          <div class="typing-agent" id="typingAgent">
+            <div class="typing-dots"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div>
+            Support is ready
+          </div>
+          <button type="submit" class="btn-submit magnetic" id="submitBtn">
+            <span>Send Message</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" x2="11" y1="2" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           </button>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
 
-    <!-- Map Section -->
-    <div class="map-section animate-on-scroll">
-      <div class="map-frame">
-        <iframe src="https://www.google.com/maps?q=Panayi+Perimbalam+Malappuram+Kerala+676509&output=embed" width="100%" height="420" style="border:0" loading="lazy"></iframe>
-      </div>
+    <div class="map-panel">
+      <iframe class="map-frame" src="https://www.google.com/maps?q=Panayi+Perimbalam+Malappuram+Kerala+676509&output=embed" style="border:0; width:100%; height:100%;" loading="lazy"></iframe>
+      <a href="https://maps.google.com/?q=U-BSOL+LLP+Malappuram" target="_blank" class="map-overlay-btn magnetic">
+        Open in Maps <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
     </div>
 
-  </div>
+  </section>
 
   <div id="footer-container"></div>
   <script src="components.js"></script>
   <script>
     injectComponents('contact');
 
-    // Mouse tracking glow effect for cards
-    document.querySelectorAll('.track-mouse').forEach(card => {
+    // Page Load Reveal
+    window.addEventListener('load', () => {
+      document.getElementById('page-loader').style.opacity = '0';
+      setTimeout(() => document.getElementById('page-loader').style.display = 'none', 800);
+      
+      setTimeout(() => {
+        document.querySelectorAll('.reveal-up').forEach((el, index) => {
+          setTimeout(() => el.classList.add('active'), index * 150);
+        });
+      }, 300);
+    });
+
+    // Scroll Reveal Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+
+    // Ambient Glow following mouse
+    const ambientGlow = document.getElementById('ambientGlow');
+    window.addEventListener('mousemove', (e) => {
+      // move glow slowly
+      ambientGlow.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    });
+
+    // Hover cards specific mouse tracking for radial gradient
+    document.querySelectorAll('.hover-glow').forEach(card => {
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
+        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
       });
     });
 
-    // Orbit chip highlight function
-    function highlightCard(type) {
-      // Remove highlight from all
-      document.querySelectorAll('.glass-card').forEach(c => {
-        c.classList.remove('highlight');
+    // Magnetic Buttons
+    document.querySelectorAll('.magnetic').forEach(elem => {
+      elem.addEventListener('mousemove', e => {
+        const rect = elem.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        elem.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
       });
-      
-      // Add highlight to specific card
-      const targetCard = document.getElementById('card-' + type);
-      if (targetCard) {
-        // Scroll to card
-        const yOffset = -100; 
-        const y = targetCard.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      elem.addEventListener('mouseleave', () => {
+        elem.style.transform = `translate(0px, 0px)`;
+      });
+    });
+
+    // Orbit Trigger Highlight
+    function triggerHighlight(id) {
+      document.querySelectorAll('.glass-card').forEach(c => c.classList.remove('highlight'));
+      const target = document.getElementById('card-' + id);
+      if(target) {
+        const yOffset = -120; 
+        const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({top: y, behavior: 'smooth'});
-        
-        // Trigger animation
         setTimeout(() => {
-          targetCard.classList.add('highlight');
-          // Remove class after animation finishes so it can be triggered again
-          setTimeout(() => {
-            targetCard.classList.remove('highlight');
-          }, 2000);
-        }, 500);
+          target.classList.add('highlight');
+          setTimeout(() => target.classList.remove('highlight'), 2000);
+        }, 600);
       }
     }
 
-    // Form submission
-    function handleSubmit(e) {
+    // Typing Agent Logic
+    let typingTimer;
+    function triggerTyping() {
+      const agent = document.getElementById('typingAgent');
+      agent.classList.add('active');
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(() => agent.classList.remove('active'), 1200);
+    }
+
+    // Form Submit Animation
+    function handleFormSubmit(e) {
       e.preventDefault();
       const btn = document.getElementById('submitBtn');
-      const originalText = btn.innerHTML;
+      const originalHtml = btn.innerHTML;
       
-      btn.innerHTML = 'Sending...';
+      btn.innerHTML = '<span>Processing...</span><div style="display:flex;gap:4px;"><div class="tdot" style="background:#000"></div><div class="tdot" style="background:#000"></div></div>';
       btn.style.pointerEvents = 'none';
-      btn.style.opacity = '0.8';
 
       setTimeout(() => {
-        document.getElementById('contactForm').reset();
-        btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Message Sent Successfully!';
-        btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
-        btn.style.boxShadow = '0 10px 20px rgba(16,185,129,0.3)';
+        e.target.reset();
+        btn.innerHTML = '<span>Sent Successfully!</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>';
+        btn.style.background = '#10b981';
+        btn.style.color = '#fff';
         
         setTimeout(() => {
-          btn.innerHTML = originalText;
+          btn.innerHTML = originalHtml;
           btn.style.background = '';
-          btn.style.boxShadow = '';
+          btn.style.color = '';
           btn.style.pointerEvents = 'auto';
-          btn.style.opacity = '1';
         }, 4000);
-      }, 1500);
+      }, 1800);
     }
   </script>
 </body>
