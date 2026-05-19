@@ -6,7 +6,7 @@ function getNavHTML(activePage) {
     { href: 'features.html', label: 'Features', id: 'features' },
     { href: 'packages.html', label: 'Packages', id: 'packages' },
     { href: 'contact.html', label: 'Contact', id: 'contact' },
-    { href: 'https://u-bsol.com/blogs', label: 'Blog', id: 'blog', external: true },
+    { href: 'blog.html', label: 'Blog', id: 'blog' },
   ];
   const links = pages.map(p =>
     `<li><a href="${p.href}" class="nav-link ${activePage === p.id ? 'active' : ''}" ${p.external ? 'target="_blank"' : ''}>${p.label}</a></li>`
