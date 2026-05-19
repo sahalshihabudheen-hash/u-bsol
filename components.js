@@ -173,34 +173,10 @@ function injectComponents(activePage) {
 
   // Init features
   initTilt();
-  initCustomCursor();
   initMagneticButtons();
   initParticles();
 }
 
-function initCustomCursor() {
-  if (window.innerWidth < 768) return;
-  
-  const cursor = document.createElement('div');
-  cursor.className = 'custom-cursor';
-  document.body.appendChild(cursor);
-  
-  const cursorDot = document.createElement('div');
-  cursorDot.className = 'custom-cursor-dot';
-  document.body.appendChild(cursorDot);
-  
-  document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    cursorDot.style.left = e.clientX + 'px';
-    cursorDot.style.top = e.clientY + 'px';
-  });
-  
-  document.querySelectorAll('a, button, .social-btn, .accordion-header, .theme-toggle-floating').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('active'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-  });
-}
 
 function initMagneticButtons() {
   const buttons = document.querySelectorAll('.btn-primary, .btn-outline-large, .theme-toggle-floating');
