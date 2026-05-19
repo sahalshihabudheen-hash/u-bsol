@@ -417,23 +417,23 @@
     });
 
     // Typewriter Effect
-    const words = ["Web Development.", "Cloud Solutions.", "Business Automation.", "Brand Identity.", "AI Integrations."];
-    let i = 0; let j = 0; let isDeleting = false; let currentWord = "";
+    const agencyWords = ["Web Development.", "Cloud Solutions.", "Business Automation.", "Brand Identity.", "AI Integrations."];
+    let twIndex = 0; let charIdx = 0; let isTwDeleting = false; let curTwWord = "";
     
-    function type() {
-      currentWord = words[i];
-      if (isDeleting) {
-        document.getElementById("typewriter").textContent = currentWord.substring(0, j - 1);
-        j--;
-        if (j == 0) { isDeleting = false; i = (i + 1) % words.length; setTimeout(type, 500); return; }
+    function typeAgency() {
+      curTwWord = agencyWords[twIndex];
+      if (isTwDeleting) {
+        document.getElementById("typewriter").textContent = curTwWord.substring(0, charIdx - 1);
+        charIdx--;
+        if (charIdx == 0) { isTwDeleting = false; twIndex = (twIndex + 1) % agencyWords.length; setTimeout(typeAgency, 500); return; }
       } else {
-        document.getElementById("typewriter").textContent = currentWord.substring(0, j + 1);
-        j++;
-        if (j == currentWord.length) { isDeleting = true; setTimeout(type, 2000); return; }
+        document.getElementById("typewriter").textContent = curTwWord.substring(0, charIdx + 1);
+        charIdx++;
+        if (charIdx == curTwWord.length) { isTwDeleting = true; setTimeout(typeAgency, 2000); return; }
       }
-      setTimeout(type, isDeleting ? 50 : 100);
+      setTimeout(typeAgency, isTwDeleting ? 50 : 100);
     }
-    setTimeout(type, 1000);
+    setTimeout(typeAgency, 1000);
   </script>
 </body>
 </html>
