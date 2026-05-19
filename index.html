@@ -110,9 +110,9 @@
     /* ================= 4. LIVE STATS ================= */
     .stats-section { padding: 100px 24px; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
     .stat-card { padding: 40px 20px; background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; transition: 0.4s; }
-    .stat-card:hover { transform: translateY(-10px); border-color: var(--orange); }
+    .stat-card:hover { transform: translateY(-10px); border-color: var(--text-main); }
     .stat-num { font-size: 48px; font-weight: 800; font-family: 'Space Grotesk', sans-serif; color: var(--text-main); margin-bottom: 8px; }
-    .stat-num span { color: var(--orange); }
+    .stat-num span { color: var(--text-main); }
     .stat-label { color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-size: 14px; font-weight: 600; }
 
     /* ================= 5. SERVICES ================= */
@@ -121,13 +121,24 @@
     .section-title { font-size: clamp(36px, 4vw, 56px); line-height: 1.1; margin-bottom: 24px; color: var(--text-main); }
     .section-desc { color: var(--text-muted); font-size: 18px; line-height: 1.6; }
 
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-    .service-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; padding: 40px 32px; display: flex; flex-direction: column; transition: 0.4s; cursor: pointer; }
-    .service-card:hover { transform: translateY(-5px); border-color: var(--orange); box-shadow: 0 20px 40px var(--orange-dim); }
+    .services-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
+    .service-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; padding: 40px 32px; display: flex; flex-direction: column; transition: 0.4s; cursor: pointer; flex: 0 1 calc(25% - 24px); min-width: 280px; box-sizing: border-box; }
+    .service-card:hover { transform: translateY(-5px); border-color: var(--text-main); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); }
+    [data-theme="light"] .service-card:hover { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05); }
     .service-icon { width: 64px; height: 64px; background: rgba(128,128,128,0.1); border-radius: 16px; border: 1px solid var(--border-glass); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; color: var(--text-main); transition: 0.4s; }
-    .service-card:hover .service-icon { background: var(--orange); color: #fff; transform: scale(1.1) rotate(-5deg); border-color: var(--orange); }
+    .service-card:hover .service-icon { background: var(--text-main); color: var(--bg-dark); transform: scale(1.1) rotate(-5deg); border-color: var(--text-main); }
     .service-title { font-size: 22px; font-weight: 700; margin-bottom: 16px; font-family: 'Space Grotesk', sans-serif; position: relative; z-index: 1; }
     .service-desc { color: var(--text-muted); line-height: 1.6; font-size: 16px; position: relative; z-index: 1; }
+
+    @media (max-width: 1200px) {
+      .service-card { flex: 0 1 calc(33.333% - 24px); }
+    }
+    @media (max-width: 900px) {
+      .service-card { flex: 0 1 calc(50% - 24px); }
+    }
+    @media (max-width: 600px) {
+      .service-card { flex: 0 1 100%; }
+    }
 
     /* ================= 6. WHY CHOOSE US ================= */
     .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
@@ -274,22 +285,6 @@
         </div>
       </div>
     </section>
-
-    <!-- 3. TRUSTED BY -->
-    <div class="marquee-section reveal-up">
-      <div class="marquee-text">Trusted by innovative startups and global enterprises</div>
-      <div class="marquee-track">
-        <!-- SVG Placeholders representing brands -->
-        <svg class="marquee-logo" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-size="20" font-weight="bold">ACME Corp</text></svg>
-        <svg class="marquee-logo" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-size="20" font-weight="bold">GlobalTech</text></svg>
-        <svg class="marquee-logo" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-size="20" font-weight="bold">InnovateOS</text></svg>
-        <svg class="marquee-logo" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-size="20" font-weight="bold">NexusAI</text></svg>
-        <svg class="marquee-logo" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-size="20" font-weight="bold">StellarPay</text></svg>
-        <svg class="marquee-logo" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-size="20" font-weight="bold">ACME Corp</text></svg>
-        <svg class="marquee-logo" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-size="20" font-weight="bold">GlobalTech</text></svg>
-      </div>
-    </div>
-
     <!-- 4. LIVE STATS -->
     <section class="stats-section reveal-up">
       <div class="stat-card">

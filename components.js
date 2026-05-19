@@ -3,8 +3,7 @@
 function getNavHTML(activePage) {
   const pages = [
     { href: 'index.html', label: 'Home', id: 'home' },
-    { href: 'index.html#services', label: 'Services', id: 'services' },
-    { href: 'features.html', label: 'Solutions', id: 'features' },
+    { href: 'features.html', label: 'Features', id: 'features' },
     { href: 'packages.html', label: 'Packages', id: 'packages' },
     { href: 'about.html', label: 'About', id: 'about' },
     { href: 'contact.html', label: 'Contact', id: 'contact' },
