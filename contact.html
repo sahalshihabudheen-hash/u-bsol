@@ -78,16 +78,21 @@
     .orbit-planet.p1 { width: 220px; height: 220px; margin-left: -110px; margin-top: -110px; animation: spin 15s linear infinite; }
     .orbit-planet.p2 { width: 340px; height: 340px; margin-left: -170px; margin-top: -170px; animation: spinReverse 25s linear infinite; }
     .orbit-planet.p3 { width: 450px; height: 450px; margin-left: -225px; margin-top: -225px; animation: spin 35s linear infinite; }
+    .orbit-planet.p4 { width: 340px; height: 340px; margin-left: -170px; margin-top: -170px; animation: spinReverse 25s linear infinite; animation-delay: -12.5s; }
 
-    .orbit-chip-wrapper { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); pointer-events: auto; }
+    .orbit-chip-wrapper { position: absolute; top: -20px; left: 50%; transform: translateX(-50%) rotate(0deg); pointer-events: auto; }
     
     /* Keep chips upright */
-    .orbit-planet.p1 .orbit-chip-wrapper { animation: spinReverse 15s linear infinite; }
-    .orbit-planet.p2 .orbit-chip-wrapper { animation: spin 25s linear infinite; }
-    .orbit-planet.p3 .orbit-chip-wrapper { animation: spinReverse 35s linear infinite; }
+    .orbit-planet.p1 .orbit-chip-wrapper { animation: spinCounter 15s linear infinite; }
+    .orbit-planet.p2 .orbit-chip-wrapper { animation: spinClockwise 25s linear infinite; }
+    .orbit-planet.p3 .orbit-chip-wrapper { animation: spinCounter 35s linear infinite; }
+    .orbit-planet.p4 .orbit-chip-wrapper { animation: spinClockwise 25s linear infinite; animation-delay: -12.5s; }
 
     @keyframes spin { 100% { transform: rotate(360deg); } }
     @keyframes spinReverse { 100% { transform: rotate(-360deg); } }
+
+    @keyframes spinCounter { 0% { transform: translateX(-50%) rotate(0deg); } 100% { transform: translateX(-50%) rotate(-360deg); } }
+    @keyframes spinClockwise { 0% { transform: translateX(-50%) rotate(0deg); } 100% { transform: translateX(-50%) rotate(360deg); } }
 
     .orbit-chip {
       padding: 10px 20px; background: rgba(20,20,25,0.8); border: 1px solid rgba(255,138,0,0.3);
@@ -283,6 +288,15 @@
             </div>
           </div>
         </div>
+
+        <div class="orbit-planet p4">
+          <div class="orbit-chip-wrapper" style="top: auto; bottom: -20px;">
+            <div class="orbit-chip" onclick="highlightCard('whatsapp')" style="border-color: rgba(37,211,102,0.3);">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" /><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" /></svg>
+              WhatsApp
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -322,15 +336,15 @@
           </div>
         </div>
 
-        <div class="glass-card track-mouse">
-          <div class="card-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <a id="card-whatsapp" href="https://wa.me/+918330011641" target="_blank" class="glass-card track-mouse">
+          <div class="card-icon" style="color: #25D366; border-color: rgba(37,211,102,0.1);">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" /><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" /></svg>
           </div>
           <div class="card-content">
-            <div class="card-label">Hours</div>
-            <div class="card-value">Mon - Sat<br>9:00 AM - 7:00 PM IST</div>
+            <div class="card-label">WhatsApp</div>
+            <div class="card-value">+91 8330011641<br>Online 24/7</div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
 
