@@ -1,0 +1,368 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>U-BSOL | Blog</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css?v=3"/>
+<style>
+:root{--orange:#ff6600;--card-bg:rgba(15,15,18,0.7);--glass-border:rgba(255,255,255,0.06);--tag-bg:rgba(255,102,0,0.1);--sidebar-bg:rgba(12,12,15,0.8);}
+[data-theme="light"]{--card-bg:rgba(255,255,255,0.95);--glass-border:rgba(0,0,0,0.08);--tag-bg:rgba(255,102,0,0.08);--sidebar-bg:rgba(255,255,255,0.98);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg-dark);color:var(--text-primary);overflow-x:hidden;line-height:1.7;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% -10%,rgba(255,102,0,0.08) 0%,transparent 60%);pointer-events:none;z-index:0;}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;width:100%;}
+
+/* BREADCRUMB */
+.breadcrumb{padding:100px 0 20px;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted);}
+.breadcrumb a{color:var(--text-muted);text-decoration:none;transition:.2s;}
+.breadcrumb a:hover{color:var(--orange);}
+.breadcrumb svg{color:var(--text-muted);flex-shrink:0;}
+.breadcrumb span{color:var(--text-secondary);}
+
+/* LAYOUT */
+.post-layout{display:grid;grid-template-columns:1fr 320px;gap:48px;margin-bottom:100px;align-items:start;}
+
+/* ARTICLE */
+.article-wrap{min-width:0;}
+.article-hero{border-radius:24px;overflow:hidden;margin-bottom:36px;position:relative;}
+.article-hero img{width:100%;height:420px;object-fit:cover;display:block;transition:transform .6s ease;}
+.article-hero:hover img{transform:scale(1.02);}
+.article-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.3),transparent 60%);}
+
+.article-meta{display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap;}
+.article-badge{padding:4px 14px;background:var(--tag-bg);color:var(--orange);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;border-radius:100px;border:1px solid rgba(255,102,0,0.2);}
+.meta-item{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--text-muted);}
+.meta-item svg{color:var(--orange);}
+
+.article-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,4vw,42px);font-weight:800;line-height:1.25;margin-bottom:28px;color:var(--text-primary);letter-spacing:-.5px;}
+[data-theme="light"] .article-title{color:#0a0a0a;}
+
+.article-body{font-size:16px;line-height:1.9;color:var(--text-secondary);}
+[data-theme="light"] .article-body{color:#333;}
+.article-body p{margin-bottom:24px;}
+.article-body h2{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;margin:40px 0 16px;color:var(--text-primary);}
+[data-theme="light"] .article-body h2{color:#0a0a0a;}
+.article-body h3{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;margin:32px 0 12px;color:var(--text-primary);}
+[data-theme="light"] .article-body h3{color:#111;}
+.article-body ul,.article-body ol{padding-left:24px;margin-bottom:24px;}
+.article-body li{margin-bottom:10px;color:var(--text-secondary);}
+[data-theme="light"] .article-body li{color:#333;}
+.article-body strong{color:var(--text-primary);font-weight:600;}
+[data-theme="light"] .article-body strong{color:#0a0a0a;}
+.article-body a{color:var(--orange);text-decoration:none;}
+.article-body a:hover{text-decoration:underline;}
+
+.blockquote{border-left:4px solid var(--orange);padding:20px 24px;margin:32px 0;background:rgba(255,102,0,0.05);border-radius:0 12px 12px 0;}
+.blockquote p{font-size:17px;font-style:italic;color:var(--text-primary);margin-bottom:10px;line-height:1.7;}
+[data-theme="light"] .blockquote p{color:#111;}
+.blockquote cite{font-size:13px;font-weight:600;color:var(--orange);}
+
+/* SHARE */
+.share-bar{display:flex;align-items:center;gap:12px;margin-top:48px;padding-top:28px;border-top:1px solid var(--glass-border);flex-wrap:wrap;}
+.share-label{font-size:14px;font-weight:600;color:var(--text-secondary);}
+.share-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:50px;font-size:13px;font-weight:600;text-decoration:none;transition:.3s;border:1px solid var(--glass-border);}
+.share-btn:hover{transform:translateY(-2px);}
+.share-btn.tw{background:rgba(29,161,242,.1);color:#1da1f2;border-color:rgba(29,161,242,.2);}
+.share-btn.wa{background:rgba(37,211,102,.1);color:#25d366;border-color:rgba(37,211,102,.2);}
+.share-btn.li{background:rgba(0,119,181,.1);color:#0077b5;border-color:rgba(0,119,181,.2);}
+
+/* AUTHOR BOX */
+.author-box{display:flex;gap:20px;align-items:flex-start;background:var(--card-bg);border:1px solid var(--glass-border);border-radius:20px;padding:28px;margin-top:40px;backdrop-filter:blur(20px);}
+.author-avatar-lg{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--orange),#ff4500);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#fff;flex-shrink:0;}
+.author-box-name{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;margin-bottom:4px;color:var(--text-primary);}
+.author-box-role{font-size:13px;color:var(--orange);font-weight:600;margin-bottom:10px;}
+.author-box-bio{font-size:14px;color:var(--text-muted);line-height:1.7;}
+
+/* SIDEBAR */
+.sidebar{position:sticky;top:90px;display:flex;flex-direction:column;gap:24px;}
+.sw{background:var(--sidebar-bg);border:1px solid var(--glass-border);border-radius:20px;padding:24px;backdrop-filter:blur(20px);}
+.sw-title{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--glass-border);color:var(--text-primary);display:flex;align-items:center;gap:8px;}
+.sw-title svg{color:var(--orange);}
+
+.cat-list{display:flex;flex-direction:column;gap:2px;}
+.cat-link{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;text-decoration:none;color:var(--text-secondary);font-size:14px;transition:.3s;}
+.cat-link:hover{background:rgba(255,102,0,0.08);color:var(--orange);}
+.cat-dot{width:6px;height:6px;border-radius:50%;background:var(--orange);flex-shrink:0;}
+
+.latest-item{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--glass-border);}
+.latest-item:last-child{border-bottom:none;padding-bottom:0;}
+.latest-img{width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0;}
+.latest-item-info h4{font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:4px;line-height:1.4;}
+.latest-item-info a{text-decoration:none;color:inherit;transition:.2s;}
+.latest-item-info a:hover{color:var(--orange);}
+.latest-item-info span{font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:5px;}
+
+.archive-list{display:flex;flex-direction:column;gap:2px;}
+.archive-link{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;text-decoration:none;color:var(--text-secondary);font-size:14px;transition:.3s;}
+.archive-link:hover{background:rgba(255,102,0,0.08);color:var(--orange);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* RESPONSIVE */
+@media(max-width:900px){.post-layout{grid-template-columns:1fr;}.sidebar{position:static;}}
+@media(max-width:600px){.article-hero img{height:240px;}.share-bar{gap:8px;}.author-box{flex-direction:column;}}
+</style>
+</head>
+<body>
+<div id="nav-container"></div>
+
+<main style="position:relative;z-index:1;">
+<div class="container">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+    <a href="blog.html">Blogs</a>
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+    <span id="bc-title">Loading...</span>
+  </div>
+
+  <div class="post-layout">
+    <!-- ARTICLE -->
+    <article class="article-wrap reveal">
+      <div class="article-hero">
+        <img id="post-img" src="" alt=""/>
+        <div class="article-hero-overlay"></div>
+      </div>
+
+      <div class="article-meta">
+        <span class="article-badge" id="post-badge"></span>
+        <span class="meta-item"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span id="post-date"></span></span>
+        <span class="meta-item"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span id="post-author"></span></span>
+      </div>
+
+      <h1 class="article-title" id="post-title">Loading...</h1>
+      <div class="article-body" id="post-body"></div>
+
+      <!-- SHARE -->
+      <div class="share-bar">
+        <span class="share-label">Share this article:</span>
+        <a href="#" class="share-btn tw" id="share-tw"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>Twitter</a>
+        <a href="#" class="share-btn wa" id="share-wa"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12.012 2C6.49 2 2.008 6.48 2.008 12.003c0 1.764.464 3.483 1.345 5.002L2 22l5.127-1.345a9.975 9.975 0 0 0 4.885 1.272c5.52 0 10.002-4.481 10.002-10.005C22.014 6.48 17.532 2 12.012 2z"/></svg>WhatsApp</a>
+        <a href="#" class="share-btn li" id="share-li"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+      </div>
+
+      <!-- AUTHOR -->
+      <div class="author-box reveal">
+        <div class="author-avatar-lg" id="author-initial">?</div>
+        <div>
+          <div class="author-box-name" id="author-name">Author</div>
+          <div class="author-box-role" id="author-role">Contributor</div>
+          <div class="author-box-bio" id="author-bio"></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sw reveal">
+        <div class="sw-title"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h7"/></svg>Categories</div>
+        <div class="cat-list">
+          <a href="blog.html" class="cat-link"><span class="cat-dot"></span>Digital Marketing</a>
+          <a href="blog.html" class="cat-link"><span class="cat-dot"></span>Payment Gateway</a>
+          <a href="blog.html" class="cat-link"><span class="cat-dot"></span>Business Tips</a>
+          <a href="blog.html" class="cat-link"><span class="cat-dot"></span>Technology</a>
+          <a href="blog.html" class="cat-link"><span class="cat-dot"></span>Branding</a>
+        </div>
+      </div>
+
+      <div class="sw reveal">
+        <div class="sw-title"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Latest Posts</div>
+        <div class="latest-item">
+          <img class="latest-img" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=120&q=80" alt=""/>
+          <div class="latest-item-info">
+            <h4><a href="blog-post.html?id=3">Choosing a payment gateway for your business</a></h4>
+            <span><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>December 19, 2022</span>
+          </div>
+        </div>
+        <div class="latest-item">
+          <img class="latest-img" src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=120&q=80" alt=""/>
+          <div class="latest-item-info">
+            <h4><a href="blog-post.html?id=2">What is the Payment Gateway?</a></h4>
+            <span><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>November 09, 2022</span>
+          </div>
+        </div>
+        <div class="latest-item">
+          <img class="latest-img" src="https://images.unsplash.com/photo-1553484771-371a605b060b?auto=format&fit=crop&w=120&q=80" alt=""/>
+          <div class="latest-item-info">
+            <h4><a href="blog-post.html?id=1">Online marketing strategy shortcut</a></h4>
+            <span><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>September 06, 2022</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sw reveal">
+        <div class="sw-title"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 8l6 6M4 14l6-6 2-3M2 5h7M7 2v7"/></svg>Archive (Year)</div>
+        <div class="archive-list">
+          <a href="blog.html" class="archive-link"><span class="cat-dot"></span>2022</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+</main>
+
+<div id="footer-container"></div>
+<script src="components.js?v=3"></script>
+<script>
+injectComponents('blog');
+
+const posts = {
+  '1': {
+    title: 'Online marketing strategy shortcut',
+    badge: 'Digital Marketing',
+    date: 'September 06, 2022',
+    author: 'Shihabudheen Uruniyan',
+    authorInitial: 'SU',
+    authorRole: 'Founder & CEO, U-BSOL',
+    authorBio: 'Shihabudheen Uruniyan is the founder of U-BSOL, a cloud-based SaaS platform helping businesses digitize and scale their operations across India.',
+    img: 'https://images.unsplash.com/photo-1553484771-371a605b060b?auto=format&fit=crop&w=1200&q=80',
+    body: `
+      <p>Plenty of starting businesses hate that word and online marketing can be even more challenging. As there are websites and competing businesses in just about every niche imaginable, using marketing to stand out from your online peers can seem to be an incredible challenge. This is especially so if you don't have that much money to put into your marketing budget.</p>
+      <div class="blockquote"><p>"Good marketing makes the company look smart. Great marketing makes the customer feel smart."</p><cite>— Joe Chernov</cite></div>
+      <h2>1. Know Your Target Audience</h2>
+      <p>Before you spend a single rupee on marketing, you need to understand who your ideal customer is. Build a detailed buyer persona — their age, location, interests, pain points, and buying behavior. The more specific you are, the more effective your campaigns will be.</p>
+      <h2>2. Build a Strong Brand Identity</h2>
+      <p>Your brand is more than just a logo. It is the feeling people get when they interact with your business. Invest in consistent colors, fonts, tone of voice, and messaging across every channel you use — your website, social media, emails, and packaging.</p>
+      <h2>3. Leverage Social Media Smartly</h2>
+      <p>You don't need to be on every platform. Pick 2 or 3 where your audience is most active and dominate those. For most Indian businesses, this means Instagram, Facebook, and WhatsApp Business. Post consistently, engage with comments, and use Stories and Reels to boost organic reach.</p>
+      <ul>
+        <li>Post at least 4-5 times per week on your primary channel</li>
+        <li>Use local language content alongside English for wider reach</li>
+        <li>Run targeted paid ads with even a small daily budget (₹200–500/day)</li>
+        <li>Partner with micro-influencers in your niche</li>
+      </ul>
+      <h2>4. Invest in SEO from Day One</h2>
+      <p>Search Engine Optimization ensures your business appears when customers are actively searching for what you offer. Start with keyword research, optimize your Google My Business listing, and create blog content that answers common questions your customers ask.</p>
+      <h2>5. Email Marketing Still Works</h2>
+      <p>Building an email list is one of the most valuable assets your business can have. Unlike social media followers, you own your list. Use it to nurture leads, announce offers, share useful content, and bring back past customers. Tools like Mailchimp offer free plans to get started.</p>
+      <h2>6. Use WhatsApp for Business</h2>
+      <p>In India, WhatsApp is where business happens. Set up a WhatsApp Business account, create a product catalog, use broadcast lists for promotions, and make it easy for customers to reach you instantly. U-BSOL's platform integrates WhatsApp checkout directly into your store.</p>
+      <h3>Final Thoughts</h3>
+      <p>The best marketing strategy is one that you can execute consistently. Start small, measure your results, double down on what works, and always keep your customer at the center of everything you do. Marketing is not a one-time event — it is an ongoing conversation with your market.</p>
+    `
+  },
+  '2': {
+    title: 'What is the Payment Gateway?',
+    badge: 'Payment Gateway',
+    date: 'November 09, 2022',
+    author: 'admin',
+    authorInitial: 'AD',
+    authorRole: 'Content Team, U-BSOL',
+    authorBio: 'The U-BSOL content team creates helpful guides and insights to help businesses understand technology, payments, and digital transformation.',
+    img: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80',
+    body: `
+      <p>A payment gateway is a software application that enables the secure transfer of credit card information from a website to the credit card payment network. In simpler terms, it is the digital equivalent of a point-of-sale terminal in a physical store — it reads your customer's payment details and communicates with the bank to approve or decline the transaction.</p>
+      <div class="blockquote"><p>"In today's digital economy, a reliable payment gateway isn't optional — it's the heartbeat of your online business."</p><cite>— U-BSOL Team</cite></div>
+      <h2>How Does a Payment Gateway Work?</h2>
+      <p>When a customer clicks "Pay Now" on your website, a complex chain of events happens in milliseconds behind the scenes:</p>
+      <ol>
+        <li><strong>Customer submits payment:</strong> They enter their card details on your checkout page</li>
+        <li><strong>Encryption:</strong> The gateway encrypts the data using SSL technology</li>
+        <li><strong>Authorization request:</strong> The gateway sends the transaction to your payment processor</li>
+        <li><strong>Bank verification:</strong> The processor contacts the issuing bank to verify funds</li>
+        <li><strong>Response:</strong> Approval or decline is sent back through the gateway</li>
+        <li><strong>Settlement:</strong> Approved funds are transferred to your merchant account</li>
+      </ol>
+      <h2>Types of Payment Gateways</h2>
+      <h3>Hosted Payment Gateways</h3>
+      <p>With hosted gateways, customers are redirected to the payment provider's secure page to complete the transaction. Examples include PayPal and PayU. These are easy to set up and PCI-compliant by default, making them ideal for small businesses.</p>
+      <h3>Self-Hosted Payment Gateways</h3>
+      <p>Here, the payment form is embedded directly on your website. You collect the payment data and send it to the gateway's server. This offers a seamless checkout experience but requires more technical setup and security compliance.</p>
+      <h3>API-Based Gateways</h3>
+      <p>API gateways offer complete control over the payment experience. Razorpay, Stripe, and Cashfree are popular examples in India. They require developer integration but offer maximum flexibility and customization.</p>
+      <h2>Popular Payment Gateways in India</h2>
+      <ul>
+        <li><strong>Razorpay</strong> — Most popular for Indian startups, supports UPI, cards, net banking</li>
+        <li><strong>PayU</strong> — Widely used, supports EMI options and many banks</li>
+        <li><strong>Cashfree</strong> — Fast settlements, great for marketplace businesses</li>
+        <li><strong>CCAvenue</strong> — Supports 200+ payment options, good for enterprise</li>
+        <li><strong>PhonePe Gateway</strong> — Growing rapidly with UPI-first approach</li>
+      </ul>
+      <h2>Security in Payment Gateways</h2>
+      <p>Modern payment gateways use multiple layers of security including PCI DSS compliance, SSL/TLS encryption, 3D Secure authentication, tokenization of card data, and real-time fraud detection algorithms. Always choose a gateway that is PCI DSS Level 1 certified.</p>
+      <h3>Conclusion</h3>
+      <p>A payment gateway is the foundation of any successful e-commerce business. Understanding how it works helps you make better decisions when choosing one for your store. U-BSOL integrates with leading payment gateways out of the box, making it easy to start accepting payments from day one.</p>
+    `
+  },
+  '3': {
+    title: 'Choosing a payment gateway for your business',
+    badge: 'Business Tips',
+    date: 'December 19, 2022',
+    author: 'Thushama Mangistu',
+    authorInitial: 'TM',
+    authorRole: 'Business Analyst, U-BSOL',
+    authorBio: 'Thushama Mangistu is a business analyst at U-BSOL specializing in fintech solutions and helping merchants choose the right payment infrastructure for their business.',
+    img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80',
+    body: `
+      <p>Choosing the right payment gateway for your business is an important decision. There are several factors to be fit with your business model. The wrong choice can lead to high transaction fees, poor customer experience, failed payments, and even security vulnerabilities. Getting this right from the start can save you a lot of headaches later.</p>
+      <div class="blockquote"><p>"The payment experience is the last impression your customer has. Make it seamless, make it trustworthy, make it instant."</p><cite>— Thushama Mangistu</cite></div>
+      <h2>Key Factors to Consider</h2>
+      <h3>1. Transaction Fees</h3>
+      <p>Every gateway charges fees — typically a percentage of the transaction plus a fixed amount. In India, this usually ranges from 1.75% to 3% per transaction. Compare the pricing models carefully, especially if you expect high volumes. Some gateways offer lower rates for higher volumes.</p>
+      <ul>
+        <li>Domestic card transactions: 1.75% – 2%</li>
+        <li>UPI transactions: 0% (currently free for most gateways)</li>
+        <li>International cards: 2.5% – 3.5%</li>
+        <li>EMI transactions: Higher fees (3% – 4%)</li>
+      </ul>
+      <h3>2. Supported Payment Methods</h3>
+      <p>Indian customers pay in many ways — UPI, credit cards, debit cards, net banking, wallets, and EMIs. Your gateway must support all major methods. With UPI now dominating digital payments in India (over 70% of transactions), UPI support is non-negotiable.</p>
+      <h3>3. Settlement Speed</h3>
+      <p>How quickly do you need the money in your account? Most gateways settle within T+2 or T+3 business days. Some offer instant settlements for a small additional fee. If you have tight cash flow requirements, opt for a gateway with faster settlement options.</p>
+      <h3>4. Integration Ease</h3>
+      <p>How easily can the gateway be integrated with your existing platform? If you use U-BSOL, our platform supports plug-and-play integration with Razorpay, PayU, and CCAvenue. Look for well-documented APIs, SDKs for web and mobile, and good developer support.</p>
+      <h3>5. Customer Support</h3>
+      <p>Payment issues need to be resolved fast. Check if the gateway offers 24/7 customer support, a dedicated relationship manager for your account, and quick response times. A failed payment at the wrong time can mean a lost customer.</p>
+      <h2>Our Recommendations</h2>
+      <p>Based on our experience working with hundreds of Indian businesses, here is our recommendation:</p>
+      <ul>
+        <li><strong>Small businesses just starting out:</strong> Razorpay or PayU — easy setup, no monthly fees</li>
+        <li><strong>Growing e-commerce stores:</strong> Cashfree — faster settlements and competitive rates</li>
+        <li><strong>Enterprise businesses:</strong> CCAvenue — maximum payment options and dedicated support</li>
+        <li><strong>International sales:</strong> Stripe — best for global customers and multi-currency support</li>
+      </ul>
+      <h2>Red Flags to Watch Out For</h2>
+      <p>Avoid gateways that have hidden fees buried in fine print, poor uptime records, no SSL security, limited payment method support, or extremely slow customer support response times. Always read reviews from other businesses in your sector before committing.</p>
+      <h3>Final Word</h3>
+      <p>Take your time evaluating at least 3 different gateways before making your decision. Most offer free trials or sandbox environments where you can test the integration before going live. U-BSOL's support team is always available to guide you through the integration process.</p>
+    `
+  }
+};
+
+const id = new URLSearchParams(window.location.search).get('id') || '1';
+const post = posts[id] || posts['1'];
+
+document.title = 'U-BSOL | ' + post.title;
+document.getElementById('bc-title').textContent = post.title;
+document.getElementById('post-img').src = post.img;
+document.getElementById('post-img').alt = post.title;
+document.getElementById('post-badge').textContent = post.badge;
+document.getElementById('post-date').textContent = post.date;
+document.getElementById('post-author').textContent = post.author;
+document.getElementById('post-title').textContent = post.title;
+document.getElementById('post-body').innerHTML = post.body;
+document.getElementById('author-initial').textContent = post.authorInitial;
+document.getElementById('author-name').textContent = post.author;
+document.getElementById('author-role').textContent = post.authorRole;
+document.getElementById('author-bio').textContent = post.authorBio;
+
+// Share links
+const url = encodeURIComponent(window.location.href);
+const text = encodeURIComponent(post.title);
+document.getElementById('share-tw').href = 'https://twitter.com/intent/tweet?text=' + text + '&url=' + url;
+document.getElementById('share-wa').href = 'https://wa.me/?text=' + text + '%20' + url;
+document.getElementById('share-li').href = 'https://www.linkedin.com/shareArticle?mini=true&url=' + url + '&title=' + text;
+
+// Reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
