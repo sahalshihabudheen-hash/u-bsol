@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>U-BSOL | Contact Us</title>
-  <meta name="description" content="Let's Build Something Amazing Together. Have questions, ideas, or business inquiries? Reach out to us." />
+  <meta name="description" content="Let's build something amazing together. Have questions, ideas, or business inquiries? Reach out to us." />
   <link rel="stylesheet" href="style.css" />
   <style>
     /* Base Variables & Overrides for this Premium Page */
@@ -17,21 +17,21 @@
       --font-body: 'Inter', sans-serif;
     }
 
-    body { font-family: var(--font-body); }
+    body { font-family: var(--font-body); scroll-behavior: smooth; }
     h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
 
     /* Animated Background Mesh */
     .hero-bg {
-      position: absolute; top: 0; left: 0; right: 0; height: 800px; z-index: -2; overflow: hidden;
+      position: absolute; top: 0; left: 0; right: 0; height: 1000px; z-index: -2; overflow: hidden;
       background: var(--bg-dark);
     }
     .hero-bg-blob1 {
-      position: absolute; top: -10%; left: -10%; width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(255,138,0,0.15) 0%, transparent 60%);
+      position: absolute; top: -10%; left: -10%; width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(255,138,0,0.12) 0%, transparent 60%);
       border-radius: 50%; filter: blur(60px); animation: floatBlob 15s ease-in-out infinite alternate;
     }
     .hero-bg-blob2 {
-      position: absolute; top: 20%; right: -10%; width: 500px; height: 500px;
+      position: absolute; top: 20%; right: -10%; width: 600px; height: 600px;
       background: radial-gradient(circle, rgba(138,43,226,0.1) 0%, transparent 60%);
       border-radius: 50%; filter: blur(60px); animation: floatBlob 20s ease-in-out infinite alternate-reverse;
     }
@@ -42,7 +42,9 @@
     }
 
     /* Hero Section */
-    .premium-hero { text-align: center; padding: 180px 24px 100px; position: relative; max-width: 1000px; margin: 0 auto; z-index: 1; }
+    .premium-hero { padding: 180px 24px 80px; position: relative; max-width: 1300px; margin: 0 auto; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    
+    .hero-content { max-width: 600px; }
     .status-badge {
       display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 50px;
       background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2);
@@ -51,26 +53,60 @@
     .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 10px #10b981; animation: pulseDot 2s infinite; }
     @keyframes pulseDot { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
     
-    .premium-title { font-size: clamp(40px, 6vw, 72px); font-weight: 800; line-height: 1.1; margin-bottom: 24px; color: #fff; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .premium-title { font-size: clamp(40px, 5.5vw, 64px); font-weight: 800; line-height: 1.1; margin-bottom: 24px; color: #fff; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
     .premium-title span { background: linear-gradient(135deg, var(--accent-color) 0%, #ff5e00 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .premium-desc { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; line-height: 1.8; }
+    .premium-desc { font-size: 18px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 32px; }
 
-    /* Layout Grid */
-    .premium-container { max-width: 1300px; margin: 0 auto 120px; padding: 0 24px; display: grid; grid-template-columns: 1fr 1.3fr; gap: 60px; position: relative; z-index: 1; }
-
-    /* Left Side: Info & Cards */
-    .left-col { display: flex; flex-direction: column; gap: 40px; }
+    /* Orbit Visual (Right Side) */
+    .orbit-visual { position: relative; width: 450px; height: 450px; margin: 0 auto; display: flex; align-items: center; justify-content: center; }
     
-    .illustration-wrapper { position: relative; border-radius: 30px; padding: 20px; text-align: center; }
-    .illustration-wrapper img { width: 100%; max-width: 350px; border-radius: 24px; animation: float 6s ease-in-out infinite; filter: drop-shadow(0 30px 40px rgba(255,138,0,0.15)); }
+    .orbit-core {
+      width: 100px; height: 100px; background: linear-gradient(135deg, var(--accent-color), #ff5e00);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 40px rgba(255,138,0,0.5), inset 0 0 20px rgba(255,255,255,0.4); z-index: 10; position: relative;
+      animation: corePulse 3s ease-in-out infinite alternate;
+    }
+    @keyframes corePulse { 0% { transform: scale(1); box-shadow: 0 0 40px rgba(255,138,0,0.5); } 100% { transform: scale(1.05); box-shadow: 0 0 60px rgba(255,138,0,0.7); } }
+    .orbit-core svg { width: 40px; height: 40px; color: #fff; }
 
-    .glass-cards-container { display: flex; flex-direction: column; gap: 20px; }
+    .orbit-ring { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; border: 1px dashed rgba(255,255,255,0.1); pointer-events: none; }
+    .orbit-ring.r1 { width: 220px; height: 220px; }
+    .orbit-ring.r2 { width: 340px; height: 340px; border: 1px solid rgba(255,138,0,0.15); }
+    .orbit-ring.r3 { width: 450px; height: 450px; }
+
+    .orbit-planet { position: absolute; top: 50%; left: 50%; pointer-events: none; }
+    .orbit-planet.p1 { width: 220px; height: 220px; margin-left: -110px; margin-top: -110px; animation: spin 15s linear infinite; }
+    .orbit-planet.p2 { width: 340px; height: 340px; margin-left: -170px; margin-top: -170px; animation: spinReverse 25s linear infinite; }
+    .orbit-planet.p3 { width: 450px; height: 450px; margin-left: -225px; margin-top: -225px; animation: spin 35s linear infinite; }
+
+    .orbit-chip-wrapper { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); pointer-events: auto; }
+    
+    /* Keep chips upright */
+    .orbit-planet.p1 .orbit-chip-wrapper { animation: spinReverse 15s linear infinite; }
+    .orbit-planet.p2 .orbit-chip-wrapper { animation: spin 25s linear infinite; }
+    .orbit-planet.p3 .orbit-chip-wrapper { animation: spinReverse 35s linear infinite; }
+
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    @keyframes spinReverse { 100% { transform: rotate(-360deg); } }
+
+    .orbit-chip {
+      padding: 10px 20px; background: rgba(20,20,25,0.8); border: 1px solid rgba(255,138,0,0.3);
+      border-radius: 30px; color: #fff; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px;
+      cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.3); backdrop-filter: blur(10px);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .orbit-chip:hover { transform: scale(1.1); border-color: var(--accent-color); background: rgba(255,138,0,0.1); box-shadow: 0 0 20px rgba(255,138,0,0.4); }
+    .orbit-chip svg { width: 16px; height: 16px; color: var(--accent-color); }
+
+    /* Glass Cards Grid */
+    .cards-section { max-width: 1300px; margin: 0 auto 80px; padding: 0 24px; position: relative; z-index: 1; }
+    .glass-cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    
     .glass-card {
       background: var(--glass-bg); border: 1px solid var(--glass-border); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-radius: 20px; padding: 24px; display: flex; gap: 20px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative; overflow: hidden; text-decoration: none;
+      border-radius: 20px; padding: 32px 24px; text-align: center; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative; overflow: hidden; text-decoration: none; display: flex; flex-direction: column; align-items: center;
     }
-    /* Mouse glow effect */
     .glass-card::before {
       content: ""; position: absolute; top: var(--mouse-y, -100px); left: var(--mouse-x, -100px);
       transform: translate(-50%, -50%); width: 300px; height: 300px;
@@ -78,27 +114,42 @@
       opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 0;
     }
     .glass-card:hover::before { opacity: 1; }
-    .glass-card:hover { transform: translateY(-5px); border-color: rgba(255,138,0,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+    .glass-card:hover { transform: translateY(-10px); border-color: rgba(255,138,0,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+    
+    /* Highlight effect when triggered from orbit */
+    .glass-card.highlight { animation: highlightCard 2s ease-out; }
+    @keyframes highlightCard {
+      0% { transform: translateY(0); box-shadow: 0 0 0 rgba(255,138,0,0); border-color: var(--glass-border); }
+      20% { transform: translateY(-15px) scale(1.05); box-shadow: 0 0 40px rgba(255,138,0,0.6); border-color: var(--accent-color); background: rgba(255,138,0,0.05); }
+      100% { transform: translateY(0); box-shadow: 0 0 0 rgba(255,138,0,0); border-color: var(--glass-border); background: var(--glass-bg); }
+    }
     
     .card-icon {
-      width: 50px; height: 50px; background: rgba(0,0,0,0.3); border-radius: 14px;
+      width: 60px; height: 60px; background: rgba(0,0,0,0.3); border-radius: 16px;
       display: flex; align-items: center; justify-content: center; color: var(--accent-color);
-      border: 1px solid rgba(255,138,0,0.1); z-index: 1; flex-shrink: 0;
+      border: 1px solid rgba(255,138,0,0.1); z-index: 1; margin-bottom: 20px;
       transition: all 0.3s ease;
     }
-    .glass-card:hover .card-icon { background: rgba(255,138,0,0.1); transform: scale(1.1); box-shadow: 0 0 20px rgba(255,138,0,0.2); }
-    .card-icon svg { width: 24px; height: 24px; }
+    .glass-card:hover .card-icon { background: rgba(255,138,0,0.1); transform: scale(1.1) rotate(5deg); box-shadow: 0 0 20px rgba(255,138,0,0.2); }
+    .card-icon svg { width: 28px; height: 28px; }
     
     .card-content { z-index: 1; }
-    .card-label { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; color: var(--text-muted); margin-bottom: 6px; }
+    .card-label { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; color: var(--text-muted); margin-bottom: 12px; }
     .card-value { font-size: 15px; color: var(--text-primary); line-height: 1.6; }
+    .card-value a { color: var(--text-primary); text-decoration: none; transition: color 0.3s ease; }
+    .card-value a:hover { color: var(--accent-color); }
 
-    /* Right Side: Futuristic Form */
+    /* Futuristic Form Section */
+    .form-section { max-width: 900px; margin: 0 auto 100px; padding: 0 24px; position: relative; z-index: 1; }
+    .section-header { text-align: center; margin-bottom: 50px; }
+    .section-eyebrow { display: inline-block; font-size: 14px; font-weight: 600; color: var(--accent-color); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+    .section-title { font-size: 36px; font-weight: 700; color: #fff; margin-bottom: 16px; }
+    .section-title span { color: var(--accent-color); }
+
     .form-panel {
       background: var(--glass-bg); border: 1px solid var(--glass-border); backdrop-filter: blur(30px);
       border-radius: 32px; padding: 50px; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.2);
     }
-    
     .form-panel::after {
       content: ''; position: absolute; top: -1px; left: 10%; width: 80%; height: 1px;
       background: linear-gradient(90deg, transparent, var(--accent-color), transparent); opacity: 0.5;
@@ -128,8 +179,6 @@
     .form-input:focus ~ .form-label, .form-input:not(:placeholder-shown) ~ .form-label {
       top: -10px; left: 20px; font-size: 12px; color: var(--accent-color); font-weight: 700; background: #1a1a24; border-radius: 4px;
     }
-
-    /* Valid state */
     .form-input:valid:not(:placeholder-shown) { border-color: #10b981; }
     .form-input:valid:not(:placeholder-shown) ~ .form-label { color: #10b981; }
 
@@ -146,20 +195,25 @@
     .btn-submit:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(255,138,0,0.4); }
     .btn-submit:hover::after { left: 100%; }
 
-    /* Typing indicator */
-    .typing-indicator { font-size: 13px; color: var(--accent-color); display: flex; align-items: center; gap: 6px; opacity: 0; transition: opacity 0.3s; margin-top: 10px; font-weight: 600; }
-    .typing-indicator.active { opacity: 1; }
-    .dot { width: 4px; height: 4px; background: var(--accent-color); border-radius: 50%; animation: bounce 1.4s infinite ease-in-out both; }
-    .dot:nth-child(1) { animation-delay: -0.32s; }
-    .dot:nth-child(2) { animation-delay: -0.16s; }
-    @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+    /* Map Section */
+    .map-section { width: 100%; padding: 0 24px; margin-bottom: 100px; max-width: 1300px; margin: 0 auto 100px; }
+    .map-frame { border-radius: 32px; overflow: hidden; border: 1px solid var(--glass-border); position: relative; line-height: 0; box-shadow: 0 30px 60px rgba(0,0,0,0.2); filter: grayscale(0.8) invert(0.9) hue-rotate(180deg); transition: filter 0.5s ease; }
+    .map-frame:hover { filter: grayscale(0.3) invert(0.9) hue-rotate(180deg); }
 
+    @media (max-width: 1024px) {
+      .glass-cards-grid { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 991px) {
-      .premium-container { grid-template-columns: 1fr; gap: 60px; }
-      .form-panel { padding: 40px 24px; }
+      .premium-hero { grid-template-columns: 1fr; text-align: center; gap: 80px; }
+      .hero-content { margin: 0 auto; }
+      .status-badge { margin: 0 auto 24px; }
+      .orbit-visual { transform: scale(0.8); }
     }
     @media (max-width: 768px) {
       .form-grid { grid-template-columns: 1fr; }
+      .glass-cards-grid { grid-template-columns: 1fr; }
+      .form-panel { padding: 40px 24px; }
+      .orbit-visual { transform: scale(0.6); margin-top: -50px; margin-bottom: -50px; }
     }
   </style>
 </head>
@@ -173,93 +227,142 @@
 
   <div class="page-wrapper">
     
+    <!-- Hero Section with Orbit -->
     <div class="premium-hero animate-on-scroll">
-      <div class="status-badge">
-        <div class="status-dot"></div> Online & Ready to Help
+      <div class="hero-content">
+        <div class="status-badge">
+          <div class="status-dot"></div> Online & Ready to Help
+        </div>
+        <h1 class="premium-title">Let’s build <span>something great</span> together.</h1>
+        <p class="premium-desc">Have a question, a project, or just want to say hi? Drop us a line and our team will get back to you faster than you can finish your coffee.</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px;">
+          <a href="mailto:info@u-bsol.com" class="btn-primary" style="padding: 16px 32px; border-radius: 12px; font-weight: 600;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px;"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Email Us
+          </a>
+          <a href="https://wa.me/+919746026547" class="btn-outline-large" style="padding: 16px 32px; border-radius: 12px; font-weight: 600;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px;"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" /><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" /></svg>
+            WhatsApp
+          </a>
+        </div>
       </div>
-      <h1 class="premium-title">Let’s Build Something <span>Amazing</span> Together</h1>
-      <p class="premium-desc">Have questions, ideas, or business inquiries? Reach out and our team will get back to you quickly.</p>
-    </div>
 
-    <div class="premium-container">
-      
-      <!-- Left Column -->
-      <div class="left-col animate-on-scroll">
-        <div class="illustration-wrapper tilt-3d">
-          <img src="https://images.unsplash.com/photo-1614064641913-6b71f92c1031?auto=format&fit=crop&w=800&q=80" alt="3D Support Illustration" style="max-width: 100%; border-radius: 30px;">
+      <!-- Orbit Visual -->
+      <div class="orbit-visual tilt-3d">
+        <div class="orbit-ring r1"></div>
+        <div class="orbit-ring r2"></div>
+        <div class="orbit-ring r3"></div>
+        
+        <div class="orbit-core">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
         </div>
 
-        <div class="glass-cards-container">
-          <!-- Card 1 -->
-          <div class="glass-card track-mouse tilt-3d">
-            <div class="card-icon">
-              <!-- Lucide Map Pin -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div class="card-content">
-              <div class="card-label">Headquarters</div>
-              <div class="card-value">U-BSOL - LLP<br>Malappuram-Manjeri Road, Panayi, Perimbalam (PO),<br>Malappuram District, Kerala, India – 676509</div>
+        <div class="orbit-planet p1">
+          <div class="orbit-chip-wrapper">
+            <div class="orbit-chip" onclick="highlightCard('visit')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Visit
             </div>
           </div>
+        </div>
 
-          <!-- Card 2 -->
-          <a href="tel:+919746026547" class="glass-card track-mouse tilt-3d">
-            <div class="card-icon">
-              <!-- Lucide Phone -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+        <div class="orbit-planet p2">
+          <div class="orbit-chip-wrapper" style="top: 80px; left: 0;">
+            <div class="orbit-chip" onclick="highlightCard('email')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              Email
             </div>
-            <div class="card-content">
-              <div class="card-label">Phone Support</div>
-              <div class="card-value">+91 9746026547</div>
-            </div>
-          </a>
+          </div>
+        </div>
 
-          <!-- Card 3 -->
-          <a href="mailto:info@u-bsol.com" class="glass-card track-mouse tilt-3d">
-            <div class="card-icon">
-              <!-- Lucide Mail -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        <div class="orbit-planet p3">
+          <div class="orbit-chip-wrapper" style="top: auto; bottom: -20px;">
+            <div class="orbit-chip" onclick="highlightCard('call')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+              Call
             </div>
-            <div class="card-content">
-              <div class="card-label">Email Us</div>
-              <div class="card-value">info@u-bsol.com</div>
-            </div>
-          </a>
+          </div>
         </div>
       </div>
+    </div>
 
-      <!-- Right Column -->
-      <div class="form-panel animate-on-scroll delay-200">
-        
+    <!-- Glass Cards Section -->
+    <div class="cards-section animate-on-scroll delay-100">
+      <div class="glass-cards-grid">
+        <div id="card-visit" class="glass-card track-mouse">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="card-content">
+            <div class="card-label">Address</div>
+            <div class="card-value">U-BSOL - LLP<br>Malappuram-Manjeri Road,<br>Kerala, India - 676509</div>
+          </div>
+        </div>
+
+        <div id="card-call" class="glass-card track-mouse">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="card-content">
+            <div class="card-label">Phone</div>
+            <div class="card-value">
+              <a href="tel:+919746026547">+91 9746026547</a><br>
+              <a href="tel:+918330011641">+91 8330011641</a>
+            </div>
+          </div>
+        </div>
+
+        <div id="card-email" class="glass-card track-mouse">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
+          <div class="card-content">
+            <div class="card-label">E-mail</div>
+            <div class="card-value"><a href="mailto:info@u-bsol.com">info@u-bsol.com</a></div>
+          </div>
+        </div>
+
+        <div class="glass-card track-mouse">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="card-content">
+            <div class="card-label">Hours</div>
+            <div class="card-value">Mon - Sat<br>9:00 AM - 7:00 PM IST</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Form Section -->
+    <div class="form-section animate-on-scroll">
+      <div class="section-header">
+        <span class="section-eyebrow">Drop us a line</span>
+        <h2 class="section-title">Tell us about <span>your idea</span></h2>
+        <p style="color: var(--text-secondary); font-size: 16px;">Fill out the form and we'll route your message to the right human within hours.</p>
+      </div>
+
+      <div class="form-panel">
         <form id="contactForm" onsubmit="handleSubmit(event)">
           <div class="form-grid">
             <div class="form-group">
-              <input type="text" id="name" class="form-input" placeholder=" " required oninput="handleTyping()" />
+              <input type="text" id="name" class="form-input" placeholder=" " required />
               <label for="name" class="form-label">Full Name</label>
             </div>
             <div class="form-group">
-              <input type="tel" id="contact" class="form-input" placeholder=" " required oninput="handleTyping()" />
+              <input type="tel" id="contact" class="form-input" placeholder=" " required />
               <label for="contact" class="form-label">Contact Number</label>
             </div>
           </div>
           
           <div class="form-group full">
-            <input type="email" id="email" class="form-input" placeholder=" " required oninput="handleTyping()" />
+            <input type="email" id="email" class="form-input" placeholder=" " required />
             <label for="email" class="form-label">Email Address</label>
           </div>
 
           <div class="form-group full">
-            <input type="text" id="subject" class="form-input" placeholder=" " required oninput="handleTyping()" />
-            <label for="subject" class="form-label">Subject</label>
-          </div>
-
-          <div class="form-group full">
-            <textarea id="message" class="form-input form-textarea" placeholder=" " required oninput="handleTyping()"></textarea>
+            <textarea id="message" class="form-input form-textarea" placeholder=" " required></textarea>
             <label for="message" class="form-label">Message</label>
-            <div id="typing-indicator" class="typing-indicator">
-              <span>You are typing</span>
-              <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-            </div>
           </div>
 
           <button type="submit" id="submitBtn" class="btn-submit">
@@ -268,8 +371,15 @@
           </button>
         </form>
       </div>
-
     </div>
+
+    <!-- Map Section -->
+    <div class="map-section animate-on-scroll">
+      <div class="map-frame">
+        <iframe src="https://www.google.com/maps?q=Panayi+Perimbalam+Malappuram+Kerala+676509&output=embed" width="100%" height="420" style="border:0" loading="lazy"></iframe>
+      </div>
+    </div>
+
   </div>
 
   <div id="footer-container"></div>
@@ -277,7 +387,7 @@
   <script>
     injectComponents('contact');
 
-    // Mouse tracking glow effect
+    // Mouse tracking glow effect for cards
     document.querySelectorAll('.track-mouse').forEach(card => {
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
@@ -288,15 +398,30 @@
       });
     });
 
-    // Typing indicator logic
-    let typingTimer;
-    function handleTyping() {
-      const indicator = document.getElementById('typing-indicator');
-      indicator.classList.add('active');
-      clearTimeout(typingTimer);
-      typingTimer = setTimeout(() => {
-        indicator.classList.remove('active');
-      }, 1000);
+    // Orbit chip highlight function
+    function highlightCard(type) {
+      // Remove highlight from all
+      document.querySelectorAll('.glass-card').forEach(c => {
+        c.classList.remove('highlight');
+      });
+      
+      // Add highlight to specific card
+      const targetCard = document.getElementById('card-' + type);
+      if (targetCard) {
+        // Scroll to card
+        const yOffset = -100; 
+        const y = targetCard.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({top: y, behavior: 'smooth'});
+        
+        // Trigger animation
+        setTimeout(() => {
+          targetCard.classList.add('highlight');
+          // Remove class after animation finishes so it can be triggered again
+          setTimeout(() => {
+            targetCard.classList.remove('highlight');
+          }, 2000);
+        }, 500);
+      }
     }
 
     // Form submission
@@ -305,7 +430,7 @@
       const btn = document.getElementById('submitBtn');
       const originalText = btn.innerHTML;
       
-      btn.innerHTML = 'Sending... <div class="dot" style="background:#fff"></div><div class="dot" style="background:#fff"></div><div class="dot" style="background:#fff"></div>';
+      btn.innerHTML = 'Sending...';
       btn.style.pointerEvents = 'none';
       btn.style.opacity = '0.8';
 
@@ -322,7 +447,7 @@
           btn.style.pointerEvents = 'auto';
           btn.style.opacity = '1';
         }, 4000);
-      }, 2000);
+      }, 1500);
     }
   </script>
 </body>
