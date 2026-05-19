@@ -529,6 +529,39 @@ body::after {
   50% { opacity: 0; }
 }
 
+/* ===== GLOBAL PAGE HERO ===== */
+.page-hero {
+  text-align: center;
+  padding: 120px 24px 60px;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+.page-hero::before {
+  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(var(--primary-rgb), 0.15) 0%, transparent 70%); z-index: -1;
+  pointer-events: none;
+}
+.page-hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 800;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+[data-theme="light"] .page-hero-title {
+  background: linear-gradient(135deg, #000 0%, #444 100%);
+}
+.page-hero-desc {
+  font-size: 18px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+
 @media (max-width: 1024px) {
   .footer-grid {
     grid-template-columns: 1fr 1fr;

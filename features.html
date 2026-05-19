@@ -5,16 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>U-BSOL | Features</title>
   <meta name="description" content="When a customer visits an online store, they make snap decisions about the brand within a few short seconds of landing on the homepage." />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=3" />
   <style>
-    .page-hero { text-align: center; padding: 120px 24px 60px; max-width: 900px; margin: 0 auto; position: relative; }
-    .page-hero::before {
-      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(var(--primary-rgb), 0.15) 0%, transparent 70%); z-index: -1;
-    }
-    .page-hero-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(40px, 6vw, 64px); font-weight: 800; margin-bottom: 24px; background: linear-gradient(135deg, #fff 0%, #aaa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .page-hero-desc { font-size: 18px; color: var(--text-secondary); line-height: 1.8; }
-
     .feature-row { display: flex; align-items: center; gap: 80px; margin-bottom: 140px; position: relative; }
     .feature-row.reverse { flex-direction: row-reverse; }
     .feature-content { flex: 1; }
@@ -371,7 +363,7 @@
   </div>
 
   <div id="footer-container"></div>
-  <script src="components.js"></script>
+  <script src="components.js?v=3"></script>
   <script>injectComponents('features');</script>
 </body>
 </html>

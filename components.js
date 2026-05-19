@@ -5,15 +5,15 @@ function getNavHTML(activePage) {
     { href: 'index.html', label: 'Home', id: 'home' },
     { href: 'features.html', label: 'Features', id: 'features' },
     { href: 'packages.html', label: 'Packages', id: 'packages' },
-    { href: 'about.html', label: 'About', id: 'about' },
     { href: 'contact.html', label: 'Contact', id: 'contact' },
+    { href: 'https://u-bsol.com/blogs', label: 'Blog', id: 'blog', external: true },
   ];
   const links = pages.map(p =>
-    `<li><a href="${p.href}" class="nav-link ${activePage === p.id ? 'active' : ''}">${p.label}</a></li>`
+    `<li><a href="${p.href}" class="nav-link ${activePage === p.id ? 'active' : ''}" ${p.external ? 'target="_blank"' : ''}>${p.label}</a></li>`
   ).join('');
   
   const mobileLinks = pages.map(p =>
-    `<a href="${p.href}" class="mob-link ${activePage === p.id ? 'active' : ''}">${p.label}</a>`
+    `<a href="${p.href}" class="mob-link ${activePage === p.id ? 'active' : ''}" ${p.external ? 'target="_blank"' : ''}>${p.label}</a>`
   ).join('');
 
   return `
