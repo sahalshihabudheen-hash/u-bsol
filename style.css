@@ -104,11 +104,13 @@ body::after {
 .nav-logo-img {
   height: 38px;
   width: auto;
+  filter: invert(1) hue-rotate(180deg);
   transition: var(--transition);
 }
 [data-theme="light"] .nav-logo-img {
-  filter: invert(1) brightness(0.1);
+  filter: none;
 }
+
 
 
 .nav-links { display: flex; align-items: center; gap: 8px; list-style: none; }
