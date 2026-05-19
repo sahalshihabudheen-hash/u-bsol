@@ -20,8 +20,7 @@ function getNavHTML(activePage) {
   <nav class="navbar" id="mainNav">
     <div class="nav-container">
       <a href="index.html" class="nav-brand">
-        <div class="nav-logo-icon">UB</div>
-        <span class="nav-brand-text">U-<span>BSOL</span></span>
+        <img src="https://u-bsol.com/assets/logo/16543974481.png" alt="U-BSOL Logo" class="nav-logo-img">
       </a>
       <ul class="nav-links">${links}</ul>
       <div class="nav-cta">
@@ -53,61 +52,83 @@ function getFooterHTML() {
         
         <!-- Left Column -->
         <div class="footer-col footer-brand-col">
-          <a href="index.html" class="nav-brand" style="text-decoration:none; margin-bottom:20px;">
-            <div class="nav-logo-icon">UB</div>
-            <span class="nav-brand-text" style="font-size:24px;">U-<span>BSOL</span></span>
+          <a href="index.html" class="nav-brand" style="text-decoration:none; margin-bottom:20px; display:inline-block;">
+            <img src="https://u-bsol.com/assets/logo/16543974481.png" alt="U-BSOL Logo" class="nav-logo-img">
           </a>
-          <p class="footer-desc">We build scalable digital systems, custom software, cloud infrastructure, and enterprise technology solutions to help your company grow faster.</p>
-          <div class="social-wrapper">
-            <a href="#" class="social-btn" title="Facebook"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg></a>
-            <a href="#" class="social-btn" title="Twitter"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-            <a href="#" class="social-btn" title="LinkedIn"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-            <a href="https://wa.me/+918330011641" class="social-btn" title="WhatsApp" target="_blank"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12.012 2C6.49 2 2.008 6.48 2.008 12.003c0 1.764.464 3.483 1.345 5.002L2 22l5.127-1.345a9.975 9.975 0 0 0 4.885 1.272c5.52 0 10.002-4.481 10.002-10.005C22.014 6.48 17.532 2 12.012 2zm5.405 14.475c-.23.647-1.328 1.238-1.848 1.353-.52.115-1.22.185-3.528-.77-2.793-1.157-4.595-4.01-4.733-4.195-.138-.185-1.128-1.503-1.128-2.868 0-1.365.71-2.038.963-2.313.253-.275.553-.345.738-.345.184 0 .368.005.53.012.167.008.39-.067.61.465.23.553.783 1.914.852 2.052.07.138.115.3.023.484-.092.184-.138.3-.276.46-.138.162-.288.356-.415.495-.138.138-.283.29-.126.565.155.275.69 1.15 1.48 1.854.912.815 1.774 1.07 2.05 1.208.275.138.437.115.6-.07.16-.184.69-.805.874-1.08.184-.276.368-.23.62-.138.253.092 1.59.75 1.866.888.276.138.46.208.53.323.07.115.07.668-.16 1.315z"/></svg></a>
-          </div>
+          <p class="footer-desc" style="line-height: 1.8; margin-top: 15px; font-size: 14px; color: var(--text-secondary); text-align: left;">
+            U-BSOL - LLP<br>
+            Malappuram-Manjeri Road,<br>
+            Panayi,<br>
+            Perimbalam[Po],<br>
+            Malappuram [Dst],<br>
+            Kerala , India -<br>
+            676509
+          </p>
         </div>
 
-        <!-- Center Cols -->
+        <!-- Learn More -->
         <div class="footer-col">
-          <h4 class="footer-heading">Solutions</h4>
+          <h4 class="footer-heading">Learn More</h4>
           <ul class="footer-links">
-            <li><a href="#">Software Development</a></li>
-            <li><a href="#">Cloud Infrastructure</a></li>
-            <li><a href="#">AI Automation</a></li>
-            <li><a href="#">Web Applications</a></li>
-            <li><a href="#">Branding Identity</a></li>
+            <li><a href="about.html">About-us</a></li>
+            <li><a href="https://u-bsol.com/templates" target="_blank">Templates</a></li>
+            <li><a href="https://u-bsol.com/blogs" target="_blank">Blogs</a></li>
+            <li><a href="https://u-bsol.com/affiliate-program" target="_blank">Affiliate Program</a></li>
+            <li><a href="https://u-bsol.com/additional-addons" target="_blank">Additional Add-ons</a></li>
           </ul>
         </div>
+
+        <!-- Need Help -->
         <div class="footer-col">
-          <h4 class="footer-heading">Company</h4>
+          <h4 class="footer-heading">Need help ?</h4>
           <ul class="footer-links">
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="https://u-bsol.com/blogs" target="_blank">Blog</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="#">Support</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4 class="footer-heading">Resources</h4>
-          <ul class="footer-links">
-            <li><a href="#">Documentation</a></li>
-            <li><a href="#">Case Studies</a></li>
-            <li><a href="https://u-bsol.com/privacy-policy" target="_blank">Privacy Policy</a></li>
+            <li><a href="https://u-bsol.com/faq" target="_blank">FAQ</a></li>
             <li><a href="https://u-bsol.com/terms-conditions" target="_blank">Terms & Conditions</a></li>
+            <li><a href="https://u-bsol.com/privacy-policy" target="_blank">Privacy Policy</a></li>
+            <li><a href="contact.html">Contact-us</a></li>
+            <li><a href="packages.html">Packages</a></li>
           </ul>
         </div>
 
-        <!-- Right Col -->
-        <div class="footer-col footer-contact-col">
-          <h4 class="footer-heading">Contact</h4>
-          <ul class="footer-links">
-            <li><a href="mailto:info@u-bsol.com">info@u-bsol.com</a></li>
-            <li><a href="tel:+914832944414">+91 4832944414</a></li>
-            <li><a href="tel:+918330011641">+91 8330011641</a></li>
+        <!-- Get in Touch -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Get in Touch</h4>
+          <ul class="footer-links" style="display:flex; flex-direction:column; gap:12px;">
+            <li>
+              <a href="mailto:info@u-bsol.com" style="display:flex; align-items:center; gap:8px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                info@u-bsol.com
+              </a>
+            </li>
+            <li>
+              <a href="tel:+918330011641" style="display:flex; align-items:center; gap:8px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                +91 8330011641
+              </a>
+            </li>
+            <li>
+              <a href="tel:+919746026547" style="display:flex; align-items:center; gap:8px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                +91 9746026547
+              </a>
+            </li>
+            <li>
+              <a href="https://wa.me/+918330011641" target="_blank" style="display:flex; align-items:center; gap:8px;">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12.012 2C6.49 2 2.008 6.48 2.008 12.003c0 1.764.464 3.483 1.345 5.002L2 22l5.127-1.345a9.975 9.975 0 0 0 4.885 1.272c5.52 0 10.002-4.481 10.002-10.005C22.014 6.48 17.532 2 12.012 2zm5.405 14.475c-.23.647-1.328 1.238-1.848 1.353-.52.115-1.22.185-3.528-.77-2.793-1.157-4.595-4.01-4.733-4.195-.138-.185-1.128-1.503-1.128-2.868 0-1.365.71-2.038.963-2.313.253-.275.553-.345.738-.345.184 0 .368.005.53.012.167.008.39-.067.61.465.23.553.783 1.914.852 2.052.07.138.115.3.023.484-.092.184-.138.3-.276.46-.138.162-.288.356-.415.495-.138.138-.283.29-.126.565.155.275.69 1.15 1.48 1.854.912.815 1.774 1.07 2.05 1.208.275.138.437.115.6-.07.16-.184.69-.805.874-1.08.184-.276.368-.23.62-.138.253.092 1.59.75 1.866.888.276.138.46.208.53.323.07.115.07.668-.16 1.315z"/></svg>
+                +91 8330011641
+              </a>
+            </li>
           </ul>
-          <div class="status-badge">
-            <span class="status-dot"></span> Available 24/7 for Support
-          </div>
+        </div>
+
+        <!-- Our Newsletter -->
+        <div class="footer-col">
+          <h4 class="footer-heading">Our Newsletter</h4>
+          <p class="footer-desc" style="font-size:14px; color:var(--text-secondary); margin-bottom: 20px; text-align: left;">Subscribe to our newsletter to get our regular latest news and updates.</p>
+          <form style="display:flex; gap:0; border: 1px solid var(--border); border-radius:12px; overflow:hidden; background:rgba(255,255,255,0.02);" onsubmit="event.preventDefault(); alert('Subscribed successfully!');">
+            <input type="email" placeholder="Email Address" required style="flex:1; border:none; padding:12px 16px; background:transparent; color:var(--text-primary); font-size:14px; min-width:0; outline:none;">
+            <button type="submit" style="background:var(--primary); color:#fff; border:none; padding:12px 20px; font-weight:700; font-size:14px; cursor:pointer; transition:var(--transition);">Join</button>
+          </form>
         </div>
 
       </div>
