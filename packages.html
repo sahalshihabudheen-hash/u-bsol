@@ -23,6 +23,56 @@
       background-color: white; transition: .4s; border-radius: 50%;
     }
     input:checked + .slider:before { transform: translateX(24px); }
+
+    /* Table styles */
+    .comparison-container {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 40px;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--bg-card);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 16px 20px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .comparison-table th {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+    .comparison-table .feature-cell {
+      text-align: left;
+      font-weight: 500;
+      color: var(--text-secondary);
+      width: 30%;
+    }
+    .comparison-table .category-row {
+      background: linear-gradient(to right, #ff6600, #ff8800);
+      color: #fff;
+      font-weight: 700;
+      text-align: left;
+      text-transform: uppercase;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+    }
+    .comparison-table .category-row td {
+      padding: 12px 20px;
+      text-align: left;
+      border: none;
+    }
+    .check { color: var(--success); font-weight: bold; font-size: 16px; }
+    .cross { color: #ff4444; font-weight: bold; font-size: 16px; }
   </style>
 </head>
 <body>
@@ -129,45 +179,112 @@
         </div>
       </div>
 
-      <div class="container">
+      <div class="container" style="max-width: 1400px;">
         <div class="comparison-container animate-on-scroll">
           <table class="comparison-table">
             <thead class="table-head">
               <tr>
-                <th class="feature-cell">Feature</th>
-                <th>Basic</th>
-                <th>Starter</th>
-                <th>Premier</th>
+                <th class="feature-cell">Features</th>
+                <th>Essential<br><span style="font-size: 13px; font-weight: normal; color: var(--text-secondary);">₹ <span class="price-essential">1,500</span> / <span class="period">monthly</span></span></th>
+                <th>Basic<br><span style="font-size: 13px; font-weight: normal; color: var(--text-secondary);">₹ <span class="price-basic">2,500</span> / <span class="period">monthly</span></span></th>
+                <th>Starter<br><span style="font-size: 13px; font-weight: normal; color: var(--text-secondary);">₹ <span class="price-starter">3,500</span> / <span class="period">monthly</span></span></th>
+                <th>Premier<br><span style="font-size: 13px; font-weight: normal; color: var(--text-secondary);">₹ <span class="price-premier">5,000</span> / <span class="period">monthly</span></span></th>
               </tr>
             </thead>
             <tbody>
-              <!-- Row 1 -->
+              <!-- DELIVERABLES -->
+              <tr class="category-row"><td colspan="5">DELIVERABLES</td></tr>
+              <tr><td class="feature-cell">Responsive website under your brand name</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Admin Dashboard</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Customer registration</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Order notification mobile app (Android)</td><td><span class="cross">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Customer mobile app (Android/iOS)</td><td><span class="cross">✕</span></td><td><span class="cross">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+
+              <!-- GENERAL -->
+              <tr class="category-row"><td colspan="5">GENERAL</td></tr>
+              <tr><td class="feature-cell">Continues development & general R&D</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Free SSL</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Domain name</td><td><span class="cross">✕</span></td><td><span class="cross">✕</span></td><td><span class="cross">✕</span></td><td><span class="cross">✕</span></td></tr>
+              <tr><td class="feature-cell">Web hosting</td><td><span class="cross">✕</span></td><td><span class="cross">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Email id</td><td><span class="cross">✕</span></td><td><span class="cross">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Business email (webmail)</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Customer registration</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Inquiry forms</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">File storage</td><td style="color:var(--text-secondary)">500 MB</td><td style="color:var(--text-secondary)">1 GB</td><td style="color:var(--text-secondary)">1.5 GB</td><td style="color:var(--text-secondary)">3.5 GB</td></tr>
+              <tr><td class="feature-cell">Store pickup location</td><td style="color:var(--text-secondary)">1 Nos</td><td style="color:var(--text-secondary)">1 Nos</td><td style="color:var(--text-secondary)">3 Nos</td><td style="color:var(--text-secondary)">5 Nos</td></tr>
+
+              <!-- PRODUCT & CATALOGUE -->
+              <tr class="category-row"><td colspan="5">PRODUCT & CATALOGUE</td></tr>
+              <tr><td class="feature-cell">Inventory products</td><td style="color:var(--text-secondary)">Unlimited</td><td style="color:var(--text-secondary)">Unlimited</td><td style="color:var(--text-secondary)">Unlimited</td><td style="color:var(--text-secondary)">Unlimited</td></tr>
+              <tr><td class="feature-cell">Product categories</td><td style="color:var(--text-secondary)">Unlimited</td><td style="color:var(--text-secondary)">Unlimited</td><td style="color:var(--text-secondary)">Unlimited</td><td style="color:var(--text-secondary)">Unlimited</td></tr>
+              <tr><td class="feature-cell">Product options</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Product sub options</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Product search (smart search)</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Product reviews</td><td><span class="cross">✕</span></td><td><span class="cross">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Manage product visibility</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Manage product availability</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Feature & flags</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Offers & discounts</td><td><span class="cross">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Coupons</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Inventory management</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Stock management</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Tax (vat/gst) management</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Unit measures</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Promotions</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Customer app banner (slider images)</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+
+              <!-- CHECKOUT & DELIVERY -->
+              <tr class="category-row"><td colspan="5">CHECKOUT & DELIVERY</td></tr>
+              <tr><td class="feature-cell">Whatsapp checkout</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Regular checkout</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Guest checkout</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Delivery area / zone management</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Pin code / zip codes</td><td style="color:var(--text-secondary)">1 Nos</td><td style="color:var(--text-secondary)">1 Nos</td><td style="color:var(--text-secondary)">3 Nos</td><td style="color:var(--text-secondary)">5 Nos</td></tr>
+              <tr><td class="feature-cell">Delivery schedules</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+
+              <!-- PAYMENT METHODS -->
+              <tr class="category-row"><td colspan="5">PAYMENT METHODS</td></tr>
+              <tr><td class="feature-cell">Cash on delivery</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Payment gateway</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Pay on store</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+
+              <!-- ORDER MANAGEMENT -->
+              <tr class="category-row"><td colspan="5">ORDER MANAGEMENT</td></tr>
+              <tr><td class="feature-cell">Order tracking</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Print / download invoice</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Invoice</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Order notification app (Admin)</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Order editing / cancel</td><td><span class="cross">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Order history</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Order returns</td><td><span class="cross">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+
+              <!-- CONTENT MANAGEMENT -->
+              <tr class="category-row"><td colspan="5">CONTENT MANAGEMENT</td></tr>
+              <tr><td class="feature-cell">Add / manage pages</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Blog / news manager</td><td><span class="cross">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Customer app banner (slider images)</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Change theme pages (landing, product ...)</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+
+              <!-- OTHERS -->
+              <tr class="category-row"><td colspan="5">OTHERS</td></tr>
+              <tr><td class="feature-cell">Point system</td><td><span class="cross">✕</span></td><td><span class="cross">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Refer a friend</td><td><span class="cross">✕</span></td><td><span class="cross">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Wallet (Customer)</td><td><span class="cross">✕</span></td><td><span class="cross">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Abandoned cart notification</td><td><span class="cross">✕</span></td><td><span class="cross">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Manage store locations</td><td><span class="cross">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+
+              <!-- PAID ADD-ONS -->
+              <tr class="category-row"><td colspan="5">PAID ADD-ONS</td></tr>
+              <tr><td class="feature-cell">Sales Manager</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              <tr><td class="feature-cell">Customer Mobile app (iOS)</td><td><span class="cross">✕</span></td><td><span class="cross">✕</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+              
+              <!-- BOTTOM CTA ROW -->
               <tr>
-                <td class="feature-cell">Mobile Optimized</td>
-                <td><span class="check">✓</span></td>
-                <td><span class="check">✓</span></td>
-                <td><span class="check">✓</span></td>
-              </tr>
-              <!-- Row 2 -->
-              <tr>
-                <td class="feature-cell">Custom Branding</td>
-                <td><span class="check">✓</span></td>
-                <td><span class="check">✓</span></td>
-                <td><span class="check">✓</span></td>
-              </tr>
-              <!-- Row 3 -->
-              <tr>
-                <td class="feature-cell">Admin Dashboard</td>
-                <td><span class="cross">✕</span></td>
-                <td><span class="check">✓</span></td>
-                <td><span class="check">✓</span></td>
-              </tr>
-              <!-- Row 4 -->
-              <tr>
-                <td class="feature-cell">Analytics</td>
-                <td><span class="cross">✕</span></td>
-                <td><span class="cross">✕</span></td>
-                <td><span class="check">✓</span></td>
+                <td class="feature-cell" style="border-bottom: none;"></td>
+                <td style="border-bottom: none; padding-top: 30px;"><a href="https://wa.me/+918330011641" target="_blank" class="btn-primary" style="padding: 10px 24px;">Choose Plan</a></td>
+                <td style="border-bottom: none; padding-top: 30px;"><a href="https://wa.me/+918330011641" target="_blank" class="btn-primary" style="padding: 10px 24px;">Choose Plan</a></td>
+                <td style="border-bottom: none; padding-top: 30px;"><a href="https://wa.me/+918330011641" target="_blank" class="btn-primary" style="padding: 10px 24px;">Choose Plan</a></td>
+                <td style="border-bottom: none; padding-top: 30px;"><a href="https://wa.me/+918330011641" target="_blank" class="btn-primary" style="padding: 10px 24px;">Choose Plan</a></td>
               </tr>
             </tbody>
           </table>
@@ -185,6 +302,7 @@
       const toggle = document.getElementById('billing-toggle');
       const isYearly = toggle.checked;
       
+      const essential = document.querySelectorAll('.price-essential');
       const basic = document.querySelectorAll('.price-basic');
       const starter = document.querySelectorAll('.price-starter');
       const premier = document.querySelectorAll('.price-premier');
@@ -194,6 +312,7 @@
       const yLabel = document.getElementById('yearly-label');
       
       if(isYearly) {
+        essential.forEach(el => el.innerText = '15,000');
         basic.forEach(el => el.innerText = '25,000');
         starter.forEach(el => el.innerText = '35,000');
         premier.forEach(el => el.innerText = '50,000');
@@ -201,6 +320,7 @@
         mLabel.style.color = 'var(--text-secondary)';
         yLabel.style.color = 'var(--primary)';
       } else {
+        essential.forEach(el => el.innerText = '1,500');
         basic.forEach(el => el.innerText = '2,500');
         starter.forEach(el => el.innerText = '3,500');
         premier.forEach(el => el.innerText = '5,000');
