@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>U-BSOL | IT Solutions & Enterprise Software</title>
-  <meta name="description" content="We help businesses scale with custom software, cloud systems, automation, branding, web platforms, and digital transformation solutions." />
+  <title>U-BSOL | Premium IT & Enterprise Solutions</title>
+  <meta name="description" content="We build scalable digital systems, custom software, cloud infrastructure, and enterprise technology solutions to help your company grow faster." />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <style>
@@ -15,8 +15,9 @@
       --border-glass: rgba(255, 255, 255, 0.08);
       --text-main: #ffffff;
       --text-muted: #a1a1aa;
-      --orange: #ff6600;
-      --orange-glow: rgba(255, 102, 0, 0.2);
+      --orange: #ff7a00;
+      --orange-dim: rgba(255, 122, 0, 0.15);
+      --glow: rgba(255, 122, 0, 0.3);
     }
     [data-theme="light"] {
       --bg-dark: #fafafa;
@@ -24,155 +25,191 @@
       --border-glass: rgba(0, 0, 0, 0.08);
       --text-main: #09090b;
       --text-muted: #71717a;
-      --orange-glow: rgba(255, 102, 0, 0.1);
+      --orange-dim: rgba(255, 122, 0, 0.08);
     }
+    
     body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Inter', sans-serif; overflow-x: hidden; margin: 0; scroll-behavior: smooth; }
     h1, h2, h3, h4, .font-heading { font-family: 'Space Grotesk', sans-serif; }
 
-    /* Utilities */
+    /* Global Animations & Utilities */
     .reveal-up { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal-up.active { opacity: 1; transform: translateY(0); }
     
-    /* Backgrounds */
     .bg-grid {
       position: fixed; inset: 0; z-index: -3; pointer-events: none;
       background-image: linear-gradient(var(--border-glass) 1px, transparent 1px), linear-gradient(90deg, var(--border-glass) 1px, transparent 1px);
       background-size: 60px 60px;
-      mask-image: radial-gradient(circle at top, black 0%, transparent 70%);
-      -webkit-mask-image: radial-gradient(circle at top, black 0%, transparent 70%);
+      mask-image: radial-gradient(circle at top, black 0%, transparent 80%);
+      -webkit-mask-image: radial-gradient(circle at top, black 0%, transparent 80%);
     }
     .ambient-glow {
-      position: absolute; width: 800px; height: 800px; border-radius: 50%;
-      background: radial-gradient(circle, var(--orange-glow) 0%, transparent 70%);
-      filter: blur(80px); z-index: -2; pointer-events: none;
-      top: -200px; right: -200px; animation: floatGlow 15s ease-in-out infinite alternate;
+      position: fixed; width: 800px; height: 800px; border-radius: 50%;
+      background: radial-gradient(circle, var(--orange-dim) 0%, transparent 70%);
+      filter: blur(80px); z-index: -2; pointer-events: none; top: -100px; right: -200px;
+      animation: floatGlow 15s ease-in-out infinite alternate;
     }
-    @keyframes floatGlow { 0% { transform: translate(0, 0); } 100% { transform: translate(-100px, 100px); } }
+    @keyframes floatGlow { 0% { transform: translate(0, 0); } 100% { transform: translate(-150px, 150px); } }
 
-    /* Hero */
-    .hero-agency { padding: 180px 24px 100px; position: relative; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; min-height: 90vh;}
-    .hero-title { font-size: clamp(48px, 5.5vw, 76px); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 24px; color: var(--text-main); }
-    .hero-title span { background: linear-gradient(135deg, var(--text-main) 0%, var(--orange) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero-sub { font-size: 18px; color: var(--text-muted); line-height: 1.6; margin-bottom: 40px; max-width: 600px; }
-    
-    .type-wrap { display: inline-block; color: var(--orange); position: relative; }
-    .type-wrap::after { content: '|'; animation: blink 1s step-start infinite; }
-    @keyframes blink { 50% { opacity: 0; } }
+    /* Hover tracking */
+    .hover-glow { position: relative; overflow: hidden; }
+    .hover-glow::before {
+      content: ''; position: absolute; inset: 0; background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255,122,0,0.1), transparent 40%);
+      opacity: 0; transition: opacity 0.5s; pointer-events: none; z-index: 0;
+    }
+    [data-theme="light"] .hover-glow::before { background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(0,0,0,0.05), transparent 40%); }
+    .hover-glow:hover::before { opacity: 1; }
 
-    /* Hero Buttons */
+    /* Buttons */
     .btn-magnetic {
       display: inline-flex; align-items: center; justify-content: center; gap: 12px;
       padding: 18px 36px; background: var(--text-main); color: var(--bg-dark); border-radius: 100px;
       font-weight: 600; font-size: 16px; text-decoration: none; position: relative; overflow: hidden;
-      transition: 0.3s; z-index: 1; border: 1px solid var(--text-main);
+      transition: 0.3s; z-index: 1; border: 1px solid var(--text-main); cursor: pointer;
     }
     .btn-magnetic::before { content: ''; position: absolute; inset: 0; background: var(--orange); z-index: -1; transform: scaleY(0); transform-origin: bottom; transition: 0.4s; }
-    .btn-magnetic:hover { color: #fff; border-color: var(--orange); box-shadow: 0 20px 40px rgba(255,102,0,0.3); }
+    .btn-magnetic:hover { color: #fff; border-color: var(--orange); box-shadow: 0 20px 40px var(--glow); }
     .btn-magnetic:hover::before { transform: scaleY(1); }
 
-    .btn-outline-glass {
+    .btn-glass {
       display: inline-flex; align-items: center; justify-content: center; gap: 12px;
-      padding: 18px 36px; background: rgba(255,255,255,0.02); color: var(--text-main); border-radius: 100px;
+      padding: 18px 36px; background: var(--bg-card); color: var(--text-main); border-radius: 100px;
       font-weight: 600; font-size: 16px; text-decoration: none; border: 1px solid var(--border-glass);
-      transition: 0.3s; backdrop-filter: blur(10px);
+      transition: 0.3s; backdrop-filter: blur(10px); cursor: pointer;
     }
-    .btn-outline-glass:hover { background: var(--border-glass); transform: translateY(-3px); }
+    .btn-glass:hover { background: var(--orange-dim); border-color: var(--orange); transform: translateY(-3px); }
 
-    /* Right Hero Visual */
-    .hero-visual-system { position: relative; width: 100%; height: 500px; perspective: 1000px; }
-    .floating-dashboard {
-      position: absolute; top: 10%; right: 0; width: 80%; height: 70%;
-      background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 20px;
-      backdrop-filter: blur(20px); box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-      transform: rotateY(-15deg) rotateX(10deg); animation: float1 8s ease-in-out infinite alternate;
-      overflow: hidden; padding: 20px; display: flex; flex-direction: column;
-    }
-    .dash-header { display: flex; gap: 8px; margin-bottom: 20px; }
-    .dash-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border-glass); }
-    .dash-line { height: 10px; background: var(--border-glass); border-radius: 10px; margin-bottom: 15px; }
+    .section-tag { display: inline-block; padding: 6px 16px; background: var(--orange-dim); color: var(--orange); border-radius: 100px; font-size: 13px; font-weight: 700; letter-spacing: 1px; margin-bottom: 24px; border: 1px solid var(--border-glass); text-transform: uppercase; }
+
+    /* ================= 2. HERO SECTION ================= */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; padding: 160px 24px 80px; max-width: 1400px; margin: 0 auto; position: relative; }
+    .hero-title { font-size: clamp(48px, 5.5vw, 84px); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 24px; color: var(--text-main); }
+    .hero-title span { background: linear-gradient(135deg, var(--text-main) 0%, var(--orange) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-sub { font-size: 19px; color: var(--text-muted); line-height: 1.6; margin-bottom: 40px; max-width: 600px; }
     
-    .floating-card {
-      position: absolute; bottom: 5%; left: 0; width: 45%; height: 40%;
-      background: rgba(255,102,0,0.1); border: 1px solid rgba(255,102,0,0.3); border-radius: 16px;
-      backdrop-filter: blur(30px); box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-      transform: rotateY(-5deg) rotateX(5deg) translateZ(50px); animation: float2 10s ease-in-out infinite alternate;
-      display: flex; align-items: center; justify-content: center; flex-direction: column; color: var(--text-main);
-    }
+    .type-wrap { display: inline-block; color: var(--orange); position: relative; }
+    .type-wrap::after { content: '|'; animation: blink 1s step-start infinite; }
     
+    .hero-visual { position: relative; width: 100%; height: 600px; perspective: 1000px; }
+    .hero-dash { position: absolute; top: 5%; right: 0; width: 85%; height: 70%; background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; backdrop-filter: blur(20px); box-shadow: 0 40px 80px rgba(0,0,0,0.5); transform: rotateY(-15deg) rotateX(10deg); animation: float1 8s ease-in-out infinite alternate; padding: 24px; display: flex; flex-direction: column; }
+    .hero-card-1 { position: absolute; bottom: 10%; left: -10%; width: 50%; height: 35%; background: rgba(255,122,0,0.1); border: 1px solid var(--orange); border-radius: 20px; backdrop-filter: blur(30px); transform: rotateY(-5deg) rotateX(5deg) translateZ(80px); animation: float2 10s ease-in-out infinite alternate; display: flex; align-items: center; justify-content: center; flex-direction: column; color: var(--text-main); box-shadow: 0 20px 40px var(--glow); }
+    .hero-card-2 { position: absolute; top: -5%; left: 10%; width: 30%; height: 25%; background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 16px; backdrop-filter: blur(30px); transform: translateZ(40px); animation: float3 12s ease-in-out infinite alternate; display: flex; align-items: center; gap: 12px; padding: 20px; }
+
     @keyframes float1 { 100% { transform: rotateY(-15deg) rotateX(10deg) translateY(-20px); } }
-    @keyframes float2 { 100% { transform: rotateY(-5deg) rotateX(5deg) translateZ(50px) translateY(20px); } }
+    @keyframes float2 { 100% { transform: rotateY(-5deg) rotateX(5deg) translateZ(80px) translateY(20px); } }
+    @keyframes float3 { 100% { transform: translateZ(40px) translateY(-15px) translateX(15px); } }
 
-    /* Stats & Trust */
-    .trust-section { border-top: 1px solid var(--border-glass); border-bottom: 1px solid var(--border-glass); padding: 40px 0; background: rgba(0,0,0,0.2); }
-    [data-theme="light"] .trust-section { background: rgba(0,0,0,0.02); }
-    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1400px; margin: 0 auto; padding: 0 24px; text-align: center; }
-    .stat-val { font-size: 36px; font-weight: 700; color: var(--text-main); font-family: 'Space Grotesk', sans-serif; }
-    .stat-val span { color: var(--orange); }
-    .stat-label { font-size: 14px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 8px; }
+    /* ================= 3. TRUSTED MARQUEE ================= */
+    .marquee-section { padding: 40px 0; border-top: 1px solid var(--border-glass); border-bottom: 1px solid var(--border-glass); background: rgba(0,0,0,0.2); overflow: hidden; position: relative; }
+    [data-theme="light"] .marquee-section { background: rgba(0,0,0,0.02); }
+    .marquee-text { text-align: center; color: var(--text-muted); font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; }
+    .marquee-track { display: flex; width: max-content; animation: scrollLeft 30s linear infinite; gap: 80px; padding: 0 40px; }
+    .marquee-logo { height: 40px; filter: grayscale(1) opacity(0.5) contrast(2); transition: 0.3s; }
+    .marquee-logo:hover { filter: grayscale(0) opacity(1); }
+    @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* Services Grid */
-    .section { padding: 120px 24px; max-width: 1400px; margin: 0 auto; position: relative; }
-    .section-header { text-align: center; margin-bottom: 60px; max-width: 700px; margin-inline: auto; }
-    .section-tag { display: inline-block; padding: 6px 16px; background: rgba(255,102,0,0.1); color: var(--orange); border-radius: 100px; font-size: 13px; font-weight: 700; letter-spacing: 1px; margin-bottom: 16px; border: 1px solid rgba(255,102,0,0.2); text-transform: uppercase; }
-    .section-title { font-size: clamp(32px, 4vw, 48px); line-height: 1.2; margin-bottom: 20px; color: var(--text-main); }
-    
+    /* ================= 4. LIVE STATS ================= */
+    .stats-section { padding: 100px 24px; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+    .stat-card { padding: 40px 20px; background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; transition: 0.4s; }
+    .stat-card:hover { transform: translateY(-10px); border-color: var(--orange); }
+    .stat-num { font-size: 48px; font-weight: 800; font-family: 'Space Grotesk', sans-serif; color: var(--text-main); margin-bottom: 8px; }
+    .stat-num span { color: var(--orange); }
+    .stat-label { color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-size: 14px; font-weight: 600; }
+
+    /* ================= 5. SERVICES ================= */
+    .section-container { padding: 140px 24px; max-width: 1400px; margin: 0 auto; position: relative; }
+    .section-header { text-align: center; max-width: 700px; margin: 0 auto 60px; }
+    .section-title { font-size: clamp(36px, 4vw, 56px); line-height: 1.1; margin-bottom: 24px; color: var(--text-main); }
+    .section-desc { color: var(--text-muted); font-size: 18px; line-height: 1.6; }
+
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-    .service-card {
-      background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; padding: 40px 30px;
-      transition: 0.4s; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: flex-start;
-    }
-    .service-card::before {
-      content: ''; position: absolute; inset: 0; background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%);
-      opacity: 0; transition: opacity 0.5s; pointer-events: none;
-    }
-    [data-theme="light"] .service-card::before { background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(0,0,0,0.03), transparent 40%); }
-    .service-card:hover { transform: translateY(-5px); border-color: rgba(255,102,0,0.3); box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
-    .service-card:hover::before { opacity: 1; }
-    
-    .service-icon {
-      width: 60px; height: 60px; background: rgba(128,128,128,0.1); border-radius: 16px; border: 1px solid var(--border-glass);
-      display: flex; align-items: center; justify-content: center; margin-bottom: 24px; transition: 0.4s; color: var(--text-main);
-    }
-    .service-card:hover .service-icon { background: var(--orange); border-color: var(--orange); color: #fff; transform: scale(1.1) rotate(-5deg); }
-    .service-title { font-size: 20px; font-weight: 700; margin-bottom: 12px; font-family: 'Space Grotesk', sans-serif; color: var(--text-main); }
-    .service-desc { color: var(--text-muted); line-height: 1.6; font-size: 15px; }
+    .service-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; padding: 40px 32px; display: flex; flex-direction: column; transition: 0.4s; cursor: pointer; }
+    .service-card:hover { transform: translateY(-5px); border-color: var(--orange); box-shadow: 0 20px 40px var(--orange-dim); }
+    .service-icon { width: 64px; height: 64px; background: rgba(128,128,128,0.1); border-radius: 16px; border: 1px solid var(--border-glass); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; color: var(--text-main); transition: 0.4s; }
+    .service-card:hover .service-icon { background: var(--orange); color: #fff; transform: scale(1.1) rotate(-5deg); border-color: var(--orange); }
+    .service-title { font-size: 22px; font-weight: 700; margin-bottom: 16px; font-family: 'Space Grotesk', sans-serif; position: relative; z-index: 1; }
+    .service-desc { color: var(--text-muted); line-height: 1.6; font-size: 16px; position: relative; z-index: 1; }
 
-    /* Timeline Section */
+    /* ================= 6. WHY CHOOSE US ================= */
+    .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .feature-list { display: flex; flex-direction: column; gap: 24px; }
+    .feature-item { display: flex; gap: 20px; align-items: flex-start; padding: 24px; background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 20px; transition: 0.3s; }
+    .feature-item:hover { border-color: var(--orange); transform: translateX(10px); }
+    .f-icon { width: 48px; height: 48px; flex-shrink: 0; background: var(--orange-dim); color: var(--orange); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+    .f-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; font-family: 'Space Grotesk', sans-serif; }
+    .f-desc { color: var(--text-muted); font-size: 15px; line-height: 1.5; }
+
+    /* ================= 7. PROCESS TIMELINE ================= */
     .timeline-wrap { position: relative; max-width: 800px; margin: 0 auto; padding-left: 40px; }
     .timeline-wrap::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--orange), transparent); }
-    .timeline-item { position: relative; margin-bottom: 60px; }
-    .timeline-item::before { content: ''; position: absolute; left: -45px; top: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 20px var(--orange); }
-    .timeline-title { font-size: 24px; font-weight: 700; margin-bottom: 12px; font-family: 'Space Grotesk', sans-serif; color: var(--text-main); }
-    .timeline-desc { color: var(--text-muted); line-height: 1.6; }
+    .timeline-node { position: relative; margin-bottom: 60px; padding: 32px; background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; transition: 0.3s; }
+    .timeline-node::before { content: ''; position: absolute; left: -47px; top: 40px; width: 16px; height: 16px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 20px var(--orange); border: 4px solid var(--bg-dark); }
+    .timeline-node:hover { border-color: var(--orange); transform: translateX(10px); }
+    .t-step { color: var(--orange); font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
 
-    /* Enterprise Pricing */
-    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-    .price-card {
-      background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 32px; padding: 48px 32px;
-      text-align: left; transition: 0.4s; position: relative; display: flex; flex-direction: column;
-    }
-    .price-card.featured { border-color: var(--orange); box-shadow: 0 0 60px rgba(255,102,0,0.1); transform: scale(1.05); }
-    .price-card.featured .popular-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--orange); color: #fff; padding: 6px 16px; border-radius: 100px; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
-    .p-tier { font-size: 20px; font-weight: 700; color: var(--text-main); margin-bottom: 16px; font-family: 'Space Grotesk', sans-serif; }
-    .p-price { font-size: 48px; font-weight: 800; font-family: 'Space Grotesk', sans-serif; margin-bottom: 8px; color: var(--text-main); }
+    /* ================= 8. FEATURED PROJECTS ================= */
+    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    .project-card { position: relative; border-radius: 32px; overflow: hidden; border: 1px solid var(--border-glass); aspect-ratio: 4/3; group; cursor: pointer; }
+    .project-img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s cubic-bezier(0.25, 1, 0.5, 1); filter: grayscale(0.5); }
+    .project-card:hover .project-img { transform: scale(1.05); filter: grayscale(0); }
+    .project-content { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%); padding: 40px; display: flex; flex-direction: column; justify-content: flex-end; }
+    .project-tag { align-self: flex-start; padding: 6px 16px; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 100px; font-size: 13px; color: #fff; margin-bottom: 16px; }
+    .project-title { font-size: 28px; font-weight: 700; color: #fff; font-family: 'Space Grotesk', sans-serif; }
+
+    /* ================= 9. AI & TECHNOLOGY ================= */
+    .tech-hub { padding: 120px 40px; background: var(--bg-card); border-radius: 40px; border: 1px solid var(--border-glass); text-align: center; position: relative; overflow: hidden; }
+    .tech-orbits { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; pointer-events: none; }
+    .orbit-ring { position: absolute; inset: 0; border: 1px solid var(--border-glass); border-radius: 50%; animation: spin 40s linear infinite; }
+    .orbit-ring:nth-child(2) { inset: 100px; animation-direction: reverse; animation-duration: 30s; border-style: dashed; }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    /* ================= 10. TESTIMONIALS ================= */
+    .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .test-card { padding: 40px; background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 24px; display: flex; flex-direction: column; justify-content: space-between; }
+    .stars { color: var(--orange); margin-bottom: 24px; display: flex; gap: 4px; }
+    .test-text { font-size: 16px; line-height: 1.6; color: var(--text-main); margin-bottom: 32px; font-style: italic; }
+    .client-info { display: flex; align-items: center; gap: 16px; }
+    .client-img { width: 48px; height: 48px; border-radius: 50%; background: var(--border-glass); }
+
+    /* ================= 11. PRICING ================= */
+    .billing-toggle { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 60px; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .price-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 32px; padding: 48px 32px; position: relative; transition: 0.4s; display: flex; flex-direction: column; }
+    .price-card.featured { border-color: var(--orange); box-shadow: 0 0 60px var(--orange-dim); transform: scale(1.05); }
+    .popular-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--orange); color: #fff; padding: 6px 16px; border-radius: 100px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+    .p-tier { font-size: 20px; font-weight: 700; margin-bottom: 16px; font-family: 'Space Grotesk', sans-serif; }
+    .p-price { font-size: 56px; font-weight: 800; font-family: 'Space Grotesk', sans-serif; margin-bottom: 8px; }
     .p-price span { font-size: 16px; color: var(--text-muted); font-weight: 400; }
     .p-desc { color: var(--text-muted); font-size: 15px; margin-bottom: 32px; line-height: 1.5; }
     .p-features { list-style: none; padding: 0; margin: 0 0 40px 0; flex-grow: 1; }
     .p-features li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; color: var(--text-main); font-size: 15px; }
     .p-features svg { color: var(--orange); flex-shrink: 0; width: 20px; height: 20px; }
 
+    /* ================= 12. FAQ ================= */
+    .faq-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+    .faq-item { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 20px; overflow: hidden; transition: 0.3s; }
+    .faq-header { padding: 24px 32px; font-size: 18px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--text-main); }
+    .faq-body { padding: 0 32px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; color: var(--text-muted); line-height: 1.6; }
+    .faq-item.active { border-color: var(--orange); }
+    .faq-item.active .faq-body { max-height: 200px; padding: 0 32px 24px; }
+    .faq-icon { transition: 0.3s; }
+    .faq-item.active .faq-icon { transform: rotate(180deg); color: var(--orange); }
+
+    /* ================= 13. MASSIVE CTA ================= */
+    .cta-massive { margin: 100px 24px; padding: 120px 40px; background: var(--bg-card); border: 1px solid var(--orange); border-radius: 40px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 40px 100px var(--orange-dim); }
+    .cta-massive::before { content: ''; position: absolute; inset: -50%; background: radial-gradient(circle at center, rgba(255,122,0,0.2) 0%, transparent 60%); pointer-events: none; }
+    .cta-title { font-size: clamp(40px, 5vw, 72px); margin-bottom: 24px; color: var(--text-main); position: relative; z-index: 1; }
+    .cta-desc { font-size: 20px; color: var(--text-muted); max-width: 600px; margin: 0 auto 40px; position: relative; z-index: 1; }
+
     @media (max-width: 1024px) {
-      .hero-agency { grid-template-columns: 1fr; text-align: center; padding-top: 140px; }
+      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 140px; }
       .hero-sub { margin: 0 auto 40px; }
-      .hero-visual-system { display: none; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+      .hero-visual { display: none; }
+      .stats-section { grid-template-columns: repeat(2, 1fr); gap: 24px; padding: 60px 24px; }
+      .comparison-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .test-grid { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
       .price-card.featured { transform: scale(1); }
-      .hero-title { font-size: 52px; }
-    }
-    @media (max-width: 768px) {
-      .services-grid { grid-template-columns: 1fr; }
-      .hero-title { font-size: 42px; }
     }
   </style>
 </head>
@@ -180,164 +217,312 @@
   <div class="bg-grid"></div>
   <div class="ambient-glow"></div>
 
+  <!-- Navbar injected here -->
   <div id="nav-container"></div>
 
   <div class="page-wrapper">
     
-    <!-- ENTERPRISE HERO -->
-    <section class="hero-agency">
+    <!-- 2. HERO SECTION -->
+    <section class="hero">
       <div class="reveal-up">
         <div class="section-tag" style="background: var(--bg-card); border-color: var(--border-glass); color: var(--text-main);">
           <span style="display:inline-block; width:8px; height:8px; background:#10b981; border-radius:50%; margin-right:8px; box-shadow:0 0 10px #10b981;"></span>
-          Enterprise Tech Agency
+          Global IT Enterprise
         </div>
         <h1 class="hero-title font-heading">
           Building Powerful Digital Solutions for <br><span>Modern Businesses.</span>
         </h1>
         <p class="hero-sub">
-          We help businesses scale with custom software, cloud systems, automation, branding, web platforms, and digital transformation solutions. We specialize in <br><span class="type-wrap" id="typewriter"></span>
+          We help businesses scale with custom software, cloud infrastructure, automation, branding, AI integrations, and enterprise technology solutions. Focus on <br><span class="type-wrap" id="typewriter"></span>
         </p>
         <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: flex-start;">
-          <a href="contact.html" class="btn-magnetic magnetic">
-            Start Your Transformation
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-          <a href="packages.html" class="btn-outline-glass">
-            View Service Packages
-          </a>
+          <a href="contact.html" class="btn-magnetic magnetic">Start Your Transformation</a>
+          <a href="#services" class="btn-glass magnetic">Explore Services</a>
         </div>
       </div>
 
-      <div class="hero-visual-system reveal-up" style="transition-delay: 0.2s;">
-        <div class="floating-dashboard">
-          <div class="dash-header">
-            <div class="dash-dot" style="background: #ff5f56;"></div>
-            <div class="dash-dot" style="background: #ffbd2e;"></div>
-            <div class="dash-dot" style="background: #27c93f;"></div>
+      <div class="hero-visual reveal-up" style="transition-delay: 0.2s;">
+        <div class="hero-dash">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 24px;">
+            <div style="display: flex; gap: 8px;">
+              <div style="width:12px; height:12px; border-radius:50%; background:#ff5f56;"></div>
+              <div style="width:12px; height:12px; border-radius:50%; background:#ffbd2e;"></div>
+              <div style="width:12px; height:12px; border-radius:50%; background:#27c93f;"></div>
+            </div>
+            <div style="width:100px; height:12px; background:var(--border-glass); border-radius:10px;"></div>
           </div>
-          <div class="dash-line" style="width: 30%;"></div>
-          <div class="dash-line" style="width: 70%; opacity: 0.5;"></div>
-          <div class="dash-line" style="width: 50%; opacity: 0.5;"></div>
-          <div style="display:flex; gap:10px; margin-top:30px; flex-grow:1;">
-            <div style="flex:1; height:100%; background:var(--border-glass); border-radius:10px;"></div>
-            <div style="flex:2; height:100%; background:rgba(255,102,0,0.05); border:1px solid rgba(255,102,0,0.2); border-radius:10px;"></div>
+          <div style="display:grid; grid-template-columns: 1fr 2fr; gap:16px; flex-grow:1;">
+            <div style="background:var(--border-glass); border-radius:12px;"></div>
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="flex:1; background:var(--orange-dim); border:1px solid var(--orange); border-radius:12px;"></div>
+              <div style="flex:1; background:var(--border-glass); border-radius:12px;"></div>
+            </div>
           </div>
         </div>
-        <div class="floating-card">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          <div style="margin-top:12px; font-weight:700; font-size:14px; letter-spacing:1px;">REVENUE ENGINE</div>
+        <div class="hero-card-1">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <div style="margin-top:16px; font-weight:700; font-size:16px; letter-spacing:1px; color:#fff;">REVENUE ENGINE</div>
+        </div>
+        <div class="hero-card-2">
+          <div style="width:40px; height:40px; background:#10b981; border-radius:10px; display:flex; align-items:center; justify-content:center;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <div style="font-size:14px; font-weight:700; color:#fff;">System Secure</div>
+            <div style="font-size:12px; color:var(--text-muted);">Zero Downtime</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- TRUST STATS -->
-    <section class="trust-section reveal-up">
-      <div style="text-align:center; color:var(--text-muted); font-size:14px; text-transform:uppercase; letter-spacing:2px; margin-bottom:30px;">Trusted by growing businesses worldwide</div>
-      <div class="stats-grid">
-        <div>
-          <div class="stat-val">250<span>+</span></div>
-          <div class="stat-label">Projects Completed</div>
-        </div>
-        <div>
-          <div class="stat-val">100<span>%</span></div>
-          <div class="stat-label">Client Retention</div>
-        </div>
-        <div>
-          <div class="stat-val">15<span>+</span></div>
-          <div class="stat-label">Enterprise Systems</div>
-        </div>
-        <div>
-          <div class="stat-val">24<span>/</span>7</div>
-          <div class="stat-label">Technical Support</div>
-        </div>
+    <!-- 3. TRUSTED BY -->
+    <div class="marquee-section reveal-up">
+      <div class="marquee-text">Trusted by innovative startups and global enterprises</div>
+      <div class="marquee-track">
+        <!-- SVG Placeholders representing brands -->
+        <svg class="marquee-logo" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-size="20" font-weight="bold">ACME Corp</text></svg>
+        <svg class="marquee-logo" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-size="20" font-weight="bold">GlobalTech</text></svg>
+        <svg class="marquee-logo" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-size="20" font-weight="bold">InnovateOS</text></svg>
+        <svg class="marquee-logo" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-size="20" font-weight="bold">NexusAI</text></svg>
+        <svg class="marquee-logo" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-size="20" font-weight="bold">StellarPay</text></svg>
+        <svg class="marquee-logo" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-size="20" font-weight="bold">ACME Corp</text></svg>
+        <svg class="marquee-logo" viewBox="0 0 100 30" fill="currentColor"><text x="0" y="20" font-size="20" font-weight="bold">GlobalTech</text></svg>
+      </div>
+    </div>
+
+    <!-- 4. LIVE STATS -->
+    <section class="stats-section reveal-up">
+      <div class="stat-card">
+        <div class="stat-num">250<span>+</span></div>
+        <div class="stat-label">Projects Delivered</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">98<span>%</span></div>
+        <div class="stat-label">Client Retention</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">15<span>+</span></div>
+        <div class="stat-label">Enterprise Systems</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">24<span>/</span>7</div>
+        <div class="stat-label">Support Availability</div>
       </div>
     </section>
 
-    <!-- PREMIUM SERVICES -->
-    <section class="section" id="services">
+    <!-- 5. SERVICES SECTION -->
+    <section class="section-container" id="services">
       <div class="section-header reveal-up">
-        <div class="section-tag">OUR EXPERTISE</div>
-        <h2 class="section-title font-heading">Comprehensive IT Solutions</h2>
-        <p style="color: var(--text-muted); font-size: 18px;">From concept to deployment, we build scalable technologies that drive business growth.</p>
+        <div class="section-tag">Premium Services</div>
+        <h2 class="section-title font-heading">Architecting Digital Futures</h2>
+        <p class="section-desc">We build enterprise-grade software and platforms designed for scale, performance, and unmatched user experiences.</p>
       </div>
 
       <div class="services-grid">
-        <div class="service-card reveal-up hover-glow">
-          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <div class="service-card hover-glow reveal-up">
+          <div class="service-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
           <h3 class="service-title">Custom Software Dev</h3>
-          <p class="service-desc">Tailored software applications designed to resolve complex business logic and streamline operations seamlessly.</p>
+          <p class="service-desc">Tailored software applications resolving complex business logic and streamlining enterprise operations flawlessly.</p>
         </div>
-
-        <div class="service-card reveal-up hover-glow" style="transition-delay: 0.1s;">
-          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-          <h3 class="service-title">Web & Platforms</h3>
-          <p class="service-desc">High-performance web applications, enterprise portals, and progressive platforms built on modern stacks.</p>
+        <div class="service-card hover-glow reveal-up" style="transition-delay: 0.1s;">
+          <div class="service-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+          <h3 class="service-title">Web & App Development</h3>
+          <p class="service-desc">High-performance React/Node platforms, native mobile apps, and robust progressive web applications.</p>
         </div>
-
-        <div class="service-card reveal-up hover-glow" style="transition-delay: 0.2s;">
-          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19c2.485 0 4.5-2.015 4.5-4.5S19.985 10 17.5 10h-.427c-.82-4.062-4.42-7-8.573-7C4.358 3 1 6.358 1 10.5 1 14.642 4.358 18 8.5 18h9v1z"/></svg></div>
+        <div class="service-card hover-glow reveal-up" style="transition-delay: 0.2s;">
+          <div class="service-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19c2.485 0 4.5-2.015 4.5-4.5S19.985 10 17.5 10h-.427c-.82-4.062-4.42-7-8.573-7C4.358 3 1 6.358 1 10.5 1 14.642 4.358 18 8.5 18h9v1z"/></svg></div>
           <h3 class="service-title">Cloud Infrastructure</h3>
-          <p class="service-desc">Secure, scalable, and highly available cloud architecture deployments and comprehensive server management.</p>
+          <p class="service-desc">AWS & Azure deployments ensuring 99.99% uptime, secure scaling, and zero-latency architecture.</p>
         </div>
-
-        <div class="service-card reveal-up hover-glow">
-          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M7 15h0M2 9.5h20"/></svg></div>
-          <h3 class="service-title">Billing & POS Systems</h3>
-          <p class="service-desc">End-to-end payment, invoicing, and retail point-of-sale systems tailored securely for your enterprise.</p>
+        <div class="service-card hover-glow reveal-up">
+          <div class="service-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M7 15h0M2 9.5h20"/></svg></div>
+          <h3 class="service-title">POS & Billing Systems</h3>
+          <p class="service-desc">End-to-end multi-branch invoicing, payment routing, and retail management systems.</p>
         </div>
-
-        <div class="service-card reveal-up hover-glow" style="transition-delay: 0.1s;">
-          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
-          <h3 class="service-title">E-Commerce Solutions</h3>
-          <p class="service-desc">High-conversion digital storefronts with inventory sync, analytics, and powerful marketing integrations.</p>
+        <div class="service-card hover-glow reveal-up" style="transition-delay: 0.1s;">
+          <div class="service-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
+          <h3 class="service-title">AI & Automation</h3>
+          <p class="service-desc">Integrating OpenAI APIs, custom LLMs, and intelligent automation into your CRM and ERP ecosystems.</p>
         </div>
-
-        <div class="service-card reveal-up hover-glow" style="transition-delay: 0.2s;">
-          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-          <h3 class="service-title">Business Automation</h3>
-          <p class="service-desc">Replacing manual workflows with automated integrations between CRM, ERP, and communication tools.</p>
+        <div class="service-card hover-glow reveal-up" style="transition-delay: 0.2s;">
+          <div class="service-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="6.5"/></svg></div>
+          <h3 class="service-title">Branding & UI/UX</h3>
+          <p class="service-desc">Designing stunning, high-conversion visual identities and user interfaces that dominate your market.</p>
         </div>
       </div>
     </section>
 
-    <!-- WHY CHOOSE US TIMELINE -->
-    <section class="section" style="background: rgba(128,128,128,0.03); border-top: 1px solid var(--border-glass);">
-      <div class="grid-2 align-items-center" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap:80px; max-width: 1200px; margin: 0 auto;">
+    <!-- 6. WHY CHOOSE US -->
+    <section class="section-container" style="background: rgba(128,128,128,0.03); border-top: 1px solid var(--border-glass); border-bottom: 1px solid var(--border-glass);">
+      <div class="comparison-grid">
         <div class="reveal-up">
-          <div class="section-tag">WHY PARTNER WITH US</div>
-          <h2 class="section-title font-heading">A modern IT partner focused on your business growth.</h2>
-          <p style="color: var(--text-muted); font-size: 18px; margin-bottom: 40px; line-height: 1.6;">We don't just write code. We architect solutions that give you a competitive edge in your industry. From startup MVPs to enterprise scaling, we provide the technical foundation.</p>
-          <a href="contact.html" class="btn-outline-glass">Talk With Our Team</a>
+          <div class="section-tag">The U-BSOL Advantage</div>
+          <h2 class="section-title font-heading">Enterprise standards, delivered at startup speed.</h2>
+          <p class="section-desc" style="margin-bottom: 40px;">We don't just write code. We architect solutions. Compare our infrastructure standards to average agencies and see why global businesses trust us.</p>
+          <a href="contact.html" class="btn-magnetic magnetic">Consult Our Experts</a>
         </div>
-        <div class="timeline-wrap reveal-up" style="transition-delay: 0.2s;">
-          <div class="timeline-item">
-            <h3 class="timeline-title">Scalable Architecture</h3>
-            <p class="timeline-desc">Systems built to handle 10 users or 10,000 users. We use modern microservices and cloud-native patterns.</p>
+        <div class="feature-list reveal-up" style="transition-delay: 0.2s;">
+          <div class="feature-item">
+            <div class="f-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div><div class="f-title">Bank-Grade Security</div><div class="f-desc">End-to-end encryption, SOC2 compliance standards, and automated threat monitoring.</div></div>
           </div>
-          <div class="timeline-item">
-            <h3 class="timeline-title">Enterprise Security</h3>
-            <p class="timeline-desc">Data protection and privacy compliance built into the core of every application we deploy.</p>
+          <div class="feature-item">
+            <div class="f-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+            <div><div class="f-title">Ultra-Fast Deployment</div><div class="f-desc">CI/CD pipelines ensuring seamless updates with zero downtime and fast iteration.</div></div>
           </div>
-          <div class="timeline-item">
-            <h3 class="timeline-title">Fast Deployment Cycles</h3>
-            <p class="timeline-desc">Agile development workflows ensure you get usable software fast, iterating based on real-world feedback.</p>
+          <div class="feature-item">
+            <div class="f-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+            <div><div class="f-title">Scalable Architecture</div><div class="f-desc">Microservices designed to handle anywhere from 10 to 10,000,000 active users.</div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PRICING PACKAGES -->
-    <section class="section">
+    <!-- 7. PROCESS WORKFLOW -->
+    <section class="section-container">
       <div class="section-header reveal-up">
-        <div class="section-tag">SERVICE PACKAGES</div>
-        <h2 class="section-title font-heading">Transparent Enterprise Solutions</h2>
-        <p style="color: var(--text-muted); font-size: 18px;">Whether you're validating an idea or scaling an empire, we have a support tier for you.</p>
+        <div class="section-tag">Our Workflow</div>
+        <h2 class="section-title font-heading">From Concept to Deployment</h2>
+        <p class="section-desc">A transparent, agile process ensuring precision engineering and flawless execution.</p>
+      </div>
+      <div class="timeline-wrap reveal-up">
+        <div class="timeline-node">
+          <div class="t-step">Phase 1</div>
+          <h3 class="f-title" style="font-size:24px;">Discovery & Planning</h3>
+          <p class="f-desc">We analyze your business logic, map out user flows, and architect the database schema before writing a single line of code.</p>
+        </div>
+        <div class="timeline-node">
+          <div class="t-step">Phase 2</div>
+          <h3 class="f-title" style="font-size:24px;">Design & Prototyping</h3>
+          <p class="f-desc">Creating high-fidelity UI/UX mockups and interactive prototypes to guarantee the perfect user experience.</p>
+        </div>
+        <div class="timeline-node">
+          <div class="t-step">Phase 3</div>
+          <h3 class="f-title" style="font-size:24px;">Agile Development</h3>
+          <p class="f-desc">Iterative coding sprints using modern stacks (React, Node, Python) with weekly stakeholder updates and testing.</p>
+        </div>
+        <div class="timeline-node">
+          <div class="t-step">Phase 4</div>
+          <h3 class="f-title" style="font-size:24px;">Deployment & Support</h3>
+          <p class="f-desc">Launching to cloud infrastructure, followed by 24/7 monitoring, maintenance, and continuous optimization.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. FEATURED PROJECTS -->
+    <section class="section-container">
+      <div class="section-header reveal-up">
+        <div class="section-tag">Featured Work</div>
+        <h2 class="section-title font-heading">Transformations Delivered</h2>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card reveal-up">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000" alt="Dashboard" class="project-img">
+          <div class="project-content">
+            <div class="project-tag">FinTech SaaS</div>
+            <div class="project-title">Global Payment Gateway Admin</div>
+          </div>
+        </div>
+        <div class="project-card reveal-up" style="transition-delay: 0.1s;">
+          <img src="https://images.unsplash.com/photo-1607004468138-c7e4f8341a4a?auto=format&fit=crop&q=80&w=1000" alt="E-Commerce" class="project-img">
+          <div class="project-content">
+            <div class="project-tag">E-Commerce App</div>
+            <div class="project-title">Multi-Vendor Retail App</div>
+          </div>
+        </div>
+        <div class="project-card reveal-up">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=1000" alt="Cloud" class="project-img">
+          <div class="project-content">
+            <div class="project-tag">Cloud Infrastructure</div>
+            <div class="project-title">Enterprise Data Migration</div>
+          </div>
+        </div>
+        <div class="project-card reveal-up" style="transition-delay: 0.1s;">
+          <img src="https://images.unsplash.com/photo-1555421689-491a97ff2040?auto=format&fit=crop&q=80&w=1000" alt="AI" class="project-img">
+          <div class="project-content">
+            <div class="project-tag">AI Integration</div>
+            <div class="project-title">Automated Support Agent</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. AI & TECHNOLOGY -->
+    <section class="section-container reveal-up">
+      <div class="tech-hub hover-glow">
+        <div class="tech-orbits">
+          <div class="orbit-ring"></div>
+          <div class="orbit-ring"></div>
+        </div>
+        <div style="position:relative; z-index:2;">
+          <div class="section-tag" style="background:#000; color:var(--text-main); border-color:var(--text-main);">Future-Ready Stack</div>
+          <h2 class="section-title font-heading">Powered by Next-Gen Technologies</h2>
+          <p class="section-desc" style="margin: 0 auto 40px; max-width:600px;">We leverage AI, machine learning, and decentralized cloud networks to build systems that don't just solve today's problems, but anticipate tomorrow's.</p>
+          <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+            <div style="padding:12px 24px; background:rgba(255,255,255,0.05); border:1px solid var(--border-glass); border-radius:100px; font-weight:600;">React / Next.js</div>
+            <div style="padding:12px 24px; background:rgba(255,255,255,0.05); border:1px solid var(--border-glass); border-radius:100px; font-weight:600;">Node.js & Python</div>
+            <div style="padding:12px 24px; background:rgba(255,255,255,0.05); border:1px solid var(--border-glass); border-radius:100px; font-weight:600;">AWS Cloud</div>
+            <div style="padding:12px 24px; background:rgba(255,255,255,0.05); border:1px solid var(--border-glass); border-radius:100px; font-weight:600;">OpenAI Integrations</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. TESTIMONIALS -->
+    <section class="section-container">
+      <div class="section-header reveal-up">
+        <div class="section-tag">Client Success</div>
+        <h2 class="section-title font-heading">What Enterprise Leaders Say</h2>
+      </div>
+      <div class="test-grid">
+        <div class="test-card reveal-up">
+          <div class="stars">★★★★★</div>
+          <div class="test-text">"U-BSOL completely transformed our legacy billing system. Their team delivered a modern, scalable cloud solution 2 months ahead of schedule."</div>
+          <div class="client-info">
+            <div class="client-img" style="background: url('https://i.pravatar.cc/100?img=11') center/cover;"></div>
+            <div><div style="font-weight:700;">Sarah Jenkins</div><div style="font-size:13px; color:var(--text-muted);">CTO, Finix Corp</div></div>
+          </div>
+        </div>
+        <div class="test-card reveal-up" style="transition-delay:0.1s;">
+          <div class="stars">★★★★★</div>
+          <div class="test-text">"The AI automation they integrated into our CRM saved us 40 hours a week in manual data entry. Truly a world-class IT agency."</div>
+          <div class="client-info">
+            <div class="client-img" style="background: url('https://i.pravatar.cc/100?img=12') center/cover;"></div>
+            <div><div style="font-weight:700;">David Chen</div><div style="font-size:13px; color:var(--text-muted);">Director, Nexus Retail</div></div>
+          </div>
+        </div>
+        <div class="test-card reveal-up" style="transition-delay:0.2s;">
+          <div class="stars">★★★★★</div>
+          <div class="test-text">"From branding to full-stack web development, the U-BSOL team provided an exceptional, premium experience. Highly recommended."</div>
+          <div class="client-info">
+            <div class="client-img" style="background: url('https://i.pravatar.cc/100?img=5') center/cover;"></div>
+            <div><div style="font-weight:700;">Elena Rodriguez</div><div style="font-size:13px; color:var(--text-muted);">Founder, Elevate App</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. PRICING PACKAGES -->
+    <section class="section-container">
+      <div class="section-header reveal-up">
+        <div class="section-tag">Service Packages</div>
+        <h2 class="section-title font-heading">Transparent Enterprise Plans</h2>
+        <p class="section-desc">Whether validating an idea or scaling an empire, we have the infrastructure.</p>
+      </div>
+      
+      <div class="billing-toggle reveal-up">
+        <span style="font-weight:600; color:var(--text-main);" id="lbl-mo">Monthly</span>
+        <label style="position:relative; width:60px; height:32px; background:var(--orange); border-radius:32px; cursor:pointer;">
+          <input type="checkbox" id="bill-toggle" onchange="toggleBill()" style="opacity:0; width:0; height:0;">
+          <span id="bill-slider" style="position:absolute; top:4px; left:4px; width:24px; height:24px; background:#fff; border-radius:50%; transition:0.3s;"></span>
+        </label>
+        <span style="font-weight:600; color:var(--text-muted);" id="lbl-yr">Yearly <span style="font-size:11px; background:var(--orange-dim); color:var(--orange); padding:2px 8px; border-radius:10px; margin-left:8px;">SAVE 20%</span></span>
       </div>
 
       <div class="pricing-grid">
         <div class="price-card reveal-up">
           <div class="p-tier">Starter Business</div>
-          <div class="p-price">₹2.5k <span>/mo</span></div>
+          <div class="p-price">₹<span class="p-val">2.5k</span> <span>/mo</span></div>
           <p class="p-desc">Perfect for small businesses establishing their digital footprint and automating basics.</p>
           <ul class="p-features">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Branded Web Platform</li>
@@ -345,52 +530,79 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Basic API Integrations</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Standard Email Support</li>
           </ul>
-          <a href="packages.html" class="btn-outline-glass" style="width: 100%;">Get Started</a>
+          <a href="packages.html" class="btn-glass" style="width: 100%;">Get Started</a>
         </div>
-
-        <div class="price-card featured reveal-up" style="transition-delay: 0.1s;">
+        <div class="price-card featured hover-glow reveal-up" style="transition-delay:0.1s;">
           <div class="popular-badge">Most Popular</div>
           <div class="p-tier">Growth Engine</div>
-          <div class="p-price">₹3.5k <span>/mo</span></div>
-          <p class="p-desc">Comprehensive tech stack for scaling companies needing custom features and mobile access.</p>
+          <div class="p-price">₹<span class="p-val">3.5k</span> <span>/mo</span></div>
+          <p class="p-desc">Comprehensive tech stack for scaling companies needing custom features and mobile apps.</p>
           <ul class="p-features">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Advanced Web App + Mobile App</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Web App + Mobile App</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Scalable Hosting (5GB)</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Payment Gateway Integration</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Priority Tech Support</li>
           </ul>
           <a href="packages.html" class="btn-magnetic magnetic" style="width: 100%;">Scale Your Business</a>
         </div>
-
-        <div class="price-card reveal-up" style="transition-delay: 0.2s;">
+        <div class="price-card reveal-up" style="transition-delay:0.2s;">
           <div class="p-tier">Enterprise Core</div>
-          <div class="p-price">₹5.0k <span>/mo</span></div>
+          <div class="p-price">₹<span class="p-val">5.0k</span> <span>/mo</span></div>
           <p class="p-desc">Dedicated infrastructure and architecture for high-volume, complex organizational needs.</p>
           <ul class="p-features">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Full Custom Ecosystem (Web+Apps)</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Full Custom Ecosystem</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Dedicated Cloud Architecture</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Deep ERP / CRM Integrations</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 24/7 SLA & Maintenance</li>
           </ul>
-          <a href="contact.html" class="btn-outline-glass" style="width: 100%;">Contact Sales</a>
+          <a href="packages.html" class="btn-glass" style="width: 100%;">Contact Sales</a>
         </div>
+      </div>
+    </section>
+
+    <!-- 12. FAQ -->
+    <section class="section-container reveal-up">
+      <div class="section-header">
+        <h2 class="section-title font-heading" style="font-size:36px;">Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-container">
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-header">Do you provide ongoing maintenance after launch? <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="faq-body">Yes, all our enterprise packages include SLA-backed maintenance, server monitoring, security updates, and direct technical support to ensure zero downtime.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-header">Can you integrate with our existing legacy systems? <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="faq-body">Absolutely. We specialize in building secure middleware and API bridges to seamlessly connect modern web/mobile interfaces with your existing legacy databases or ERP systems.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-header">How long does a typical software project take? <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="faq-body">Timelines vary by complexity. A standard SaaS MVP takes 8-12 weeks, while large-scale enterprise infrastructure migrations can take 4-6 months. We deploy in agile sprints so you see progress weekly.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. MASSIVE CTA -->
+    <section class="cta-massive reveal-up magnetic" style="margin: 0 auto 100px; max-width:1400px; cursor:crosshair;">
+      <h2 class="cta-title font-heading">Ready to Transform<br>Your Business?</h2>
+      <p class="cta-desc">Let's build scalable digital systems that help your company grow faster and dominate your industry.</p>
+      <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+        <a href="contact.html" class="btn-magnetic" style="background:#fff; color:#000; border:none;">Book Free Consultation</a>
+        <a href="contact.html" class="btn-glass">Contact Our Team</a>
       </div>
     </section>
 
   </div>
 
+  <!-- Footer injected here -->
   <div id="footer-container"></div>
+  
   <script src="components.js"></script>
   <script>
     injectComponents('home');
 
     // Reveal Observer
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
 
@@ -409,31 +621,50 @@
         const rect = elem.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
-        elem.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+        elem.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
       });
-      elem.addEventListener('mouseleave', () => {
-        elem.style.transform = `translate(0px, 0px)`;
-      });
+      elem.addEventListener('mouseleave', () => { elem.style.transform = `translate(0px, 0px)`; });
     });
 
     // Typewriter Effect
-    const agencyWords = ["Web Development.", "Cloud Solutions.", "Business Automation.", "Brand Identity.", "AI Integrations."];
+    const agencyWords = ["Web Development.", "Cloud Systems.", "AI Integrations.", "Business Automation.", "Enterprise Software.", "Branding Solutions."];
     let twIndex = 0; let charIdx = 0; let isTwDeleting = false; let curTwWord = "";
     
     function typeAgency() {
+      const typeEl = document.getElementById("typewriter");
+      if(!typeEl) return;
       curTwWord = agencyWords[twIndex];
       if (isTwDeleting) {
-        document.getElementById("typewriter").textContent = curTwWord.substring(0, charIdx - 1);
+        typeEl.textContent = curTwWord.substring(0, charIdx - 1);
         charIdx--;
         if (charIdx == 0) { isTwDeleting = false; twIndex = (twIndex + 1) % agencyWords.length; setTimeout(typeAgency, 500); return; }
       } else {
-        document.getElementById("typewriter").textContent = curTwWord.substring(0, charIdx + 1);
+        typeEl.textContent = curTwWord.substring(0, charIdx + 1);
         charIdx++;
         if (charIdx == curTwWord.length) { isTwDeleting = true; setTimeout(typeAgency, 2000); return; }
       }
-      setTimeout(typeAgency, isTwDeleting ? 50 : 100);
+      setTimeout(typeAgency, isTwDeleting ? 40 : 80);
     }
     setTimeout(typeAgency, 1000);
+
+    // Pricing Toggle
+    function toggleBill() {
+      const chk = document.getElementById('bill-toggle').checked;
+      document.getElementById('bill-slider').style.transform = chk ? 'translateX(28px)' : 'translateX(0)';
+      document.getElementById('lbl-mo').style.color = chk ? 'var(--text-muted)' : 'var(--text-main)';
+      document.getElementById('lbl-yr').style.color = chk ? 'var(--text-main)' : 'var(--text-muted)';
+      const vals = document.querySelectorAll('.p-val');
+      if(chk) { vals[0].innerText='25k'; vals[1].innerText='35k'; vals[2].innerText='50k'; }
+      else { vals[0].innerText='2.5k'; vals[1].innerText='3.5k'; vals[2].innerText='5.0k'; }
+      document.querySelectorAll('.p-price span').forEach(el => el.innerText = chk ? '/yr' : '/mo');
+    }
+
+    // FAQ Toggle
+    function toggleFaq(el) {
+      const isActive = el.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+      if(!isActive) el.classList.add('active');
+    }
   </script>
 </body>
 </html>
