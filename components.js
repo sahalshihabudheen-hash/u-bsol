@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ===== TYPING ANIMATION =====
-const words = ["Market Place", "Corporate Identity", "E-Commerce System", "Billing System"];
+const words = ["Digital Experiences", "SaaS Platforms", "AI Solutions", "Software Architectures"];
 let wordIndex = 0;
 let charIndex = 0;
 let isDeleting = false;

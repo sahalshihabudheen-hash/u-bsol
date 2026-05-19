@@ -518,6 +518,17 @@ body::after {
   font-size: 14px;
 }
 
+.cursor-blink {
+  animation: blink 0.8s step-end infinite;
+  display: inline-block;
+  font-weight: 300;
+  color: var(--primary);
+  margin-left: 2px;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
 @media (max-width: 1024px) {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
