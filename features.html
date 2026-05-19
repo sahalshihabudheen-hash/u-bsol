@@ -7,49 +7,52 @@
   <meta name="description" content="When a customer visits an online store, they make snap decisions about the brand within a few short seconds of landing on the homepage." />
   <link rel="stylesheet" href="style.css" />
   <style>
-    .features-nav {
-      display: flex; gap: 10px; flex-wrap: wrap;
-      margin-bottom: 48px; justify-content: center;
-    }
-    .fnav-btn {
-      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-      color: var(--text-muted); border-radius: 8px; padding: 8px 18px;
-      font-size: 13px; font-weight: 500; cursor: pointer;
-      transition: var(--transition); text-decoration: none;
-    }
-    .fnav-btn:hover, .fnav-btn.active {
-      background: rgba(99,102,241,0.12); border-color: var(--primary);
-      color: var(--primary);
-    }
+    .page-hero { text-align: center; padding: 120px 24px 60px; max-width: 900px; margin: 0 auto; }
+    .page-hero-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(32px, 5vw, 48px); font-weight: 700; margin-bottom: 24px; }
+    .page-hero-desc { font-size: 16px; color: var(--text-secondary); line-height: 1.8; }
 
-    .feature-block {
-      margin-bottom: 64px;
-      padding: 48px; background: var(--bg-card);
-      border: 1px solid var(--border); border-radius: 24px;
-    }
-    .feature-block-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 26px; font-weight: 700; margin-bottom: 16px;
-    }
-    .feature-block-desc { font-size: 16px; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.8; }
-    .feature-list {
-      list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 20px;
-    }
-    .feature-list li {
-      display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--text-secondary); line-height: 1.6;
-    }
-    .feature-list li::before {
-      content: '→'; color: var(--primary); font-weight: 700; flex-shrink: 0;
-    }
-    .feature-sub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
-    .feature-sub-item {
-      background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.12);
-      border-radius: 12px; padding: 20px; font-size: 14px; color: var(--text-secondary); line-height: 1.6;
-    }
-    .feature-sub-item strong { display: block; color: var(--text-primary); margin-bottom: 8px; font-size: 16px; }
+    .feature-row { display: flex; align-items: center; gap: 80px; margin-bottom: 120px; position: relative; }
+    .feature-row.reverse { flex-direction: row-reverse; }
+    .feature-content { flex: 1; }
+    .feature-image-wrapper { flex: 1; position: relative; display: flex; justify-content: center; align-items: center; }
+    .feature-image-wrapper img { width: 100%; max-width: 550px; height: auto; object-fit: contain; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+    
+    .feature-title { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; margin-bottom: 24px; color: var(--text-primary); }
+    .feature-text { font-size: 16px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px; }
+    
+    .feature-list { list-style: none; margin-top: 24px; display: flex; flex-direction: column; gap: 16px; }
+    .feature-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+    .feature-list li::before { content: '→'; color: var(--primary); font-weight: 700; flex-shrink: 0; }
+    
+    .feature-grid-title { text-align: center; font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; margin-bottom: 60px; margin-top: 80px; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 120px; }
+    .feature-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 40px 30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: var(--transition); position: relative; overflow: hidden; }
+    .feature-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(255,102,0,0.1); border-color: rgba(var(--primary-rgb), 0.3); }
+    .feature-card-icon { width: 60px; height: 60px; margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; background: rgba(var(--primary-rgb), 0.1); color: var(--primary); border-radius: 16px; }
+    .feature-card-icon svg { width: 30px; height: 30px; }
+    .feature-card-title { font-size: 20px; font-weight: 700; margin-bottom: 16px; color: var(--text-primary); }
+    .feature-card-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+    
+    .feature-2col-section { margin-bottom: 120px; }
+    .feature-2col-title { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; margin-bottom: 40px; color: var(--text-primary); }
+    .feature-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+    .feature-sub-items { display: flex; flex-direction: column; gap: 24px; }
+    .feature-sub-item { display: flex; flex-direction: column; gap: 8px; }
+    .feature-sub-item strong { font-size: 16px; color: var(--text-primary); font-weight: 600; }
+    .feature-sub-item span { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
 
+    /* Decorative elements */
+    .bg-dots { position: absolute; z-index: -1; width: 150px; height: 150px; background-image: radial-gradient(var(--primary) 2px, transparent 2px); background-size: 20px 20px; opacity: 0.15; border-radius: 50%; }
+    .bg-circle { position: absolute; z-index: -1; width: 200px; height: 200px; background: var(--primary); opacity: 0.05; border-radius: 50%; filter: blur(40px); }
+    
+    @media (max-width: 991px) {
+      .feature-row, .feature-row.reverse { flex-direction: column; gap: 40px; }
+      .feature-image-wrapper { order: -1; }
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .feature-2col { grid-template-columns: 1fr; gap: 40px; }
+    }
     @media (max-width: 768px) {
-      .feature-sub-grid { grid-template-columns: 1fr; }
+      .feature-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -59,154 +62,250 @@
   <div class="page-wrapper">
     <div class="page-hero">
       <h1 class="page-hero-title">Features</h1>
-      <p class="page-hero-desc">When a customer visits an online store, they make snap decisions about the brand within a few short seconds of landing on the homepage. It’s all about functionality, design, features and moreover the data presentation of the application. Our unique features will help the merchant for presenting the business in more efficient manner. So that customers will stick around to browse and hopefully make a purchase from your online store..</p>
+      <p class="page-hero-desc">When a customer visits an online store, they make snap decisions about the brand within a few short seconds of landing on the homepage. It’s all about functionality, design, features and moreover the data presentation of the application. Our unique features will help the merchant for presenting the business in more efficient manner. So that customers will stick around to browse and hopefully make a purchase from your online store.</p>
     </div>
 
-    <div class="section">
-      <!-- Feature Navigation -->
-      <div class="features-nav">
-        <a href="#identity" class="fnav-btn">Corporate Identity</a>
-        <a href="#retention" class="fnav-btn">Customer Retention</a>
-        <a href="#design" class="fnav-btn">Full Design Capabilities</a>
-        <a href="#dashboard" class="fnav-btn">Dashboards</a>
-        <a href="#promotion" class="fnav-btn">Business promotion</a>
-        <a href="#brands" class="fnav-btn">Brands & Categories</a>
-        <a href="#products" class="fnav-btn">Products</a>
-        <a href="#payments" class="fnav-btn">Payment Methods</a>
-        <a href="#checkout" class="fnav-btn">Checkout & Delivery Methods</a>
-        <a href="#orders" class="fnav-btn">Order, Invoice & Credit Note</a>
-        <a href="#addons" class="fnav-btn">Additional Add-ons</a>
-        <a href="#support" class="fnav-btn">Support & Maintenance</a>
-      </div>
-
-      <div id="identity" class="feature-block">
-        <h2 class="feature-block-title">Corporate Identity</h2>
-        <p class="feature-block-desc">It is your business and your services. We provide your own digital platform under your brand name that will help you to make your perfect brand identity and provide better services for your customer. We are not a brands we are just promoting your brands.</p>
-        <ul class="feature-list">
-          <li>Dynamic responsive website with very attractive and user friendly manner.</li>
-          <li>Mobile applications with very elegant UI with simply business optimized.</li>
-          <li>Easy to customize the design pattern and change the color combination as per the needs.</li>
-          <li>Use your own logo in mobile application, that will reflected in paly store.</li>
-        </ul>
-      </div>
-
-      <div id="retention" class="feature-block">
-        <h2 class="feature-block-title">Customer Retention</h2>
-        <p class="feature-block-desc">Customer retention is very essential for making any successful business. We are built with a set of marketing tools which will improve your customer retention and sales. You can easily manage, track your customer activities and make useful rewards to them for improving the sale.</p>
-        <p class="feature-block-desc">U-BSOL Automated SEO will help your business content listed into the internet without doing any additional SEO work. Your product information will reach to any corner in the world which is huge advantage for your business.</p>
-        <p class="feature-block-desc">Google analytics and Facebook pixels are integrated with this application. So that you can track your customer activities and easily plan marketting / sales campaign as per the needs.</p>
-        <p class="feature-block-desc">U-BSOL provide very handy tool for managing the abandoned cart. Its enables you to reach the same customer and inspire them to buy the same product. You will not lose any customer if any of them add your product into cart.</p>
-        <p class="feature-block-desc">Your social media page will be integrated with this application. So that you can easily share your product information through social media.</p>
-      </div>
-
-      <div id="design" class="feature-block">
-        <h2 class="feature-block-title">Full Design Capabilities.</h2>
-        <div class="feature-sub-grid">
-          <div class="feature-sub-item"><strong>Responsive Design</strong>A responsive design will grant your site an easy reading, navigation, and flexible images across a wide range of devices, including desktop, smart phones and tablets. U-BSOL provide fully customizable template.</div>
-          <div class="feature-sub-item"><strong>Dynamic Layouts</strong>You can change your website look and feel without having technical knowledge. We provide 6 different styles of home page sider and various styles for ads and categories. You just need to choose them by clicks.</div>
-          <div class="feature-sub-item"><strong>Auto Resize Media</strong>Your all media (images) will be automatically resized as the required weight and size while uploading into this application. You don’t need to crop or resize the image before uploading into the application .</div>
-          <div class="feature-sub-item"><strong>Dynamic Navigation</strong>This will enables you to add, edit, and remove navigation links into menus. You will be able to add multilevel navigation items into menus and re organize the menu item’s order as per your needs.</div>
-          <div class="feature-sub-item"><strong>Dynamic Display</strong>U-BSOL will provide you full control on each module display on frontend. You can select product and categories which needs do display or hide on the home page by just clicks.</div>
-          <div class="feature-sub-item"><strong>Powerful Editor</strong>Your page content you can reformat same as how do it is MS-word. Or you can format the content through MS-word copy paste into the editor. You will get the same result.</div>
+    <div class="container">
+      
+      <!-- 1. Corporate Identity -->
+      <div class="feature-row">
+        <div class="feature-image-wrapper">
+          <div class="bg-dots" style="top: -20px; left: -20px;"></div>
+          <img src="https://placehold.co/600x400/fff3ed/ff6600?text=Corporate+Identity" alt="Corporate Identity">
+        </div>
+        <div class="feature-content">
+          <h2 class="feature-title">Corporate Identity</h2>
+          <p class="feature-text">It is your business and your services. We provide your own digital platform under your brand name that will help you to make your perfect brand identity and provide better services for your customer. We are not a brands we are just promoting your brands.</p>
+          <ul class="feature-list">
+            <li>Dynamic responsive website with very attractive and user friendly manner.</li>
+            <li>Mobile applications with very elegant UI with simply business optimized.</li>
+            <li>Easy to customize the design pattern and change the color combination as per the needs.</li>
+            <li>Use your own logo in mobile application, that will reflected in paly store.</li>
+          </ul>
         </div>
       </div>
 
-      <div id="dashboard" class="feature-block">
-        <h2 class="feature-block-title">Dashboards</h2>
-        <p class="feature-block-desc">We provide 2 different Dashboards such as admin dashboard and user dashboard for managing your online operations. Both dashboards are very flexible, user friendly and highly responsive.</p>
-        <p class="feature-block-desc">All dashboard operations are well organized under specific menu sections. Most of the operations are working by predefined workflow manner. Any pending task which belongs to the menu section will be notified on the menu.</p>
-        <p class="feature-block-desc">U-BSOL provide very power full notification system either web or mobile. Notifications are stayed in both dishoard as pending to view until its gets read. Both dashboards get automatically notified by any action performing on the application such as user registration, product review, create order,create booking, cancel order, order delivered with tracking info, order invoices, order completed, etc.</p>
-        <p class="feature-block-desc">U-BSOL provide a tool for of maintaining the relationship with the customer. After creating an order, both customer and shop administrator can send text messages under the same order in case if they needed. All custom messages will be listed under notification section.</p>
-        <p class="feature-block-desc">We are tracking all actions has been taken against the order either shop administrator or customer. After performing any action (Order created, Order ready for delivery, Order invoiced, etc..) that will be listed in the same order based on the date time.</p>
-      </div>
-
-      <div id="promotion" class="feature-block">
-        <h2 class="feature-block-title">Business promotion</h2>
-        <p class="feature-block-desc">Business promotion will bring additional customers and increase the revenue. More importantly, these promotions can turn new visitors into loyal customers and repeat buyers. U-BSOL provides wide a range of business promotion ideas will play a large part in this.</p>
-        <p class="feature-block-desc">Hot sale features are very essential for any online business. This is working based on the given date and time which will displayed in the website home page. This will be automatically enabled or disable based on the date and time.</p>
-        <p class="feature-block-desc">You can make seasonal offer based on percentage or flat rate discount for the selected product / service within the selected period. Additionally you can add seasonal promotion banner which will display in the home page and promotion page. This will be automatically enabled or disable based on the date and time.</p>
-        <p class="feature-block-desc">Coupons are very essential for customer retention. U-Bsol provides various types of coupon against the product and users. You can limit the number of usage of the same coupon code. This will help you to run marketing campaign / sales to increase your business volume. Additionally this will help you for bulk customer registration and mobile app downloads with in limited time period..</p>
-        <p class="feature-block-desc">Reviews and ratings are very important for promoting the product. The customers able to make the product review only after completing the order. And the review will be display with the associated product only after the approval from administrator.</p>
-      </div>
-
-      <div id="brands" class="feature-block">
-        <h2 class="feature-block-title">Brands & Categories</h2>
-        <p class="feature-block-desc">You can create N number of categories and subcategories & brands based on your selected package. This will help you to showcase your product in more specific way. Category thumbnail can be set separately for website and mobile devices. You can use vector images for better display in mobile applications. Category banner will be displayed in category page. Brands logo will be displayed on the homepage and brands banner will displayed on the brands page.</p>
-        <div class="feature-sub-grid">
-          <div class="feature-sub-item"><strong>Featured Categories</strong>You set the category as featured to display on the frontend.</div>
-          <div class="feature-sub-item"><strong>Category SEO</strong>You can simply add your SEO keywords and description which will reflect on internet.</div>
-          <div class="feature-sub-item"><strong>Category Links</strong>After creating the category a navigation links will be automatically placed on the main menu which can be control the visibility. Also you can set additional category links under other menus as well (footer menu, bottom menu)</div>
-          <div class="feature-sub-item"><strong>Category Filter</strong>Category can be used as product filer who shows on the side bar of the shop page. The category filter on the sidebar display can be controlled.</div>
-          <div class="feature-sub-item"><strong>Brands Filter</strong>Brands can be used as product filer who shows on the side bar of the shop or category page. All brands will be consider as product filter as default.</div>
+      <!-- 2. Customer Retention -->
+      <div class="feature-row reverse">
+        <div class="feature-image-wrapper">
+          <div class="bg-circle" style="bottom: -20px; right: -20px;"></div>
+          <img src="https://placehold.co/600x400/fff3ed/ff6600?text=Customer+Retention" alt="Customer Retention">
+        </div>
+        <div class="feature-content">
+          <h2 class="feature-title">Customer Retention</h2>
+          <p class="feature-text">Customer retention is very essential for making any successful business. We are built with a set of marketing tools which will improve your customer retention and sales. You can easily manage, track your customer activities and make useful rewards to them for improving the sale.</p>
+          <p class="feature-text">U-BSOL Automated SEO will help your business content listed into the internet without doing any additional SEO work. Your product information will reach to any corner in the world which is huge advantage for your business.</p>
+          <p class="feature-text">Google analytics and Facebook pixels are integrated with this application. So that you can track your customer activities and easily plan marketting / sales campaign as per the needs.</p>
+          <p class="feature-text">U-BSOL provide very handy tool for managing the abandoned cart. Its enables you to reach the same customer and inspire them to buy the same product. You will not lose any customer if any of them add your product into cart.</p>
+          <p class="feature-text">Your social media page will be integrated with this application. So that you can easily share your product information through social media.</p>
         </div>
       </div>
 
-      <div id="products" class="feature-block">
-        <h2 class="feature-block-title">Products</h2>
-        <p class="feature-block-desc">You can create N number of products based on your selected package. A single product can be allocated with multiple categories and it can be set as featured item or newly arrived items for displaying on home page. Cod options, shipping charge method (Free / Chargeable) can be set based on the single product.</p>
-        <div class="feature-sub-grid">
-          <div class="feature-sub-item"><strong>Multiple Variations</strong>This will enables to make different variation of the single item based on color and size.</div>
-          <div class="feature-sub-item"><strong>Multiple Price</strong>This enables to make various pricing option and inventory management for a single product based on product size.</div>
-          <div class="feature-sub-item"><strong>Multiple Images</strong>Product images are very important for showcasing and presenting in proper manner. This will enable to upload multiple quality images in to a single product.</div>
-          <div class="feature-sub-item"><strong>Multiple Categories</strong>A single product can be allocated with multiple categories.</div>
-          <div class="feature-sub-item"><strong>Inventory Management</strong>The inventory will be automatically update based on sales and sales return. This will provide your most sold item list, most likes item list, most viewed item list. And slso it will notify you the shortage of item as per your set the minimum quantity level.</div>
-          <div class="feature-sub-item"><strong>Additional fields</strong>Providing clear information is the most important than any other features. Its enables you to create the additional input fields and filters to store additional information of your products. This additional field’s data will be filterable and searchable.</div>
-          <div class="feature-sub-item"><strong>Delivery Area Management</strong>This will enables to restrict the product delivery based on Postal code / Pincode.</div>
-          <div class="feature-sub-item"><strong>Additional Shipping charge</strong>Additional shipping charge can be added with product which will calculate with actual shipping charge based on your delivery location.</div>
-          <div class="feature-sub-item"><strong>Special Tax</strong>You can set special tax and values based on the product.</div>
-          <div class="feature-sub-item"><strong>Related Product</strong>You can set related products by clicks while creating the product.</div>
-          <div class="feature-sub-item"><strong>Most Popular Product</strong>Based on the clicks on the product, this module will be automatically updated the list.</div>
-          <div class="feature-sub-item"><strong>Product SEO</strong>You can simply add your SEO keywords and description which will reflect on internet. It’s a part of automated SEO.</div>
+      <!-- 3. Full Design Capabilities Grid -->
+      <h2 class="feature-grid-title">Full Design Capabilities</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></div>
+          <h3 class="feature-card-title">Responsive Design</h3>
+          <p class="feature-card-desc">A responsive design will grant your site an easy reading, navigation, and flexible images across a wide range of devices, including desktop, smart phones and tablets. U-BSOL provide fully customizable template.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg></div>
+          <h3 class="feature-card-title">Dynamic Layouts</h3>
+          <p class="feature-card-desc">You can change your website look and feel without having technical knowledge. We provide 6 different styles of home page sider and various styles for ads and categories. You just need to choose them by clicks.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+          <h3 class="feature-card-title">Auto Resize Media</h3>
+          <p class="feature-card-desc">Your all media (images) will be automatically resized as the required weight and size while uploading into this application. You don't need to crop or resize the image before uploading into the application.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
+          <h3 class="feature-card-title">Dynamic Navigation</h3>
+          <p class="feature-card-desc">This will enables you to add, edit, and remove navigation links into menus. You will be able to add multilevel navigation items into menus and re organize the menu item's order as per your needs.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+          <h3 class="feature-card-title">Dynamic Display</h3>
+          <p class="feature-card-desc">U-BSOL will provide you full control on each module display on frontend. You can select product and categories which needs do display or hide on the home page by just clicks.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+          <h3 class="feature-card-title">Powerful Editor</h3>
+          <p class="feature-card-desc">Your page content you can reformat same as how do it is MS-word. Or you can format the content through MS-word copy paste into the editor. You will get the same result.</p>
         </div>
       </div>
 
-      <div id="payments" class="feature-block">
-        <h2 class="feature-block-title">Payment Methods</h2>
-        <p class="feature-block-desc">U-BSOL provides various types of payment collection methods in very easy with highly secured manner. Its ensure your customers are happy to buy products through your application .</p>
-        <p class="feature-block-desc">U-BSOL already integrated 5 payment gateways which is (PayTM, PayUmoney,PayPal, RazorPay & Stripe). So that you just need only setup the belling account with any of this payment gateway and insert the credentials into application to start receive payments through online.</p>
-        <p class="feature-block-desc">U-BSOL provides you repay option through same selected payment gateway if any payment failure happens.</p>
-        <p class="feature-block-desc">U-BSOL support cash on delivery methods for your online customer. You can set this option based on you product it self.</p>
-        <p class="feature-block-desc">U-BSOL has shop billing facility for your walking customer. You can simply use this method by enabling the shop billing facility or store pickup method.</p>
-      </div>
-
-      <div id="checkout" class="feature-block">
-        <h2 class="feature-block-title">Checkout & Delivery Methods</h2>
-        <p class="feature-block-desc">U-BSOL provides fully control on checkout and delivery operations. You can enable or disable this operation any time as per your needs. Also it enables varies types of checkouts and delivery methods.</p>
-        <p class="feature-block-desc">U-BSOL enables two different types of checkout methods such as regular checkout mainly for the registered customer and Whatsapp checkout for the gust user.</p>
-        <p class="feature-block-desc">U-BSOL provide 3 types of delivery methods for different usage. Pickup from store option and Delivery to the address options are defined for the online customer and Store delivery for your walking customer.</p>
-        <p class="feature-block-desc">U-BSOL enables you to set the minimum order processing time. Based on that user will get notify about the delivery schedule after completing the order. The administrator can change the delivery schedule which will be automatically notified to the customer.</p>
-        <p class="feature-block-desc">U-BSOL send various notifications into the customer / merchant based on the delivery. Such as Delivery schedule confirmation, Product ready for delivery. Product under transit, Product has been delivered. Fake address, etc.</p>
-      </div>
-
-      <div id="orders" class="feature-block">
-        <h2 class="feature-block-title">Order, Invoice & Credit Note</h2>
-        <p class="feature-block-desc">U-BSOL offer you very user-friendly way for creating the order, invoice, sales return and updating the various status on it. Also it will give very neat print layout as well as PDF format for downloads.</p>
-        <div class="feature-sub-grid">
-          <div class="feature-sub-item"><strong>Order Management</strong>U-Bsol provides you great controls on customer order with decent notifications. The admistrator can cancel the order with reason which will notify the same customer. There are 3 ways to make an order. Whatsapp order through Whatsapp checkout for your gust user, regular order through online checkout for your online customer, and shop order through admin dashboard for your walking customer.</div>
-          <div class="feature-sub-item"><strong>Shop Billing</strong>Electronic billing is one of the key parts of the trading business. U-BSOL provides the shop billing facility with proper tax for your walking customer.</div>
-          <div class="feature-sub-item"><strong>Order Notification</strong>There are different types of predefined notification which are Order created, Order delivery date has been confirmed, Order under process, Order items are under transit, Order delivered, order completed, etc…). Also both customer and administrator can send additional custom message under the same order.</div>
-          <div class="feature-sub-item"><strong>Invoices</strong>Clean and informative invoices are very important for transparent business, U-BSOL provides very informative invoice with responsive layout and PDF invoice for printing and sharing purpose. The PDF invoice header and footer information can be modified and additional information can be added as per your needs. Also you will be to set special logo for your PDF invoices. The customer will be automatically notified after generating the invoice against the order.</div>
-          <div class="feature-sub-item"><strong>Sales Returns & Credit Notes</strong>Sales retunes and issuing credit notes for returning products is always needs in eCommerce platforms. U-Bsol provides very flexible useful solution for this. Its allows you to return the product partial quantity or full quantity as per the needs. Based on the returning item the application will generate the credit notes either partial or full credit notes. The returning items can be going into stock or scrap stock.</div>
+      <!-- 4. Dashboards -->
+      <div class="feature-row">
+        <div class="feature-image-wrapper">
+          <div class="bg-dots" style="bottom: -20px; left: -20px;"></div>
+          <img src="https://placehold.co/600x400/fff3ed/ff6600?text=Dashboards" alt="Dashboards">
+        </div>
+        <div class="feature-content">
+          <h2 class="feature-title">Dashboards</h2>
+          <p class="feature-text">We provide 2 different Dashboards such as admin dashboard and user dashboard for managing your online operations. Both dashboards are very flexible, user friendly and highly responsive.</p>
+          <p class="feature-text">All dashboard operations are well organized under specific menu sections. Most of the operations are working by predefined workflow manner. Any pending task which belongs to the menu section will be notified on the menu.</p>
+          <p class="feature-text">U-BSOL provide very power full notification system either web or mobile. Notifications are stayed in both dishoard as pending to view until its gets read. Both dashboards get automatically notified by any action performing on the application such as user registration, product review, create order,create booking, cancel order, order delivered with tracking info, order invoices, order completed, etc.</p>
+          <p class="feature-text">U-BSOL provide a tool for of maintaining the relationship with the customer. After creating an order, both customer and shop administrator can send text messages under the same order in case if they needed. All custom messages will be listed under notification section.</p>
+          <p class="feature-text">We are tracking all actions has been taken against the order either shop administrator or customer. After performing any action (Order created, Order ready for delivery, Order invoiced, etc..) that will be listed in the same order based on the date time.</p>
         </div>
       </div>
 
-      <div id="addons" class="feature-block">
-        <h2 class="feature-block-title">Additional Add-ons</h2>
-        <p class="feature-block-desc">U-BSOL has already lot of cool features which comes with the packages as free. Based on our R & D team we are always make updates and additional features for application eaasy usage. We need to provide the best solution for our merchants. Additionally we are happy to create any custom add-ons for your special needs to manage your business in more efficient way.</p>
-        <p class="feature-block-desc">We additionally charge the development cost for making such add-ons. Currently we have few add-ons which are under development are listed below. These can be added in your application by just paying the add-on fee as additional from your selected package. <a href="http://127.0.0.1:8000/additional-addons" style="color:var(--primary);text-decoration:none;">Read More >></a></p>
-      </div>
-
-      <div id="support" class="feature-block">
-        <h2 class="feature-block-title">Support & Maintenance.</h2>
-        <div class="feature-sub-grid">
-          <div class="feature-sub-item"><strong>Hosting</strong>U-BSOL provide fast loading, trustable and reliable hosting in cloud storage for a piece of mind. Our servers are under light speed technology which provide stabilized performance for your application</div>
-          <div class="feature-sub-item"><strong>Storage</strong>We provide scalable hosting space if it's required, in very cost efficient manner. Additionally U-BSOL allows you to have specially dedicated hosting server and services only for your application if its need.</div>
-          <div class="feature-sub-item"><strong>Security</strong>U-BSOL has multiple level firewall protection. We are doing regular software updates and taking application backups. Our highly skilled cyber security professionals are always monitoring the applications.</div>
-          <div class="feature-sub-item"><strong>Regular Updates</strong>Our R & D teams are dedicated for adapting new ideas, technology for improving the business, and security updates as per the market trends. This all updates continually reflect on the application without charging you any additional cost.</div>
-          <div class="feature-sub-item"><strong>Online Support</strong>Our supporting team is always happy to serve you better. Have a question in the middle of the night? Need help during a holiday? With 24/7 online support. You just need to raise a ticket with your question. We will be answer it with immediate effect.</div>
-          <div class="feature-sub-item"><strong>Training & Tutorial</strong>We will provide quality videos and helps documents regarding the entire operation of the application. This is placed on the respective dashboard. Also we will conduct online webinars for informing you about the new updates and upcoming features.</div>
+      <!-- 5. Business promotion -->
+      <div class="feature-row reverse">
+        <div class="feature-image-wrapper">
+          <div class="bg-circle" style="top: -20px; right: -20px;"></div>
+          <img src="https://placehold.co/600x400/fff3ed/ff6600?text=Business+Promotion" alt="Business promotion">
+        </div>
+        <div class="feature-content">
+          <h2 class="feature-title">Business promotion</h2>
+          <p class="feature-text">Business promotion will bring additional customers and increase the revenue. More importantly, these promotions can turn new visitors into loyal customers and repeat buyers. U-BSOL provides wide a range of business promotion ideas will play a large part in this.</p>
+          <p class="feature-text">Hot sale features are very essential for any online business. This is working based on the given date and time which will displayed in the website home page. This will be automatically enabled or disable based on the date and time.</p>
+          <p class="feature-text">You can make seasonal offer based on percentage or flat rate discount for the selected product / service within the selected period. Additionally you can add seasonal promotion banner which will display in the home page and promotion page. This will be automatically enabled or disable based on the date and time.</p>
+          <p class="feature-text">Coupons are very essential for customer retention. U-Bsol provides various types of coupon against the product and users. You can limit the number of usage of the same coupon code. This will help you to run marketing campaign / sales to increase your business volume. Additionally this will help you for bulk customer registration and mobile app downloads with in limited time period..</p>
+          <p class="feature-text">Reviews and ratings are very important for promoting the product. The customers able to make the product review only after completing the order. And the review will be display with the associated product only after the approval from administrator.</p>
         </div>
       </div>
+
+      <!-- 6. Brands & Categories -->
+      <div class="feature-2col-section">
+        <h2 class="feature-2col-title">Brands & Categories</h2>
+        <div class="feature-2col">
+          <div>
+            <p class="feature-text">You can create N number of categories and subcategories & brands based on your selected package. This will help you to showcase your product in more specific way. Category thumbnail can be set separately for website and mobile devices. You can use vector images for better display in mobile applications. Category banner will be displayed in category page. Brands logo will be displayed on the homepage and brands banner will displayed on the brands page.</p>
+          </div>
+          <div class="feature-sub-items">
+            <div class="feature-sub-item"><strong>Featured Categories</strong><span>You set the category as featured to display on the frontend.</span></div>
+            <div class="feature-sub-item"><strong>Category SEO</strong><span>You can simply add your SEO keywords and description which will reflect on internet.</span></div>
+            <div class="feature-sub-item"><strong>Category Links</strong><span>After creating the category a navigation links will be automatically placed on the main menu which can be control the visibility. Also you can set additional category links under other menus as well (footer menu, bottom menu)</span></div>
+            <div class="feature-sub-item"><strong>Category Filter</strong><span>Category can be used as product filer who shows on the side bar of the shop page. The category filter on the sidebar display can be controlled.</span></div>
+            <div class="feature-sub-item"><strong>Brands Filter</strong><span>Brands can be used as product filer who shows on the side bar of the shop or category page. All brands will be consider as product filter as default.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Products -->
+      <div class="feature-2col-section">
+        <h2 class="feature-2col-title">Products</h2>
+        <div class="feature-2col">
+          <div>
+            <p class="feature-text">You can create N number of products based on your selected package. A single product can be allocated with multiple categories and it can be set as featured item or newly arrived items for displaying on home page. Cod options, shipping charge method (Free / Chargeable) can be set based on the single product.</p>
+          </div>
+          <div class="feature-sub-items">
+            <div class="feature-sub-item"><strong>Multiple Variations</strong><span>This will enables to make different variation of the single item based on color and size.</span></div>
+            <div class="feature-sub-item"><strong>Multiple Price</strong><span>This enables to make various pricing option and inventory management for a single product based on product size.</span></div>
+            <div class="feature-sub-item"><strong>Multiple Images</strong><span>Product images are very important for showcasing and presenting in proper manner. This will enable to upload multiple quality images in to a single product.</span></div>
+            <div class="feature-sub-item"><strong>Multiple Categories</strong><span>A single product can be allocated with multiple categories.</span></div>
+            <div class="feature-sub-item"><strong>Inventory Management</strong><span>The inventory will be automatically update based on sales and sales return. This will provide your most sold item list, most likes item list, most viewed item list. And slso it will notify you the shortage of item as per your set the minimum quantity level.</span></div>
+            <div class="feature-sub-item"><strong>Additional fields</strong><span>Providing clear information is the most important than any other features. Its enables you to create the additional input fields and filters to store additional information of your products. This additional field’s data will be filterable and searchable.</span></div>
+            <div class="feature-sub-item"><strong>Delivery Area Management</strong><span>This will enables to restrict the product delivery based on Postal code / Pincode.</span></div>
+            <div class="feature-sub-item"><strong>Additional Shipping charge</strong><span>Additional shipping charge can be added with product which will calculate with actual shipping charge based on your delivery location.</span></div>
+            <div class="feature-sub-item"><strong>Special Tax</strong><span>You can set special tax and values based on the product.</span></div>
+            <div class="feature-sub-item"><strong>Related Product</strong><span>You can set related products by clicks while creating the product.</span></div>
+            <div class="feature-sub-item"><strong>Most Popular Product</strong><span>Based on the clicks on the product, this module will be automatically updated the list.</span></div>
+            <div class="feature-sub-item"><strong>Product SEO</strong><span>You can simply add your SEO keywords and description which will reflect on internet. It’s a part of automated SEO.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Payment Methods -->
+      <div class="feature-row">
+        <div class="feature-image-wrapper">
+          <div class="bg-dots" style="top: -20px; left: -20px;"></div>
+          <img src="https://placehold.co/600x400/fff3ed/ff6600?text=Payment+Methods" alt="Payment Methods">
+        </div>
+        <div class="feature-content">
+          <h2 class="feature-title">Payment Methods</h2>
+          <p class="feature-text">U-BSOL provides various types of payment collection methods in very easy with highly secured manner. Its ensure your customers are happy to buy products through your application .</p>
+          <p class="feature-text">U-BSOL already integrated 5 payment gateways which is (PayTM, PayUmoney,PayPal, RazorPay & Stripe). So that you just need only setup the belling account with any of this payment gateway and insert the credentials into application to start receive payments through online.</p>
+          <p class="feature-text">U-BSOL provides you repay option through same selected payment gateway if any payment failure happens.</p>
+          <p class="feature-text">U-BSOL support cash on delivery methods for your online customer. You can set this option based on you product it self.</p>
+          <p class="feature-text">U-BSOL has shop billing facility for your walking customer. You can simply use this method by enabling the shop billing facility or store pickup method.</p>
+        </div>
+      </div>
+
+      <!-- 9. Checkout & Delivery Methods -->
+      <div class="feature-row reverse">
+        <div class="feature-image-wrapper">
+          <div class="bg-circle" style="bottom: -20px; right: -20px;"></div>
+          <img src="https://placehold.co/600x400/fff3ed/ff6600?text=Delivery" alt="Checkout & Delivery">
+        </div>
+        <div class="feature-content">
+          <h2 class="feature-title">Checkout & Delivery Methods</h2>
+          <p class="feature-text">U-BSOL provides fully control on checkout and delivery operations. You can enable or disable this operation any time as per your needs. Also it enables varies types of checkouts and delivery methods.</p>
+          <p class="feature-text">U-BSOL enables two different types of checkout methods such as regular checkout mainly for the registered customer and Whatsapp checkout for the gust user.</p>
+          <p class="feature-text">U-BSOL provide 3 types of delivery methods for different usage. Pickup from store option and Delivery to the address options are defined for the online customer and Store delivery for your walking customer.</p>
+          <p class="feature-text">U-BSOL enables you to set the minimum order processing time. Based on that user will get notify about the delivery schedule after completing the order. The administrator can change the delivery schedule which will be automatically notified to the customer.</p>
+          <p class="feature-text">U-BSOL send various notifications into the customer / merchant based on the delivery. Such as Delivery schedule confirmation, Product ready for delivery. Product under transit, Product has been delivered. Fake address, etc.</p>
+        </div>
+      </div>
+
+      <!-- 10. Order, Invoice & Credit Note -->
+      <div class="feature-2col-section">
+        <h2 class="feature-2col-title">Order, Invoice & Credit Note</h2>
+        <div class="feature-2col">
+          <div>
+            <p class="feature-text">U-BSOL offer you very user-friendly way for creating the order, invoice, sales return and updating the various status on it. Also it will give very neat print layout as well as PDF format for downloads.</p>
+          </div>
+          <div class="feature-sub-items">
+            <div class="feature-sub-item"><strong>Order Management</strong><span>U-Bsol provides you great controls on customer order with decent notifications. The admistrator can cancel the order with reason which will notify the same customer. There are 3 ways to make an order. Whatsapp order through Whatsapp checkout for your gust user, regular order through online checkout for your online customer, and shop order through admin dashboard for your walking customer.</span></div>
+            <div class="feature-sub-item"><strong>Shop Billing</strong><span>Electronic billing is one of the key parts of the trading business. U-BSOL provides the shop billing facility with proper tax for your walking customer.</span></div>
+            <div class="feature-sub-item"><strong>Order Notification</strong><span>There are different types of predefined notification which are Order created, Order delivery date has been confirmed, Order under process, Order items are under transit, Order delivered, order completed, etc…). Also both customer and administrator can send additional custom message under the same order.</span></div>
+            <div class="feature-sub-item"><strong>Invoices</strong><span>Clean and informative invoices are very important for transparent business, U-BSOL provides very informative invoice with responsive layout and PDF invoice for printing and sharing purpose. The PDF invoice header and footer information can be modified and additional information can be added as per your needs. Also you will be to set special logo for your PDF invoices. The customer will be automatically notified after generating the invoice against the order.</span></div>
+            <div class="feature-sub-item"><strong>Sales Returns & Credit Notes</strong><span>Sales retunes and issuing credit notes for returning products is always needs in eCommerce platforms. U-Bsol provides very flexible useful solution for this. Its allows you to return the product partial quantity or full quantity as per the needs. Based on the returning item the application will generate the credit notes either partial or full credit notes. The returning items can be going into stock or scrap stock.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. Additional Add-ons -->
+      <div class="feature-row">
+        <div class="feature-image-wrapper">
+          <div class="bg-dots" style="bottom: -20px; right: -20px;"></div>
+          <img src="https://placehold.co/600x400/fff3ed/ff6600?text=Add-ons" alt="Additional Add-ons">
+        </div>
+        <div class="feature-content">
+          <h2 class="feature-title">Additional Add-ons</h2>
+          <p class="feature-text">U-BSOL has already lot of cool features which comes with the packages as free. Based on our R & D team we are always make updates and additional features for application eaasy usage. We need to provide the best solution for our merchants. Additionally we are happy to create any custom add-ons for your special needs to manage your business in more efficient way.</p>
+          <p class="feature-text">We additionally charge the development cost for making such add-ons. Currently we have few add-ons which are under development are listed below. These can be added in your application by just paying the add-on fee as additional from your selected package. <a href="http://127.0.0.1:8000/additional-addons" style="color:var(--primary);text-decoration:none;font-weight:600;">Read More >></a></p>
+        </div>
+      </div>
+
+      <!-- 12. Support & Maintenance -->
+      <h2 class="feature-grid-title">Support & Maintenance</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg></div>
+          <h3 class="feature-card-title">Hosting</h3>
+          <p class="feature-card-desc">U-BSOL provide fast loading, trustable and reliable hosting in cloud storage for a piece of mind. Our servers are under light speed technology which provide stabilized performance for your application.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m-8 7v6"/></svg></div>
+          <h3 class="feature-card-title">Storage</h3>
+          <p class="feature-card-desc">We provide scalable hosting space if it's required, in very cost efficient manner. Additionally U-BSOL allows you to have specially dedicated hosting server and services only for your application if its need.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h3 class="feature-card-title">Security</h3>
+          <p class="feature-card-desc">U-BSOL has multiple level firewall protection. We are doing regular software updates and taking application backups. Our highly skilled cyber security professionals are always monitoring the applications.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></div>
+          <h3 class="feature-card-title">Regular Updates</h3>
+          <p class="feature-card-desc">Our R & D teams are dedicated for adapting new ideas, technology for improving the business, and security updates as per the market trends. This all updates continually reflect on the application without charging you any additional cost.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg></div>
+          <h3 class="feature-card-title">Online Support</h3>
+          <p class="feature-card-desc">Our supporting team is always happy to serve you better. Have a question in the middle of the night? Need help during a holiday? With 24/7 online support. You just need to raise a ticket with your question. We will be answer it with immediate effect.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg></div>
+          <h3 class="feature-card-title">Training & Tutorial</h3>
+          <p class="feature-card-desc">We will provide quality videos and helps documents regarding the entire operation of the application. This is placed on the respective dashboard. Also we will conduct online webinars for informing you about the new updates and upcoming features.</p>
+        </div>
+      </div>
+      
     </div>
   </div>
 
