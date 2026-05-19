@@ -25,7 +25,7 @@ function getNavHTML(activePage) {
       <ul class="nav-links">${links}</ul>
       <div class="nav-cta">
         <a href="https://u-bsol.com/login" class="btn-ghost" target="_blank">Sign In</a>
-        <a href="packages.html" class="btn-primary magnetic">Get Started</a>
+        <a href="contact.html" class="btn-primary magnetic">Book a Call</a>
       </div>
       <div class="hamburger" id="hamburger" onclick="toggleMobileNav()">
         <span></span><span></span><span></span>
@@ -37,7 +37,7 @@ function getNavHTML(activePage) {
       ${mobileLinks}
       <div style="margin-top: 24px; display:flex; flex-direction:column; gap:16px;">
         <a href="https://u-bsol.com/login" class="btn-ghost" style="text-align:center;" target="_blank">Sign In</a>
-        <a href="packages.html" class="btn-primary" style="text-align:center;">Get Started</a>
+        <a href="contact.html" class="btn-primary" style="text-align:center;">Book a Call</a>
       </div>
     </div>
   </div>`;
