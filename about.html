@@ -3,46 +3,345 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>U-BSOL | About-us</title>
-  <meta name="description" content="U-BSOL is a cloud based SAS modal business application which contains collection of business operations for various needs." />
+  <title>U-BSOL | About Us — Our Story, Mission & Team</title>
+  <meta name="description" content="Learn about U-BSOL — a Kerala-based IT company founded in 2020 by Shihabudheen Uruniyan, delivering cloud-based SaaS business automation and digitalization solutions." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=3" />
   <style>
-    .mission-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-      margin-bottom: 80px;
+    /* ── PAGE-LEVEL VARS ── */
+    :root {
+      --orange: #ff6600;
+      --orange-dim: rgba(255,102,0,0.1);
+      --glass-border: rgba(255,255,255,0.07);
+      --card-bg: rgba(15,15,18,0.75);
     }
-    .mission-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 20px; padding: 36px; position: relative; overflow: hidden;
+    [data-theme="light"] {
+      --card-bg: rgba(255,255,255,0.85);
+      --glass-border: rgba(0,0,0,0.07);
     }
-    .mission-card::before {
+
+    /* ── HERO ── */
+    .about-hero {
+      min-height: 80vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 140px 24px 80px;
+      position: relative; overflow: hidden;
+    }
+    .about-hero-glow {
+      position: absolute; top: -160px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 600px;
+      background: radial-gradient(circle, rgba(255,102,0,0.18) 0%, transparent 65%);
+      filter: blur(60px); pointer-events: none; z-index: 0;
+    }
+    .about-hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+    .about-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,102,0,0.1); border: 1px solid rgba(255,102,0,0.3);
+      color: var(--orange); font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .12em;
+      padding: 6px 18px; border-radius: 100px; margin-bottom: 28px;
+      animation: fadeInDown 0.6s ease both;
+    }
+    .about-badge-dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; box-shadow: 0 0 8px var(--orange); animation: blink 2s infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .about-hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(42px, 7vw, 80px);
+      font-weight: 800; letter-spacing: -2px;
+      line-height: 1.1; margin-bottom: 28px;
+      animation: fadeInUp 0.7s ease 0.1s both;
+    }
+    .about-hero-title .gradient-text {
+      background: linear-gradient(135deg, #ff6600 0%, #ff9900 50%, #ff4500 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .about-hero-desc {
+      font-size: 18px; color: var(--text-secondary); line-height: 1.9;
+      max-width: 680px; margin: 0 auto 48px;
+      animation: fadeInUp 0.7s ease 0.2s both;
+    }
+    .hero-cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.7s ease 0.3s both; }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      font-size: 12px; color: var(--text-muted); letter-spacing: .1em;
+      text-transform: uppercase; animation: fadeIn 1s ease 1s both;
+    }
+    .scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, var(--orange), transparent); animation: scrollPulse 2s ease infinite; }
+    @keyframes scrollPulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+    /* ── MARQUEE STRIP ── */
+    .marquee-section { overflow: hidden; padding: 28px 0; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); margin-bottom: 0; background: rgba(255,102,0,0.03); }
+    .marquee-track { display: flex; gap: 60px; animation: marqueeScroll 30s linear infinite; width: max-content; }
+    .marquee-item { display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 600; color: var(--text-muted); white-space: nowrap; }
+    .marquee-item svg { color: var(--orange); flex-shrink: 0; }
+    @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── STATS ROW ── */
+    .stats-section { padding: 100px 0; position: relative; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+    .stat-item {
+      padding: 48px 32px; text-align: center; position: relative;
+      background: var(--card-bg); border: 1px solid var(--glass-border);
+      backdrop-filter: blur(20px);
+      transition: all 0.4s ease;
+    }
+    .stat-item:first-child { border-radius: 24px 0 0 24px; }
+    .stat-item:last-child { border-radius: 0 24px 24px 0; }
+    .stat-item:hover { background: rgba(255,102,0,0.06); z-index: 1; transform: scale(1.03); border-color: rgba(255,102,0,0.3); }
+    .stat-num {
+      font-family: 'Space Grotesk', sans-serif; font-size: 60px; font-weight: 800;
+      background: linear-gradient(135deg, #ff6600, #ff9900);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      line-height: 1; margin-bottom: 12px; display: block;
+    }
+    .stat-label { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+    .stat-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── SECTION STYLES ── */
+    .page-section { padding: 100px 0; }
+    .section-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,102,0,0.08); border: 1px solid rgba(255,102,0,0.2);
+      color: var(--orange); font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .12em;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 20px;
+    }
+    .section-pill-dot { width: 5px; height: 5px; background: var(--orange); border-radius: 50%; }
+    .section-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(30px, 4.5vw, 52px);
+      font-weight: 800; letter-spacing: -1px;
+      line-height: 1.15; margin-bottom: 20px;
+    }
+    .section-subtext { font-size: 17px; color: var(--text-secondary); line-height: 1.9; max-width: 640px; }
+
+    /* ── STORY SECTION ── */
+    .story-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .story-image-wrap { position: relative; }
+    .story-main-img {
+      width: 100%; border-radius: 28px; aspect-ratio: 4/3; object-fit: cover;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+    }
+    .story-floating-card {
+      position: absolute; bottom: -24px; left: -24px;
+      background: var(--card-bg); border: 1px solid var(--glass-border);
+      backdrop-filter: blur(20px); border-radius: 20px;
+      padding: 20px 24px; display: flex; align-items: center; gap: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      animation: float 5s ease-in-out infinite;
+    }
+    .story-floating-card2 {
+      position: absolute; top: -20px; right: -20px;
+      background: linear-gradient(135deg, rgba(255,102,0,0.12), rgba(255,69,0,0.08));
+      border: 1px solid rgba(255,102,0,0.25);
+      backdrop-filter: blur(20px); border-radius: 16px;
+      padding: 16px 20px; text-align: center;
+      animation: float 5s ease-in-out infinite 2.5s;
+    }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    .story-icon-box {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--orange), #ff4500);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; flex-shrink: 0;
+      box-shadow: 0 10px 20px rgba(255,102,0,0.35);
+    }
+    .story-card-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 2px; }
+    .story-card-value { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: var(--text-primary); }
+    .story-content {}
+    .story-text { font-size: 16px; color: var(--text-secondary); line-height: 1.9; margin-bottom: 20px; }
+    .story-highlight {
+      background: rgba(255,102,0,0.06); border-left: 3px solid var(--orange);
+      border-radius: 0 16px 16px 0; padding: 20px 24px;
+      font-size: 15px; color: var(--text-secondary); line-height: 1.8;
+      margin: 28px 0; font-style: italic;
+    }
+    .story-highlight strong { color: var(--text-primary); font-style: normal; }
+
+    /* ── TIMELINE ── */
+    .timeline-section { padding: 100px 0; position: relative; }
+    .timeline-inner { position: relative; padding-left: 40px; }
+    .timeline-line {
+      position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, var(--orange), rgba(255,102,0,0.2));
+    }
+    .timeline-item { position: relative; padding-bottom: 64px; padding-left: 48px; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot {
+      position: absolute; left: -7px; top: 8px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--orange); box-shadow: 0 0 0 4px rgba(255,102,0,0.2), 0 0 20px rgba(255,102,0,0.4);
+      transition: transform 0.3s;
+    }
+    .timeline-item:hover .timeline-dot { transform: scale(1.4); }
+    .timeline-year {
+      font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700;
+      color: var(--orange); text-transform: uppercase; letter-spacing: .1em;
+      margin-bottom: 8px;
+    }
+    .timeline-title { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; }
+    .timeline-text { font-size: 15px; color: var(--text-secondary); line-height: 1.8; max-width: 580px; }
+
+    /* ── MISSION / VISION ── */
+    .mv-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+    .mv-card {
+      background: var(--card-bg); border: 1px solid var(--glass-border);
+      border-radius: 28px; padding: 44px 36px;
+      backdrop-filter: blur(20px); position: relative; overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .mv-card::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
+      background: linear-gradient(90deg, var(--orange), #ff4500);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
     }
-    .mission-card-icon { font-size: 36px; margin-bottom: 16px; display: block; }
-    .mission-card-title { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 12px; }
-    .mission-card-text { font-size: 15px; color: var(--text-secondary); line-height: 1.8; }
-
-    .story-wrap { display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 80px; }
-    .story-text { font-size: 16px; color: var(--text-secondary); line-height: 1.9; }
-    .story-text p { margin-bottom: 20px; }
-
-    .stats-row {
-      display: grid; grid-template-columns: 1fr; gap: 24px;
-      margin: 60px 0; max-width: 600px; margin-left: auto; margin-right: auto;
+    .mv-card:hover { transform: translateY(-10px); border-color: rgba(255,102,0,0.3); box-shadow: 0 30px 60px rgba(0,0,0,0.25); }
+    .mv-card:hover::before { transform: scaleX(1); }
+    .mv-card-glow {
+      position: absolute; bottom: -80px; right: -80px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(255,102,0,0.1) 0%, transparent 70%);
+      border-radius: 50%; pointer-events: none;
     }
-    .stat-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 36px; text-align: center;
-      transition: var(--transition);
-    }
-    .stat-card:hover { border-color: rgba(99,102,241,0.4); transform: translateY(-4px); }
-    .stat-card-num { font-family: 'Space Grotesk', sans-serif; font-size: 48px; font-weight: 700; background: linear-gradient(135deg, var(--primary-light), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .stat-card-label { font-size: 18px; font-weight: 600; color: var(--text-primary); margin-top: 8px; margin-bottom: 16px; }
-    .stat-card-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+    .mv-icon { font-size: 44px; margin-bottom: 20px; display: block; }
+    .mv-card-title { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; margin-bottom: 16px; color: var(--text-primary); }
+    .mv-card-text { font-size: 15px; color: var(--text-secondary); line-height: 1.85; }
 
+    /* ── VALUES ── */
+    .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .value-card {
+      background: var(--card-bg); border: 1px solid var(--glass-border);
+      border-radius: 20px; padding: 32px 24px; text-align: center;
+      backdrop-filter: blur(20px); transition: all 0.4s ease;
+      cursor: default;
+    }
+    .value-card:hover { transform: translateY(-8px) scale(1.03); border-color: rgba(255,102,0,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+    .value-emoji { font-size: 36px; display: block; margin-bottom: 16px; }
+    .value-name { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; color: var(--text-primary); margin-bottom: 10px; }
+    .value-desc { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── TEAM ── */
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .team-card {
+      background: var(--card-bg); border: 1px solid var(--glass-border);
+      border-radius: 24px; padding: 36px 24px; text-align: center;
+      backdrop-filter: blur(20px); position: relative; overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .team-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(255,102,0,0.08) 0%, transparent 70%);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .team-card:hover { transform: translateY(-12px); border-color: rgba(255,102,0,0.3); box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+    .team-card:hover::after { opacity: 1; }
+    .team-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary, #ff6600), var(--accent2, #ff4500));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; color: #fff;
+      margin: 0 auto 20px;
+      box-shadow: 0 10px 30px rgba(255,102,0,0.3);
+      position: relative; z-index: 1;
+    }
+    .team-avatar-ring {
+      position: absolute; inset: -4px; border-radius: 50%;
+      border: 2px solid transparent;
+      background: linear-gradient(135deg, var(--orange), transparent) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out; mask-composite: exclude;
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .team-card:hover .team-avatar-ring { opacity: 1; }
+    .team-name { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; position: relative; z-index: 1; }
+    .team-role { font-size: 12px; color: var(--orange); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 14px; position: relative; z-index: 1; }
+    .team-quote { font-size: 13px; color: var(--text-muted); line-height: 1.7; font-style: italic; position: relative; z-index: 1; }
+    .team-quote::before { content: '"'; color: var(--orange); font-size: 18px; font-style: normal; }
+    .team-quote::after { content: '"'; color: var(--orange); font-size: 18px; font-style: normal; }
+
+    /* Founder card — spans 2 cols */
+    .team-founder {
+      grid-column: span 2;
+      background: linear-gradient(135deg, rgba(255,102,0,0.08) 0%, rgba(255,69,0,0.04) 100%);
+      border-color: rgba(255,102,0,0.2);
+    }
+    .team-founder .team-avatar { width: 100px; height: 100px; font-size: 30px; }
+    .team-founder .team-name { font-size: 22px; }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      margin: 80px 0; border-radius: 32px; padding: 80px;
+      background: linear-gradient(135deg, rgba(255,102,0,0.12) 0%, rgba(255,69,0,0.06) 50%, rgba(0,0,0,0) 100%);
+      border: 1px solid rgba(255,102,0,0.2);
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: ''; position: absolute; top: -100px; right: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,102,0,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-banner::after {
+      content: ''; position: absolute; bottom: -80px; left: -80px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(255,69,0,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-banner-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px, 4vw, 44px); font-weight: 800; margin-bottom: 16px; position: relative; z-index: 1; }
+    .cta-banner-desc { font-size: 17px; color: var(--text-secondary); line-height: 1.8; max-width: 560px; margin: 0 auto 40px; position: relative; z-index: 1; }
+    .cta-banner-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+
+    /* ── REVEAL ANIMATIONS ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal-left.visible { opacity: 1; transform: none; }
+    .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal-right.visible { opacity: 1; transform: none; }
+    .delay-1 { transition-delay: .1s; } .delay-2 { transition-delay: .2s; }
+    .delay-3 { transition-delay: .3s; } .delay-4 { transition-delay: .4s; }
+    .delay-5 { transition-delay: .5s; } .delay-6 { transition-delay: .6s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:first-child, .stat-item:last-child { border-radius: 0; }
+      .stat-item:nth-child(1) { border-radius: 24px 0 0 0; }
+      .stat-item:nth-child(2) { border-radius: 0 24px 0 0; }
+      .stat-item:nth-child(3) { border-radius: 0 0 0 24px; }
+      .stat-item:nth-child(4) { border-radius: 0 0 24px 0; }
+      .mv-grid { grid-template-columns: 1fr 1fr; }
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .team-founder { grid-column: span 2; }
+    }
+    @media (max-width: 900px) {
+      .story-layout { grid-template-columns: 1fr; gap: 60px; }
+      .story-floating-card { left: 16px; bottom: -16px; }
+      .story-floating-card2 { display: none; }
+    }
     @media (max-width: 768px) {
-      .mission-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .mv-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .team-founder { grid-column: span 2; }
+      .cta-banner { padding: 48px 24px; }
+      .about-hero { min-height: 60vh; }
+    }
+    @media (max-width: 500px) {
+      .team-grid { grid-template-columns: 1fr; }
+      .team-founder { grid-column: span 1; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -51,108 +350,362 @@
   <div class="ambient-glow"></div>
   <div id="nav-container"></div>
 
-  <div class="page-wrapper">
-    <div class="page-hero">
-      <h1 class="page-hero-title">About-us</h1>
-      <p class="page-hero-desc">U-BSOL is a cloud based SAS modal business application which contains collection of business operations for various needs. We have gathered most frequently using all business operation and align into different business domains such as Trading, Hospitality and Services</p>
+  <!-- ═══ HERO ═══ -->
+  <section class="about-hero">
+    <div class="about-hero-glow"></div>
+    <div class="about-hero-content">
+      <div class="about-badge"><span class="about-badge-dot"></span>About U-BSOL</div>
+      <h1 class="about-hero-title">
+        Empowering Businesses<br/>
+        with <span class="gradient-text">Smart Technology</span>
+      </h1>
+      <p class="about-hero-desc">
+        We are a passionate team of IT professionals from Kerala, India, building cloud-based SaaS solutions that help small and medium businesses grow, automate, and thrive in the digital age.
+      </p>
+      <div class="hero-cta-row">
+        <a href="packages.html" class="btn-primary">Explore Packages</a>
+        <a href="contact.html" class="btn-outline-large">Talk to Us</a>
+      </div>
     </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </section>
 
-    <div class="section">
-
-      <!-- Who Are We -->
-      <div class="section-header">
-        <h2 class="section-title">Who Are We?</h2>
-        <div class="section-tag" style="margin-top:8px;">U-BSOL - Your Business Solution Partner</div>
-      </div>
-      <div class="story-wrap" style="margin-bottom: 40px;">
-        <div class="story-text">
-          <p>U-BSOL is an Indian information technology company that delivers complete solution for business automation and digitalization for any level of business. U-BSOL was founded by Shihabudheen Uruniyan in 2020 for implementing the innovative ideas for the business automation by the help of modern information technology. U-BSOL is a collection of applications for various needs which contain Billing software, Mobile applications, Web applications, Tracking applications, Market place, etc.</p>
-          <p>We provide a comprehensive platform that provides widespread digital solutions to all business ventures seeking for digital transformation into the modern World. We never compromise on the technology, performance and quality of our application. We will frequently add many services and features in upcoming releases. Our primary aim is to provide a complete features rich solution into public and help them to grow their business with every affordable price.</p>
-        </div>
-      </div>
-
-      <!-- Our Story -->
-      <div class="section-header">
-        <h2 class="section-title">Our Story</h2>
-      </div>
-      <div class="story-wrap">
-        <div class="story-text">
-          <p>We are a group of technical professionals who started work together from 2011 till present. We have successfully completed lot of domestic and international IT projects in various aspects. We have contributed in major part of several IT projects. Such as System analysis, Designing and development, Deployment and Server management etc. From beginning of 2015 we have witnessed the e-commerce business sector has been marginally boomed. Then we focus mainly e-commerce projects. We have developed several e-commerce projects with several technologies including open source platforms.</p>
-          <p>Our customers where always looking for advanced features and services which is not economical for them. It was really challenging us to provide best service for our customer within their budget. So that we have decided to build our own platform to fulfill their needs which is named as U-BSOL.</p>
-        </div>
-      </div>
-
-      <!-- Mission & Vision -->
-      <div class="section-header">
-        <h2 class="section-title">Mission & Vision</h2>
-      </div>
-      <div class="mission-grid">
-        <div class="mission-card">
-          <span class="mission-card-icon">🎯</span>
-          <h3 class="mission-card-title">Mission</h3>
-          <p class="mission-card-text">Provide the best IT solution for any small / medium businesses owners to help them for their business growth and success by innovative ideas and modern technology wthin very limited budjet. Open the wide range of online business possibility for our merchants. Provide very easy and attractive online shopping experience for their customer.</p>
-        </div>
-        <div class="mission-card">
-          <span class="mission-card-icon">🔭</span>
-          <h3 class="mission-card-title">Vision</h3>
-          <p class="mission-card-text">U-BSOL vision is to provide a wonderful and user-friendly business solution to make everyone life easier. Also Either merchant or customer, provides very easy solution for reaching to their needs through fingertips from anywhere sitting in the world. Open wide range of business possibilities and help them to use their maximum potential in proper manner.</p>
-        </div>
-      </div>
-      <p style="text-align: center; color: var(--text-secondary); font-size: 15px; margin-bottom: 60px;">Our core values are belongs to many other factors, such as customer relationship, loyalty, teamwork, innovative ideas, humanity and ethics, trust and responsibility, simplicity and creativity, passion etc.</p>
-
-      <!-- Stats -->
-      <div class="stats-row">
-        <div class="stat-card">
-          <div class="stat-card-num">700+</div>
-          <div class="stat-card-label">Satisfied Customers</div>
-          <div class="stat-card-desc">Our team is our strength. We are a group of professionals that having worked experience from 1 year till 20+ years. Our members are very experienced in online business solutions as they developed many international online projects in the past. We are a family and respect each other’s potentials and efforts. We are working together with passion for great success .</div>
-        </div>
-      </div>
-
-      <!-- Team -->
-      <div class="team-grid">
-        <div class="team-card">
-          <div class="team-avatar">SU</div>
-          <div class="team-name">Shihabudheen Uruniyan</div>
-          <div class="team-quote">"Focus on your aim and try it hard until you chase it down"</div>
-        </div>
-        <div class="team-card">
-          <div class="team-avatar">BA</div>
-          <div class="team-name">Bushra Amyan</div>
-          <div class="team-quote">"Push yourself, because no one else if going to do it for you."</div>
-        </div>
-        <div class="team-card">
-          <div class="team-avatar">SR</div>
-          <div class="team-name">Shalaba Rajersh</div>
-          <div class="team-quote">"Quality is never an accident, it is the result of intelligent efforts"</div>
-        </div>
-        <div class="team-card">
-          <div class="team-avatar">MK</div>
-          <div class="team-name">Manu Krishna</div>
-          <div class="team-quote">"Understand the needs before you start the process"</div>
-        </div>
-        <div class="team-card">
-          <div class="team-avatar">JT</div>
-          <div class="team-name">Jayadevan TVN</div>
-          <div class="team-quote">"Team works is the heart of any big achievements"</div>
-        </div>
-        <div class="team-card">
-          <div class="team-avatar">MS</div>
-          <div class="team-name">Mohammed Shibili</div>
-          <div class="team-quote">"Coding is not about what you learn, it is about how you think"</div>
-        </div>
-        <div class="team-card">
-          <div class="team-avatar">SS</div>
-          <div class="team-name">Sahal Shihabudheen</div>
-          <div class="team-quote">"The beauty of the creativity is hide the source"</div>
-        </div>
-      </div>
-
+  <!-- ═══ MARQUEE ═══ -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <!-- first set -->
+      <div class="marquee-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.26 12 19.79 19.79 0 0 1 1.19 3.33 2 2 0 0 1 3.17 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>700+ Satisfied Customers</div>
+      <div class="marquee-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Cloud-Based SaaS Platform</div>
+      <div class="marquee-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>Web & Mobile Applications</div>
+      <div class="marquee-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Bank-Grade Security</div>
+      <div class="marquee-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Expert Team Since 2011</div>
+      <div class="marquee-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>24/7 Support</div>
+      <div class="marquee-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Kerala, India — Global Reach</div>
+      <div class="marquee-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Founded 2020</div>
+      <!-- duplicate for seamless loop -->
+      <div class="marquee-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.26 12 19.79 19.79 0 0 1 1.19 3.33 2 2 0 0 1 3.17 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>700+ Satisfied Customers</div>
+      <div class="marquee-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Cloud-Based SaaS Platform</div>
+      <div class="marquee-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>Web & Mobile Applications</div>
+      <div class="marquee-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Bank-Grade Security</div>
+      <div class="marquee-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Expert Team Since 2011</div>
+      <div class="marquee-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>24/7 Support</div>
+      <div class="marquee-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Kerala, India — Global Reach</div>
+      <div class="marquee-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Founded 2020</div>
     </div>
   </div>
 
+  <!-- ═══ STATS ═══ -->
+  <div class="container">
+    <section class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <span class="stat-num" data-target="700">0</span><span class="stat-num" style="font-size:40px;">+</span>
+          <div class="stat-label">Satisfied Customers</div>
+          <div class="stat-desc">Businesses thriving on our platform across India and beyond.</div>
+        </div>
+        <div class="stat-item reveal delay-1">
+          <span class="stat-num" data-target="15">0</span><span class="stat-num" style="font-size:40px;">+</span>
+          <div class="stat-label">Years Combined Exp.</div>
+          <div class="stat-desc">Our team has been building software since 2011, delivering results.</div>
+        </div>
+        <div class="stat-item reveal delay-2">
+          <span class="stat-num" data-target="4">0</span>
+          <div class="stat-label">Business Domains</div>
+          <div class="stat-desc">Trading, Hospitality, Services & E-Commerce — all covered.</div>
+        </div>
+        <div class="stat-item reveal delay-3">
+          <span class="stat-num" data-target="100">0</span><span class="stat-num" style="font-size:40px;">%</span>
+          <div class="stat-label">Brand Ownership</div>
+          <div class="stat-desc">Your brand, your domain, your identity — we just power it.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ OUR STORY ═══ -->
+    <section class="page-section">
+      <div class="story-layout">
+        <div class="story-image-wrap reveal-left">
+          <img
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80"
+            alt="U-BSOL Team Working"
+            class="story-main-img"
+          />
+          <div class="story-floating-card">
+            <div class="story-icon-box">🚀</div>
+            <div>
+              <div class="story-card-label">Founded</div>
+              <div class="story-card-value">2020</div>
+            </div>
+          </div>
+          <div class="story-floating-card2">
+            <div style="font-size:28px; margin-bottom:4px;">🌍</div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:700; color:var(--text-primary);">Kerala, India</div>
+            <div style="font-size:11px; color:var(--orange);">Global Vision</div>
+          </div>
+        </div>
+        <div class="story-content reveal-right">
+          <div class="section-pill"><span class="section-pill-dot"></span>Our Story</div>
+          <h2 class="section-heading">Built by Developers,<br/>For Business Owners</h2>
+          <p class="story-text">
+            U-BSOL is an Indian information technology company that delivers complete solutions for business automation and digitalization at any level. Founded in 2020 by <strong style="color:var(--text-primary);">Shihabudheen Uruniyan</strong>, the company was born from a simple but powerful idea — every small business deserves enterprise-grade digital tools.
+          </p>
+          <div class="story-highlight">
+            <strong>We are a group of technical professionals</strong> who have worked together since 2011, successfully completing numerous domestic and international IT projects across system analysis, design and development, deployment and server management.
+          </div>
+          <p class="story-text">
+            When we saw our customers always seeking advanced features beyond their budget, we took action. Instead of compromising, we built our own platform — one that delivers every feature at a price any business can afford.
+          </p>
+          <a href="features.html" class="btn-primary" style="margin-top: 8px; display: inline-flex; align-items: center; gap: 8px;">
+            Explore Features
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ TIMELINE ═══ -->
+    <section class="timeline-section">
+      <div style="text-align:center; margin-bottom: 60px;" class="reveal">
+        <div class="section-pill"><span class="section-pill-dot"></span>Our Journey</div>
+        <h2 class="section-heading">Milestones That<br/>Define Us</h2>
+      </div>
+      <div class="timeline-inner">
+        <div class="timeline-line"></div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2011 — The Beginning</div>
+          <div class="timeline-title">Team Formation</div>
+          <p class="timeline-text">A dedicated group of IT professionals began working together, building expertise across system analysis, design, development, and deployment through dozens of challenging international projects.</p>
+        </div>
+
+        <div class="timeline-item reveal delay-1">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2015 — Pivoting to E-Commerce</div>
+          <div class="timeline-title">Witnessing the E-Commerce Boom</div>
+          <p class="timeline-text">The team shifted focus to the rapidly growing e-commerce sector, developing multiple projects using various technologies including open-source platforms, building deep domain expertise.</p>
+        </div>
+
+        <div class="timeline-item reveal delay-2">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2020 — Foundation</div>
+          <div class="timeline-title">U-BSOL Is Born</div>
+          <p class="timeline-text">Frustrated by the gap between what customers needed and what they could afford, Shihabudheen Uruniyan officially founded U-BSOL — a one-stop SaaS platform for business automation.</p>
+        </div>
+
+        <div class="timeline-item reveal delay-3">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2021–2023 — Growth</div>
+          <div class="timeline-title">Platform Expansion</div>
+          <p class="timeline-text">Rapid product development saw the addition of mobile apps, billing POS systems, booking platforms, tracking apps, and multiple payment gateway integrations serving hundreds of businesses.</p>
+        </div>
+
+        <div class="timeline-item reveal delay-4">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2024–2026 — Today</div>
+          <div class="timeline-title">700+ Customers & Growing</div>
+          <p class="timeline-text">U-BSOL now serves 700+ satisfied customers across India with an ever-growing suite of features, dedicated mobile apps, and a commitment to continuous innovation and support.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ MISSION & VISION ═══ -->
+    <section class="page-section">
+      <div style="text-align:center; margin-bottom: 60px;" class="reveal">
+        <div class="section-pill"><span class="section-pill-dot"></span>What Drives Us</div>
+        <h2 class="section-heading">Mission, Vision<br/>& Philosophy</h2>
+      </div>
+      <div class="mv-grid">
+        <div class="mv-card reveal delay-1">
+          <div class="mv-card-glow"></div>
+          <span class="mv-icon">🎯</span>
+          <h3 class="mv-card-title">Mission</h3>
+          <p class="mv-card-text">Provide the best IT solution for any small/medium businesses to help them grow with innovative ideas and modern technology within a very limited budget. Open wide-range online business possibilities and deliver an easy, attractive shopping experience for their customers.</p>
+        </div>
+        <div class="mv-card reveal delay-2">
+          <div class="mv-card-glow"></div>
+          <span class="mv-icon">🔭</span>
+          <h3 class="mv-card-title">Vision</h3>
+          <p class="mv-card-text">To provide a wonderful, user-friendly business solution that makes everyone's life easier — connecting merchants and customers through fingertips from anywhere in the world. Opening wide business possibilities and helping everyone use their maximum potential.</p>
+        </div>
+        <div class="mv-card reveal delay-3">
+          <div class="mv-card-glow"></div>
+          <span class="mv-icon">💡</span>
+          <h3 class="mv-card-title">Philosophy</h3>
+          <p class="mv-card-text">We never compromise on technology, performance, or quality. We believe great software should be accessible to every business, not just large corporations. Our platform is built with passion, precision, and a relentless pursuit of excellence.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CORE VALUES ═══ -->
+    <section class="page-section" style="padding-top:0;">
+      <div style="text-align:center; margin-bottom: 56px;" class="reveal">
+        <div class="section-pill"><span class="section-pill-dot"></span>Core Values</div>
+        <h2 class="section-heading">The Principles<br/>Behind Every Decision</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal delay-1">
+          <span class="value-emoji">🤝</span>
+          <div class="value-name">Customer First</div>
+          <div class="value-desc">Every feature we build starts with the question: how does this help our customer succeed?</div>
+        </div>
+        <div class="value-card reveal delay-2">
+          <span class="value-emoji">💎</span>
+          <div class="value-name">Quality Always</div>
+          <div class="value-desc">Quality is never an accident — it is the result of intelligent effort and relentless attention to detail.</div>
+        </div>
+        <div class="value-card reveal delay-3">
+          <span class="value-emoji">🔥</span>
+          <div class="value-name">Passion</div>
+          <div class="value-desc">We are driven by a deep passion for technology and the joy of seeing businesses grow because of what we build.</div>
+        </div>
+        <div class="value-card reveal delay-4">
+          <span class="value-emoji">🛡️</span>
+          <div class="value-name">Trust & Integrity</div>
+          <div class="value-desc">We earn trust through transparency, reliability, and consistently delivering on every promise we make.</div>
+        </div>
+        <div class="value-card reveal delay-1">
+          <span class="value-emoji">🌱</span>
+          <div class="value-name">Continuous Growth</div>
+          <div class="value-desc">We constantly learn, iterate, and improve — both our platform and ourselves — to stay ahead of market needs.</div>
+        </div>
+        <div class="value-card reveal delay-2">
+          <span class="value-emoji">🎨</span>
+          <div class="value-name">Creativity</div>
+          <div class="value-desc">The beauty of creativity is in how it hides its complexity. We make powerful things feel simple and beautiful.</div>
+        </div>
+        <div class="value-card reveal delay-3">
+          <span class="value-emoji">🤜🤛</span>
+          <div class="value-name">Teamwork</div>
+          <div class="value-desc">Team work is the heart of any big achievement. We succeed together, sharing knowledge and supporting each other.</div>
+        </div>
+        <div class="value-card reveal delay-4">
+          <span class="value-emoji">🌍</span>
+          <div class="value-name">Humanity</div>
+          <div class="value-desc">Beyond business, we care about people — our team, our customers, and the communities we are part of.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ TEAM ═══ -->
+    <section class="page-section" style="padding-top:0;">
+      <div style="text-align:center; margin-bottom: 56px;" class="reveal">
+        <div class="section-pill"><span class="section-pill-dot"></span>Our Team</div>
+        <h2 class="section-heading">The People Who<br/>Make It Happen</h2>
+        <p class="section-subtext" style="margin: 0 auto; text-align: center;">We are a family of passionate professionals, each bringing unique expertise and dedication to help your business grow.</p>
+      </div>
+      <div class="team-grid">
+
+        <!-- Founder — wide card -->
+        <div class="team-card team-founder reveal delay-1">
+          <div class="team-avatar" style="position:relative; margin: 0 auto 20px;">
+            SU
+            <div class="team-avatar-ring"></div>
+          </div>
+          <div class="team-name">Shihabudheen Uruniyan</div>
+          <div class="team-role">Founder & CEO</div>
+          <div class="team-quote" style="font-size:14px; max-width:380px; margin: 0 auto;">Focus on your aim and try it hard until you chase it down</div>
+          <div style="display:flex; gap:12px; justify-content:center; margin-top:20px; flex-wrap:wrap;">
+            <span style="background:rgba(255,102,0,0.1); border:1px solid rgba(255,102,0,0.2); color:var(--orange); padding:4px 14px; border-radius:100px; font-size:12px; font-weight:600;">Founder</span>
+            <span style="background:rgba(255,102,0,0.1); border:1px solid rgba(255,102,0,0.2); color:var(--orange); padding:4px 14px; border-radius:100px; font-size:12px; font-weight:600;">Visionary</span>
+            <span style="background:rgba(255,102,0,0.1); border:1px solid rgba(255,102,0,0.2); color:var(--orange); padding:4px 14px; border-radius:100px; font-size:12px; font-weight:600;">Tech Leader</span>
+          </div>
+        </div>
+
+        <div class="team-card reveal delay-2">
+          <div class="team-avatar" style="position:relative; margin: 0 auto 20px;">BA<div class="team-avatar-ring"></div></div>
+          <div class="team-name">Bushra Amyan</div>
+          <div class="team-role">Operations</div>
+          <div class="team-quote">Push yourself, because no one else is going to do it for you.</div>
+        </div>
+
+        <div class="team-card reveal delay-3">
+          <div class="team-avatar" style="position:relative; margin: 0 auto 20px; background: linear-gradient(135deg, #6366f1, #8b5cf6);">SR<div class="team-avatar-ring"></div></div>
+          <div class="team-name">Shalaba Rajersh</div>
+          <div class="team-role">Quality Assurance</div>
+          <div class="team-quote">Quality is never an accident — it is the result of intelligent efforts.</div>
+        </div>
+
+        <div class="team-card reveal delay-1">
+          <div class="team-avatar" style="position:relative; margin: 0 auto 20px; background: linear-gradient(135deg, #10b981, #059669);">MK<div class="team-avatar-ring"></div></div>
+          <div class="team-name">Manu Krishna</div>
+          <div class="team-role">Product Manager</div>
+          <div class="team-quote">Understand the needs before you start the process.</div>
+        </div>
+
+        <div class="team-card reveal delay-2">
+          <div class="team-avatar" style="position:relative; margin: 0 auto 20px; background: linear-gradient(135deg, #f59e0b, #d97706);">JT<div class="team-avatar-ring"></div></div>
+          <div class="team-name">Jayadevan TVN</div>
+          <div class="team-role">Backend Engineer</div>
+          <div class="team-quote">Team work is the heart of any big achievement.</div>
+        </div>
+
+        <div class="team-card reveal delay-3">
+          <div class="team-avatar" style="position:relative; margin: 0 auto 20px; background: linear-gradient(135deg, #ec4899, #be185d);">MS<div class="team-avatar-ring"></div></div>
+          <div class="team-name">Mohammed Shibili</div>
+          <div class="team-role">Frontend Developer</div>
+          <div class="team-quote">Coding is not about what you learn, it is about how you think.</div>
+        </div>
+
+        <div class="team-card reveal delay-4">
+          <div class="team-avatar" style="position:relative; margin: 0 auto 20px; background: linear-gradient(135deg, #06b6d4, #0891b2);">SS<div class="team-avatar-ring"></div></div>
+          <div class="team-name">Sahal Shihabudheen</div>
+          <div class="team-role">UI/UX Engineer</div>
+          <div class="team-quote">The beauty of creativity is hide the source.</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <div class="cta-banner reveal">
+      <h2 class="cta-banner-title">Ready to Transform<br/><span style="background:linear-gradient(135deg,#ff6600,#ff9900);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Your Business?</span></h2>
+      <p class="cta-banner-desc">Join 700+ businesses already growing with U-BSOL. Pick a package and get started today — no technical knowledge required.</p>
+      <div class="cta-banner-btns">
+        <a href="packages.html" class="btn-primary" style="padding: 14px 36px; font-size: 16px;">View Packages</a>
+        <a href="contact.html" class="btn-outline-large">Book a Free Demo</a>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+
   <div id="footer-container"></div>
+
   <script src="components.js?v=3"></script>
-  <script>injectComponents('about');</script>
+  <script>
+    injectComponents('about');
+
+    // Reveal on scroll
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => revealObs.observe(el));
+
+    // Counter animation
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.target);
+      const duration = 2000;
+      const step = target / (duration / 16);
+      let current = 0;
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = Math.floor(current);
+        if (current >= target) clearInterval(timer);
+      }, 16);
+    }
+    const statObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('[data-target]').forEach(animateCounter);
+          statObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.stats-grid').forEach(el => statObs.observe(el));
+  </script>
 </body>
 </html>

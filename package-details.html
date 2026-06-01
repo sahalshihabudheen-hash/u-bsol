@@ -4,195 +4,686 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>U-BSOL | Package Details</title>
+  <meta name="description" content="Explore the full details, features, and pricing of U-BSOL's business packages — crafted for every stage of your business growth." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=3" />
   <style>
-    .pkg-container { max-width: 1200px; margin: 120px auto 60px; padding: 0 24px; }
-    .breadcrumbs { font-size: 14px; color: var(--text-muted); margin-bottom: 40px; display: flex; gap: 8px; align-items: center; }
-    .breadcrumbs a { color: var(--text-secondary); text-decoration: none; transition: var(--transition); }
-    .breadcrumbs a:hover { color: var(--primary); }
-    .breadcrumbs span { color: var(--primary); font-weight: 600; }
-    
-    .pkg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-    
-    .pkg-gallery { display: flex; flex-direction: column; gap: 16px; }
-    .pkg-main-img-wrapper { 
-      background: var(--bg-card); border-radius: 20px; padding: 40px; display: flex; align-items: center; justify-content: center;
-      border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative; height: 500px;
+    :root {
+      --orange: #ff6600;
+      --orange-dim: rgba(255,102,0,0.1);
+      --glass-border: rgba(255,255,255,0.07);
+      --card-bg: rgba(15,15,18,0.8);
     }
-    .pkg-main-img { width: 100%; max-width: 400px; height: 100%; object-fit: contain; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.2)); transition: transform 0.3s ease; }
-    
-    .pkg-thumbnails { display: flex; gap: 16px; }
-    .pkg-thumb { 
-      width: 80px; height: 80px; background: var(--bg-card); border: 2px solid transparent; border-radius: 12px;
-      padding: 10px; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center;
+    [data-theme="light"] {
+      --card-bg: rgba(255,255,255,0.9);
+      --glass-border: rgba(0,0,0,0.07);
     }
-    .pkg-thumb:hover, .pkg-thumb.active { border-color: var(--primary); }
-    .pkg-thumb img { width: 100%; height: 100%; object-fit: contain; }
-    
-    .pkg-info { display: flex; flex-direction: column; gap: 24px; }
-    .pkg-title { font-family: 'Space Grotesk', sans-serif; font-size: 40px; font-weight: 700; color: var(--text-primary); text-transform: capitalize; margin-bottom: 16px; }
-    .pkg-desc { font-size: 16px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 12px; }
-    
-    .pkg-options { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
-    .pkg-label { font-size: 14px; font-weight: 600; color: var(--text-primary); }
-    .pkg-select { 
-      padding: 12px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px;
-      color: var(--text-primary); font-size: 15px; outline: none; max-width: 250px; cursor: pointer;
-      appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23999%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
-      background-repeat: no-repeat; background-position: right 16px top 50%; background-size: 12px auto;
+
+    /* ── BREADCRUMBS ── */
+    .breadcrumbs {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--text-muted);
+      padding: 100px 0 0;
     }
-    .pkg-select:focus { border-color: var(--primary); }
-    
-    .pkg-price-row { display: flex; align-items: baseline; gap: 12px; margin: 32px 0 16px; }
-    .pkg-price { font-size: 42px; font-weight: 700; color: var(--primary); }
-    .pkg-period { font-size: 16px; color: var(--text-secondary); }
-    
-    @media (max-width: 991px) {
-      .pkg-grid { grid-template-columns: 1fr; gap: 40px; }
-      .pkg-main-img-wrapper { height: 350px; }
+    .breadcrumbs a { color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+    .breadcrumbs a:hover { color: var(--orange); }
+    .breadcrumbs .bc-sep { color: rgba(255,255,255,0.2); }
+    .breadcrumbs .bc-current { color: var(--orange); font-weight: 600; }
+
+    /* ── PRODUCT LAYOUT ── */
+    .pkg-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: start;
+      padding: 40px 0 80px;
     }
+
+    /* ── GALLERY ── */
+    .gallery-wrap { position: sticky; top: 100px; }
+    .gallery-main {
+      background: var(--card-bg); border: 1px solid var(--glass-border);
+      border-radius: 28px; padding: 48px; display: flex;
+      align-items: center; justify-content: center;
+      min-height: 460px; position: relative; overflow: hidden;
+      backdrop-filter: blur(20px);
+      transition: border-color 0.4s;
+    }
+    .gallery-main:hover { border-color: rgba(255,102,0,0.3); }
+    .gallery-main-glow {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(255,102,0,0.2) 0%, transparent 70%);
+      filter: blur(30px); pointer-events: none;
+    }
+    .gallery-main-icon { font-size: 140px; position: relative; z-index: 1; text-align: center; line-height: 1; }
+    .gallery-main-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 20px 24px;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+      font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700;
+      color: #fff; text-align: center; letter-spacing: -0.5px;
+    }
+
+    .gallery-thumbs { display: flex; gap: 12px; margin-top: 16px; }
+    .gallery-thumb {
+      flex: 1; background: var(--card-bg); border: 2px solid transparent;
+      border-radius: 16px; padding: 16px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px; transition: all 0.3s; min-height: 80px;
+      backdrop-filter: blur(20px);
+    }
+    .gallery-thumb:hover, .gallery-thumb.active {
+      border-color: var(--orange); background: rgba(255,102,0,0.08);
+      transform: translateY(-3px);
+    }
+
+    /* ── BADGES ROW ── */
+    .pkg-badges {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px;
+    }
+    .pkg-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 14px; border-radius: 100px;
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
+    }
+    .pkg-badge.popular { background: rgba(255,102,0,0.12); border: 1px solid rgba(255,102,0,0.3); color: var(--orange); }
+    .pkg-badge.security { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); color: #10b981; }
+    .pkg-badge.cloud { background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.25); color: #818cf8; }
+    .pkg-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+    /* ── PKG INFO ── */
+    .pkg-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(36px, 5vw, 52px); font-weight: 800;
+      letter-spacing: -1px; line-height: 1.1;
+      margin-bottom: 16px; color: var(--text-primary);
+    }
+    .pkg-tagline { font-size: 17px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 32px; }
+
+    /* ── PRICE BOX ── */
+    .price-toggle-wrap { display: flex; align-items: center; gap: 0; margin-bottom: 28px; }
+    .toggle-btn {
+      padding: 10px 20px; background: var(--card-bg); border: 1px solid var(--glass-border);
+      color: var(--text-muted); font-size: 14px; font-weight: 600; cursor: pointer;
+      transition: all 0.3s; backdrop-filter: blur(10px);
+    }
+    .toggle-btn:first-child { border-radius: 12px 0 0 12px; border-right: none; }
+    .toggle-btn:last-child { border-radius: 0 12px 12px 0; }
+    .toggle-btn.active { background: var(--orange); color: #fff; border-color: var(--orange); }
+    .save-badge {
+      margin-left: 12px; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.2);
+      color: #10b981; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 100px;
+    }
+
+    .price-box {
+      background: var(--card-bg); border: 1px solid var(--glass-border);
+      border-radius: 20px; padding: 28px 32px;
+      backdrop-filter: blur(20px); margin-bottom: 28px;
+      position: relative; overflow: hidden;
+    }
+    .price-box::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--orange), #ff4500);
+    }
+    .price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+    .price-currency { font-size: 28px; font-weight: 700; color: var(--orange); line-height: 1; }
+    .price-amount {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 56px; font-weight: 800; color: var(--orange); line-height: 1;
+    }
+    .price-period { font-size: 15px; color: var(--text-muted); }
+    .price-note { font-size: 13px; color: var(--text-muted); }
+
+    /* ── CTA BUTTONS ── */
+    .pkg-cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+    .btn-buy {
+      flex: 1; min-width: 160px;
+      background: linear-gradient(135deg, var(--orange), #ff4500);
+      color: #fff; border: none; border-radius: 14px;
+      padding: 16px 24px; font-size: 16px; font-weight: 700;
+      cursor: pointer; text-decoration: none;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: all 0.3s; box-shadow: 0 8px 24px rgba(255,102,0,0.35);
+    }
+    .btn-buy:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(255,102,0,0.5); }
+    .btn-whatsapp {
+      flex: 1; min-width: 160px;
+      background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.3);
+      color: #25d366; border-radius: 14px;
+      padding: 16px 24px; font-size: 15px; font-weight: 600;
+      cursor: pointer; text-decoration: none;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: all 0.3s;
+    }
+    .btn-whatsapp:hover { background: rgba(37,211,102,0.15); transform: translateY(-2px); }
+
+    /* ── TRUST ROW ── */
+    .trust-row {
+      display: flex; gap: 20px; flex-wrap: wrap;
+      padding: 16px 0; border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border); margin-bottom: 28px;
+    }
+    .trust-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-muted); }
+    .trust-item svg { color: var(--orange); flex-shrink: 0; }
+
+    /* ── FEATURES LIST ── */
+    .features-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .feature-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: var(--card-bg); border: 1px solid var(--glass-border);
+      border-radius: 12px; padding: 14px 16px;
+      font-size: 14px; color: var(--text-secondary); line-height: 1.5;
+      backdrop-filter: blur(10px); transition: all 0.3s;
+    }
+    .feature-item:hover { border-color: rgba(255,102,0,0.3); color: var(--text-primary); transform: translateX(6px); }
+    .feature-check {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--orange), #ff4500);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: #fff; font-size: 11px; font-weight: 700;
+      box-shadow: 0 4px 10px rgba(255,102,0,0.3);
+    }
+
+    /* ── COMPARISON TABLE ── */
+    .compare-section { padding: 80px 0; }
+    .compare-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(28px,4vw,44px); font-weight: 800; text-align: center; margin-bottom: 12px; }
+    .compare-sub { text-align: center; color: var(--text-secondary); font-size: 16px; margin-bottom: 56px; }
+
+    .compare-table-wrap { overflow-x: auto; border-radius: 24px; border: 1px solid var(--glass-border); }
+    .compare-table { width: 100%; border-collapse: collapse; }
+    .compare-table th, .compare-table td { padding: 18px 24px; text-align: center; font-size: 14px; }
+    .compare-table th { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; background: rgba(255,255,255,0.03); color: var(--text-primary); border-bottom: 1px solid var(--glass-border); }
+    .compare-table th:first-child, .compare-table td:first-child { text-align: left; font-weight: 600; color: var(--text-secondary); }
+    .compare-table tr:not(:last-child) td { border-bottom: 1px solid var(--glass-border); }
+    .compare-table tr:hover td { background: rgba(255,102,0,0.03); }
+    .compare-table .highlight-col { background: rgba(255,102,0,0.05) !important; border-left: 1px solid rgba(255,102,0,0.2); border-right: 1px solid rgba(255,102,0,0.2); }
+    .compare-table thead .highlight-col {
+      background: rgba(255,102,0,0.1) !important;
+      color: var(--orange) !important;
+      border-top: 2px solid var(--orange);
+    }
+    .check-yes { color: #10b981; font-size: 18px; }
+    .check-no { color: rgba(255,255,255,0.2); font-size: 18px; }
+    .check-val { font-weight: 700; color: var(--text-primary); }
+    .popular-chip {
+      display: inline-block; background: var(--orange); color: #fff;
+      font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
+      padding: 2px 8px; border-radius: 100px; margin-left: 6px;
+    }
+
+    /* ── FAQ ── */
+    .faq-section { padding: 80px 0; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .faq-item {
+      background: var(--card-bg); border: 1px solid var(--glass-border);
+      border-radius: 20px; overflow: hidden; backdrop-filter: blur(20px);
+      transition: border-color 0.3s;
+    }
+    .faq-item:hover { border-color: rgba(255,102,0,0.25); }
+    .faq-q {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 24px; cursor: pointer; gap: 16px;
+      font-size: 15px; font-weight: 600; color: var(--text-primary);
+      transition: color 0.3s; user-select: none;
+    }
+    .faq-q:hover { color: var(--orange); }
+    .faq-icon { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,102,0,0.1); border: 1px solid rgba(255,102,0,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--orange); font-size: 16px; transition: all 0.3s; }
+    .faq-item.open .faq-icon { background: var(--orange); color: #fff; transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
+    .faq-item.open .faq-a { max-height: 200px; }
+    .faq-a-inner { padding: 0 24px 20px; font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+
+    /* ── CTA BOTTOM ── */
+    .bottom-cta {
+      text-align: center; padding: 80px; margin: 0 0 80px;
+      background: linear-gradient(135deg, rgba(255,102,0,0.1), rgba(255,69,0,0.05));
+      border: 1px solid rgba(255,102,0,0.2); border-radius: 32px;
+      position: relative; overflow: hidden;
+    }
+    .bottom-cta::before { content:''; position:absolute; top:-100px; right:-100px; width:300px; height:300px; background:radial-gradient(circle,rgba(255,102,0,0.12) 0%,transparent 70%); }
+    .bottom-cta::after { content:''; position:absolute; bottom:-60px; left:-60px; width:200px; height:200px; background:radial-gradient(circle,rgba(255,69,0,0.08) 0%,transparent 70%); }
+    .bottom-cta h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(26px,4vw,42px); font-weight: 800; margin-bottom: 16px; position: relative; z-index: 1; }
+    .bottom-cta p { color: var(--text-secondary); font-size: 16px; max-width: 500px; margin: 0 auto 36px; position: relative; z-index: 1; }
+    .bottom-cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .delay-1 { transition-delay: .1s; } .delay-2 { transition-delay: .2s; } .delay-3 { transition-delay: .3s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) { .pkg-layout { grid-template-columns: 1fr; gap: 48px; } .gallery-wrap { position: static; } }
+    @media (max-width: 768px) { .faq-grid { grid-template-columns: 1fr; } .pkg-cta-row { flex-direction: column; } .bottom-cta { padding: 48px 24px; } }
   </style>
 </head>
 <body>
+  <div class="bg-grid"></div>
+  <div class="ambient-glow"></div>
   <div id="nav-container"></div>
 
-  <div class="pkg-container">
-    <div class="breadcrumbs">
-      <a href="index.html">Home</a> &rsaquo; 
-      <a href="packages.html">Packages</a> &rsaquo; 
-      <span id="bc-plan-name">Loading...</span>
-    </div>
-    
-    <div class="pkg-grid">
-      <div class="pkg-gallery">
-        <div class="pkg-main-img-wrapper tilt-3d">
-          <!-- Main 3D Box image -->
-          <img src="https://placehold.co/600x800/1e1e24/ff6600?text=Software+Box" alt="Package Box" id="main-product-img" class="pkg-main-img">
+  <div class="container">
+
+    <!-- BREADCRUMBS -->
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="bc-sep">›</span>
+      <a href="packages.html">Packages</a>
+      <span class="bc-sep">›</span>
+      <span class="bc-current" id="bc-name">Loading…</span>
+    </nav>
+
+    <!-- ── PRODUCT SECTION ── -->
+    <div class="pkg-layout">
+
+      <!-- GALLERY -->
+      <div class="gallery-wrap reveal">
+        <div class="gallery-main tilt-3d" id="gallery-main">
+          <div class="gallery-main-glow"></div>
+          <div class="gallery-main-icon" id="gallery-icon">📦</div>
+          <div class="gallery-main-label" id="gallery-label">Package</div>
         </div>
-        <div class="pkg-thumbnails">
-          <div class="pkg-thumb active"><img src="https://placehold.co/600x800/1e1e24/ff6600?text=Software+Box" alt="Thumb 1" id="thumb-img-1"></div>
-          <div class="pkg-thumb"><img src="https://placehold.co/600x800/1e1e24/ff6600?text=Features" alt="Thumb 2" id="thumb-img-2"></div>
+        <div class="gallery-thumbs" id="gallery-thumbs">
+          <div class="gallery-thumb active" data-icon="📦" data-label="Overview" onclick="switchThumb(this)">📦</div>
+          <div class="gallery-thumb" data-icon="📱" data-label="Mobile App" onclick="switchThumb(this)">📱</div>
+          <div class="gallery-thumb" data-icon="💳" data-label="Payments" onclick="switchThumb(this)">💳</div>
+          <div class="gallery-thumb" data-icon="📊" data-label="Analytics" onclick="switchThumb(this)">📊</div>
+        </div>
+
+        <!-- Social proof -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:20px;">
+          <div style="background:var(--card-bg); border:1px solid var(--glass-border); border-radius:16px; padding:16px; text-align:center; backdrop-filter:blur(10px);">
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:800; color:var(--orange);">700+</div>
+            <div style="font-size:12px; color:var(--text-muted);">Active Businesses</div>
+          </div>
+          <div style="background:var(--card-bg); border:1px solid var(--glass-border); border-radius:16px; padding:16px; text-align:center; backdrop-filter:blur(10px);">
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:800; color:#10b981;">4.9★</div>
+            <div style="font-size:12px; color:var(--text-muted);">Customer Rating</div>
+          </div>
         </div>
       </div>
-      
-      <div class="pkg-info">
-        <h1 class="pkg-title" id="plan-title">Loading...</h1>
-        
-        <div id="plan-description">
+
+      <!-- PRODUCT INFO -->
+      <div class="pkg-info reveal delay-2">
+        <!-- Badges -->
+        <div class="pkg-badges">
+          <span class="pkg-badge popular"><span class="pkg-badge-dot"></span>Most Popular</span>
+          <span class="pkg-badge security"><span class="pkg-badge-dot"></span>SSL Secured</span>
+          <span class="pkg-badge cloud"><span class="pkg-badge-dot"></span>Cloud Hosted</span>
+        </div>
+
+        <h1 class="pkg-title" id="pkg-title">Loading…</h1>
+        <p class="pkg-tagline" id="pkg-tagline">Loading description…</p>
+
+        <!-- Duration toggle -->
+        <div class="price-toggle-wrap">
+          <button class="toggle-btn" id="btn-monthly" onclick="setDuration('monthly')">Monthly</button>
+          <button class="toggle-btn active" id="btn-yearly" onclick="setDuration('yearly')">Yearly</button>
+          <span class="save-badge" id="save-label">Save 20%</span>
+        </div>
+
+        <!-- Price box -->
+        <div class="price-box">
+          <div class="price-row">
+            <span class="price-currency">₹</span>
+            <span class="price-amount" id="price-amount">0</span>
+            <span class="price-period" id="price-period">/ year</span>
+          </div>
+          <div class="price-note" id="price-note">Billed annually · Cancel anytime</div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="pkg-cta-row">
+          <a href="https://wa.me/+918330011641" target="_blank" class="btn-buy" id="buy-btn">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Get Started
+          </a>
+          <a href="https://wa.me/+918330011641" target="_blank" class="btn-whatsapp">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12.012 2C6.49 2 2.008 6.48 2.008 12.003c0 1.764.464 3.483 1.345 5.002L2 22l5.127-1.345a9.975 9.975 0 004.885 1.272c5.52 0 10.002-4.481 10.002-10.005C22.014 6.48 17.532 2 12.012 2z"/></svg>
+            WhatsApp Us
+          </a>
+        </div>
+
+        <!-- Trust signals -->
+        <div class="trust-row">
+          <div class="trust-item">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Secure Payment
+          </div>
+          <div class="trust-item">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            24/7 Support
+          </div>
+          <div class="trust-item">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+            Free Updates
+          </div>
+          <div class="trust-item">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"/></svg>
+            Cloud Hosted
+          </div>
+        </div>
+
+        <!-- Features list -->
+        <div class="features-list" id="features-list">
           <!-- Populated by JS -->
         </div>
-        
-        <div class="pkg-options">
-          <label class="pkg-label">Duration</label>
-          <select class="pkg-select" id="duration-select">
-            <option value="yearly">Yearly</option>
-            <option value="monthly">Monthly</option>
-          </select>
-        </div>
-        
-        <div class="pkg-price-row">
-          <span class="pkg-price" id="plan-price">₹ 0</span>
-          <span class="pkg-period" id="plan-period">/ year</span>
-        </div>
-        
-        <a href="https://wa.me/+918330011641" target="_blank" class="btn-primary" style="max-width: 250px; text-align: center; padding: 16px 32px; font-size: 18px; border-radius: 50px;">Buy Now</a>
+
+        <!-- Explore all -->
+        <a href="features.html" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; color:var(--orange); font-weight:600; text-decoration:none; transition:gap 0.3s;" onmouseover="this.style.gap='14px'" onmouseout="this.style.gap='8px'">
+          View All Features
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
     </div>
-  </div>
+
+    <!-- ── COMPARISON TABLE ── -->
+    <section class="compare-section reveal">
+      <div class="section-pill" style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,102,0,0.08); border:1px solid rgba(255,102,0,0.2); color:var(--orange); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; padding:5px 14px; border-radius:100px; margin-bottom:20px;">
+        <span style="width:5px;height:5px;background:var(--orange);border-radius:50%;display:inline-block;"></span>Compare Plans
+      </div>
+      <h2 class="compare-title">Find Your Perfect Plan</h2>
+      <p class="compare-sub">Every plan includes a responsive website, automated SEO & cloud hosting. Upgrade anytime.</p>
+      <div class="compare-table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th style="text-align:left; min-width:200px;">Feature</th>
+              <th>Essential<br/><span style="font-size:13px; color:var(--text-muted); font-weight:400;">₹1,500/mo</span></th>
+              <th>Basic<br/><span style="font-size:13px; color:var(--text-muted); font-weight:400;">₹2,500/mo</span></th>
+              <th class="highlight-col">Starter <span class="popular-chip">Popular</span><br/><span style="font-size:13px; font-weight:400; opacity:.8;">₹3,500/mo</span></th>
+              <th>Premier<br/><span style="font-size:13px; color:var(--text-muted); font-weight:400;">₹5,000/mo</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Responsive Website</td>
+              <td><span class="check-yes">✓</span></td>
+              <td><span class="check-yes">✓</span></td>
+              <td class="highlight-col"><span class="check-yes">✓</span></td>
+              <td><span class="check-yes">✓</span></td>
+            </tr>
+            <tr>
+              <td>Automated SEO</td>
+              <td><span class="check-yes">✓</span></td>
+              <td><span class="check-yes">✓</span></td>
+              <td class="highlight-col"><span class="check-yes">✓</span></td>
+              <td><span class="check-yes">✓</span></td>
+            </tr>
+            <tr>
+              <td>WhatsApp Checkout</td>
+              <td><span class="check-no">—</span></td>
+              <td><span class="check-yes">✓</span></td>
+              <td class="highlight-col"><span class="check-yes">✓</span></td>
+              <td><span class="check-yes">✓</span></td>
+            </tr>
+            <tr>
+              <td>Order Management Dashboard</td>
+              <td><span class="check-no">—</span></td>
+              <td><span class="check-yes">✓</span></td>
+              <td class="highlight-col"><span class="check-yes">✓</span></td>
+              <td><span class="check-yes">✓</span></td>
+            </tr>
+            <tr>
+              <td>Android Notification App</td>
+              <td><span class="check-no">—</span></td>
+              <td><span class="check-no">—</span></td>
+              <td class="highlight-col"><span class="check-yes">✓</span></td>
+              <td><span class="check-yes">✓</span></td>
+            </tr>
+            <tr>
+              <td>Store Pickup Locations</td>
+              <td><span class="check-val">1</span></td>
+              <td><span class="check-val">1</span></td>
+              <td class="highlight-col"><span class="check-val">3</span></td>
+              <td><span class="check-val">5</span></td>
+            </tr>
+            <tr>
+              <td>Customer Mobile App (iOS & Android)</td>
+              <td><span class="check-no">—</span></td>
+              <td><span class="check-no">—</span></td>
+              <td class="highlight-col"><span class="check-no">—</span></td>
+              <td><span class="check-yes">✓</span></td>
+            </tr>
+            <tr>
+              <td>Payment Gateways</td>
+              <td><span class="check-val">COD</span></td>
+              <td><span class="check-val">3+</span></td>
+              <td class="highlight-col"><span class="check-val">5+</span></td>
+              <td><span class="check-val">All</span></td>
+            </tr>
+            <tr>
+              <td>Cloud Storage</td>
+              <td><span class="check-val">5 GB</span></td>
+              <td><span class="check-val">20 GB</span></td>
+              <td class="highlight-col"><span class="check-val">50 GB</span></td>
+              <td><span class="check-val">200 GB</span></td>
+            </tr>
+            <tr>
+              <td>Priority Support</td>
+              <td><span class="check-no">—</span></td>
+              <td><span class="check-no">—</span></td>
+              <td class="highlight-col"><span class="check-no">—</span></td>
+              <td><span class="check-yes">✓</span></td>
+            </tr>
+            <tr>
+              <td>Custom Domain</td>
+              <td><span class="check-yes">✓</span></td>
+              <td><span class="check-yes">✓</span></td>
+              <td class="highlight-col"><span class="check-yes">✓</span></td>
+              <td><span class="check-yes">✓</span></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><a href="package-details.html?plan=essential" class="btn-primary" style="font-size:13px; padding:10px 20px;">Get Essential</a></td>
+              <td><a href="package-details.html?plan=basic" class="btn-primary" style="font-size:13px; padding:10px 20px;">Get Basic</a></td>
+              <td class="highlight-col"><a href="package-details.html?plan=starter" class="btn-primary" style="font-size:13px; padding:10px 20px; background:linear-gradient(135deg,var(--orange),#ff4500);">Get Starter</a></td>
+              <td><a href="package-details.html?plan=premier" class="btn-primary" style="font-size:13px; padding:10px 20px;">Get Premier</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── FAQ ── -->
+    <section class="faq-section">
+      <div style="text-align:center; margin-bottom:48px;" class="reveal">
+        <div class="section-pill" style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,102,0,0.08); border:1px solid rgba(255,102,0,0.2); color:var(--orange); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; padding:5px 14px; border-radius:100px; margin-bottom:16px;">
+          <span style="width:5px;height:5px;background:var(--orange);border-radius:50%;display:inline-block;"></span>FAQ
+        </div>
+        <h2 style="font-family:'Space Grotesk',sans-serif; font-size:clamp(28px,4vw,42px); font-weight:800; margin-bottom:12px;">Common Questions</h2>
+        <p style="color:var(--text-secondary); font-size:16px;">Everything you need to know before getting started.</p>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item reveal delay-1">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Can I upgrade my plan later?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">Yes! You can upgrade to any higher plan at any time. Contact our support team and we'll handle the migration seamlessly without losing any of your existing data or settings.</div></div>
+        </div>
+        <div class="faq-item reveal delay-2">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Is my brand name used on the platform?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">Absolutely. Your website, mobile app, and all customer touchpoints use your brand name, logo, and colors. U-BSOL operates invisibly in the background — we power your brand, not replace it.</div></div>
+        </div>
+        <div class="faq-item reveal delay-1">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            What payment methods do you support?
+            <span class="faq-a-inner"></span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">We support PayTM, PayUmoney, PayPal, RazorPay & Stripe — all pre-integrated. You just connect your billing account credentials. Cash on Delivery is also supported and can be enabled per product.</div></div>
+        </div>
+        <div class="faq-item reveal delay-2">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            How is the app published in the Play Store?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">For Starter and Premier plans, your branded Android app is submitted to the Play Store under your business account. We handle the entire technical process — you just provide your branding assets.</div></div>
+        </div>
+        <div class="faq-item reveal delay-1">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            Do I need technical knowledge to manage my store?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">Not at all. U-BSOL is designed for business owners, not developers. Everything is managed through an intuitive admin dashboard with video tutorials included in every plan. No coding required.</div></div>
+        </div>
+        <div class="faq-item reveal delay-2">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            What happens to my data if I cancel?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">Your data belongs to you. If you cancel, we provide a full export of your products, customer data, and orders. You have 30 days after cancellation to download your data before it is removed from our servers.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BOTTOM CTA ── -->
+    <div class="bottom-cta reveal">
+      <h2>Still have questions?<br/><span style="background:linear-gradient(135deg,#ff6600,#ff9900);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Let's talk.</span></h2>
+      <p>Our team is ready to walk you through the right plan for your business — free of charge, zero obligation.</p>
+      <div class="bottom-cta-btns">
+        <a href="https://wa.me/+918330011641" target="_blank" class="btn-primary" style="padding:14px 36px; font-size:16px; border-radius:14px;">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" style="margin-right:8px;"><path d="M12.012 2C6.49 2 2.008 6.48 2.008 12.003c0 1.764.464 3.483 1.345 5.002L2 22l5.127-1.345a9.975 9.975 0 004.885 1.272c5.52 0 10.002-4.481 10.002-10.005C22.014 6.48 17.532 2 12.012 2z"/></svg>
+          Chat on WhatsApp
+        </a>
+        <a href="contact.html" class="btn-outline-large" style="padding:13px 32px; font-size:16px; border-radius:14px;">Book a Free Demo</a>
+      </div>
+    </div>
+
+  </div><!-- /container -->
 
   <div id="footer-container"></div>
   <script src="components.js?v=3"></script>
   <script>
     injectComponents('packages');
-    
-    const planData = {
+
+    // ── PLAN DATA ──
+    const plans = {
       essential: {
-        title: "Essential",
-        monthly: "1,500",
-        yearly: "14,400",
-        desc: `
-          <p class="pkg-desc">This package is perfect for businesses just starting out online. Get a fully responsive website under your own brand name and start establishing a solid digital footprint.</p>
-          <p class="pkg-desc">Includes everything you need to display your basic catalog and allow customers to browse efficiently. Start small, but look professional with automated SEO elements built right in.</p>
-        `,
-        image1: "https://placehold.co/600x800/1e1e24/ff6600?text=ESSENTIAL\nPackage",
-        image2: "https://placehold.co/600x800/1e1e24/ff6600?text=App+Preview"
+        title: 'Essential',
+        tagline: 'Perfect for businesses just starting their digital journey. Get a fully responsive, branded website and start building your online presence professionally.',
+        monthly: '1,500', yearly: '14,400',
+        icon: '🌐', label: 'Essential Plan',
+        badges: ['popular'],
+        features: [
+          'Fully responsive branded website with your domain',
+          'Automated SEO — get found on Google automatically',
+          'Basic product catalog with unlimited browsing',
+          'Single store location & Cash on Delivery support',
+          '5 GB secure cloud storage included',
+          'Admin dashboard with order & product management',
+          '24/7 online support with help documentation',
+        ]
       },
       basic: {
-        title: "Basic",
-        monthly: "2,500",
-        yearly: "25,000",
-        desc: `
-          <p class="pkg-desc">This package is very suitable for individual person's business, especially who is doing the business through social media such as Facebook, Instagram etc... This will be great advantage for them to showcase their product under their own brand name and share the content with public through any media. Also it will make better online presence by automated SEO. This package contain responsive website and WhatsApp checkout.</p>
-          <p class="pkg-desc">This package will enables you to receive your customer orders into your WhatsApp number and it will be listed in your dashboard as pending order. The order status will be change based on next action you make apply on the same order such as (Order Process, Generate Invoice, Products Delivery, etc..)</p>
-        `,
-        image1: "https://placehold.co/600x800/1e1e24/ff6600?text=BASIC\nBusiness+Package",
-        image2: "https://placehold.co/600x800/1e1e24/ff6600?text=App+Preview"
+        title: 'Basic',
+        tagline: 'Ideal for social media sellers on Facebook & Instagram. Showcase products under your own brand and receive orders directly to your WhatsApp.',
+        monthly: '2,500', yearly: '25,000',
+        icon: '🛒', label: 'Basic Business',
+        features: [
+          'Everything in Essential, plus WhatsApp Checkout',
+          'Order management with full workflow (Process → Invoice → Deliver)',
+          '3+ payment gateways (PayTM, RazorPay, Stripe)',
+          'Customer registration & loyalty management',
+          'Coupon codes, hot-sale features & promotions',
+          'Abandoned cart recovery tools',
+          '20 GB cloud storage',
+        ]
       },
       starter: {
-        title: "Starter",
-        monthly: "3,500",
-        yearly: "33,600",
-        desc: `
-          <p class="pkg-desc">Ideal for growing businesses that require a dedicated Order Notification App (Android) for their internal staff to manage operations quickly on the go.</p>
-          <p class="pkg-desc">Along with increased storage and multiple store pickup locations, this plan opens up wider capabilities for local retailers expanding their footprints and scaling operations rapidly.</p>
-        `,
-        image1: "https://placehold.co/600x800/1e1e24/ff6600?text=STARTER\nBusiness+Package",
-        image2: "https://placehold.co/600x800/1e1e24/ff6600?text=App+Preview"
+        title: 'Starter',
+        tagline: 'For growing businesses that need a dedicated Android Order Notification App for staff, plus expanded store capabilities to scale rapidly.',
+        monthly: '3,500', yearly: '33,600',
+        icon: '📱', label: 'Starter Business',
+        features: [
+          'Everything in Basic, plus Android Notification App',
+          'Up to 3 store pickup locations',
+          'Staff order management on Android app in real-time',
+          'All 5 payment gateways pre-integrated',
+          'Google Analytics & Facebook Pixel integration',
+          'Advanced product variations (color, size, material)',
+          '50 GB cloud storage',
+        ]
       },
       premier: {
-        title: "Premier",
-        monthly: "5,000",
-        yearly: "48,000",
-        desc: `
-          <p class="pkg-desc">The ultimate enterprise solution. Engage directly with your customer base through dedicated Customer Mobile Apps (Android & iOS) with your custom branding.</p>
-          <p class="pkg-desc">With massive storage, up to 5 store locations, and priority support, this package is designed for established businesses looking for zero compromises. Bring the total digital ecosystem to your fingertips.</p>
-        `,
-        image1: "https://placehold.co/600x800/1e1e24/ff6600?text=PREMIER\nBusiness+Package",
-        image2: "https://placehold.co/600x800/1e1e24/ff6600?text=App+Preview"
+        title: 'Premier',
+        tagline: 'The ultimate enterprise solution. Engage customers with fully branded iOS & Android apps and enjoy priority support for zero compromises.',
+        monthly: '5,000', yearly: '48,000',
+        icon: '👑', label: 'Premier Enterprise',
+        features: [
+          'Everything in Starter, plus iOS & Android Customer Apps',
+          'Up to 5 store locations with individual management',
+          'Custom branding throughout mobile apps (Play Store logo)',
+          'Priority support — dedicated account manager',
+          'Advanced CRM with full customer activity tracking',
+          'Full POS billing system for walk-in customers',
+          '200 GB cloud storage — enterprise scale',
+        ]
       }
     };
 
+    // ── INIT ──
     const urlParams = new URLSearchParams(window.location.search);
-    const planId = urlParams.get('plan') || 'basic';
-    const plan = planData[planId] || planData['basic'];
+    const planId = urlParams.get('plan') || 'starter';
+    const plan = plans[planId] || plans['starter'];
+    let currentDuration = 'yearly';
 
-    document.getElementById('bc-plan-name').textContent = plan.title;
-    document.getElementById('plan-title').textContent = plan.title;
-    document.getElementById('plan-description').innerHTML = plan.desc;
-    document.getElementById('main-product-img').src = plan.image1;
-    document.getElementById('thumb-img-1').src = plan.image1;
-    document.getElementById('thumb-img-2').src = plan.image2;
-    document.title = "U-BSOL | " + plan.title + " Package";
+    // Set page title
+    document.title = `U-BSOL | ${plan.title} Package`;
+    document.getElementById('bc-name').textContent = plan.title;
+    document.getElementById('pkg-title').textContent = plan.title;
+    document.getElementById('pkg-tagline').textContent = plan.tagline;
+    document.getElementById('gallery-icon').textContent = plan.icon;
+    document.getElementById('gallery-label').textContent = plan.label;
 
-    // Handle duration selection
-    const durationSelect = document.getElementById('duration-select');
-    const priceEl = document.getElementById('plan-price');
-    const periodEl = document.getElementById('plan-period');
+    // Features
+    const featList = document.getElementById('features-list');
+    plan.features.forEach(f => {
+      const item = document.createElement('div');
+      item.className = 'feature-item';
+      item.innerHTML = `<span class="feature-check">✓</span>${f}`;
+      featList.appendChild(item);
+    });
 
-    function updatePrice() {
-      if (durationSelect.value === 'yearly') {
-        priceEl.textContent = '₹ ' + plan.yearly;
-        periodEl.textContent = '/ year';
-      } else {
-        priceEl.textContent = '₹ ' + plan.monthly;
-        periodEl.textContent = '/ month';
-      }
+    // ── DURATION ──
+    function setDuration(duration) {
+      currentDuration = duration;
+      document.getElementById('btn-monthly').classList.toggle('active', duration === 'monthly');
+      document.getElementById('btn-yearly').classList.toggle('active', duration === 'yearly');
+      document.getElementById('save-label').style.display = duration === 'yearly' ? 'inline' : 'none';
+
+      const amt = duration === 'yearly' ? plan.yearly : plan.monthly;
+      document.getElementById('price-amount').textContent = '₹ ' + amt;
+      document.getElementById('price-period').textContent = duration === 'yearly' ? '/ year' : '/ month';
+      document.getElementById('price-note').textContent = duration === 'yearly'
+        ? 'Billed annually · Best value · Cancel anytime'
+        : 'Billed monthly · Switch to yearly to save 20%';
+    }
+    setDuration('yearly');
+
+    // ── GALLERY ──
+    function switchThumb(el) {
+      document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('gallery-icon').textContent = el.dataset.icon;
+      document.getElementById('gallery-label').textContent = el.dataset.label;
     }
 
-    durationSelect.addEventListener('change', updatePrice);
-    updatePrice(); // Initial set
-    
-    // Setup simple gallery functionality
-    const thumbs = document.querySelectorAll('.pkg-thumb');
-    const mainImg = document.getElementById('main-product-img');
-    
-    thumbs.forEach(thumb => {
-      thumb.addEventListener('click', function() {
-        thumbs.forEach(t => t.classList.remove('active'));
-        this.classList.add('active');
-        mainImg.src = this.querySelector('img').src;
-      });
-    });
+    // ── FAQ ──
+    function toggleFaq(el) {
+      const item = el.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // ── REVEAL ──
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   </script>
 </body>
 </html>
