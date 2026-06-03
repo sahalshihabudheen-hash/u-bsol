@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>U-BSOL | FAQ</title>
+  <meta name="description" content="Frequently Asked Questions - Find answers about U-BSOL business automation, SaaS platforms, domains, billing, and configurations." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=3" />
+  <style>
+    :root {
+      --bg-dark: #050505;
+      --bg-card: rgba(15, 15, 20, 0.4);
+      --border-glass: rgba(255, 255, 255, 0.06);
+      --text-main: #ffffff;
+      --text-muted: #a1a1aa;
+      --orange: #ff6b00;
+      --orange-dim: rgba(255, 107, 0, 0.12);
+      --glow: rgba(255, 107, 0, 0.25);
+      --gradient-orange: linear-gradient(135deg, #ff6b00 0%, #ff8c42 100%);
+    }
+    [data-theme="light"] {
+      --bg-dark: #fbfbfb;
+      --bg-card: rgba(255, 255, 255, 0.7);
+      --border-glass: rgba(0, 0, 0, 0.06);
+      --text-main: #09090b;
+      --text-muted: #71717a;
+      --orange-dim: rgba(255, 107, 0, 0.06);
+    }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+    }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; }
+
+    .bg-grid {
+      position: fixed; inset: 0; z-index: -3; pointer-events: none;
+      background-image: linear-gradient(var(--border-glass) 1px, transparent 1px),
+                        linear-gradient(90deg, var(--border-glass) 1px, transparent 1px);
+      background-size: 50px 50px;
+      mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+      -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+      opacity: 0.85;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .breadcrumb a { color: var(--orange); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    /* FAQ Layout */
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 8fr 4fr;
+      gap: 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px 100px;
+    }
+
+    .faq-main {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Search Bar */
+    .search-wrapper {
+      position: relative;
+      margin-bottom: 12px;
+    }
+    .search-wrapper input {
+      width: 100%;
+      padding: 16px 24px 16px 52px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 18px;
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      outline: none;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+      backdrop-filter: blur(10px);
+    }
+    .search-wrapper input:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 15px var(--orange-dim);
+    }
+    .search-icon {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* Accordion styles */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(20px);
+    }
+    .faq-item:hover { border-color: rgba(255, 107, 0, 0.2); }
+    .faq-item.open { border-color: rgba(255, 107, 0, 0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+    
+    .faq-header {
+      padding: 24px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      gap: 16px;
+    }
+    .faq-question {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .faq-toggle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--orange-dim);
+      border: 1px solid rgba(255, 107, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--orange);
+      font-size: 20px;
+      line-height: 1;
+      transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+    }
+    .faq-item.open .faq-toggle {
+      transform: rotate(45deg);
+      background: var(--orange);
+      color: #fff;
+    }
+    .faq-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .faq-body-inner {
+      padding: 0 28px 24px;
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* Sidebar Filters */
+    .faq-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+    }
+
+    .filter-group {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 24px;
+      padding: 28px;
+      backdrop-filter: blur(20px);
+    }
+
+    .filter-group h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: 0.02em;
+      border-left: 3px solid var(--orange);
+      padding-left: 10px;
+      color: var(--text-main);
+    }
+
+    .filter-group ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .filter-btn {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .filter-btn::before {
+      content: '•';
+      color: var(--text-muted);
+      margin-right: 8px;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .filter-btn:hover {
+      background: rgba(255, 107, 0, 0.05);
+      color: var(--text-main);
+    }
+
+    .filter-btn.active {
+      background: var(--orange-dim);
+      color: var(--orange);
+      font-weight: 700;
+    }
+
+    .filter-btn.active::before {
+      color: var(--orange);
+    }
+
+    /* Counter Badge */
+    .filter-count {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    .filter-btn.active .filter-count {
+      background: var(--orange);
+      color: #fff;
+    }
+
+    /* No results message */
+    .no-results {
+      text-align: center;
+      padding: 48px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 18px;
+      color: var(--text-muted);
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .faq-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .faq-sidebar {
+        position: static;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-hero { padding: 120px 20px 40px; }
+      .faq-layout { padding: 0 20px 60px; }
+      .faq-header { padding: 20px; }
+      .faq-body-inner { padding: 0 20px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div id="nav-container"></div>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="page-hero-tag">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      Support
+    </div>
+    <h1 class="page-hero-title">FAQ</h1>
+    <p class="page-hero-desc">Have questions about U-BSOL? Find answers concerning our business applications, multi-vendor marketplace, technical scalability, and configurations below.</p>
+  </section>
+
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span>›</span>
+    <span>FAQ</span>
+  </div>
+
+  <!-- FAQ Layout -->
+  <div class="faq-layout">
+    <div class="faq-main">
+      
+      <!-- Search -->
+      <div class="search-wrapper">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="faqSearch" placeholder="Search questions or keywords..." oninput="onSearchOrFilterChange()">
+      </div>
+
+      <!-- FAQ List -->
+      <div class="faq-list" id="faqList">
+        
+        <!-- FAQ 1 -->
+        <div class="faq-item" data-business="all" data-topic="general">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <span class="faq-question">What is U-BSOL ?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-body">
+            <div class="faq-body-inner">U-BSOL is an Indian information technology company specializing in business automation and digitalization. We offer Software as a Service (SaaS) business applications, including ERP, CRM, inventory, and online marketplace solutions designed to help merchants digitize their operations.</div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item" data-business="all" data-topic="marketplace">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <span class="faq-question">What is U-BSOL market place?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-body">
+            <div class="faq-body-inner">The U-BSOL Marketplace is a centralized digital commerce platform where multiple merchants can list their products and services. It connects buyers with various vendors under a unified marketplace environment, enabling multi-vendor transactions, logistics, and payments.</div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item" data-business="all" data-topic="general">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <span class="faq-question">What makes you different from other companies?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-body">
+            <div class="faq-body-inner">We focus on complete brand ownership and cost-effective automation. With U-BSOL, merchants get their own custom domain, unique branding, and a secure cloud interface with zero hosting complications. Our platform is continuously upgraded by our dedicated R&D team to deliver premium features without expensive custom development costs.</div>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item" data-business="all" data-topic="general">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <span class="faq-question">What is SAAS modal business in simple terms?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-body">
+            <div class="faq-body-inner">SaaS stands for Software as a Service. In simple terms, it is a licensing model where software is hosted on cloud servers and accessed over the internet. Instead of buying expensive hardware or software licenses upfront, you pay a flexible subscription fee (monthly/annually) to use the latest version of our platform.</div>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-item" data-business="all" data-topic="technology">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <span class="faq-question">What is Cloud computing ? And what are the benefits ?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-body">
+            <div class="faq-body-inner">Cloud computing is the delivery of computing services (servers, storage, databases, networking, software) over the internet. Key benefits include zero server maintenance or upgrade costs, accessibility from any device globally, high-level data security, automated backups, and the ability to scale up business resources instantly.</div>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="faq-item" data-business="all" data-topic="registration">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <span class="faq-question">How do I register as U-BSOL merchant?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-body">
+            <div class="faq-body-inner">You can register by choosing your desired plan on our Packages page and filling out the onboarding form. Our team will review your business information, verify your requirements, and help set up your custom store.</div>
+          </div>
+        </div>
+
+        <!-- FAQ 7 -->
+        <div class="faq-item" data-business="all" data-topic="registration marketplace">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <span class="faq-question">How do I register as merchant in U-BSOL market place?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-body">
+            <div class="faq-body-inner">After registering as a standard U-BSOL merchant, you can opt-in to list your store and inventory on the shared U-BSOL marketplace. This enables you to receive organic traffic and orders directly from the marketplace portal in addition to your standalone storefront.</div>
+          </div>
+        </div>
+
+        <!-- FAQ 8 -->
+        <div class="faq-item" data-business="all" data-topic="marketplace billing">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <span class="faq-question">Does U-BSOL market place is free ?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-body">
+            <div class="faq-body-inner">Accessing and setting up your basic marketplace presence is included in standard U-BSOL packages. However, additional payment gateway transaction charges, commission structures, or advanced catalog tools may vary depending on your chosen subscription tier.</div>
+          </div>
+        </div>
+
+        <!-- FAQ 9 -->
+        <div class="faq-item" data-business="all" data-topic="domain">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <span class="faq-question">Can I use my own custom domain?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-body">
+            <div class="faq-body-inner">Yes, absolutely! With U-BSOL, you get complete brand ownership. You can easily point your own custom domain (e.g., yourstore.com) to our secure cloud servers, and your clients will never see any U-BSOL branding.</div>
+          </div>
+        </div>
+
+        <!-- FAQ 10 -->
+        <div class="faq-item" data-business="all" data-topic="security">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <span class="faq-question">How secure is U-BSOL?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-body">
+            <div class="faq-body-inner">We implement bank-grade security protocols. All connections are encrypted via SSL, customer transaction details are tokenized, and database backups are performed automatically daily. We protect your client data with advanced firewall protections on our secure cloud architecture.</div>
+          </div>
+        </div>
+
+        <!-- FAQ 11 -->
+        <div class="faq-item" data-business="all" data-topic="refund billing">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <span class="faq-question">What is the refund policy for packages?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-body">
+            <div class="faq-body-inner">We offer a transparent return and refund policy. If you cancel your subscription, we calculate the usage fees up to the end of the billing cycle, and refund any excess advance payments according to our terms and conditions.</div>
+          </div>
+        </div>
+
+        <!-- FAQ 12 -->
+        <div class="faq-item" data-business="all" data-topic="payment">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <span class="faq-question">How does payment gateway integration work?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-body">
+            <div class="faq-body-inner">We support major local and international payment gateways, including UPI, Razorpay, Stripe, and debit/credit cards. You can connect your own merchant account keys to receive customer payments directly into your bank account.</div>
+          </div>
+        </div>
+
+        <!-- FAQ 13 -->
+        <div class="faq-item" data-business="trading" data-topic="billing">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <span class="faq-question">Is there a commission on trading transactions?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-body">
+            <div class="faq-body-inner">For retail and wholesale trading setups, transaction commission structures depend on your package. Most premium packages offer 0% platform transaction commission, meaning you keep 100% of your sales profits.</div>
+          </div>
+        </div>
+
+        <!-- FAQ 14 -->
+        <div class="faq-item" data-business="all" data-topic="operation">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <span class="faq-question">How do I manage daily store operations?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-body">
+            <div class="faq-body-inner">U-BSOL provides an all-in-one administrative dashboard. You can manage orders, view analytics reports, update product catalogs, track delivery boys, and handle customer queries from any desktop or mobile device.</div>
+          </div>
+        </div>
+
+        <!-- FAQ 15 -->
+        <div class="faq-item" data-business="all" data-topic="affiliate">
+          <div class="faq-header" onclick="toggleFAQ(this)">
+            <span class="faq-question">How does the U-BSOL Affiliate Program pay out?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-body">
+            <div class="faq-body-inner">Our affiliate partners earn 15%–25% commissions on referrals. Commissions are tracked on your affiliate dashboard and payouts are processed directly to your bank account within 48 hours of your buddy completing their subscription invoice.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- No Results Message -->
+      <div class="no-results" id="noResultsMessage">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--orange); margin-bottom: 12px;"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">No matching FAQs found</h3>
+        <p style="font-size: 14px; line-height: 1.5; margin: 0;">Try adjusting your keywords or clearing the filters.</p>
+      </div>
+
+    </div>
+
+    <!-- Sidebar Filters -->
+    <div class="faq-sidebar">
+      
+      <!-- Business Types Filter -->
+      <div class="filter-group">
+        <h3>Business Types</h3>
+        <ul>
+          <li>
+            <button class="filter-btn active" data-filter-type="business" data-filter-value="all" onclick="setFilter(this)">
+              All Types
+              <span class="filter-count" id="count-biz-all">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="filter-btn" data-filter-type="business" data-filter-value="trading" onclick="setFilter(this)">
+              Trading
+              <span class="filter-count" id="count-biz-trading">0</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Topics Filter -->
+      <div class="filter-group">
+        <h3>Topics</h3>
+        <ul>
+          <li>
+            <button class="filter-btn active" data-filter-type="topic" data-filter-value="all" onclick="setFilter(this)">
+              All Topics
+              <span class="filter-count" id="count-topic-all">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="filter-btn" data-filter-type="topic" data-filter-value="general" onclick="setFilter(this)">
+              General
+              <span class="filter-count" id="count-topic-general">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="filter-btn" data-filter-type="topic" data-filter-value="technology" onclick="setFilter(this)">
+              Technology
+              <span class="filter-count" id="count-topic-technology">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="filter-btn" data-filter-type="topic" data-filter-value="billing" onclick="setFilter(this)">
+              Billing
+              <span class="filter-count" id="count-topic-billing">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="filter-btn" data-filter-type="topic" data-filter-value="security" onclick="setFilter(this)">
+              Security
+              <span class="filter-count" id="count-topic-security">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="filter-btn" data-filter-type="topic" data-filter-value="domain" onclick="setFilter(this)">
+              Domain
+              <span class="filter-count" id="count-topic-domain">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="filter-btn" data-filter-type="topic" data-filter-value="registration" onclick="setFilter(this)">
+              Merchant Registration
+              <span class="filter-count" id="count-topic-registration">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="filter-btn" data-filter-type="topic" data-filter-value="subscription" onclick="setFilter(this)">
+              Subscription
+              <span class="filter-count" id="count-topic-subscription">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="filter-btn" data-filter-type="topic" data-filter-value="refund" onclick="setFilter(this)">
+              Return & Refund
+              <span class="filter-count" id="count-topic-refund">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="filter-btn" data-filter-type="topic" data-filter-value="store" onclick="setFilter(this)">
+              Merchant Store
+              <span class="filter-count" id="count-topic-store">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="filter-btn" data-filter-type="topic" data-filter-value="payment" onclick="setFilter(this)">
+              Payment Option
+              <span class="filter-count" id="count-topic-payment">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="filter-btn" data-filter-type="topic" data-filter-value="operation" onclick="setFilter(this)">
+              Operation
+              <span class="filter-count" id="count-topic-operation">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="filter-btn" data-filter-type="topic" data-filter-value="affiliate" onclick="setFilter(this)">
+              Affiliate
+              <span class="filter-count" id="count-topic-affiliate">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="filter-btn" data-filter-type="topic" data-filter-value="marketplace" onclick="setFilter(this)">
+              Market Place
+              <span class="filter-count" id="count-topic-marketplace">0</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="footer-container"></div>
+
+  <script src="components.js?v=3"></script>
+  <script>
+    let activeBusinessFilter = 'all';
+    let activeTopicFilter = 'all';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      injectComponents('faq');
+      updateCounts();
+      onSearchOrFilterChange();
+    });
+
+    function toggleFAQ(header) {
+      const item = header.closest('.faq-item');
+      const body = item.querySelector('.faq-body');
+      const isOpen = item.classList.contains('open');
+      
+      // Close all other items
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-body').style.maxHeight = null;
+      });
+
+      // Toggle current item
+      if (!isOpen) {
+        item.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + "px";
+      } else {
+        item.classList.remove('open');
+        body.style.maxHeight = null;
+      }
+    }
+
+    function setFilter(button) {
+      const filterType = button.getAttribute('data-filter-type');
+      const filterValue = button.getAttribute('data-filter-value');
+      
+      // Remove active from peers
+      const peerButtons = button.closest('ul').querySelectorAll('.filter-btn');
+      peerButtons.forEach(btn => btn.classList.remove('active'));
+      
+      // Add active to current
+      button.classList.add('active');
+
+      if (filterType === 'business') {
+        activeBusinessFilter = filterValue;
+      } else if (filterType === 'topic') {
+        activeTopicFilter = filterValue;
+      }
+
+      onSearchOrFilterChange();
+    }
+
+    function onSearchOrFilterChange() {
+      const searchQuery = document.getElementById('faqSearch').value.toLowerCase().trim();
+      const faqItems = document.querySelectorAll('.faq-item');
+      let visibleCount = 0;
+
+      faqItems.forEach(item => {
+        const businessVal = item.getAttribute('data-business');
+        const topicVal = item.getAttribute('data-topic');
+        const questionText = item.querySelector('.faq-question').textContent.toLowerCase();
+        const answerText = item.querySelector('.faq-body-inner').textContent.toLowerCase();
+
+        // Check business type filter
+        const matchesBusiness = (activeBusinessFilter === 'all' || businessVal.includes(activeBusinessFilter));
+
+        // Check topic filter
+        const matchesTopic = (activeTopicFilter === 'all' || topicVal.includes(activeTopicFilter));
+
+        // Check search query
+        const matchesSearch = (!searchQuery || questionText.includes(searchQuery) || answerText.includes(searchQuery));
+
+        if (matchesBusiness && matchesTopic && matchesSearch) {
+          item.style.display = 'block';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+          // Close if it was open
+          item.classList.remove('open');
+          item.querySelector('.faq-body').style.maxHeight = null;
+        }
+      });
+
+      // Handle no results
+      const noResultsMsg = document.getElementById('noResultsMessage');
+      if (visibleCount === 0) {
+        noResultsMsg.style.display = 'block';
+      } else {
+        noResultsMsg.style.display = 'none';
+      }
+    }
+
+    function updateCounts() {
+      const faqItems = document.querySelectorAll('.faq-item');
+
+      // Update business counts
+      const businessCounts = { all: faqItems.length, trading: 0 };
+      faqItems.forEach(item => {
+        const val = item.getAttribute('data-business');
+        if (val.includes('trading')) businessCounts.trading++;
+      });
+      document.getElementById('count-biz-all').textContent = businessCounts.all;
+      document.getElementById('count-biz-trading').textContent = businessCounts.trading;
+
+      // Update topic counts
+      const topicCounts = {
+        all: faqItems.length,
+        general: 0,
+        technology: 0,
+        billing: 0,
+        security: 0,
+        domain: 0,
+        registration: 0,
+        subscription: 0,
+        refund: 0,
+        store: 0,
+        payment: 0,
+        operation: 0,
+        affiliate: 0,
+        marketplace: 0
+      };
+
+      faqItems.forEach(item => {
+        const val = item.getAttribute('data-topic');
+        Object.keys(topicCounts).forEach(topic => {
+          if (topic !== 'all' && val.includes(topic)) {
+            topicCounts[topic]++;
+          }
+        });
+      });
+
+      Object.keys(topicCounts).forEach(topic => {
+        const element = document.getElementById(`count-topic-${topic}`);
+        if (element) {
+          element.textContent = topicCounts[topic];
+        }
+      });
+    }
+  </script>
+</body>
+</html>

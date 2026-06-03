@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>U-BSOL | Additional Add-ons</title>
+  <meta name="description" content="Enhance your store with U-BSOL's high-performance additional add-ons, including RFQ enquiry modules, user access roles, and customer groups." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=3" />
+  <style>
+    :root {
+      --bg-dark: #050505;
+      --bg-card: rgba(15, 15, 20, 0.4);
+      --border-glass: rgba(255, 255, 255, 0.06);
+      --text-main: #ffffff;
+      --text-muted: #a1a1aa;
+      --orange: #ff6b00;
+      --orange-dim: rgba(255, 107, 0, 0.12);
+      --glow: rgba(255, 107, 0, 0.25);
+      --gradient-orange: linear-gradient(135deg, #ff6b00 0%, #ff8c42 100%);
+    }
+    [data-theme="light"] {
+      --bg-dark: #fbfbfb;
+      --bg-card: rgba(255, 255, 255, 0.7);
+      --border-glass: rgba(0, 0, 0, 0.06);
+      --text-main: #09090b;
+      --text-muted: #71717a;
+      --orange-dim: rgba(255, 107, 0, 0.06);
+    }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+    }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; }
+
+    .bg-grid {
+      position: fixed; inset: 0; z-index: -3; pointer-events: none;
+      background-image: linear-gradient(var(--border-glass) 1px, transparent 1px),
+                        linear-gradient(90deg, var(--border-glass) 1px, transparent 1px);
+      background-size: 50px 50px;
+      mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+      -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+      opacity: 0.85;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .breadcrumb a { color: var(--orange); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    /* Hero section description adjustments */
+    .page-hero p {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    /* Add-ons List Grid */
+    .addons-section {
+      padding: 40px 24px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .addons-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .addon-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 28px;
+      padding: 40px 32px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .addon-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 107, 0, 0.3);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .addon-status-badge {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+    }
+
+    .addon-status-badge.dev {
+      background: rgba(255, 107, 0, 0.08);
+      color: var(--orange);
+      border: 1px solid rgba(255, 107, 0, 0.2);
+    }
+
+    .addon-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      background: var(--orange-dim);
+      border: 1px solid rgba(255, 107, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--orange);
+      margin-bottom: 28px;
+      font-size: 26px;
+      transition: all 0.3s ease;
+    }
+
+    .addon-card:hover .addon-icon {
+      background: var(--orange);
+      color: #fff;
+      box-shadow: 0 8px 20px var(--glow);
+    }
+
+    .addon-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    .addon-desc {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      flex-grow: 1;
+    }
+
+    /* Custom Add-on Banner */
+    .custom-addon-banner {
+      margin-top: 80px;
+      background: linear-gradient(135deg, rgba(255,107,0,0.12) 0%, rgba(255,140,66,0.06) 50%, rgba(0,0,0,0) 100%);
+      border: 1px solid var(--border-glass);
+      border-radius: 32px;
+      padding: 60px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+    }
+
+    .banner-title {
+      font-size: clamp(24px, 3.5vw, 38px);
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .banner-desc {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+
+    .banner-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: var(--gradient-orange);
+      color: #fff;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px var(--glow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .banner-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255,107,0,0.5);
+    }
+
+    @media (max-width: 991px) {
+      .addons-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-hero { padding: 120px 20px 40px; }
+      .addons-section { padding: 20px 20px 60px; }
+      .addons-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .custom-addon-banner {
+        padding: 40px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div id="nav-container"></div>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="page-hero-tag">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      Modules & Features
+    </div>
+    <h1 class="page-hero-title">Additional Add-ons</h1>
+    <p class="page-hero-desc">U-BSOL comes packed with rich features in the default packages. Beyond these, we actively develop specialized add-ons to take your operations, user hierarchies, and client pricing configurations to the next level.</p>
+  </section>
+
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span>›</span>
+    <span>Additional Add-ons</span>
+  </div>
+
+  <!-- Add-ons Grid -->
+  <section class="addons-section">
+    <div class="addons-grid">
+      
+      <!-- RFQ -->
+      <div class="addon-card tilt-3d">
+        <div class="addon-status-badge dev">
+          <span style="width: 6px; height: 6px; background-color: var(--orange); border-radius: 50%; display: inline-block;"></span>
+          Under Development
+        </div>
+        <div class="addon-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3 class="addon-title">Enquiry Module (RFQ)</h3>
+        <p class="addon-desc">An enquiry form associated directly with your product and service detail pages. This enables customers to submit enquiries for single or multiple items, facilitating seamless communication between customer and merchant. Merchants can then adjust pricing dynamically as per client specifications and convert enquiries directly into processed orders. This is ideal for special customers and B2B-related sales workflows.</p>
+      </div>
+
+      <!-- Access Roles -->
+      <div class="addon-card tilt-3d">
+        <div class="addon-status-badge dev">
+          <span style="width: 6px; height: 6px; background-color: var(--orange); border-radius: 50%; display: inline-block;"></span>
+          Under Development
+        </div>
+        <div class="addon-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="addon-title">User Group & Access Roles</h3>
+        <p class="addon-desc">Manage your business operations in a more structured and secure manner. This module allows you to set up multiple user groups for your internal team (Admin users) with customized, granular access levels and permissions, ensuring every manager or operator sees exactly what they need.</p>
+      </div>
+
+      <!-- Customer Groups -->
+      <div class="addon-card tilt-3d">
+        <div class="addon-status-badge dev">
+          <span style="width: 6px; height: 6px; background-color: var(--orange); border-radius: 50%; display: inline-block;"></span>
+          Under Development
+        </div>
+        <div class="addon-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+        </div>
+        <h3 class="addon-title">Customer Groups</h3>
+        <p class="addon-desc">Organize and segment your customer base into custom categories (e.g., family groups, coworkers, wholesale clients, or VIP friends). This module empowers you to assign different pricing rules and discounts for products or services based on the specific group the logged-in customer belongs to.</p>
+      </div>
+
+    </div>
+
+    <!-- Custom add-on banner -->
+    <div class="custom-addon-banner">
+      <h2 class="banner-title">Need a Custom Add-on?</h2>
+      <p class="banner-desc">We love crafting bespoke solutions. If you have unique business requirements that require customized features, our technical R&D team can build them for you. Development costs will be calculated based on the scope.</p>
+      <a href="contact.html" class="banner-cta">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Discuss Custom Solution
+      </a>
+    </div>
+  </section>
+
+  <div id="footer-container"></div>
+
+  <script src="components.js?v=3"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      injectComponents('addons');
+    });
+  </script>
+</body>
+</html>
