@@ -1,0 +1,6 @@
+{
+  "name": "U-BSOL",
+  "description": "Building AI-Powered Digital Experiences. Premium SaaS & AI agency website.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

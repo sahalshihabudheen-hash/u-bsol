@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>U-BSOL | Content Management System — API-First & Decoupled Media</title>
+  <meta name="description" content="Manage media seamlessly across all endpoints. U-BSOL Content Management System (CMS) enables headless publishing, collaborative logs, and custom layouts." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=14" />
+  <style>
+    /* ── PAGE-LEVEL VARS ── */
+    :root {
+      --orange: #ff6600;
+      --orange-dim: rgba(255,102,0,0.1);
+      --glass-border: rgba(255,255,255,0.07);
+      --card-bg: rgba(15,15,18,0.75);
+    }
+    [data-theme="light"] {
+      --card-bg: rgba(255,255,255,0.85);
+      --glass-border: rgba(0,0,0,0.07);
+    }
+
+    /* ── DUAL HERO SECTION ── */
+    .product-hero {
+      padding: 160px 24px 85px;
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; min-height: 85vh;
+    }
+    .product-hero-glow {
+      position: absolute; top: -100px; right: -50px;
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(255,102,0,0.15) 0%, transparent 65%);
+      filter: blur(80px); pointer-events: none; z-index: 0;
+    }
+    .product-hero-grid {
+      display: grid; grid-template-columns: 1.12fr 0.88fr; gap: 60px;
+      max-width: 1200px; margin: 0 auto; width: 100%; position: relative; z-index: 1;
+      align-items: center;
+    }
+    @media (max-width: 1024px) {
+      .product-hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .product-hero { min-height: auto; }
+    }
+
+    .badge-product {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,102,0,0.08); border: 1px solid rgba(255,102,0,0.25);
+      color: var(--orange); font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      padding: 6px 16px; border-radius: 100px; margin-bottom: 24px;
+    }
+    .badge-dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; box-shadow: 0 0 8px var(--orange); }
+
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(36px, 5.5vw, 64px);
+      font-weight: 800; letter-spacing: -2px;
+      line-height: 1.1; margin-bottom: 24px;
+    }
+    .gradient-word {
+      background: linear-gradient(135deg, #ff6600, #ff8c42);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-desc {
+      font-size: 17px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 40px;
+      max-width: 600px;
+    }
+    @media (max-width: 1024px) {
+      .hero-desc { margin-left: auto; margin-right: auto; }
+    }
+
+    /* Interactive Interface Mockup card */
+    .mockup-card {
+      background: var(--card-bg); border: 1px solid var(--glass-border);
+      border-radius: 24px; padding: 32px; box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+      position: relative; backdrop-filter: blur(25px);
+       transform: perspective(1000px) rotateY(-8deg) rotateX(4deg);
+      transition: all 0.5s ease;
+    }
+    @media (max-width: 1024px) {
+      .mockup-card { transform: none; max-width: 500px; margin: 0 auto; }
+    }
+    .mockup-card:hover {
+      transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.02);
+      box-shadow: 0 40px 80px rgba(255,102,0,0.15);
+      border-color: rgba(255,102,0,0.3);
+    }
+    .mockup-header {
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--glass-border); padding-bottom: 16px; margin-bottom: 24px;
+    }
+    .mockup-dot {
+      width: 10px; height: 10px; border-radius: 50%; display: inline-block;
+      margin-right: 6px;
+    }
+
+    /* ── VALUE BLOCKS ── */
+    .value-section { padding: 100px 24px; position: relative; }
+    .value-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    @media (max-width: 900px) {
+      .value-grid { grid-template-columns: 1fr; }
+    }
+    .value-card {
+      background: var(--card-bg); border: 1px solid var(--glass-border);
+      border-radius: 20px; padding: 40px; backdrop-filter: blur(20px);
+      transition: var(--transition);
+    }
+    .value-card:hover { border-color: rgba(255,102,0,0.35); transform: translateY(-4px); }
+    .value-icon {
+      color: var(--orange); margin-bottom: 24px; display: inline-block;
+    }
+    .value-title {
+      font-size: 20px; font-weight: 700; font-family: 'Space Grotesk', sans-serif;
+      margin-bottom: 12px; color: var(--text-primary);
+    }
+    .value-desc { font-size: 14.5px; color: var(--text-secondary); line-height: 1.7; }
+
+    /* ── STICKY SPECIFICATIONS ── */
+    .specs-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      max-width: 1200px; margin: 80px auto; padding: 0 24px; align-items: center;
+    }
+    @media (max-width: 900px) {
+      .specs-layout { grid-template-columns: 1fr; gap: 40px; }
+    }
+    .specs-image {
+      width: 100%; border-radius: 24px; border: 1px solid var(--glass-border);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    }
+
+    /* ── CTA INNER FOOTER ── */
+    .product-cta {
+      text-align: center; max-width: 800px; margin: 120px auto 100px; padding: 0 24px;
+    }
+    .product-cta-title {
+      font-size: 42px; font-weight: 800; font-family: 'Space Grotesk', sans-serif; margin-bottom: 20px;
+    }
+    .product-cta-desc { font-size: 16.5px; color: var(--text-secondary); margin-bottom: 40px; line-height: 1.8; }
+
+  </style>
+</head>
+<body class="hover-glow-container">
+
+  <div class="bg-grid"></div>
+
+  <!-- Navigation injected here -->
+  <div id="nav-container"></div>
+
+  <!-- HERO Showcase -->
+  <section class="product-hero">
+    <div class="product-hero-glow"></div>
+    <div class="product-hero-grid">
+      
+      <div class="reveal-up active">
+        <div class="badge-product">
+          <span class="badge-dot"></span>
+          U-BSOL CMS
+        </div>
+        <h1 class="hero-title">
+          Headless Dynamic <br/><span class="gradient-word">Content Delivery</span>
+        </h1>
+        <p class="hero-desc">
+          Take absolute command of your company’s rich content pipeline. Our global headless CMS platform decouples your backend logic from layout, allowing you to easily organize rich content blocks, landing page configurations, smart localization parameters, and massive media catalogs. Deliver optimized JSON across ultra-low-latency edge nodes instantaneously to React, mobile endpoints, or immersive VR platforms with zero performance compromises.
+        </p>
+        <div style="margin-bottom: 35px; display: flex; flex-direction: column; gap: 14px; text-align: left; max-width: 600px;">
+          <div style="display: flex; align-items: flex-start; gap: 10px; color: var(--text-secondary); font-size: 14.5px; line-height: 1.5;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span><strong>Multi-Tenant Content Modeling:</strong> Define custom structures and schema types once, then deploy and distribute content instantly to infinite frontend channels.</span>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 10px; color: var(--text-secondary); font-size: 14.5px; line-height: 1.5;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span><strong>Edge CDN Localization:</strong> Automatic locale routing and WebP/AVIF image format compression at the closest global point-of-presence caches.</span>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 10px; color: var(--text-secondary); font-size: 14.5px; line-height: 1.5;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span><strong>GraphQL + REST API Endpoints:</strong> Robust, type-safe API queries optimized to scale effortlessly for extremely high-traffic enterprise environments.</span>
+          </div>
+        </div>
+        <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom: 24px;">
+          <a href="#" class="btn-primary magnetic" style="border-radius: 30px; padding: 14px 32px; font-weight:600; font-size:15px; display:inline-flex; align-items:center; gap:8px;" onclick="showPlatformComingSoon(event, 'U-BSOL CMS')">
+            Visit CMS Website
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block; vertical-align:middle;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a href="contact.html" class="btn-packages magnetic" style="padding: 14px 32px; border-radius: 30px;">Get Architecture Consultation</a>
+        </div>
+      </div>
+
+      <!-- Right Column: Ecosystem Image -->
+      <div class="reveal-up active" style="display: flex; align-items: center; justify-content: center;">
+        <div class="tilt-3d" style="width: 100%; max-width: 580px; padding: 24px; border-radius: 24px; border: 1.5px solid rgba(255,102,0,0.15); background: rgba(5,5,5,0.4); box-shadow: 0 15px 45px rgba(0,0,0,0.6); backdrop-filter: blur(12px); overflow: hidden; position: relative;">
+          <!-- Subtle orange glowing ambient background blobs -->
+          <div style="position: absolute; width: 140px; height: 140px; background: rgba(255,102,0,0.12); filter: blur(40px); border-radius: 50%; top: -20px; left: -20px; z-index: 0; pointer-events: none;"></div>
+          <div style="position: absolute; width: 140px; height: 140px; background: rgba(255,102,0,0.08); filter: blur(50px); border-radius: 50%; bottom: -20px; right: -20px; z-index: 0; pointer-events: none;"></div>
+          
+          <img src="assets/img/cms_ecosystem.png" alt="CMS Ecosystem Overview" style="width: 100%; height: auto; display: block; filter: drop-shadow(0px 8px 30px rgba(0,0,0,0.4)); position: relative; z-index: 1;" />
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VALUE BLOCKS -->
+  <section class="value-section" style="border-top: 1px solid var(--glass-border);">
+    <div class="value-grid">
+      
+      <div class="value-card hover-glow reveal-up">
+        <div class="value-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+        </div>
+        <h3 class="value-title">Headless API Content Engine</h3>
+        <p class="value-desc">
+          Ditch traditional monolithic systems. Fetch visual logs, schemas, assets, and translated pages using light REST nodes that render instantly on mobile frontends.
+        </p>
+      </div>
+
+      <div class="value-card hover-glow reveal-up">
+        <div class="value-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"></path></svg>
+        </div>
+        <h3 class="value-title">Real-time Author Partnerships</h3>
+        <p class="value-desc">
+          Multiple authors can update copy, tweak layout spacing blocks, upload high-definition images, and coordinate localized reviews concurrently without page clashes.
+        </p>
+      </div>
+
+      <div class="value-card hover-glow reveal-up">
+        <div class="value-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        </div>
+        <h3 class="value-title">Global Localized Translation</h3>
+        <p class="value-desc">
+          Connect automated translation APIs to effortlessly publish contents globally in over 40 languages, complete with customizable currency and regional layout adjustments.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FEATURES DEEP DIVE -->
+  <section class="page-section" style="background: rgba(255,102,0,0.015); border-top: 1px solid var(--glass-border); border-bottom:1px solid var(--glass-border)">
+    <div class="specs-layout">
+      
+      <div class="reveal-up">
+        <span class="badge-product" style="margin-bottom:16px;">
+          <span class="badge-dot"></span>
+          Author Experience
+        </span>
+        <h2 style="font-size:38px; font-weight:800; font-family:'Space Grotesk',sans-serif; margin-bottom:24px; line-height:1.2;">
+          Pristine Content Authoring Suite
+        </h2>
+        <p style="font-size:16px; color:var(--text-secondary); line-height:1.8; margin-bottom:28px;">
+          Content teams perform their best when the tools are helpful rather than frustrating. U-BSOL CMS delivers a supercharged visual rich-text grid with live structural previews and responsive asset management.
+        </p>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <svg style="color:var(--orange); flex-shrink:0;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <div>
+              <h4 style="font-size:16px; font-weight:700; margin-bottom:4px;">Unified Media Assets Workspace</h4>
+              <p style="font-size:13.5px; color:var(--text-muted);">Upload, crop, tag, and auto-optimize assets for optimal performance across devices on the fly.</p>
+            </div>
+          </div>
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <svg style="color:var(--orange); flex-shrink:0;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <div>
+              <h4 style="font-size:16px; font-weight:700; margin-bottom:4px;">Staged Release Lifecycles</h4>
+              <p style="font-size:13.5px; color:var(--text-muted);">Set up automated draft branches, visual reviews, scheduled launches, and rollbacks easily.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal-up">
+        <img class="specs-image" src="assets/img/cms_ecosystem.png" alt="CMS Ecosystem Diagram - Decoupled Headless Content Management Systems" />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRODUCTS SUITE EXECUTIONS -->
+  <div id="products-suite-container"></div>
+
+  <!-- CTA SECTION -->
+  <section class="product-cta reveal-up">
+    <h2 class="product-cta-title">Connect Content to Your Enterprise Faster</h2>
+    <p class="product-cta-desc">
+      Empower your editorial, marketing, and copywriting divisions. Get in touch with U-BSOL to integrate our headless CMS with your existing infrastructure.
+    </p>
+    <a href="contact.html" class="btn-orange-glow magnetic" style="padding:18px 48px; font-size:16px;">Talk to a CMS Architect</a>
+  </section>
+
+  <!-- Footer injected here -->
+  <div id="footer-container"></div>
+
+  <script src="components.js?v=20"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Inject standard template components
+      injectComponents('cms');
+
+      // Scroll reveals
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal-up').forEach(c => obs.observe(c));
+
+      // Mouseglow coordinators
+      document.querySelectorAll('.hover-glow').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+          card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

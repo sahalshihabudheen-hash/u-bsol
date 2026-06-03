@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>U-BSOL | HRMS Platform — Intelligent Staff Management</title>
+  <meta name="description" content="Digitalize your employee workflow. U-BSOL HRMS provides automated payroll calculators, simple attendance logging, geotracking, and beautiful statistics." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=14" />
+  <style>
+    /* ── PAGE-LEVEL VARS ── */
+    :root {
+      --orange: #ff6600;
+      --orange-dim: rgba(255,102,0,0.1);
+      --glass-border: rgba(255,255,255,0.07);
+      --card-bg: rgba(15,15,18,0.75);
+    }
+    [data-theme="light"] {
+      --card-bg: rgba(255,255,255,0.85);
+      --glass-border: rgba(0,0,0,0.07);
+    }
+
+    /* ── DUAL HERO SECTION ── */
+    .product-hero {
+      padding: 160px 24px 85px;
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; min-height: 85vh;
+    }
+    .product-hero-glow {
+      position: absolute; top: -100px; right: -50px;
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(255,102,0,0.15) 0%, transparent 65%);
+      filter: blur(80px); pointer-events: none; z-index: 0;
+    }
+    .product-hero-grid {
+      display: grid; grid-template-columns: 1.12fr 0.88fr; gap: 60px;
+      max-width: 1200px; margin: 0 auto; width: 100%; position: relative; z-index: 1;
+      align-items: center;
+    }
+    @media (max-width: 1024px) {
+      .product-hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .product-hero { min-height: auto; }
+    }
+
+    .badge-product {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,102,0,0.08); border: 1px solid rgba(255,102,0,0.25);
+      color: var(--orange); font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      padding: 6px 16px; border-radius: 100px; margin-bottom: 24px;
+    }
+    .badge-dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; box-shadow: 0 0 8px var(--orange); }
+
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(36px, 5.5vw, 64px);
+      font-weight: 800; letter-spacing: -2px;
+      line-height: 1.1; margin-bottom: 24px;
+    }
+    .gradient-word {
+      background: linear-gradient(135deg, #ff6600, #ff8c42);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-desc {
+      font-size: 17px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 40px;
+      max-width: 600px;
+    }
+    @media (max-width: 1024px) {
+      .hero-desc { margin-left: auto; margin-right: auto; }
+    }
+
+    /* Interactive Interface Mockup card */
+    .mockup-card {
+      background: var(--card-bg); border: 1px solid var(--glass-border);
+      border-radius: 24px; padding: 32px; box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+      position: relative; backdrop-filter: blur(25px);
+      transform: perspective(1000px) rotateY(-8deg) rotateX(4deg);
+      transition: all 0.5s ease;
+    }
+    @media (max-width: 1024px) {
+      .mockup-card { transform: none; max-width: 500px; margin: 0 auto; }
+    }
+    .mockup-card:hover {
+      transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.02);
+      box-shadow: 0 40px 80px rgba(255,102,0,0.15);
+      border-color: rgba(255,102,0,0.3);
+    }
+    .mockup-header {
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--glass-border); padding-bottom: 16px; margin-bottom: 24px;
+    }
+    .mockup-dot {
+      width: 10px; height: 10px; border-radius: 50%; display: inline-block;
+      margin-right: 6px;
+    }
+
+    /* ── VALUE BLOCKS ── */
+    .value-section { padding: 100px 24px; position: relative; }
+    .value-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    @media (max-width: 900px) {
+      .value-grid { grid-template-columns: 1fr; }
+    }
+    .value-card {
+      background: var(--card-bg); border: 1px solid var(--glass-border);
+      border-radius: 20px; padding: 40px; backdrop-filter: blur(20px);
+      transition: var(--transition);
+    }
+    .value-card:hover { border-color: rgba(255,102,0,0.35); transform: translateY(-4px); }
+    .value-icon {
+      color: var(--orange); margin-bottom: 24px; display: inline-block;
+    }
+    .value-title {
+      font-size: 20px; font-weight: 700; font-family: 'Space Grotesk', sans-serif;
+      margin-bottom: 12px; color: var(--text-primary);
+    }
+    .value-desc { font-size: 14.5px; color: var(--text-secondary); line-height: 1.7; }
+
+    /* ── STICKY SPECIFICATIONS ── */
+    .specs-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      max-width: 1200px; margin: 80px auto; padding: 0 24px; align-items: center;
+    }
+    @media (max-width: 900px) {
+      .specs-layout { grid-template-columns: 1fr; gap: 40px; }
+    }
+    .specs-image {
+      width: 100%; border-radius: 24px; border: 1px solid var(--glass-border);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    }
+
+    /* ── CTA INNER FOOTER ── */
+    .product-cta {
+      text-align: center; max-width: 800px; margin: 120px auto 100px; padding: 0 24px;
+    }
+    .product-cta-title {
+      font-size: 42px; font-weight: 800; font-family: 'Space Grotesk', sans-serif; margin-bottom: 20px;
+    }
+    .product-cta-desc { font-size: 16.5px; color: var(--text-secondary); margin-bottom: 40px; line-height: 1.8; }
+
+  </style>
+</head>
+<body class="hover-glow-container">
+
+  <div class="bg-grid"></div>
+
+  <!-- Navigation injected here -->
+  <div id="nav-container"></div>
+
+  <!-- HERO Showcase -->
+  <section class="product-hero">
+    <div class="product-hero-glow"></div>
+    <div class="product-hero-grid">
+      
+      <div class="reveal-up active">
+        <div class="badge-product">
+          <span class="badge-dot"></span>
+          U-BSOL HRMS
+        </div>
+        <h1 class="hero-title">
+          Smart Employee <br/><span class="gradient-word">Operational Hub</span>
+        </h1>
+        <p class="hero-desc">
+          Automate the entire employee lifecycle. Speed up monthly payroll approvals, track biometric terminal logs in real-time, schedule fluid shifts, and monitor field staff geotracking in one elegant screen.
+        </p>
+        <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom: 24px;">
+          <a href="#" class="btn-primary magnetic" style="border-radius: 30px; padding: 14px 32px; font-weight:600; font-size:15px; display:inline-flex; align-items:center; gap:8px;" onclick="showPlatformComingSoon(event, 'U-BSOL HRMS')">
+            Visit HRMS Website
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block; vertical-align:middle;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a href="contact.html" class="btn-packages magnetic" style="padding: 14px 32px; border-radius: 30px;">Schedule Workspace Demo</a>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive 3D HRMS Ecosystem Diagram -->
+      <div class="reveal-up active" style="display: flex; align-items: center; justify-content: center;">
+        <div class="tilt-3d" style="width: 100%; max-width: 580px; padding: 24px; border-radius: 24px; border: 1.5px solid rgba(255,102,0,0.15); background: rgba(5,5,5,0.4); box-shadow: 0 15px 45px rgba(0,0,0,0.6); backdrop-filter: blur(12px); overflow: hidden; position: relative;">
+          <!-- Subtle glowing ambient background blobs -->
+          <div style="position: absolute; width: 140px; height: 140px; background: rgba(255,102,0,0.12); filter: blur(40px); border-radius: 50%; top: -20px; left: -20px; z-index: 0; pointer-events: none;"></div>
+          <div style="position: absolute; width: 140px; height: 140px; background: rgba(0,162,255,0.08); filter: blur(50px); border-radius: 50%; bottom: -20px; right: -20px; z-index: 0; pointer-events: none;"></div>
+          
+          <img src="assets/img/hrms_ecosystem.png" alt="HRMS Ecosystem Overview Diagram" style="width: 100%; height: auto; display: block; filter: drop-shadow(0px 8px 30px rgba(0,0,0,0.4)); position: relative; z-index: 1;" />
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VALUE BLOCKS -->
+  <section class="value-section" style="border-top: 1px solid var(--glass-border);">
+    <div class="value-grid">
+      
+      <div class="value-card hover-glow reveal-up">
+        <div class="value-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        </div>
+        <h3 class="value-title">Bespoke Payroll Calculators</h3>
+        <p class="value-desc">
+          Automate dynamic overtime logic, tax brackets, insurance deductions, regional allowances, and direct bank settlement transfers inside a few simple, clean rules.
+        </p>
+      </div>
+
+      <div class="value-card hover-glow reveal-up">
+        <div class="value-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        </div>
+        <h3 class="value-title">Biometric sync & Georecordings</h3>
+        <p class="value-desc">
+          Track clock-in times using physical finger scanning endpoints OR via geofenced coordinates logs on on-field mobile apps with real-time discrepancy indicators.
+        </p>
+      </div>
+
+      <div class="value-card hover-glow reveal-up">
+        <div class="value-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>
+        </div>
+        <h3 class="value-title">Manage All Office Stuff</h3>
+        <p class="value-desc">
+          Automate and track physical office operations. Manage desk planning allocations, coordinate board meeting rooms, record visitor gates, catalog office assets, and streamline facility inventories on one screen.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FEATURES DEEP DIVE -->
+  <section class="page-section" style="background: rgba(255,102,0,0.015); border-top: 1px solid var(--glass-border); border-bottom:1px solid var(--glass-border)">
+    <div class="specs-layout">
+      
+      <div class="reveal-up">
+        <span class="badge-product" style="margin-bottom:16px;">
+          <span class="badge-dot"></span>
+          Operational Ease
+        </span>
+        <h2 style="font-size:38px; font-weight:800; font-family:'Space Grotesk',sans-serif; margin-bottom:24px; line-height:1.2;">
+          Pristine Operational Workforce Transparency
+        </h2>
+        <p style="font-size:16px; color:var(--text-secondary); line-height:1.8; margin-bottom:28px;">
+          Manage modern enterprise workforces without paper friction. Our HRMS platform offers an extremely streamlined interface designed to clear administrative queues in minutes.
+        </p>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <svg style="color:var(--orange); flex-shrink:0;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <div>
+              <h4 style="font-size:16px; font-weight:700; margin-bottom:4px;">One-click Payroll Auto-Disbursement</h4>
+              <p style="font-size:13.5px; color:var(--text-muted);">Sync, calculate, tax auditing and disburse monthly payouts instantly with absolute log tracking.</p>
+            </div>
+          </div>
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <svg style="color:var(--orange); flex-shrink:0;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <div>
+              <h4 style="font-size:16px; font-weight:700; margin-bottom:4px;">Secure Employee Document Vault</h4>
+              <p style="font-size:13.5px; color:var(--text-muted);">Keep medical papers, contracts, tax sheets, and certificates under encrypted access protocols.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal-up">
+        <img class="specs-image" src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&w=800&q=80" alt="HRMS Interface Mockup" />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRODUCTS SUITE EXECUTIONS -->
+  <div id="products-suite-container"></div>
+
+  <!-- CTA SECTION -->
+  <section class="product-cta reveal-up">
+    <h2 class="product-cta-title">Bring Calm to Your Personnel Operations</h2>
+    <p class="product-cta-desc">
+      Stop wasting hours on manual spreadsheet formulas and lost biometric receipts. Connect with physical engineers at U-BSOL to integrate HRMS globally.
+    </p>
+    <a href="contact.html" class="btn-orange-glow magnetic" style="padding:18px 48px; font-size:16px;">Speak with an HR Automation Expert</a>
+  </section>
+
+  <!-- Footer injected here -->
+  <div id="footer-container"></div>
+
+  <script src="components.js?v=20"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Inject standard template components
+      injectComponents('hrms');
+
+      // Scroll reveals
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal-up').forEach(c => obs.observe(c));
+
+      // Mouseglow coordinators
+      document.querySelectorAll('.hover-glow').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+          card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>U-BSOL | E-Commerce Platform — Global Sales & Scale</title>
+  <meta name="description" content="Deploy a high-converting, lightning-fast digital shop. U-BSOL E-Commerce offers decoupled checkout, multi-inventory control, and secure transactions." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=14" />
+  <style>
+    /* ── PAGE-LEVEL VARS ── */
+    :root {
+      --orange: #ff6600;
+      --orange-dim: rgba(255,102,0,0.1);
+      --glass-border: rgba(255,255,255,0.07);
+      --card-bg: rgba(15,15,18,0.75);
+    }
+    [data-theme="light"] {
+      --card-bg: rgba(255,255,255,0.85);
+      --glass-border: rgba(0,0,0,0.07);
+    }
+
+    /* ── DUAL HERO SECTION ── */
+    .product-hero {
+      padding: 160px 24px 85px;
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; min-height: 85vh;
+    }
+    .product-hero-glow {
+      position: absolute; top: -100px; right: -50px;
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(255,102,0,0.15) 0%, transparent 65%);
+      filter: blur(80px); pointer-events: none; z-index: 0;
+    }
+    .product-hero-grid {
+      display: grid; grid-template-columns: 1.12fr 0.88fr; gap: 60px;
+      max-width: 1200px; margin: 0 auto; width: 100%; position: relative; z-index: 1;
+      align-items: center;
+    }
+    @media (max-width: 1024px) {
+      .product-hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .product-hero { min-height: auto; }
+    }
+
+    .badge-product {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,102,0,0.08); border: 1px solid rgba(255,102,0,0.25);
+      color: var(--orange); font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      padding: 6px 16px; border-radius: 100px; margin-bottom: 24px;
+    }
+    .badge-dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; box-shadow: 0 0 8px var(--orange); }
+
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(36px, 5.5vw, 64px);
+      font-weight: 800; letter-spacing: -2px;
+      line-height: 1.1; margin-bottom: 24px;
+    }
+    .gradient-word {
+      background: linear-gradient(135deg, #ff6600, #ff8c42);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-desc {
+      font-size: 17px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 40px;
+      max-width: 600px;
+    }
+    @media (max-width: 1024px) {
+      .hero-desc { margin-left: auto; margin-right: auto; }
+    }
+
+    /* Interactive Interface Mockup card */
+    .mockup-card {
+      background: var(--card-bg); border: 1px solid var(--glass-border);
+      border-radius: 24px; padding: 32px; box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+      position: relative; backdrop-filter: blur(25px);
+      transform: perspective(1000px) rotateY(-8deg) rotateX(4deg);
+      transition: all 0.5s ease;
+    }
+    @media (max-width: 1024px) {
+      .mockup-card { transform: none; max-width: 500px; margin: 0 auto; }
+    }
+    .mockup-card:hover {
+      transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.02);
+      box-shadow: 0 40px 80px rgba(255,102,0,0.15);
+      border-color: rgba(255,102,0,0.3);
+    }
+    .mockup-header {
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--glass-border); padding-bottom: 16px; margin-bottom: 24px;
+    }
+    .mockup-dot {
+      width: 10px; height: 10px; border-radius: 50%; display: inline-block;
+      margin-right: 6px;
+    }
+
+    /* ── VALUE BLOCKS ── */
+    .value-section { padding: 100px 24px; position: relative; }
+    .value-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    @media (max-width: 900px) {
+      .value-grid { grid-template-columns: 1fr; }
+    }
+    .value-card {
+      background: var(--card-bg); border: 1px solid var(--glass-border);
+      border-radius: 20px; padding: 40px; backdrop-filter: blur(20px);
+      transition: var(--transition);
+    }
+    .value-card:hover { border-color: rgba(255,102,0,0.35); transform: translateY(-4px); }
+    .value-icon {
+      color: var(--orange); margin-bottom: 24px; display: inline-block;
+    }
+    .value-title {
+      font-size: 20px; font-weight: 700; font-family: 'Space Grotesk', sans-serif;
+      margin-bottom: 12px; color: var(--text-primary);
+    }
+    .value-desc { font-size: 14.5px; color: var(--text-secondary); line-height: 1.7; }
+
+    /* ── STICKY SPECIFICATIONS ── */
+    .specs-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      max-width: 1200px; margin: 80px auto; padding: 0 24px; align-items: center;
+    }
+    @media (max-width: 900px) {
+      .specs-layout { grid-template-columns: 1fr; gap: 40px; }
+    }
+    .specs-image {
+      width: 100%; border-radius: 24px; border: 1px solid var(--glass-border);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    }
+
+    /* ── CTA INNER FOOTER ── */
+    .product-cta {
+      text-align: center; max-width: 800px; margin: 120px auto 100px; padding: 0 24px;
+    }
+    .product-cta-title {
+      font-size: 42px; font-weight: 800; font-family: 'Space Grotesk', sans-serif; margin-bottom: 20px;
+    }
+    .product-cta-desc { font-size: 16.5px; color: var(--text-secondary); margin-bottom: 40px; line-height: 1.8; }
+
+  </style>
+</head>
+<body class="hover-glow-container">
+
+  <div class="bg-grid"></div>
+
+  <!-- Navigation injected here -->
+  <div id="nav-container"></div>
+
+  <!-- HERO Showcase -->
+  <section class="product-hero">
+    <div class="product-hero-glow"></div>
+    <div class="product-hero-grid">
+      
+      <div class="reveal-up active">
+        <div class="badge-product">
+          <span class="badge-dot"></span>
+          U-BSOL Commerce
+        </div>
+        <h1 class="hero-title">
+          Build Hyper-growth <br/><span class="gradient-word">E-Commerce Blocks</span>
+        </h1>
+        <p class="hero-desc">
+          Craft customizable online stores with unmatched performance. Experience 99.9% uptime, headless CMS database hooks, localized regional custom payment configurations and fully interactive customer carts.
+        </p>
+        <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom: 24px;">
+          <a href="#" class="btn-primary magnetic" style="border-radius: 30px; padding: 14px 32px; font-weight:600; font-size:15px; display:inline-flex; align-items:center; gap:8px;" onclick="showPlatformComingSoon(event, 'U-BSOL E-Commerce')">
+            Visit E-Commerce Website
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block; vertical-align:middle;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a href="templates.html" class="btn-packages magnetic" style="padding: 14px 32px; border-radius: 30px; display: inline-flex; align-items: center; gap: 8px;">
+            View Templates
+            <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a href="contact.html" class="btn-packages magnetic" style="padding: 14px 32px; border-radius: 30px;">Schedule Platform Demo</a>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Ecosystem Image -->
+      <div class="reveal-up active">
+        <img class="specs-image" src="assets/img/ecommerce_ecosystem.png" alt="E-Commerce Ecosystem Overview" style="width: 100%; height: auto; display: block;" referrerPolicy="no-referrer" />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VALUE BLOCKS -->
+  <section class="value-section" style="border-top: 1px solid var(--glass-border);">
+    <div class="value-grid">
+      
+      <div class="value-card hover-glow reveal-up">
+        <div class="value-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+        </div>
+        <h3 class="value-title">API-First Headless Architecture</h3>
+        <p class="value-desc">
+          Publish and edit catalog configurations across mobile apps, custom POS platforms, legacy smart-watches, and headless channels using simple standard REST/GraphQL nodes.
+        </p>
+      </div>
+
+      <div class="value-card hover-glow reveal-up">
+        <div class="value-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <h3 class="value-title">Hardened Bank-Grade Security</h3>
+        <p class="value-desc">
+          Each order is processed with complete TLS encryption, PCI-DSS compliance hooks, tokenized card safety, and live fraud tracking algorithms checking customer proxies.
+        </p>
+      </div>
+
+      <div class="value-card hover-glow reveal-up">
+        <div class="value-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+        </div>
+        <h3 class="value-title">AI Powered Inventory Controls</h3>
+        <p class="value-desc">
+          Automate dynamic restocking alerts. Keep inventory databases synced in real-time between offline store registers and digital warehouse dashboards without a second key.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FEATURES DEEP DIVE -->
+  <section class="page-section" style="background: rgba(255,102,0,0.015); border-top: 1px solid var(--glass-border); border-bottom:1px solid var(--glass-border)">
+    <div class="specs-layout">
+      
+      <div class="reveal-up">
+        <span class="badge-product" style="margin-bottom:16px;">
+          <span class="badge-dot"></span>
+          Decoupled Speed
+        </span>
+        <h2 style="font-size:38px; font-weight:800; font-family:'Space Grotesk',sans-serif; margin-bottom:24px; line-height:1.2;">
+          Fast Performance Wins Customer Trust
+        </h2>
+        <p style="font-size:16px; color:var(--text-secondary); line-height:1.8; margin-bottom:28px;">
+          Every extra 100 milliseconds of page latency slashes checkouts by 7%. U-BSOL is engineered on performant React layouts, serving static catalog layouts from global edge nodes with instant local execution.
+        </p>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <svg style="color:var(--orange); flex-shrink:0;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <div>
+              <h4 style="font-size:16px; font-weight:700; margin-bottom:4px;">Static Content Serving via edge nodes (Lighthouse score: 100/100)</h4>
+              <p style="font-size:13.5px; color:var(--text-muted);">Ensure catalog loading is completely instantaneous even on rural 3G pipelines.</p>
+            </div>
+          </div>
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <svg style="color:var(--orange); flex-shrink:0;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <div>
+              <h4 style="font-size:16px; font-weight:700; margin-bottom:4px;">Dynamic Single Page Checkout panel</h4>
+              <p style="font-size:13.5px; color:var(--text-muted);">Skip tedious multi-step reload screens. Capture sales through elegant native payment cards.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal-up">
+        <img class="specs-image" src="assets/img/ecommerce_ecosystem.png" alt="E-Commerce Ecosystem Diagram - High Performance Headless Architecture" referrerPolicy="no-referrer" />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRODUCTS SUITE EXECUTIONS -->
+  <div id="products-suite-container"></div>
+
+  <!-- CTA SECTION -->
+  <section class="product-cta reveal-up">
+    <h2 class="product-cta-title">Upgrade Your Store Architecture Today</h2>
+    <p class="product-cta-desc">
+      Partner with Shihabudheen Uruniyan and the U-BSOL core development squad to migrate your slow legacy Shopify or WooCommerce store to a custom high-performance engine.
+    </p>
+    <a href="contact.html" class="btn-orange-glow magnetic" style="padding:18px 48px; font-size:16px;">Talk to a Commerce Expert</a>
+  </section>
+
+  <!-- Footer injected here -->
+  <div id="footer-container"></div>
+
+  <script src="components.js?v=20"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Inject standard template components
+      injectComponents('ecommerce');
+
+      // Scroll reveals
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal-up').forEach(c => obs.observe(c));
+
+      // Mouseglow coordinators
+      document.querySelectorAll('.hover-glow').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+          card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>U-BSOL | LMS 360 — Full Institute & School Automation Suite</title>
+  <meta name="description" content="Digitize school operations. U-BSOL LMS 360 delivers minute-by-minute school automation, adaptive timetables, parent-teacher alerts, and exam managers." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=14" />
+  <style>
+    /* ── PAGE-LEVEL VARS ── */
+    :root {
+      --orange: #ff6600;
+      --orange-dim: rgba(255,102,0,0.1);
+      --glass-border: rgba(255,255,255,0.07);
+      --card-bg: rgba(15,15,18,0.75);
+    }
+    [data-theme="light"] {
+      --card-bg: rgba(255,255,255,0.85);
+      --glass-border: rgba(0,0,0,0.07);
+    }
+
+    /* ── DUAL HERO SECTION ── */
+    .product-hero {
+      padding: 160px 24px 85px;
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; min-height: 85vh;
+    }
+    .product-hero-glow {
+      position: absolute; top: -100px; right: -50px;
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(255,102,0,0.15) 0%, transparent 65%);
+      filter: blur(80px); pointer-events: none; z-index: 0;
+    }
+    .product-hero-grid {
+      display: grid; grid-template-columns: 1.12fr 0.88fr; gap: 60px;
+      max-width: 1200px; margin: 0 auto; width: 100%; position: relative; z-index: 1;
+      align-items: center;
+    }
+    @media (max-width: 1024px) {
+      .product-hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .product-hero { min-height: auto; }
+    }
+
+    .badge-product {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,102,0,0.08); border: 1px solid rgba(255,102,0,0.25);
+      color: var(--orange); font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      padding: 6px 16px; border-radius: 100px; margin-bottom: 24px;
+    }
+    .badge-dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; box-shadow: 0 0 8px var(--orange); }
+
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(36px, 5.5vw, 64px);
+      font-weight: 800; letter-spacing: -2px;
+      line-height: 1.1; margin-bottom: 24px;
+    }
+    .gradient-word {
+      background: linear-gradient(135deg, #ff6600, #ff8c42);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-desc {
+      font-size: 17px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 40px;
+      max-width: 600px;
+    }
+    @media (max-width: 1024px) {
+      .hero-desc { margin-left: auto; margin-right: auto; }
+    }
+
+    /* Interactive Interface Mockup card */
+    .mockup-card {
+      background: var(--card-bg); border: 1px solid var(--glass-border);
+      border-radius: 24px; padding: 32px; box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+      position: relative; backdrop-filter: blur(25px);
+      transform: perspective(1000px) rotateY(-8deg) rotateX(4deg);
+      transition: all 0.5s ease;
+    }
+    @media (max-width: 1024px) {
+      .mockup-card { transform: none; max-width: 500px; margin: 0 auto; }
+    }
+    .mockup-card:hover {
+      transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.02);
+      box-shadow: 0 40px 80px rgba(255,102,0,0.15);
+      border-color: rgba(255,102,0,0.3);
+    }
+    .mockup-header {
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--glass-border); padding-bottom: 16px; margin-bottom: 24px;
+    }
+    .mockup-dot {
+      width: 10px; height: 10px; border-radius: 50%; display: inline-block;
+      margin-right: 6px;
+    }
+
+    /* ── VALUE BLOCKS ── */
+    .value-section { padding: 100px 24px; position: relative; }
+    .value-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    @media (max-width: 900px) {
+      .value-grid { grid-template-columns: 1fr; }
+    }
+    .value-card {
+      background: var(--card-bg); border: 1px solid var(--glass-border);
+      border-radius: 20px; padding: 40px; backdrop-filter: blur(20px);
+      transition: var(--transition);
+    }
+    .value-card:hover { border-color: rgba(255,102,0,0.35); transform: translateY(-4px); }
+    .value-icon {
+      color: var(--orange); margin-bottom: 24px; display: inline-block;
+    }
+    .value-title {
+      font-size: 20px; font-weight: 700; font-family: 'Space Grotesk', sans-serif;
+      margin-bottom: 12px; color: var(--text-primary);
+    }
+    .value-desc { font-size: 14.5px; color: var(--text-secondary); line-height: 1.7; }
+
+    /* ── STICKY SPECIFICATIONS ── */
+    .specs-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      max-width: 1200px; margin: 80px auto; padding: 0 24px; align-items: center;
+    }
+    @media (max-width: 900px) {
+      .specs-layout { grid-template-columns: 1fr; gap: 40px; }
+    }
+    .specs-image {
+      width: 100%; border-radius: 24px; border: 1px solid var(--glass-border);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    }
+
+    /* ── CTA INNER FOOTER ── */
+    .product-cta {
+      text-align: center; max-width: 800px; margin: 120px auto 100px; padding: 0 24px;
+    }
+    .product-cta-title {
+      font-size: 42px; font-weight: 800; font-family: 'Space Grotesk', sans-serif; margin-bottom: 20px;
+    }
+    .product-cta-desc { font-size: 16.5px; color: var(--text-secondary); margin-bottom: 40px; line-height: 1.8; }
+
+  </style>
+</head>
+<body class="hover-glow-container">
+
+  <div class="bg-grid"></div>
+
+  <!-- Navigation injected here -->
+  <div id="nav-container"></div>
+
+  <!-- HERO Showcase -->
+  <section class="product-hero">
+    <div class="product-hero-glow"></div>
+    <div class="product-hero-grid">
+      
+      <div class="reveal-up active">
+        <div style="margin-bottom: 24px; background: rgba(255,102,0,0.03); padding: 12px 18px; border-radius: 20px; border: 1px solid rgba(255,102,0,0.25); display: inline-block;">
+          <img src="assets/img/lms_logo.png" alt="LMS 360 Brand Logo" style="height: 42px; display: block;" referrerPolicy="no-referrer" />
+        </div>
+        <h1 class="hero-title">
+          Automate Every <br/><span class="gradient-word">Single Minute</span>
+        </h1>
+        <p class="hero-desc">
+          LMS 360 represents the ultimate school, academy, and institute automation engine. Manage exam timetables, automated fee payouts, dynamic class schedules, real-time grading, and parents alerts—making every single thing hands-free and automated.
+        </p>
+        <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom: 24px;">
+          <a href="https://edutech-canvas.vercel.app/" target="_blank" class="btn-primary magnetic" style="border-radius: 30px; padding: 14px 32px; font-weight:600; font-size:15px; display:inline-flex; align-items:center; gap:8px;">
+            Visit LMS 360 Website
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block; vertical-align:middle;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a href="contact.html" class="btn-packages magnetic" style="padding: 14px 32px; border-radius: 30px;">Schedule Platform Demo</a>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Mockup Panel -->
+      <div class="reveal-up active" style="perspective: 1000px;">
+        <div class="mockup-card">
+          <div class="mockup-header">
+            <div>
+              <span class="mockup-dot" style="background:#ff5f56;"></span>
+              <span class="mockup-dot" style="background:#ffbd2e;"></span>
+              <span class="mockup-dot" style="background:#27c93f;"></span>
+              <span style="font-size:11px; color:var(--text-muted); font-family:monospace; margin-left:12px;">ubsol-academy-portal</span>
+            </div>
+            <span style="font-size: 11px; font-weight: 700; color:var(--success); border:1px solid rgba(16,185,129,0.2); padding: 2px 8px; border-radius:50px; background:rgba(16,185,129,0.05); font-family:monospace;">● SECURE</span>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:20px; border-bottom: 1px solid var(--border); padding-bottom:12px;">
+              <span style="font-size:12px; color:var(--text-muted);">Active Online Students</span>
+              <span style="font-size:15px; font-weight:800; color:var(--orange); font-family:monospace;">8,924 Learners</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:20px; border-bottom: 1px solid var(--border); padding-bottom:12px;">
+              <span style="font-size:12px; color:var(--text-muted);">Average Lesson Completion</span>
+              <span style="font-size:15px; font-weight:800; color:var(--success); font-family:monospace;">89.4% Rate</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:20px; border-bottom: 1px solid var(--border); padding-bottom:12px;">
+              <span style="font-size:12px; color:var(--text-muted);">Digital Certifications Awarded</span>
+              <span style="font-size:15px; font-weight:700; color:var(--text-primary);">12,480 Custom certs</span>
+            </div>
+            <div style="background:rgba(255,102,0,0.05); padding:16px; border-radius:12px; border: 1px dashed rgba(255,102,0,0.2);">
+              <span style="font-size:11px; font-weight:700; color:var(--orange); display:block; margin-bottom:6px; text-transform:uppercase;">Course Suggestion</span>
+              <p style="font-size:12.5px; color:var(--text-secondary); line-height:1.6; margin:0;">
+                Learners show +24% performance increase on gamified badge models. Certification modules fully synchronized.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VALUE BLOCKS -->
+  <section class="value-section" style="border-top: 1px solid var(--glass-border);">
+    <div class="value-grid">
+      
+      <div class="value-card hover-glow reveal-up">
+        <div class="value-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        </div>
+        <h3 class="value-title">Intuitive School Planner</h3>
+        <p class="value-desc">
+          Drag and drop weekly academic hours, allocate multiple teachers to classrooms, plan examination centers, and schedule student timetables within a seamless school-wide workspace.
+        </p>
+      </div>
+
+      <div class="value-card hover-glow reveal-up">
+        <div class="value-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        </div>
+        <h3 class="value-title">Minute-by-Minute Attendance</h3>
+        <p class="value-desc">
+          Digitize student checking loops down to the minute. Log biometric gates, record classroom-specific attendances, and instantly dispatch SMS alerts for missed lectures.
+        </p>
+      </div>
+
+      <div class="value-card hover-glow reveal-up">
+        <div class="value-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+        </div>
+        <h3 class="value-title">360° Parent & Exam Sync</h3>
+        <p class="value-desc">
+          Automate grade books, build custom digital report card drafts, manage fee ledger reminders, and trigger real-time updates straight to parents' smart panels.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FEATURES DEEP DIVE -->
+  <section class="page-section" style="background: rgba(255,102,0,0.015); border-top: 1px solid var(--glass-border); border-bottom:1px solid var(--glass-border)">
+    <div class="specs-layout">
+      
+      <div class="reveal-up">
+        <span class="badge-product" style="margin-bottom:16px;">
+          <span class="badge-dot"></span>
+          School Automation
+        </span>
+        <h2 style="font-size:38px; font-weight:800; font-family:'Space Grotesk',sans-serif; margin-bottom:24px; line-height:1.2;">
+          Precision Education Management Made Easy
+        </h2>
+        <p style="font-size:16px; color:var(--text-secondary); line-height:1.8; margin-bottom:28px;">
+          Traditional educational software is dry and hard to use. LMS 360 was designed to help automate all single-minute school details — class timetables, fee reminders, bus tracking, student rosters, and parent synchronization boards.
+        </p>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <svg style="color:var(--orange); flex-shrink:0;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <div>
+              <h4 style="font-size:16px; font-weight:700; margin-bottom:4px;">Unified Fee Collection & Banking Gateways</h4>
+              <p style="font-size:13.5px; color:var(--text-muted);">Coordinate school fee requests, automate penalty reminders, and track bank processing statuses in a clear log ledger.</p>
+            </div>
+          </div>
+          <div style="display:flex; gap:16px; align-items:flex-start;">
+            <svg style="color:var(--orange); flex-shrink:0;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <div>
+              <h4 style="font-size:16px; font-weight:700; margin-bottom:4px;">Hands-Free Alert & Grading Engines</h4>
+              <p style="font-size:13.5px; color:var(--text-muted);">Trigger automated notifications for lecture cancellations, examination dates, active homework folders, and gradesheets.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal-up">
+        <img class="specs-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" alt="LMS Academy Mockup" />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRODUCTS SUITE EXECUTIONS -->
+  <div id="products-suite-container"></div>
+
+  <!-- CTA SECTION -->
+  <section class="product-cta reveal-up">
+    <h2 class="product-cta-title">Deploy Your Customized Training Portal</h2>
+    <p class="product-cta-desc">
+      Empower your students, recruits, bootcamps or personnel division. Connect with U-BSOL digital architects to build a highly optimized learning environment.
+    </p>
+    <a href="contact.html" class="btn-orange-glow magnetic" style="padding:18px 48px; font-size:16px;">Speak with an Academy Architect</a>
+  </section>
+
+  <!-- Footer injected here -->
+  <div id="footer-container"></div>
+
+  <script src="components.js?v=20"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Inject standard template components
+      injectComponents('lms');
+
+      // Scroll reveals
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal-up').forEach(c => obs.observe(c));
+
+      // Mouseglow coordinators
+      document.querySelectorAll('.hover-glow').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+          card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

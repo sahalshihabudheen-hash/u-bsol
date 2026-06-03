@@ -1,20 +1,23 @@
 // ===== U-BSOL Shared Components =====
 
 function getNavHTML(activePage) {
-  const pages = [
-    { href: 'index.html', label: 'Home', id: 'home' },
-    { href: 'features.html', label: 'Features', id: 'features' },
-    { href: 'packages.html', label: 'Packages', id: 'packages' },
-    { href: 'contact.html', label: 'Contact', id: 'contact' },
-    { href: 'blog.html', label: 'Blog', id: 'blog' },
-  ];
-  const links = pages.map(p =>
-    `<li><a href="${p.href}" class="nav-link ${activePage === p.id ? 'active' : ''}" ${p.external ? 'target="_blank"' : ''}>${p.label}</a></li>`
-  ).join('');
+  const links = `
+    <li><a href="index.html" class="nav-link ${activePage === 'home' ? 'active' : ''}">Home</a></li>
+    <li><a href="products.html" class="nav-link ${['products', 'ecommerce', 'cms', 'hrms', 'lms'].includes(activePage) ? 'active' : ''}">Products</a></li>
+    <li><a href="features.html" class="nav-link ${activePage === 'features' ? 'active' : ''}">Features</a></li>
+    <li><a href="packages.html" class="nav-link ${activePage === 'packages' ? 'active' : ''}">Packages</a></li>
+    <li><a href="contact.html" class="nav-link ${activePage === 'contact' ? 'active' : ''}">Contact</a></li>
+    <li><a href="blog.html" class="nav-link ${activePage === 'blog' ? 'active' : ''}">Blog</a></li>
+  `;
   
-  const mobileLinks = pages.map(p =>
-    `<a href="${p.href}" class="mob-link ${activePage === p.id ? 'active' : ''}" ${p.external ? 'target="_blank"' : ''}>${p.label}</a>`
-  ).join('');
+  const mobileLinks = `
+    <a href="index.html" class="mob-link ${activePage === 'home' ? 'active' : ''}">Home</a>
+    <a href="products.html" class="mob-link ${['products', 'ecommerce', 'cms', 'hrms', 'lms'].includes(activePage) ? 'active' : ''}">Products</a>
+    <a href="features.html" class="mob-link ${activePage === 'features' ? 'active' : ''}">Features</a>
+    <a href="packages.html" class="mob-link ${activePage === 'packages' ? 'active' : ''}">Packages</a>
+    <a href="contact.html" class="mob-link ${activePage === 'contact' ? 'active' : ''}">Contact</a>
+    <a href="blog.html" class="mob-link ${activePage === 'blog' ? 'active' : ''}">Blog</a>
+  `;
 
   return `
   <nav class="navbar" id="mainNav">
@@ -41,6 +44,20 @@ function getNavHTML(activePage) {
       </div>
     </div>
   </div>`;
+}
+
+function toggleMobDropdown(header) {
+  const submenu = header.nextElementSibling;
+  const chevron = header.querySelector('.mob-chevron');
+  if (submenu) {
+    if (submenu.style.display === 'none' || submenu.style.display === '') {
+      submenu.style.display = 'flex';
+      chevron.style.transform = 'rotate(180deg)';
+    } else {
+      submenu.style.display = 'none';
+      chevron.style.transform = 'rotate(0deg)';
+    }
+  }
 }
 
 function getFooterHTML() {
@@ -71,7 +88,7 @@ function getFooterHTML() {
           <h4 class="footer-heading">Learn More</h4>
           <ul class="footer-links">
             <li><a href="about.html">About-us</a></li>
-            <li><a href="https://u-bsol.com/templates" target="_blank">Templates</a></li>
+            <li><a href="templates.html">Templates</a></li>
             <li><a href="https://u-bsol.com/blogs" target="_blank">Blogs</a></li>
             <li><a href="affiliate-program.html">Affiliate Program</a></li>
             <li><a href="additional-addons.html">Additional Add-ons</a></li>
@@ -143,6 +160,177 @@ function getFooterHTML() {
   </footer>`;
 }
 
+function getProductsSuiteHTML(activePage) {
+  const products = [
+    {
+      id: 'ecommerce',
+      title: 'U-BSOL E-Commerce',
+      desc: 'A high-performance modern commerce engine built for global scale. Empower unified omnichannel sales, localized multi-currencies, and hyper-scalable inventory grids.',
+      link: 'ecommerce.html',
+      tag: 'SaaS Platform',
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>`,
+      features: [
+        'Ultra-fast API-first Headless Engine',
+        'Integrated AI Order Dispatch & Routing',
+        'Unified Dashboard & Multi-Warehouse'
+      ]
+    },
+    {
+      id: 'cms',
+      title: 'U-BSOL CMS',
+      desc: 'Intuitive, decoupled Content Management System for managing complex digital media across mobile apps, websites, smart channels, and global endpoints.',
+      link: 'cms.html',
+      tag: 'Media & content',
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`,
+      features: [
+        'Real-time Collaborative Editing Suite',
+        'Automated Multilingual Translations',
+        'Advanced Access Control & Live Workflows'
+      ]
+    },
+    {
+      id: 'hrms',
+      title: 'U-BSOL HRMS',
+      desc: 'Intelligent Human Resource & Office Management System. Manage all physical assets, seat/desk planning, visitor logs, attendance tracking, and payroll auto-settlement, keeping the whole office perfectly in sync.',
+      link: 'hrms.html',
+      tag: 'Office & Payroll',
+      icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
+      features: [
+        'Unified Desk, Visitors & Workspace Booking',
+        'Biometric Terminal Sync & Geotracked Logs',
+        'Direct Bank Payouts & Automated Payroll'
+      ]
+    },
+    {
+      id: 'lms',
+      title: 'U-BSOL LMS 360',
+      desc: 'The complete school and institute automation engine. LMS 360 manages all single minute school activities—timetables, exams, lectures, parent-teacher alerts, and reports—to make every school operation automated and hands-free.',
+      link: 'lms.html',
+      tag: 'School Automation',
+      icon: `<svg viewBox="0 0 150 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 36px; height: 36px; display: block;">
+        <!-- Left page base -->
+        <path d="M 72 89 C 46 84 26 68 26 45 C 26 41 27 37 29 33 C 43 42 60 48 72 50 Z" fill="var(--text-primary)" stroke="var(--text-muted)" stroke-width="1.5" />
+        <!-- Left orange accent -->
+        <path d="M 24 70 C 24 75 36 98 72 103 C 72 97 72 92 72 89 C 46 84 26 68 26 45 C 26 43 26 42 26 40 C 26 45 24 65 24 70 Z" fill="#FF6600" />
+        <!-- Right page base -->
+        <path d="M 76 89 C 102 84 122 68 122 45 C 122 41 121 37 119 33 C 105 42 88 48 76 50 Z" fill="var(--text-primary)" stroke="var(--text-muted)" stroke-width="1.5" />
+        <!-- Right orange accent -->
+        <path d="M 124 70 C 124 75 112 98 76 103 C 76 97 76 92 76 89 C 102 84 122 68 122 45 C 122 43 122 42 122 40 C 122 45 124 65 124 70 Z" fill="#FF6600" />
+      </svg>`,
+      features: [
+        'Minute-by-Minute Micro-Attendance Tracking',
+        'Automated School Timetables & Exam Schedulers',
+        '360° Automated Student, Parent & Teacher Sync Portal'
+      ]
+    }
+  ];
+
+  // Exclude current page if needed
+  const filteredProducts = products.filter(p => p.id !== activePage);
+
+  let cardsHTML = '';
+  filteredProducts.forEach(p => {
+    let featuresHTML = '';
+    p.features.forEach(f => {
+      featuresHTML += `
+        <li style="display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--text-secondary); margin-bottom: 8px;">
+          <svg style="color: var(--orange); flex-shrink: 0;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>${f}</span>
+        </li>
+      `;
+    });
+
+    let imageHTML = '';
+    if (p.id === 'ecommerce') {
+      imageHTML = `
+        <div style="margin: 0 0 20px 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); line-height: 0;">
+          <img src="assets/img/ecommerce_ecosystem.png" alt="E-Commerce Ecosystem Overview" style="width: 100%; height: auto; display: block;" referrerPolicy="no-referrer" />
+        </div>
+      `;
+    } else if (p.id === 'cms') {
+      imageHTML = `
+        <div style="margin: 0 0 20px 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); line-height: 0;">
+          <img src="assets/img/cms_ecosystem.png" alt="CMS Ecosystem Overview" style="width: 100%; height: auto; display: block;" referrerPolicy="no-referrer" />
+        </div>
+      `;
+    } else if (p.id === 'hrms') {
+      imageHTML = `
+        <div style="margin: 0 0 20px 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); line-height: 0;">
+          <img src="assets/img/hrms_ecosystem.png" alt="HRMS Ecosystem Overview Diagram" style="width: 100%; height: auto; display: block;" referrerPolicy="no-referrer" />
+        </div>
+      `;
+    } else if (p.id === 'lms') {
+      imageHTML = `
+        <div style="margin: 0 0 20px 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); line-height: 0;">
+          <img src="assets/img/lms_ecosystem.png" alt="LMS 360 Ecosystem Overview" style="width: 100%; height: auto; display: block;" referrerPolicy="no-referrer" />
+        </div>
+      `;
+    }
+
+    let footerButtonsHTML = `
+      <a href="${p.id}.html" class="btn-packages magnetic" style="padding: 10px 22px; font-size: 14px; text-decoration: none; display: inline-flex; align-items: center;">
+        View Details
+        <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px; display: inline-block; vertical-align: middle;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    `;
+
+    let cardHeaderHTML = '';
+    if (p.id === 'lms') {
+      cardHeaderHTML = `
+        <div style="margin-bottom: 24px; background: rgba(255,102,0,0.03); padding: 16px; border-radius: 20px; border: 1px solid rgba(255,102,0,0.25); display: inline-block; max-width: 100%;">
+          <img src="assets/img/lms_logo.png" alt="U-BSOL LMS 360" style="height: 48px; max-width: 100%; display: block;" referrerPolicy="no-referrer" />
+        </div>
+      `;
+    } else {
+      cardHeaderHTML = `
+        <div class="prod-icon" style="background: transparent; border: none; padding: 0; min-height: unset; height: unset; margin-bottom: 24px;">
+          ${p.icon}
+        </div>
+        <h3 class="prod-title">${p.title}</h3>
+      `;
+    }
+
+    cardsHTML += `
+      <div class="prod-card hover-glow reveal-up" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          ${cardHeaderHTML}
+          <p class="prod-desc">${p.desc}</p>
+          ${imageHTML}
+          <ul style="list-style: none; padding: 0; margin: 0 0 28px 0; display: flex; flex-direction: column; gap: 8px;">
+            ${featuresHTML}
+          </ul>
+        </div>
+        <div class="prod-footer" style="gap: 12px;">
+          ${footerButtonsHTML}
+          <span style="font-size:12px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; margin-left: auto;">${p.tag}</span>
+        </div>
+      </div>
+    `;
+  });
+
+  return `
+    <section class="page-section" style="padding: 90px 0; border-top: 1px solid var(--glass-border); background: linear-gradient(180deg, rgba(255,102,0,0.01) 0%, transparent 100%);">
+      <div class="container" style="max-width: 1200px; margin: 0 auto;">
+        <div class="reveal-up" style="margin-bottom: 56px; text-align: center;">
+          <div class="products-badge">
+            <span class="products-badge-dot"></span>
+            U-BSOL Suite
+          </div>
+          <h2 style="font-size: clamp(30px, 4.5vw, 48px); font-family: 'Space Grotesk', sans-serif; font-weight: 800; margin-bottom: 20px; color: var(--text-primary); letter-spacing: -1px;">
+            Explore Our <span style="background: linear-gradient(135deg, #ff6600, #ffaa00); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Enterprise Ecosystem</span>
+          </h2>
+          <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto; font-size: 16.5px; line-height: 1.8;">
+            Check out other modular SaaS & business automation systems built for effortless scaling.
+          </p>
+        </div>
+        <div class="products-grid">
+          ${cardsHTML}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
 function injectComponents(activePage) {
   // Inject Navbar
   const navContainer = document.getElementById('nav-container');
@@ -151,6 +339,12 @@ function injectComponents(activePage) {
   // Inject Footer
   const footerContainer = document.getElementById('footer-container');
   if (footerContainer) footerContainer.innerHTML = getFooterHTML();
+
+  // Inject Products Suite if container exists
+  const suiteContainer = document.getElementById('products-suite-container');
+  if (suiteContainer) {
+    suiteContainer.innerHTML = getProductsSuiteHTML(activePage);
+  }
 
   // Inject Floating Theme Toggle
   if (!document.getElementById('floating-theme-toggle')) {
@@ -209,7 +403,7 @@ function initCustomCursor() {
 
 
 function initMagneticButtons() {
-  const buttons = document.querySelectorAll('.btn-primary, .btn-outline-large, .theme-toggle-floating');
+  const buttons = document.querySelectorAll('.btn-primary, .btn-outline-large, .theme-toggle-floating, .magnetic');
   buttons.forEach(btn => {
     btn.addEventListener('mousemove', (e) => {
       const rect = btn.getBoundingClientRect();
@@ -372,4 +566,62 @@ function toggleAccordion(element) {
   const isActive = item.classList.contains('active');
   document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
   if (!isActive) item.classList.add('active');
+}
+
+// ===== PLATFORM CALLOUT TOAST =====
+function showPlatformComingSoon(event, platformName) {
+  if (event) event.preventDefault();
+  
+  const existing = document.getElementById('ubsol-toast');
+  if (existing) existing.remove();
+  
+  const toast = document.createElement('div');
+  toast.id = 'ubsol-toast';
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(15, 15, 18, 0.95);
+    border: 1.5px solid rgba(255, 102, 0, 0.4);
+    box-shadow: 0 10px 40px rgba(255,102,0,0.2), 0 0 20px rgba(0,0,0,0.8);
+    padding: 16px 24px;
+    border-radius: 12px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    backdrop-filter: blur(12px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(20px);
+    opacity: 0;
+  `;
+  
+  toast.innerHTML = `
+    <span style="color: #ff6600; display: inline-flex; align-items: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+    </span>
+    <div>
+      <strong style="display:block; font-family:'Space Grotesk',sans-serif; margin-bottom: 2px; color: #fff; font-size:14.5px;">Portal Link Coming Soon</strong>
+      <span style="color: #a1a1aa; font-size: 12.5px;">The live platform portal for <strong>${platformName || 'this service'}</strong> will be published shortly.</span>
+    </div>
+  `;
+  
+  document.body.appendChild(toast);
+  
+  // Force reflow
+  toast.offsetHeight;
+  
+  toast.style.transform = 'translateY(0)';
+  toast.style.opacity = '1';
+  
+  setTimeout(() => {
+    toast.style.transform = 'translateY(20px)';
+    toast.style.opacity = '0';
+    setTimeout(() => {
+      if (toast.parentNode) toast.parentNode.removeChild(toast);
+    }, 400);
+  }, 4500);
 }

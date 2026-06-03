@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>U-BSOL | Core E-Commerce Templates</title>
+  <meta name="description" content="Explore U-BSOL's next-level, hyper-optimized responsive e-commerce templates. Fully customizable architectures designed for retail, grocery, and boutique stores." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=15" />
+  <style>
+    /* ── TEMPLATE-SPECIFIC VARIABLES ── */
+    :root {
+      --orange: #ff6600;
+      --orange-dim: rgba(255,102,0,0.1);
+      --glass-border: rgba(255,255,255,0.07);
+      --card-bg: rgba(15,15,18,0.75);
+      --active-primary: var(--orange);
+      --active-primary-dim: var(--orange-dim);
+    }
+    [data-theme="light"] {
+      --card-bg: rgba(255,255,255,0.85);
+      --glass-border: rgba(0,0,0,0.07);
+    }
+
+    /* Transition utilities */
+    .fade-out {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
+      position: absolute;
+      width: 100%;
+    }
+    .fade-in {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    /* ── HEADER BREADCRUMB ── */
+    .template-header-nav {
+      max-width: 1400px;
+      margin: 100px auto 0;
+      padding: 24px 24px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13.5px;
+      color: var(--text-muted);
+      z-index: 10;
+      position: relative;
+    }
+    .breadcrumb-item {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .breadcrumb-item:hover {
+      color: var(--orange);
+    }
+    .breadcrumb-active {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-welcome-center {
+      text-align: center;
+      padding: 60px 24px 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .section-welcome-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .section-welcome-desc {
+      font-size: 17px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    /* ── GALLERY LAYOUT ── */
+    .templates-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 1300px;
+      margin: 0 auto 100px;
+      padding: 0 24px;
+    }
+    .template-card {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      backdrop-filter: blur(20px);
+      position: relative;
+    }
+    .template-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 1.5px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    .template-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--theme-color-dim);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 30px var(--theme-color-glow);
+    }
+    
+    .card-banner {
+      padding: 30px 24px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--glass-border);
+      position: relative;
+      overflow: hidden;
+    }
+    .card-banner img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 12px;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .template-card:hover .card-banner img {
+      transform: scale(1.05);
+    }
+
+    .card-body {
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--text-primary);
+    }
+    .card-desc {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 28px;
+      flex: 1;
+    }
+    .card-footer {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .btn-details {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: all 0.3s;
+      flex: 1;
+      justify-content: center;
+    }
+    .btn-details:hover {
+      background: var(--theme-color-accent);
+      color: #fff;
+      border-color: var(--theme-color);
+    }
+
+    /* ── SINGLE TEMPLATE DETAILS VIEW ── */
+    .template-details-container {
+      max-width: 1300px;
+      margin: 40px auto 120px;
+      padding: 0 24px;
+    }
+
+    /* Dynamic Hero Banner */
+    .details-hero {
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      background: rgba(15,15,18,0.8);
+      backdrop-filter: blur(30px);
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      margin-bottom: 60px;
+      position: relative;
+    }
+    .details-hero-left {
+      padding: 80px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      z-index: 2;
+    }
+    .details-hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 52px;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      margin-bottom: 24px;
+      line-height: 1.1;
+    }
+    .details-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--active-primary-dim);
+      border: 1px solid var(--active-primary);
+      color: var(--active-primary);
+      border-radius: 100px;
+      width: fit-content;
+      margin-bottom: 24px;
+    }
+    .specs-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 24px;
+    }
+    .specs-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .specs-item svg {
+      color: var(--active-primary);
+      flex-shrink: 0;
+    }
+
+    .details-hero-right {
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 70% 30%, var(--active-primary-dim), transparent 60%);
+      border-left: 1px solid var(--glass-border);
+    }
+    .details-hero-right img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 16px;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+    }
+
+    /* Details Content Grid */
+    .details-layout {
+      display: grid;
+      grid-template-columns: 1.6fr 0.8fr;
+      gap: 48px;
+    }
+
+    /* About Section */
+    .about-section-container {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 48px;
+      margin-bottom: 40px;
+    }
+    .details-section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      color: var(--text-primary);
+    }
+    .about-txt {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    /* Feature Grid (12 core items) */
+    .features-subgrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .feature-point-card {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 30px;
+      transition: all 0.3s;
+    }
+    .feature-point-card:hover {
+      border-color: var(--active-primary);
+      transform: translateY(-4px);
+    }
+    .feature-point-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--active-primary-dim);
+      border: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--active-primary);
+      margin-bottom: 20px;
+    }
+    .feature-point-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17.5px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+    .feature-point-desc {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Sidebar Content */
+    .details-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .sidebar-widget {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 36px;
+      position: sticky;
+      top: 120px;
+    }
+    .widget-meta-group {
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--glass-border);
+      padding-bottom: 20px;
+    }
+    .widget-meta-group:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 32px;
+    }
+    .widget-meta-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .widget-meta-value {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .widget-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .widget-tag {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--glass-border);
+      color: var(--text-secondary);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12.5px;
+    }
+
+    .btn-preview-primary {
+      width: 100%;
+      background: var(--active-primary);
+      border: none;
+      color: #fff;
+      padding: 16px 28px;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      box-shadow: 0 10px 24px rgba(255,102,0,0.25);
+      transition: all 0.3s;
+    }
+    .btn-preview-primary::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s;
+      z-index: -1;
+    }
+    .btn-preview-primary:hover {
+      box-shadow: 0 15px 30px rgba(255,102,0,0.4);
+      transform: translateY(-2px);
+    }
+    .btn-preview-primary:hover::before {
+      transform: translateX(100%);
+    }
+
+    /* Back Button */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 24px;
+      transition: color 0.3s;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .btn-back:hover {
+      color: var(--orange);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .templates-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .details-hero {
+        grid-template-columns: 1fr;
+      }
+      .details-hero-right {
+        border-left: none;
+        border-top: 1px solid var(--glass-border);
+        padding: 50px;
+      }
+      .details-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+    @media (max-width: 768px) {
+      .templates-grid {
+        grid-template-columns: 1fr;
+      }
+      .details-hero-left {
+        padding: 40px 24px;
+      }
+      .features-subgrid {
+        grid-template-columns: 1fr;
+      }
+      .about-section-container {
+        padding: 30px 24px;
+      }
+    }
+  </style>
+</head>
+<body class="enterprise-workspace">
+
+  <!-- ═══ HEADER CONTAINER ═══ -->
+  <div id="nav-container"></div>
+
+  <!-- Breadcrumbs & Toggle Nav -->
+  <div class="template-header-nav">
+    <a href="index.html" class="breadcrumb-item">Home</a>
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity: 0.5;"><polyline points="9 18 15 12 9 6"/></svg>
+    <a href="templates.html" class="breadcrumb-item breadcrumb-active" id="sub-breadcrumb">Templates</a>
+  </div>
+
+  <!-- ═══ GALLERY STATE PANEL (Default) ═══ -->
+  <div id="gallery-state-panel" class="fade-in">
+    <!-- Welcome Header -->
+    <div class="section-welcome-center">
+      <span class="about-badge" style="margin-bottom: 16px;">
+        <span class="about-badge-dot"></span>
+        U-BSOL Design Lab
+      </span>
+      <h1 class="section-welcome-title">Core Web <span class="gradient-text">Templates</span></h1>
+      <p class="section-welcome-desc">Explore our top-tier, ultra-fast and beautiful storefront layouts. Completely optimized, responsive grids that give your customers an unmatched shopping experience.</p>
+    </div>
+
+    <!-- Gallery Selection Cards Grid -->
+    <div class="templates-grid">
+      <!-- Furniture Card -->
+      <div class="template-card" style="--theme-color: #ffaa00; --theme-color-dim: rgba(255, 170, 0, 0.3); --theme-color-glow: rgba(255, 170, 0, 0.05); --theme-color-accent: #ff9900;">
+        <div class="card-banner" style="background: linear-gradient(135deg, rgba(255,170,0,0.04) 0%, transparent 80%);">
+          <img src="assets/img/template_furniture.png" alt="Retail Furniture Mockup" referrerPolicy="no-referrer" />
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Retail Furniture</h3>
+          <p class="card-desc">Retail-Furniture Template is a responsive and multipurpose e-commerce design. Perfect for premium showrooms, decorative setups, lighting utilities, and high-end home appliances.</p>
+          <div class="card-footer">
+            <button class="btn-details" onclick="openTemplateDetails('furniture')" style="--theme-color-accent: #ff9900; --theme-color: #ffaa00;">
+              View Specification & Features →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grocery Card -->
+      <div class="template-card" style="--theme-color: #10b981; --theme-color-dim: rgba(16, 185, 129, 0.3); --theme-color-glow: rgba(16, 185, 129, 0.05); --theme-color-accent: #059669;">
+        <div class="card-banner" style="background: linear-gradient(135deg, rgba(16,185,129,0.04) 0%, transparent 80%);">
+          <img src="assets/img/template_grocery.png" alt="Retail Grocery Mockup" referrerPolicy="no-referrer" />
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Retail Grocery</h3>
+          <p class="card-desc">Retail-Grocery Template is a dynamic, high-density storefront structure. Perfectly tuned for supermarkets, daily organic food kits, stationary items, block logistics, and fresh farm products.</p>
+          <div class="card-footer">
+            <button class="btn-details" onclick="openTemplateDetails('grocery')" style="--theme-color-accent: #059669; --theme-color: #10b981;">
+              View Specification & Features →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kids Store Card -->
+      <div class="template-card" style="--theme-color: #06b6d4; --theme-color-dim: rgba(6, 182, 212, 0.3); --theme-color-glow: rgba(6, 182, 212, 0.05); --theme-color-accent: #0891b2;">
+        <div class="card-banner" style="background: linear-gradient(135deg, rgba(6,182,212,0.04) 0%, transparent 80%);">
+          <img src="assets/img/template_kids.png" alt="Retail Kids Store Mockup" referrerPolicy="no-referrer" />
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Retail Kids Store</h3>
+          <p class="card-desc">Retail-Kids Store is a lively, customizable pastel-themed blueprint. Ideated for kids toys collections, cute boutique wear, stylish designer abayas, and apparel marketplaces.</p>
+          <div class="card-footer">
+            <button class="btn-details" onclick="openTemplateDetails('kids')" style="--theme-color-accent: #0891b2; --theme-color: #06b6d4;">
+              View Specification & Features →
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══ DETAILS STATE PANEL (Hidden by Default, Dynamically Rendered) ═══ -->
+  <div id="details-state-panel" class="fade-out" style="display: none;">
+    <div class="template-details-container">
+      
+      <!-- Back Arrow -->
+      <button class="btn-back" onclick="closeTemplateDetails()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: middle;"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span>Back to Templates</span>
+      </button>
+
+      <!-- Dynamic Top Hero Box -->
+      <div class="details-hero">
+        <div class="details-hero-left">
+          <div class="details-hero-badge" id="hero-badge">Retail Furniture</div>
+          <h2 class="details-hero-title" id="hero-title">Retail Furniture</h2>
+          <ul class="specs-list" id="hero-specs">
+            <!-- Dynamically Injected -->
+          </ul>
+        </div>
+        <div class="details-hero-right" id="hero-image-container">
+          <!-- Dynamically Injected -->
+        </div>
+      </div>
+
+      <!-- Main Specifications Layout -->
+      <div class="details-layout">
+        
+        <!-- Left: About & Feature Cards -->
+        <div class="details-left-pane">
+          <!-- About Description Row -->
+          <div class="about-section-container">
+            <h3 class="details-section-title">About the Template</h3>
+            <p class="about-txt" id="detail-about-text">
+              <!-- Dynamically Injected -->
+            </p>
+          </div>
+
+          <!-- 12 Nested Feature Specification Grid cards -->
+          <div class="features-subgrid" id="detail-features-grid">
+            <!-- Dynamically Injected -->
+          </div>
+        </div>
+
+        <!-- Right: Meta Side Panel -->
+        <div class="details-sidebar">
+          <div class="sidebar-widget">
+            
+            <div class="widget-meta-group">
+              <span class="widget-meta-label">Published Date</span>
+              <div class="widget-meta-value" id="sidebar-meta-date">June 10, 2022</div>
+            </div>
+
+            <div class="widget-meta-group">
+              <span class="widget-meta-label">Template Engine</span>
+              <div class="widget-meta-value">U-BSOL Blade E-Comm</div>
+            </div>
+
+            <div class="widget-meta-group">
+              <span class="widget-meta-label">Suitable For</span>
+              <div class="widget-tags" id="sidebar-meta-suitable">
+                <!-- Dynamically Injected -->
+              </div>
+            </div>
+
+            <!-- Preview Button (will prompt coming soon / customized demo links later) -->
+            <a href="#" class="btn-preview-primary" id="btn-template-live-preview" onclick="handlePreviewTrigger(event)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <span>Live Interactive Preview</span>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══ FOOTER CONTAINER ═══ -->
+  <div id="footer-container"></div>
+
+  <script src="components.js?v=20"></script>
+  <script>
+    // Injected standard navbar and footer components
+    injectComponents('templates');
+
+    // Live preview links configured for easy customized updates (will give links later, handles gracefully now)
+    const PREVIEW_LINKS = {
+      furniture: 'https://furniture.u-bsol.com/',
+      grocery: 'https://grocery.u-bsol.com/',
+      kids: 'https://retail.u-bsol.com/'
+    };
+
+    // Template Database
+    const TEMPLATES_DATA = {
+      furniture: {
+        title: 'Retail Furniture',
+        badge: 'Retail - Furniture',
+        desc: 'Retail-Furniture Template is a responsive and multipurpose e-commerce template. This is perfect for Furniture, Decor, Electrical, Electronics & Home appliances, also it is customizable as per the needs...',
+        image: 'assets/img/template_furniture.png',
+        primaryColor: '#ffaa00',
+        primaryColorDim: 'rgba(255, 170, 0, 0.1)',
+        date: 'June 10, 2022',
+        suitable: ['Electrical / Electronics', 'Decorative Lights', 'Decor / Furniture', 'Hardware / Paints', 'Plumbing / Sanitary', 'Home Appliances', 'Mobile / Accessories'],
+        specs: [
+          'Responsive Design', 'Cross Browser Compatible', 'Google Maps Integrated', 'HTML5, CSS3, jQuery',
+          'Bootstrap Framework', 'W3C Valid Markup', 'Font Awesome Iconography', 'Mega Navigation Menu',
+          'Slider Customization Options', 'Color & Size Swatches', 'SEO-Friendly Structure', 'High Performance Checkout'
+        ],
+        features: [
+          {
+            icon: 'grid',
+            title: 'Various Pages',
+            desc: 'There are several types of pages with different layouts such as home page, category listing page, brand page, sale banner page, item descriptions page, active shopping cart, items wishlist, order summary & checkout flows, and dynamic FAQs.'
+          },
+          {
+            icon: 'sliders',
+            title: 'Home Page Slider',
+            desc: 'Includes 6 different styles of responsive home page sliders. Set adjustable ad panels, configure transition effects, and show rich marketing content with price labels and customized click actions directly synchronized with dashboard states.'
+          },
+          {
+            icon: 'smartphone',
+            title: 'Mobile Optimized',
+            desc: 'Engineered from the ground up for superior usability across devices. Fully fluid mobile drawer networks, swipe gesture slider views, rapid touch targets, and pixel-perfect high-DPI scaling.'
+          },
+          {
+            icon: 'menu',
+            title: 'Mega Menu',
+            desc: 'An advanced, high-density navigation mega menu with layout spacing grids, dynamic multi-tier categories, image thumbnail injection points, and responsive conversion rates.'
+          },
+          {
+            icon: 'eye',
+            title: 'Inspiration Section',
+            desc: 'Create highly engaging lifestyle journals or showcase layout guides with tagged shopping hotspots. Let prospective clients discover furniture ideas and buy grouped items with single clicks.'
+          },
+          {
+            icon: 'percent',
+            title: 'Offer Page',
+            desc: 'Consolidate all seasonal promotions, percentage discounts, clearance events, or flash coupons onto a single high-impact sales grid. Includes configurable counters and header banners.'
+          },
+          {
+            icon: 'image',
+            title: 'Ads Section',
+            desc: 'Dedicated display ad panels located natively below sliders or nested inline with product loops. Set simple configurations for row quantities (1 to 4 columns) with quick link destinations.'
+          },
+          {
+            icon: 'award',
+            title: 'Brands & Brand Page',
+            desc: 'Clean brand logo carousels perfectly integrated with the footer layout. Clicking on brand logos routes users to tailored sub-grids spotlighting exact manufacture inventories.'
+          },
+          {
+            icon: 'layout',
+            title: 'Featured Category Grid',
+            desc: 'Display specific categories elegantly in sliding carousel nodes. Includes expansive categories header banners, dynamic attribute tags, grid density controls, and complex filters.'
+          },
+          {
+            icon: 'sliders',
+            title: 'Color & Size Swatches',
+            desc: 'Visual attribute selectors on main catalog cards. Customers can swap color options or size configurations and see instant price translations without loading detailed sub-pages.'
+          },
+          {
+            icon: 'map-pin',
+            title: 'Google Map',
+            desc: 'Embedded geolocation coordinate guides inside contact frames. Instantly adjust store locations, multiple branches pointers, map pins, and zoom settings from dashboard configs.'
+          },
+          {
+            icon: 'bell',
+            title: 'Alerts & Notifications',
+            desc: 'Smart client-side toast notifications built in. Provides instant modern feedback on adding to cart, wishlists, and item out-of-stock highlights, boosting retention.'
+          }
+        ]
+      },
+      grocery: {
+        title: 'Retail Grocery',
+        badge: 'Retail - Grocery',
+        desc: 'Retail-Grocery Template is a responsive and multipurpose e-commerce template. This is perfect for grocery store, organic supermarket, custom agriculture hubs, and fresh product outlets.',
+        image: 'assets/img/template_grocery.png',
+        primaryColor: '#10b981',
+        primaryColorDim: 'rgba(16, 185, 129, 0.1)',
+        date: 'July 24, 2022',
+        suitable: ['Organic Produce', 'Supermarkets', 'Daily Fresh Grocery', 'Fruit & Vegetables', 'Farming & Nursery', 'Stationary Shops', 'Seafood & Outlets'],
+        specs: [
+          'High Density Loading', 'Slot Allocation Settings', 'Contactless Checkout Support', 'Express Logistics Sync',
+          'Responsive Design Layout', 'Google Maps Store Finder', 'Multi-weight Selector Units', 'Dynamic Low-stock Badges',
+          'Smart Recurring Orders', 'Vibrant Fresh Color Scheme', 'Advanced Content Blocks', 'One-Click Swiftest Cart'
+        ],
+        features: [
+          {
+            icon: 'grid',
+            title: 'Vibrant Grocer Grid',
+            desc: 'An intensive, clean, high-density layout ideal for supermarkets. Allows multiple items to fit beautifully on any viewport with colorful tags indicating organic, fresh, or discounted statuses.'
+          },
+          {
+            icon: 'clock',
+            title: 'Delivery Slot Booking',
+            desc: 'Customers can seamlessly chose convenient date and time slots during checkout. Fully synced with warehouse capacities, ensuring a balanced fulfillment flow.'
+          },
+          {
+            icon: 'zap',
+            title: 'Rapid Multiverse Cart',
+            desc: 'Enables ultra-fast item additions directly from the main listing feed with dynamic quantity selectors. No loading spinners, giving a highly fluid experience.'
+          },
+          {
+            icon: 'shield',
+            title: 'Low Stock Indications',
+            desc: 'Automatic visual markers that warn shoppers about low stocks. Encourages faster purchase speeds while preventing empty cart checkout completions.'
+          },
+          {
+            icon: 'truck',
+            title: 'Express Courier Routing',
+            desc: 'A dedicated page showing nearby delivery agents, estimated reach times, active regional fees, and live maps trackers for absolute buyer trust.'
+          },
+          {
+            icon: 'package',
+            title: 'Flexible Measurement Units',
+            desc: 'Customers can toggle between weight categories or sizes (e.g. 500g, 1kg, 5kg) with instant dynamic pricing recalculations showing up on listing grids.'
+          },
+          {
+            icon: 'trending-up',
+            title: 'Flash Sale Bundles',
+            desc: 'Set custom dynamic retail groups (e.g., Breakfast bundle, Veggie feast pack) showing up in gorgeous sliding boxes to rapidly up-sell shoppers.'
+          },
+          {
+            icon: 'users',
+            title: 'Store Pickup Option',
+            desc: 'Fully configured Click & Collect features, letting buyers place online orders and select specific physical branches for immediate packaging and collection.'
+          },
+          {
+            icon: 'search',
+            title: 'Smart Keyword Search',
+            desc: 'Real-time fuzzy search box designed to locate grocery items, dairy, and meat in milliseconds, featuring smart historical suggestions and product thumbs.'
+          },
+          {
+            icon: 'file-text',
+            title: 'Exportable Receipt Bills',
+            desc: 'Prints invoice slips and delivery instructions with high readability, featuring customized checkout checkboxes for eco-friendly wrappers.'
+          },
+          {
+            icon: 'map',
+            title: 'Store Finder Locator',
+            desc: 'Geographical maps outlining multiple physical supermarket outlets with real-time route instructions and instant touch phone connections.'
+          },
+          {
+            icon: 'message-square',
+            title: 'Direct SMS/WhatsApp Alerts',
+            desc: 'Synchronized hooks to send order state changes, shipping notes, delivery codes, and feedback questionnaires directly to dynamic phones.'
+          }
+        ]
+      },
+      kids: {
+        title: 'Retail Kids Store',
+        badge: 'Retail - Kids & Fashion',
+        desc: 'Retail-Kids Store Template is a lively responsive e-commerce blueprint. This is perfect for baby clothing shops, toys setups, designer abayas, modern clothing lines, and cute kidswear catalogs.',
+        image: 'assets/img/template_kids.png',
+        primaryColor: '#06b6d4',
+        primaryColorDim: 'rgba(6, 182, 212, 0.1)',
+        date: 'October 15, 2022',
+        suitable: ['Babywear & Boutique', 'Toy Marketplace', 'Aesthetic Kids Fashion', 'Abaya Designer Wear', 'Accessories & Hampers', 'Aesthetic Apparel'],
+        specs: [
+          'Playful Soft Color System', 'Comprehensive Size Charts', 'Creative Interactive Grid', 'Fluid Canvas Animations',
+          'W3C Compliant Markup', 'Color Palette Swaps', 'Social Share Integration', 'Detailed Sizing Guides',
+          'Responsive Multi-Layout', 'Advanced Customer Reviews', 'Smart Wishlist Folders', 'SEO Optimization Ready'
+        ],
+        features: [
+          {
+            icon: 'smile',
+            title: 'Playful Design Layout',
+            desc: 'Styled with delicate pastel margins, friendly illustrations, and premium rounding. Evokes complete joy while keeping focus strictly on modern e-commerce buying structures.'
+          },
+          {
+            icon: 'info',
+            title: 'Interactive Sizing Guides',
+            desc: 'An elegant popup size matrix table that lists standard measurements per child age group. Helps buyers select correct fits, dramatically reducing returned parcels.'
+          },
+          {
+            icon: 'heart',
+            title: 'Gift Wrapping Up-sell',
+            desc: 'Shoppers can tick customized gift bundling during cart flows, typing custom greetings with selective premium box wrappers automatically priced in.'
+          },
+          {
+            icon: 'star',
+            title: 'Visual Customer Reviews',
+            desc: 'A gorgeous testimonial block allowing buyers to upload product photos, stars scales, child age labels, and comment boards to establish deep brand authenticity.'
+          },
+          {
+            icon: 'tag',
+            title: 'Social Media Shop Grid',
+            desc: 'Direct integration displaying child lifestyle images with shop hotspots. Buyers click on the Instagram feeds to immediately purchase matching child gear.'
+          },
+          {
+            icon: 'truck',
+            title: 'Easy Return Policies Block',
+            desc: 'Fully styled layouts explaining product exchanges, tracking returns, and printing parcel vouchers, elevating parent confidence during catalog choices.'
+          },
+          {
+            icon: 'list',
+            title: 'Aesthetic Product Categories',
+            desc: 'Playful visual grid categories showcasing products using custom illustrations. Clicking on a cluster filters product pipelines on the spot.'
+          },
+          {
+            icon: 'sliders',
+            title: 'Child Age filters',
+            desc: 'Enables quick filter sliders directly on side catalogs, sorted conveniently by kid ages (0-6 months, 1-2 years, preschool) for express target shopping.'
+          },
+          {
+            icon: 'check',
+            title: 'Allergic Material Checklist',
+            desc: 'Provides fabric breakdowns in description grids, highlighting organic materials, chemical free textiles, and safety specifications for peace of mind.'
+          },
+          {
+            icon: 'user-plus',
+            title: 'Wishlist Grouping',
+            desc: 'Allows parents to create custom wishlist directories for specific kids (e.g. Birthday wish, Baby Shower wishlist) and send secure shareable links to relatives.'
+          },
+          {
+            icon: 'gift',
+            title: 'Promotional Store Cards',
+            desc: 'Beautiful digital vouchers and seasonal coupon cards styled in matching warm tones, easily claimable through elegant dashboard widgets.'
+          },
+          {
+            icon: 'bell',
+            title: 'Stock Back-In-Stock Alerts',
+            desc: 'Let parents register emails or mobile phone notifications for high-demand item shortages. Auto-pings them the split second items are replenished.'
+          }
+        ]
+      }
+    };
+
+    // Helper to generate Feather-like responsive SVG icons dynamically
+    function getFeatureIconSVG(type) {
+      switch(type) {
+        case 'grid':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>`;
+        case 'sliders':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>`;
+        case 'smartphone':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>`;
+        case 'menu':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>`;
+        case 'eye':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+        case 'percent':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>`;
+        case 'image':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`;
+        case 'award':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>`;
+        case 'layout':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>`;
+        case 'map-pin':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`;
+        case 'bell':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>`;
+        case 'clock':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`;
+        case 'zap':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`;
+        case 'shield':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`;
+        case 'truck':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>`;
+        case 'package':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><polygon points="12 22.08 12 12 3 6.92 3 17.08 12 22.08"/><polygon points="12 12 21 6.92 21 17.08 12 22.08 12 12"/><polygon points="12 2 21 6.92 12 12 3 6.92 12 2"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>`;
+        case 'trending-up':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>`;
+        case 'users':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`;
+        case 'search':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`;
+        case 'file-text':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`;
+        case 'map':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>`;
+        case 'message-square':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`;
+        case 'smile':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>`;
+        case 'info':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>`;
+        case 'heart':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`;
+        case 'star':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+        case 'tag':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>`;
+        case 'list':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>`;
+        case 'check':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+        case 'user-plus':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="16" y1="11" x2="22" y2="11"/></svg>`;
+        case 'gift':
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>`;
+        default:
+          return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+      }
+    }
+
+    let activeTemplateID = '';
+
+    // Open detail view for specified template ID
+    function openTemplateDetails(id) {
+      const data = TEMPLATES_DATA[id];
+      if (!data) return;
+
+      activeTemplateID = id;
+
+      // Update active primary variables in CSS dynamically
+      document.documentElement.style.setProperty('--active-primary', data.primaryColor);
+      document.documentElement.style.setProperty('--active-primary-dim', data.primaryColorDim);
+
+      // Breadcrumb Update
+      document.getElementById('sub-breadcrumb').outerHTML = `
+        <a href="templates.html" class="breadcrumb-item" onclick="event.preventDefault(); closeTemplateDetails();">Templates</a>
+        <svg id="arrow-divider" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity: 0.5;"><polyline points="9 18 15 12 9 6"/></svg>
+        <span class="breadcrumb-active" id="sub-breadcrumb">${data.title}</span>
+      `;
+
+      // Hero Details injection
+      document.getElementById('hero-badge').textContent = data.badge;
+      document.getElementById('hero-title').innerHTML = `Build <span style="color: var(--active-primary);">${data.title}</span> Stores`;
+      
+      const specsList = document.getElementById('hero-specs');
+      specsList.innerHTML = '';
+      data.specs.forEach(spec => {
+        specsList.innerHTML += `
+          <li class="specs-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>${spec}</span>
+          </li>
+        `;
+      });
+
+      document.getElementById('hero-image-container').innerHTML = `
+        <img src="${data.image}" alt="${data.title} Mockup" referrerPolicy="no-referrer" />
+      `;
+
+      // About Text
+      document.getElementById('detail-about-text').textContent = data.desc;
+
+      // Sidebar items
+      document.getElementById('sidebar-meta-date').textContent = data.date;
+      const tagsContainer = document.getElementById('sidebar-meta-suitable');
+      tagsContainer.innerHTML = '';
+      data.suitable.forEach(tag => {
+        tagsContainer.innerHTML += `<span class="widget-tag">${tag}</span>`;
+      });
+
+      // 12 features blocks
+      const featuresGrid = document.getElementById('detail-features-grid');
+      featuresGrid.innerHTML = '';
+      data.features.forEach(f => {
+        featuresGrid.innerHTML += `
+          <div class="feature-point-card">
+            <div class="feature-point-icon">
+              ${getFeatureIconSVG(f.icon)}
+            </div>
+            <h4 class="feature-point-title">${f.title}</h4>
+            <p class="feature-point-desc">${f.desc}</p>
+          </div>
+        `;
+      });
+
+      // Switch panels with smooth fade animations
+      const gallery = document.getElementById('gallery-state-panel');
+      const details = document.getElementById('details-state-panel');
+
+      gallery.classList.add('fade-out');
+      gallery.classList.remove('fade-in');
+      
+      setTimeout(() => {
+        gallery.style.display = 'none';
+        details.style.display = 'block';
+        // force reflow
+        details.offsetHeight;
+        details.classList.add('fade-in');
+        details.classList.remove('fade-out');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 400);
+
+      // Update URL hash for sharing / back capability
+      window.location.hash = id;
+    }
+
+    // Return back to standard list
+    function closeTemplateDetails() {
+      // Revert Breadcrumbs
+      const arrowDivider = document.getElementById('arrow-divider');
+      if (arrowDivider) arrowDivider.remove();
+      const activeBreadcrumb = document.getElementById('sub-breadcrumb');
+      if (activeBreadcrumb) {
+        activeBreadcrumb.outerHTML = `<span class="breadcrumb-active" id="sub-breadcrumb">Templates</span>`;
+      }
+
+      // Restore base variables
+      document.documentElement.style.setProperty('--active-primary', 'var(--orange)');
+      document.documentElement.style.setProperty('--active-primary-dim', 'var(--orange-dim)');
+
+      const gallery = document.getElementById('gallery-state-panel');
+      const details = document.getElementById('details-state-panel');
+
+      details.classList.add('fade-out');
+      details.classList.remove('fade-in');
+
+      setTimeout(() => {
+        details.style.display = 'none';
+        gallery.style.display = 'block';
+        // force reflow
+        gallery.offsetHeight;
+        gallery.classList.add('fade-in');
+        gallery.classList.remove('fade-out');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 400);
+
+      // Reset Hash
+      history.pushState("", document.title, window.location.pathname + window.location.search);
+    }
+
+    // Handles trigger preview nicely
+    function handlePreviewTrigger(event) {
+      event.preventDefault();
+      const link = PREVIEW_LINKS[activeTemplateID];
+      if (link && link.startsWith('http') && !link.includes('placeholder')) {
+        window.open(link, '_blank');
+      } else {
+        // Fallback to elegant toast notification
+        const titleName = TEMPLATES_DATA[activeTemplateID] ? TEMPLATES_DATA[activeTemplateID].title + ' Demo' : 'Live Preview';
+        showPlatformComingSoon(event, titleName);
+      }
+    }
+
+    // Check if hash exists to direct link to template detail
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && TEMPLATES_DATA[hash]) {
+        openTemplateDetails(hash);
+      }
+    });
+
+  </script>
+</body>
+</html>
