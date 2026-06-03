@@ -625,3 +625,13 @@ function showPlatformComingSoon(event, platformName) {
     }, 400);
   }, 4500);
 }
+
+// Expose functions to the global scope for inline HTML handlers and script tags
+window.injectComponents = injectComponents;
+window.toggleMobileNav = toggleMobileNav;
+window.toggleTheme = toggleTheme;
+window.toggleMobDropdown = toggleMobDropdown;
+window.showPlatformComingSoon = showPlatformComingSoon;
+window.openVideoModal = openVideoModal;
+window.closeVideoModal = closeVideoModal;
+window.toggleAccordion = toggleAccordion;
