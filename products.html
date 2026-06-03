@@ -76,47 +76,129 @@
       box-shadow: 0 4px 15px rgba(255,102,0,0.3);
     }
 
-    /* ── CARD GRID ── */
-    .products-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
-      max-width: 1200px; margin: 0 auto 100px; padding: 0 24px;
+    /* ── ALTERNATING SYSTEM ROWS & CARDS (INTEGRATED CONTIGUOUS SPLIT BOX) ── */
+    .alt-product-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch; /* Stretches both sides to have exactly matching heights */
+      margin-bottom: 90px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0;
+      background: var(--card-bg);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 32px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.22);
+      backdrop-filter: blur(25px);
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    @media (max-width: 900px) {
-      .products-grid { grid-template-columns: 1fr; }
+    .alt-product-row:hover {
+      border-color: rgba(255,102,0,0.35);
+      box-shadow: 0 25px 65px rgba(255,102,0,0.15), 0 0 25px rgba(0,0,0,0.2);
+      transform: translateY(-5px);
+    }
+    @media (max-width: 991px) {
+      .alt-product-row {
+        grid-template-columns: 1fr;
+        margin-bottom: 80px;
+        margin-left: 24px;
+        margin-right: 24px;
+      }
     }
 
-    .prod-card {
-      background: var(--card-bg); border: 1px solid var(--glass-border);
-      border-radius: 28px; padding: 48px; position: relative; overflow: hidden;
-      display: flex; flex-direction: column; justify-content: space-between;
-      backdrop-filter: blur(20px); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Column left/right child styling */
+    .alt-img-col {
+      position: relative;
+      background: rgba(255,102,0,0.015);
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-right: 1.5px solid var(--glass-border);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .prod-card:hover {
-      transform: translateY(-8px); border-color: rgba(255,102,0,0.3);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    .alt-product-row:nth-child(even) .alt-img-col {
+      order: 2;
+      border-right: none;
+      border-left: 1.5px solid var(--glass-border);
     }
+    .alt-product-row:nth-child(even) .alt-card-col {
+      order: 1;
+    }
+
+    @media (max-width: 991px) {
+      .alt-img-col {
+        border-right: none !important;
+        border-left: none !important;
+        border-bottom: 1.5px solid var(--glass-border);
+        min-height: 320px;
+        order: -1 !important; /* Always image first on mobile stack */
+      }
+      .alt-product-row:nth-child(even) .alt-card-col {
+        order: unset;
+      }
+    }
+
+    .alt-img-col::before {
+      content: '';
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      background: rgba(255,102,0,0.06);
+      filter: blur(50px);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .alt-img-col img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* ensures full diagram is scaled beautifully without cropping */
+      display: block;
+      border-radius: 16px;
+      filter: drop-shadow(0 15px 35px rgba(0,0,0,0.25));
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .alt-product-row:hover .alt-img-col img {
+      transform: scale(1.025);
+    }
+
+    .alt-card-col {
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
     .prod-icon {
       width: 60px; height: 60px; border-radius: 16px;
       background: rgba(255, 102, 0, 0.1); border: 1px solid rgba(255,102,0,0.2);
       color: var(--orange); display: flex; align-items: center; justify-content: center;
-      margin-bottom: 32px; transition: var(--transition);
+      margin-bottom: 24px; transition: var(--transition);
     }
-    .prod-card:hover .prod-icon {
+    .alt-card-col:hover .prod-icon {
       background: linear-gradient(135deg, var(--orange), #ff8c42);
       color: #fff; border-color: transparent;
       transform: scale(1.1);
     }
 
     .prod-title {
-      font-size: 28px; font-weight: 700; margin-bottom: 16px;
+      font-size: 28px; font-weight: 800; margin-bottom: 16px;
       font-family: 'Space Grotesk', sans-serif; color: var(--text-primary);
     }
     .prod-desc {
-      font-size: 15px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 32px;
+      font-size: 15px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 24px;
     }
 
     .prod-features {
-      list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px;
+      list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px;
     }
     .prod-feature-item {
       display: flex; align-items: center; gap: 12px; font-size: 14.5px; color: var(--text-secondary);
@@ -154,10 +236,6 @@
   <section class="products-hero reveal-up active">
     <div class="products-hero-glow"></div>
     <div class="products-hero-content">
-      <div class="products-badge">
-        <span class="products-badge-dot"></span>
-        Enterprise Suite
-      </div>
       <h1 class="products-hero-title">
         The Future Of <br/><span class="gradient-text">Business Automation</span>
       </h1>
@@ -167,13 +245,18 @@
     </div>
   </section>
 
-  <!-- PRODUCT SUITE GRID -->
-  <section class="page-section" style="padding-top:0;">
+  <!-- PRODUCT SUITE LIST -->
+  <section class="page-section" style="padding-top:0; padding-bottom: 40px;">
     <div class="container" style="max-width: 1200px; margin: 0 auto;">
-      <div class="products-grid">
-        
-        <!-- E-COMMERCE -->
-        <div class="prod-card hover-glow reveal-up">
+      
+      <!-- E-COMMERCE (Image Left, Card Right) -->
+      <div class="alt-product-row reveal-up">
+        <!-- Image Column -->
+        <div class="alt-img-col tilt-3d">
+          <img src="assets/img/ecommerce_ecosystem.png" alt="E-Commerce Ecosystem Overview" referrerPolicy="no-referrer" />
+        </div>
+        <!-- Card Column -->
+        <div class="alt-card-col hover-glow">
           <div>
             <div class="prod-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
@@ -182,9 +265,6 @@
             <p class="prod-desc">
               A high-performance modern commerce engine built for global scale. Empower unified omnichannel sales, localized multi-currencies, and hyper-scalable inventory grids.
             </p>
-            <div style="margin: 0 0 24px 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); line-height: 0;">
-              <img src="assets/img/ecommerce_ecosystem.png" alt="E-Commerce Ecosystem Overview" style="width: 100%; height: auto; display: block;" referrerPolicy="no-referrer" />
-            </div>
             <ul class="prod-features">
               <li class="prod-feature-item">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -200,7 +280,7 @@
               </li>
             </ul>
           </div>
-          <div class="prod-footer" style="gap: 12px; flex-wrap: wrap;">
+          <div class="prod-footer" style="gap: 12px; flex-wrap: wrap; margin-top: auto;">
             <a href="ecommerce.html" class="btn-packages magnetic" style="padding: 10px 22px; font-size: 14.5px;">
               View Details
               <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px; display: inline-block; vertical-align: middle;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -212,9 +292,12 @@
             <span style="font-size:12px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; margin-left: auto;">SaaS Platform</span>
           </div>
         </div>
+      </div>
 
-        <!-- CMS -->
-        <div class="prod-card hover-glow reveal-up">
+      <!-- CMS (Card Left, Image Right) -->
+      <div class="alt-product-row reveal-up" style="transition-delay: 0.05s;">
+        <!-- Card Column -->
+        <div class="alt-card-col hover-glow">
           <div>
             <div class="prod-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
@@ -223,9 +306,6 @@
             <p class="prod-desc">
               Intuitive, decoupled Content Management System for managing complex digital media across mobile apps, websites, smart channels, and global endpoints.
             </p>
-            <div style="margin: 0 0 24px 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); line-height: 0;">
-              <img src="assets/img/cms_ecosystem.png" alt="CMS Ecosystem Overview" style="width: 100%; height: auto; display: block;" />
-            </div>
             <ul class="prod-features">
               <li class="prod-feature-item">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -241,7 +321,7 @@
               </li>
             </ul>
           </div>
-          <div class="prod-footer" style="gap: 12px;">
+          <div class="prod-footer" style="gap: 12px; margin-top: auto;">
             <a href="cms.html" class="btn-packages magnetic" style="padding: 10px 22px; font-size: 14.5px;">
               View Details
               <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px; display: inline-block; vertical-align: middle;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -249,9 +329,20 @@
             <span style="font-size:12px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; margin-left: auto;">Media & content</span>
           </div>
         </div>
+        <!-- Image Column -->
+        <div class="alt-img-col tilt-3d">
+          <img src="assets/img/cms_ecosystem.png" alt="CMS Ecosystem Overview" />
+        </div>
+      </div>
 
-        <!-- HRMS -->
-        <div class="prod-card hover-glow reveal-up">
+      <!-- HRMS (Image Left, Card Right) -->
+      <div class="alt-product-row reveal-up">
+        <!-- Image Column -->
+        <div class="alt-img-col tilt-3d">
+          <img src="assets/img/hrms_ecosystem.png" alt="HRMS Ecosystem Overview Diagram" />
+        </div>
+        <!-- Card Column -->
+        <div class="alt-card-col hover-glow">
           <div>
             <div class="prod-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
@@ -260,9 +351,6 @@
             <p class="prod-desc">
               Intelligent Human Resource & Office Management System. Simplify payroll calculation, physical workspace allocations, desk assignments, visitor logs, and unified assets tracking.
             </p>
-            <div style="margin: 0 0 24px 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); line-height: 0;">
-              <img src="assets/img/hrms_ecosystem.png" alt="HRMS Ecosystem Overview Diagram" style="width: 100%; height: auto; display: block;" />
-            </div>
             <ul class="prod-features">
               <li class="prod-feature-item">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -278,7 +366,7 @@
               </li>
             </ul>
           </div>
-          <div class="prod-footer" style="gap: 12px;">
+          <div class="prod-footer" style="gap: 12px; margin-top: auto;">
             <a href="hrms.html" class="btn-packages magnetic" style="padding: 10px 22px; font-size: 14.5px;">
               View Details
               <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px; display: inline-block; vertical-align: middle;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -286,19 +374,20 @@
             <span style="font-size:12px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; margin-left: auto;">Office & Payroll</span>
           </div>
         </div>
+      </div>
 
-        <!-- LMS 360 -->
-        <div class="prod-card hover-glow reveal-up">
+      <!-- LMS 360 (Card Left, Image Right) -->
+      <div class="alt-product-row reveal-up" style="transition-delay: 0.05s;">
+        <!-- Card Column -->
+        <div class="alt-card-col hover-glow">
           <div>
-            <div style="margin-bottom: 24px; background: rgba(255,102,0,0.03); padding: 16px; border-radius: 20px; border: 1px solid rgba(255,102,0,0.25); display: inline-block; max-width: 100%;">
-              <img src="assets/img/lms_logo.png" alt="U-BSOL LMS 360" style="height: 48px; max-width: 100%; display: block;" referrerPolicy="no-referrer" />
+            <div class="prod-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
             </div>
+            <h3 class="prod-title">U-BSOL LMS 360</h3>
             <p class="prod-desc">
               The ultimate school and institute automation engine. LMS 360 manages all single minute school activities—timetables, exam boards, classes, fee collections, and parent updates—giving you 100% automated education workflows.
             </p>
-            <div style="margin: 0 0 24px 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); line-height: 0;">
-              <img src="assets/img/lms_ecosystem.png" alt="LMS 360 Ecosystem Overview" style="width: 100%; height: auto; display: block;" referrerPolicy="no-referrer" />
-            </div>
             <ul class="prod-features">
               <li class="prod-feature-item">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -314,7 +403,7 @@
               </li>
             </ul>
           </div>
-          <div class="prod-footer" style="gap: 12px;">
+          <div class="prod-footer" style="gap: 12px; margin-top: auto;">
             <a href="lms.html" class="btn-packages magnetic" style="padding: 10px 22px; font-size: 14.5px;">
               View Details
               <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px; display: inline-block; vertical-align: middle;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -322,8 +411,12 @@
             <span style="font-size:12px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; margin-left: auto;">School Automation</span>
           </div>
         </div>
-
+        <!-- Image Column -->
+        <div class="alt-img-col tilt-3d">
+          <img src="assets/img/lms_ecosystem.png" alt="LMS 360 Ecosystem Overview" referrerPolicy="no-referrer" />
+        </div>
       </div>
+
     </div>
   </section>
 

@@ -153,8 +153,21 @@ function getFooterHTML() {
       <div class="footer-divider"></div>
       
       <div class="footer-bottom">
-        <div class="footer-copy">© 2026 U-BSOL. All rights reserved.</div>
-        <div class="footer-copy">Made with <span style="color:#ff4444;">❤️</span> in Kerala, India</div>
+        <div style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
+          <div class="footer-copy">© 2026 U-BSOL. All rights reserved.</div>
+          <div class="footer-copy" style="font-size: 13px; color: var(--text-muted); opacity: 0.8;">Made with <span style="color:#ff4444;">❤️</span> in Kerala, India</div>
+        </div>
+        <div class="social-wrapper">
+          <a href="http://facebook.com/ubsol4u" class="social-btn magnetic" target="_blank" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+          <a href="https://www.instagram.com/ubsol4u" class="social-btn magnetic" target="_blank" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="https://www.youtube.com/@u-bsol1409" class="social-btn magnetic" target="_blank" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          </a>
+        </div>
       </div>
     </div>
   </footer>`;
@@ -312,10 +325,6 @@ function getProductsSuiteHTML(activePage) {
     <section class="page-section" style="padding: 90px 0; border-top: 1px solid var(--glass-border); background: linear-gradient(180deg, rgba(255,102,0,0.01) 0%, transparent 100%);">
       <div class="container" style="max-width: 1200px; margin: 0 auto;">
         <div class="reveal-up" style="margin-bottom: 56px; text-align: center;">
-          <div class="products-badge">
-            <span class="products-badge-dot"></span>
-            U-BSOL Suite
-          </div>
           <h2 style="font-size: clamp(30px, 4.5vw, 48px); font-family: 'Space Grotesk', sans-serif; font-weight: 800; margin-bottom: 20px; color: var(--text-primary); letter-spacing: -1px;">
             Explore Our <span style="background: linear-gradient(135deg, #ff6600, #ffaa00); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Enterprise Ecosystem</span>
           </h2>
@@ -350,55 +359,69 @@ function injectComponents(activePage) {
   if (!document.getElementById('floating-theme-toggle')) {
     const toggle = document.createElement('div');
     toggle.id = 'floating-theme-toggle';
-    toggle.className = 'theme-toggle-floating';
+    toggle.className = 'theme-toggle-floating magnetic';
     toggle.onclick = toggleTheme;
     toggle.innerHTML = `
-      <div class="icon-sun">☀️</div>
-      <div class="icon-moon">🌙</div>
+      <div class="icon-sun">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="theme-svg sun-svg">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2"></path>
+          <path d="M12 20v2"></path>
+          <path d="m4.93 4.93 1.41 1.41"></path>
+          <path d="m17.66 17.66 1.41 1.41"></path>
+          <path d="M2 12h2"></path>
+          <path d="M20 12h2"></path>
+          <path d="m6.34 17.66-1.41 1.41"></path>
+          <path d="m19.07 4.93-1.41 1.41"></path>
+        </svg>
+      </div>
+      <div class="icon-moon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="theme-svg moon-svg">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+      </div>
     `;
     document.body.appendChild(toggle);
   }
 
-  // Scroll effect on navbar
+  // Scroll effect on navbar and footer collision handler for theme toggle
   const nav = document.getElementById('mainNav');
+  const toggleBtn = document.getElementById('floating-theme-toggle');
+  
+  function adjustThemeTogglePosition() {
+    if (toggleBtn) {
+      const footer = document.querySelector('.enterprise-footer');
+      if (footer) {
+        const footerRect = footer.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        if (footerRect.top < windowHeight) {
+          const overlap = windowHeight - footerRect.top;
+          toggleBtn.style.bottom = (30 + overlap) + 'px';
+        } else {
+          toggleBtn.style.bottom = '30px';
+        }
+      }
+    }
+  }
+
   window.addEventListener('scroll', () => {
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 30);
+    adjustThemeTogglePosition();
   });
+
+  // Run initial positioning
+  setTimeout(adjustThemeTogglePosition, 100);
 
   // Init features
   initTilt();
-  initCustomCursor();
+  // Custom cursor disabled as per user request to fall back to clean native pointer
   initMagneticButtons();
   initParticles();
 }
 
 function initCustomCursor() {
-  if (window.innerWidth < 768) return;
-  
-  const cursor = document.createElement('div');
-  cursor.className = 'custom-cursor';
-  document.body.appendChild(cursor);
-  
-  const cursorDot = document.createElement('div');
-  cursorDot.className = 'custom-cursor-dot';
-  document.body.appendChild(cursorDot);
-  
-  document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    cursorDot.style.left = e.clientX + 'px';
-    cursorDot.style.top = e.clientY + 'px';
-    
-    if (!cursor.classList.contains('visible')) {
-      cursor.classList.add('visible');
-      cursorDot.classList.add('visible');
-    }
-  });
-  
-  document.querySelectorAll('a, button, .social-btn, .accordion-header, .theme-toggle-floating').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('active'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-  });
+  // Disabled custom cursor at user's request
+  return;
 }
 
 
@@ -490,8 +513,8 @@ function toggleTheme() {
 }
 
 function updateThemeIcon(theme) {
-  document.querySelectorAll('.icon-sun').forEach(el => el.style.display = theme === 'light' ? 'block' : 'none');
-  document.querySelectorAll('.icon-moon').forEach(el => el.style.display = theme === 'light' ? 'none' : 'block');
+  document.querySelectorAll('.icon-sun').forEach(el => el.style.display = theme === 'light' ? 'flex' : 'none');
+  document.querySelectorAll('.icon-moon').forEach(el => el.style.display = theme === 'light' ? 'none' : 'flex');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
