@@ -491,13 +491,18 @@
       .benefits-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 640px) {
+      .page-hero { padding: 120px 20px 40px; }
+      .section-container { padding: 60px 20px; }
       .steps-grid { grid-template-columns: 1fr; }
       .benefits-grid { grid-template-columns: 1fr; }
       .faq-grid { grid-template-columns: 1fr; }
-      .stats-strip { gap: 2px; }
-      .stat-item { border-radius: 16px !important; }
-      .form-card { padding: 32px 24px; }
+      .stats-strip { gap: 12px; flex-direction: column; padding: 0 20px 40px; }
+      .stat-item { border-radius: 16px !important; padding: 24px 16px; width: 100%; max-width: none; box-sizing: border-box; }
+      .stat-num { font-size: 36px; }
+      .form-section { padding: 60px 20px; }
+      .form-card { padding: 32px 20px; }
       .form-row { grid-template-columns: 1fr; }
+      .hero-cta { padding: 16px 32px; width: 100%; justify-content: center; box-sizing: border-box; }
     }
   </style>
 </head>
