@@ -73,7 +73,7 @@ function getFooterHTML() {
             <li><a href="about.html">About-us</a></li>
             <li><a href="https://u-bsol.com/templates" target="_blank">Templates</a></li>
             <li><a href="https://u-bsol.com/blogs" target="_blank">Blogs</a></li>
-            <li><a href="https://u-bsol.com/affiliate-program" target="_blank">Affiliate Program</a></li>
+            <li><a href="affiliate-program.html">Affiliate Program</a></li>
             <li><a href="https://u-bsol.com/additional-addons" target="_blank">Additional Add-ons</a></li>
           </ul>
         </div>
@@ -83,8 +83,8 @@ function getFooterHTML() {
           <h4 class="footer-heading">Need help ?</h4>
           <ul class="footer-links">
             <li><a href="https://u-bsol.com/faq" target="_blank">FAQ</a></li>
-            <li><a href="https://u-bsol.com/terms-conditions" target="_blank">Terms & Conditions</a></li>
-            <li><a href="https://u-bsol.com/privacy-policy" target="_blank">Privacy Policy</a></li>
+            <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
             <li><a href="contact.html">Contact-us</a></li>
             <li><a href="packages.html">Packages</a></li>
           </ul>

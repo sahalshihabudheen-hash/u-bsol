@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>U-BSOL | Terms &amp; Conditions</title>
+  <meta name="description" content="U-BSOL Terms & Conditions - Read our terms of service before using our platform." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=3" />
+  <style>
+    :root {
+      --bg-dark: #050505;
+      --bg-card: rgba(15, 15, 20, 0.4);
+      --border-glass: rgba(255, 255, 255, 0.06);
+      --text-main: #ffffff;
+      --text-muted: #a1a1aa;
+      --orange: #ff6b00;
+      --orange-dim: rgba(255, 107, 0, 0.12);
+      --glow: rgba(255, 107, 0, 0.25);
+    }
+    [data-theme="light"] {
+      --bg-dark: #fbfbfb;
+      --bg-card: rgba(255, 255, 255, 0.7);
+      --border-glass: rgba(0, 0, 0, 0.06);
+      --text-main: #09090b;
+      --text-muted: #71717a;
+      --orange-dim: rgba(255, 107, 0, 0.06);
+    }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+    }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; }
+
+    .page-hero {
+      padding: 160px 24px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 400px;
+      background: radial-gradient(ellipse at center, var(--orange-dim) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: var(--orange-dim);
+      color: var(--orange);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 107, 0, 0.15);
+      text-transform: uppercase;
+    }
+    .page-hero h1 {
+      font-size: clamp(40px, 5vw, 72px);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    .page-hero p {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .legal-content {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 24px 120px;
+    }
+    .legal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 28px;
+      padding: 60px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .legal-card h6 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--orange);
+      margin: 36px 0 12px;
+      letter-spacing: 0.02em;
+    }
+    .legal-card p {
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
+    .legal-card ul {
+      color: var(--text-muted);
+      line-height: 1.8;
+      padding-left: 24px;
+      margin-bottom: 20px;
+    }
+    .legal-card ul li { margin-bottom: 8px; font-size: 15px; }
+    .legal-card ul ul { margin-top: 8px; }
+    .legal-card a { color: var(--orange); text-decoration: underline; }
+    .legal-divider {
+      border: none;
+      border-top: 1px solid var(--border-glass);
+      margin: 40px 0;
+    }
+
+    /* TOC */
+    .toc {
+      background: var(--orange-dim);
+      border: 1px solid rgba(255, 107, 0, 0.15);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 40px;
+    }
+    .toc h4 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--orange);
+      margin-bottom: 16px;
+    }
+    .toc ol {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 2;
+      columns: 2;
+    }
+    .toc ol li a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .toc ol li a:hover { color: var(--orange); }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 24px;
+      max-width: 880px;
+      margin: 0 auto;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .breadcrumb a { color: var(--orange); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    .bg-grid {
+      position: fixed; inset: 0; z-index: -3; pointer-events: none;
+      background-image: linear-gradient(var(--border-glass) 1px, transparent 1px),
+                        linear-gradient(90deg, var(--border-glass) 1px, transparent 1px);
+      background-size: 50px 50px;
+      mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+      -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div id="nav-container"></div>
+
+  <section class="page-hero">
+    <div class="page-hero-tag">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Legal
+    </div>
+    <h1>Terms &amp; Conditions</h1>
+    <p>Please read these terms carefully before using the U-BSOL platform and services.</p>
+  </section>
+
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span>›</span>
+    <span>Terms &amp; Conditions</span>
+  </div>
+
+  <div class="legal-content">
+    <div class="legal-card">
+
+      <div class="toc">
+        <h4>Table of Contents</h4>
+        <ol>
+          <li><a href="#s1">Account Terms</a></li>
+          <li><a href="#s2">Activate the Account</a></li>
+          <li><a href="#s3">Marketplace</a></li>
+          <li><a href="#s4">General Provisions</a></li>
+          <li><a href="#s5">U-BSOL Rights</a></li>
+          <li><a href="#s6">Liability Limits</a></li>
+          <li><a href="#s7">Disclaimer &amp; Warranty</a></li>
+          <li><a href="#s8">Software Interruption</a></li>
+          <li><a href="#s9">Intellectual Property</a></li>
+          <li><a href="#s10">U-BSOL Templates</a></li>
+          <li><a href="#s11">Payment Fees</a></li>
+          <li><a href="#s12">Cancellation &amp; Termination</a></li>
+          <li><a href="#s13">Refund / Return Policy</a></li>
+          <li><a href="#s14">Upgrade / Renewing Package</a></li>
+          <li><a href="#s15">Affiliate Partners</a></li>
+        </ol>
+      </div>
+
+      <p>Subscription to U-BSOL services through the website or mobile application requires the approval of the following conditions (Terms of use).</p>
+      <p>The services – provided by U-BSOL under the terms of use include many features, add-ons, third party services, and tools – that help you create and manage your e-business (service).</p>
+      <p>Any new features, add-ons or tools added to the current service are also subject to the same conditions. You can view the conditions at any time at <a href="https://u-bsol.com/terms-conditions" target="_blank">u-bsol.com/terms-conditions</a>.</p>
+      <p>U-BSOL has the right to update and change the terms of use by posting updates and changes to its website or application. It is also advisable to visit the site from time to time to see any update that may affect you.</p>
+      <p>You must read and agree to all the terms in the Terms of Use and Privacy Policy before becoming an official U-BSOL merchant or user.</p>
+      <p>By using U-BSOL or any of its services, you agree to these terms.</p>
+
+      <hr class="legal-divider">
+
+      <h6 id="s1">1 Account Terms</h6>
+      <ul>
+        <li>You must be 18 years of age or older, or have reached the age of majority according to the laws and regulations of the country in which you use the service.</li>
+        <li>You must register with U-BSOL to use the service and benefit from it by writing the proper business information and personal information as it appears in the official papers, the current address, the mobile number, business information, geo location, a valid email and any required information as shown in the registration form. U-BSOL has the right to reject the request to create any account or cancel any account due, in accordance with the powers granted.</li>
+        <li>U-BSOL has the right to use the email address as a primary method of communication.</li>
+        <li>The user is responsible for keeping his password safe. U-BSOL is not responsible for any loss or damage that occurs as a result of forgetting and not maintaining the security of the account and password.</li>
+        <li>The user is responsible for all activities and contents such as data, graphics, images and links that are downloaded under his account in U-BSOL (Store Content). No virus, computer worms, or any symbols of a destructive nature should be transmitted.</li>
+        <li>Violation of any term in the Account terms described in accordance with the powers granted to U-BSOL will lead to immediate termination of user services and the claim for compensation.</li>
+      </ul>
+
+      <h6 id="s2">2 Activate the Account</h6>
+      <p><strong>2.1 U-BSOL Account</strong></p>
+      <ul>
+        <li>Under Article 2.1.2, the person who benefits from the service is the contracting party (the account owner) who is subject to the terms of use and is the only person authorized to manage any other account that we may provide.</li>
+        <li>If you are subscribed to the service on behalf of the employer, then the employer is the account holder, and you are authorized by him and accordingly, the conditions apply to him.</li>
+        <li>We use many techniques to identify You when You register on the U-BSOL. To comply with legislative requirements and global sanctions, we screen our customer accounts and may collect information from you. We may request that You provide us with documentation to help prove Your identity for business verification purposes if required.</li>
+        <li>After subscribing to U-BSOL, you will receive an email confirmation for registration containing your username and password for your store admin. If you wish to query access to your service, please email at: <a href="mailto:support@u-bsol.com">support@u-bsol.com</a>.</li>
+      </ul>
+      <p><strong>2.2 Payment Services, Payment Gateways</strong></p>
+      <ul>
+        <li>U-BSOL has been integrated with few third party payment gateways. You are free to choose any of them. As a merchant you need to choose the suitable payment gateway from our list and contact them to get your payment account details and connect with your bank account.</li>
+        <li>You can enable the payment gateway service after you connected with their service. There are test mode and live mode in order to make assurance of the integration.</li>
+        <li>U-BSOL will not keep any of your user's credit, debit card details or any bank details. For tracking the payment we are storing the transaction ID from your customer.</li>
+      </ul>
+      <p><strong>2.3 Cash on Delivery Service</strong></p>
+      <ul>
+        <li>When subscribing to the service and upon the request of the account holder, the payment service will be activated upon delivery, using his information.</li>
+        <li>The user acknowledges that he is fully responsible for payment services upon delivery as the account owner. Since it is a service provided by a third party, if he wishes to cancel this service, he must do so himself.</li>
+        <li>The user acknowledges agreeing to the terms and conditions that the third party is subject to when using the payment on delivery service. If modified or changed, a new version will be published in the application/website.</li>
+      </ul>
+      <p><strong>2.4 Pay at Shop</strong></p>
+      <ul>
+        <li>The merchant has to activate this option to make it available in checkout for your customers. By this option the customer can pay directly to merchant while using store pickup delivery option.</li>
+        <li>This enables shop billing for walking customers at merchants' store.</li>
+      </ul>
+
+      <h6 id="s3">3 Marketplace</h6>
+      <ul>
+        <li>U-BSOL provides the store name for the subscribers on U-BSOL's marketplace for his store, which he can use and share with customers.</li>
+        <li>Merchant's stores will be listed in the U-BSOL marketplace based on your business category and geolocation.</li>
+        <li>U-BSOL Merchants can share their offers and products into U-BSOL marketplace from their respected dashboard.</li>
+        <li>U-BSOL will not make any additional charge for obtaining business through U-BSOL marketplace.</li>
+        <li>U-BSOL marketplace runs contests and deals to reach lots of customers into merchants. The merchant and U-BSOL marketing team will be responsible for making offers and deals through U-BSOL marketplace.</li>
+      </ul>
+
+      <h6 id="s4">4 General Provisions</h6>
+      <ul>
+        <li>Technical support help is provided to all U-BSOL customers and is only available via Ticket which shows on your U-BSOL admin dashboard.</li>
+        <li>Customer service for U-BSOL customers is available via website/application and phone/email.</li>
+        <li>The account holder agrees that U-BSOL may amend these Terms of Use at any time by posting the revised Terms of Use on the U-BSOL website and/or application.</li>
+        <li>The account holder may not use the U-BSOL service for any unlawful or statutory purpose or for any unauthorized purpose.</li>
+        <li>The user acknowledges that he will not reproduce, duplicate, copy, sell, resell or exploit any part of the service or use or access it without obtaining the express written permission of U-BSOL team.</li>
+        <li>The user acknowledges and agrees that the use of the service including the information sent to or stored by U-BSOL, is subject to its <a href="privacy-policy.html">privacy policy</a>.</li>
+      </ul>
+
+      <h6 id="s5">5 U-BSOL Rights</h6>
+      <ul>
+        <li>The right to increase the amendment or termination of the service for any reason without notice at any time.</li>
+        <li>Anyone has the right to refuse to activate the service for any reason, at any time.</li>
+        <li>U-BSOL has the right to remove store content and accounts containing content that U-BSOL deems unlawful, offensive, threatening, libelous, defamatory, or that violates the intellectual property of any party.</li>
+        <li>Verbal or physical abuse of any kind from any U-BSOL customer, employee, member or official will lead to the termination of the account immediately.</li>
+        <li>In the event of a dispute over account ownership, U-BSOL has the right to request documents to verify ownership of the account.</li>
+        <li>U-BSOL has the right to decide at its own discretion who is the legitimate account holder and can issue decisions to transfer the account to the legal owner.</li>
+      </ul>
+
+      <h6 id="s6">6 Liability Limits</h6>
+      <ul>
+        <li>The user agrees and understands that U-BSOL shall not be liable for any direct, indirect, incidental, special, consequential, or unadorned damages, including without limitation, damages arising from loss of profit, reputation, use, data, or other intangible losses resulting from the use of Service or inability to use it.</li>
+        <li>You acknowledge and agree that U-BSOL owns all right, title and interests in and to the accompanying documentation, videos and printed materials.</li>
+        <li>In all cases, U-BSOL and its distributors are not responsible for the loss of profits or any special, incidental or consequential damages arising from their services or these terms of use.</li>
+        <li>The account holder is entirely responsible for the use. Whereas, the "as is" and "as available" service is provided without any warranty or express, implied or legal conditions.</li>
+        <li>U-BSOL does not guarantee that no defect or error occurs, and U-BSOL is committed to taking all necessary and reasonable steps to remedy the situation.</li>
+        <li>U-BSOL does not warrant that the results of using the service will be accurate or consistent.</li>
+      </ul>
+
+      <h6 id="s7">7 Disclaimer and Warranty</h6>
+      <ul>
+        <li>Failure to exercise or enforce any right or condition of use is not considered a disclaimer of this right and your use of the service is subject to terms of use (the complete agreement between U-BSOL and the customer).</li>
+        <li>U-BSOL further disclaims all representations and warranties, express or implied, that the platforms do not infringe or otherwise violate any intellectual property or other proprietary right of any third party in any jurisdiction.</li>
+      </ul>
+
+      <h6 id="s8">8 Software Interruption</h6>
+      <ul>
+        <li>U-BSOL may make changes from time to time. Should changes be made to any module of the system that could affect your store operation. We will notify all customers through their email and notification through the dashboard.</li>
+        <li>To apply upgrades and other changes to the Software, U-BSOL may be made temporarily unavailable. To minimize impact to your usage of the system, U-BSOL will attempt to make any outages as short as possible and at a time of day where system usage is at its minimum.</li>
+      </ul>
+
+      <h6 id="s9">9 Intellectual Property &amp; Customer Content</h6>
+      <ul>
+        <li>U-BSOL does not have the right to claim intellectual property rights over the content that you upload, and all the content you download is owned by you.</li>
+        <li>When content is uploaded to the store, the user agrees to:
+          <ul>
+            <li>Allow other Internet users to view the store's content.</li>
+            <li>Allow U-BSOL to display and save your store content.</li>
+            <li>U-BSOL has the right to review the content of the uploaded store at any time to ensure its safety and compliance with the terms and conditions.</li>
+          </ul>
+        </li>
+        <li>The user retains ownership of all content uploaded to the U-BSOL Store.</li>
+        <li>U-BSOL merchants/user's confidential information will not be disclosed to third parties unless required during service provision and with prior consent and knowledge of the user.</li>
+      </ul>
+
+      <h6 id="s10">10 U-BSOL Templates</h6>
+      <ul>
+        <li>U-BSOL merchant can customize the look of their store using the provided templates.</li>
+        <li>U-BSOL merchants are not allowed to create brand new template other than those created by U-BSOL developers.</li>
+        <li>U-BSOL merchant has no rights to sell or copy our store templates to others.</li>
+        <li>We continually release new templates based on upcoming style patterns. This will be freely available for our U-BSOL merchants' dashboard.</li>
+      </ul>
+
+      <h6 id="s11">11 Payment Fees</h6>
+      <ul>
+        <li>U-BSOL service is made available on a pay-as-you-go basis. The U-BSOL service is billed to you on yearly basis depending on plan period you selected.</li>
+        <li>For any upgrade in plan level part way through the year, you will be charged a pro-rated amount for the current month, and then the amended fee from the following month onwards. There is no option to downgrade your account.</li>
+        <li>Prices of all services, including but not limited to monthly fees to the service, are subject to change upon 30 days' notice from us. Your U-BSOL store account may be suspended or terminated if you do not pay the fees as they fall due.</li>
+      </ul>
+
+      <h6 id="s12">12 Cancellation &amp; Termination</h6>
+      <ul>
+        <li>The user can cancel his account at any time by contacting the support team at <a href="mailto:support@u-bsol.com">support@u-bsol.com</a>.</li>
+        <li>When either party terminates the services for any reason:
+          <ul>
+            <li>U-BSOL will stop providing the user with the services and will no longer be able to access his account.</li>
+            <li>The user does not have the right to recover any charges unless otherwise specified in the terms of use.</li>
+            <li>Any balance due to U-BSOL Company as a result of your use of the services through the date of this termination will immediately become fully payable.</li>
+          </ul>
+        </li>
+        <li>If the end date of the service comes and there are fees that the user has not paid, then one final invoice will be sent via email. After paying the bill in full, the user will not be charged again.</li>
+        <li>U-BSOL reserves the right to amend or terminate the services of the user or his account for any reason at any time without notice.</li>
+        <li>Fraud: U-BSOL has the right to suspend or terminate your account when it is suspected that you have participated in embezzlement activity in connection with U-BSOL services.</li>
+      </ul>
+
+      <h6 id="s13">13 Refund / Return Policy</h6>
+      <ul>
+        <li>If the merchant applies for a refund, while he/she achieves more than 10 claims, the request will be rejected. Also the request will not be considered after the final deployment.</li>
+        <li>Four steps of cancellation and returns process:
+          <ul>
+            <li>Merchant is required to be eligible for refund according to the Refund Policy.</li>
+            <li>Merchant applies the refund request by contacting the customer service team in the designated channels.</li>
+            <li>Customer service team processes refund requests within 3–5 working days. If the merchant is not eligible for refund, the customer service team will inform the merchant and explain the reasons.</li>
+            <li>If the Merchant is entitled to a return, the refund will be processed within 15 days of business.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h6 id="s14">14 Upgrade / Renewing the Package</h6>
+      <ul>
+        <li>U-BSOL merchants are able to change/upgrade the package through U-BSOL dashboard. The existing package remaining duration amount will be added into the newly selected package, that will be considered as additional days.</li>
+        <li>If the package is upgraded to a higher package and the merchant requested for a refund, he/she shall be entitled to refund the difference between the packages, which did not exceed the grace period.</li>
+        <li>U-BSOL packages amount are stable, that wouldn't change in the middle of the financial year. Hence U-BSOL package may have price difference in upcoming years if other third party service providers increase their cost.</li>
+      </ul>
+
+      <h6 id="s15">15 Affiliate Partners</h6>
+      <ul>
+        <li>To become a U-BSOL Affiliate Partner, You must send KYC documents to get approval from U-BSOL team.</li>
+        <li>U-BSOL reserves the right to approve or reject ANY Affiliate Program Application in our sole and absolute discretion.</li>
+        <li>Affiliate Commissions will be paid after 48 hours from the referred merchant invoice closed.</li>
+        <li>You cannot refer yourself, and you will not receive a commission on your own accounts.</li>
+        <li>U-BSOL provides you the Affiliate links on your dashboard which contain your Affiliate ID.</li>
+        <li>U-BSOL affiliate account will be terminated for the following:
+          <ul>
+            <li>Inappropriate advertisements (false claims, misleading hyperlinks, etc.).</li>
+            <li>Spamming (mass email, mass newsgroup posting, etc.).</li>
+            <li>Advertising on sites containing or promoting illegal activities.</li>
+            <li>Failure to disclose the affiliate relationship.</li>
+            <li>Self-referrals, fraudulent transactions, suspected Affiliate fraud.</li>
+          </ul>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+  <div id="footer-container"></div>
+
+  <script src="components.js?v=3"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      injectComponents('');
+    });
+  </script>
+</body>
+</html>

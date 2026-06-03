@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>U-BSOL | Affiliate Program</title>
+  <meta name="description" content="Join the U-BSOL Affiliate Program and earn 15%–25% commissions by referring customers to our platform." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=3" />
+  <style>
+    :root {
+      --bg-dark: #050505;
+      --bg-card: rgba(15, 15, 20, 0.4);
+      --border-glass: rgba(255, 255, 255, 0.06);
+      --text-main: #ffffff;
+      --text-muted: #a1a1aa;
+      --orange: #ff6b00;
+      --orange-dim: rgba(255, 107, 0, 0.12);
+      --glow: rgba(255, 107, 0, 0.25);
+      --gradient-orange: linear-gradient(135deg, #ff6b00 0%, #ff8c42 100%);
+    }
+    [data-theme="light"] {
+      --bg-dark: #fbfbfb;
+      --bg-card: rgba(255, 255, 255, 0.7);
+      --border-glass: rgba(0, 0, 0, 0.06);
+      --text-main: #09090b;
+      --text-muted: #71717a;
+      --orange-dim: rgba(255, 107, 0, 0.06);
+    }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+    }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; }
+
+    .bg-grid {
+      position: fixed; inset: 0; z-index: -3; pointer-events: none;
+      background-image: linear-gradient(var(--border-glass) 1px, transparent 1px),
+                        linear-gradient(90deg, var(--border-glass) 1px, transparent 1px);
+      background-size: 50px 50px;
+      mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+      -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+      opacity: 0.85;
+    }
+
+    /* Hero */
+    .page-hero {
+      padding: 160px 24px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 450px;
+      background: radial-gradient(ellipse at center, var(--orange-dim) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: var(--orange-dim);
+      color: var(--orange);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 107, 0, 0.15);
+      text-transform: uppercase;
+    }
+    .page-hero h1 {
+      font-size: clamp(40px, 5vw, 72px);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    .page-hero h1 span {
+      background: linear-gradient(135deg, var(--text-main) 30%, var(--orange) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .page-hero p {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 18px 44px;
+      background: var(--gradient-orange);
+      color: #fff;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 16px;
+      text-decoration: none;
+      box-shadow: 0 4px 24px var(--glow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hero-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(255,107,0,0.5);
+    }
+
+    /* Stat strip */
+    .stats-strip {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      padding: 0 24px 80px;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      flex: 1;
+      min-width: 200px;
+      max-width: 300px;
+      text-align: center;
+      padding: 40px 24px;
+      border: 1px solid var(--border-glass);
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      position: relative;
+    }
+    .stat-item:first-child { border-radius: 24px 0 0 24px; }
+    .stat-item:last-child { border-radius: 0 24px 24px 0; }
+    .stat-item + .stat-item { border-left: none; }
+    .stat-num {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--orange);
+      font-family: 'Space Grotesk', sans-serif;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    /* Section */
+    .section-container {
+      padding: 80px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: var(--orange-dim);
+      color: var(--orange);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 107, 0, 0.15);
+      text-transform: uppercase;
+    }
+    .section-title {
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 17px;
+      line-height: 1.6;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* How it works */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 24px;
+      padding: 40px 28px;
+      text-align: center;
+      position: relative;
+      transition: all 0.4s ease;
+    }
+    .step-card:hover {
+      border-color: rgba(255, 107, 0, 0.3);
+      transform: translateY(-5px);
+    }
+    .step-number {
+      width: 52px;
+      height: 52px;
+      background: var(--gradient-orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 auto 20px;
+      box-shadow: 0 4px 20px var(--glow);
+    }
+    .step-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .step-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Benefits */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .benefit-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      padding: 36px;
+      transition: all 0.3s ease;
+    }
+    .benefit-card:hover {
+      border-color: rgba(255, 107, 0, 0.3);
+      transform: translateY(-4px);
+    }
+    .benefit-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--orange-dim);
+      border-radius: 14px;
+      border: 1px solid rgba(255, 107, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      color: var(--orange);
+      transition: all 0.3s ease;
+    }
+    .benefit-card:hover .benefit-icon {
+      background: var(--orange);
+      color: #fff;
+    }
+    .benefit-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .benefit-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* FAQ */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+    .faq-item:hover { border-color: rgba(255, 107, 0, 0.2); }
+    .faq-item.open { border-color: rgba(255, 107, 0, 0.3); }
+    .faq-header {
+      padding: 24px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      gap: 16px;
+    }
+    .faq-question {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .faq-toggle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--orange-dim);
+      border: 1px solid rgba(255, 107, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--orange);
+      font-size: 20px;
+      line-height: 1;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .faq-item.open .faq-toggle {
+      transform: rotate(45deg);
+      background: var(--orange);
+      color: #fff;
+    }
+    .faq-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+    .faq-item.open .faq-body { max-height: 300px; }
+    .faq-body-inner {
+      padding: 0 28px 24px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* Application Form */
+    .form-section {
+      padding: 100px 24px;
+      position: relative;
+    }
+    .form-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, var(--orange-dim) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .form-container {
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 28px;
+      padding: 60px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-glass);
+      border-radius: 12px;
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.3s ease;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .form-group select { cursor: pointer; }
+    .form-group select option { background: #111; }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--orange); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+      text-transform: uppercase;
+      padding: 8px 14px;
+      background: var(--orange-dim);
+      border-radius: 8px;
+      display: inline-block;
+      margin-bottom: 24px;
+      margin-top: 12px;
+    }
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .checkbox-row input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--orange);
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .checkbox-row label {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .checkbox-row label a { color: var(--orange); text-decoration: underline; }
+    .submit-btn {
+      width: 100%;
+      padding: 18px;
+      background: var(--gradient-orange);
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif;
+      cursor: pointer;
+      box-shadow: 0 4px 24px var(--glow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(255,107,0,0.5);
+    }
+    .form-note {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 16px;
+    }
+
+    /* Success banner */
+    .success-banner {
+      display: none;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      border-radius: 14px;
+      padding: 20px 28px;
+      text-align: center;
+      color: #4ade80;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .breadcrumb a { color: var(--orange); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    @media (max-width: 900px) {
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .benefits-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .steps-grid { grid-template-columns: 1fr; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .stats-strip { gap: 2px; }
+      .stat-item { border-radius: 16px !important; }
+      .form-card { padding: 32px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div id="nav-container"></div>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="page-hero-tag">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Partner Program
+    </div>
+    <h1>Earn with the<br><span>U-BSOL Affiliate Program</span></h1>
+    <p>Join developers, freelancers, bloggers, and business professionals who earn 15%–25% commissions on every referral. Turn your network into recurring income.</p>
+    <a href="#apply" class="hero-cta">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Apply Now — It's Free
+    </a>
+  </section>
+
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span>›</span>
+    <span>Affiliate Program</span>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-strip">
+    <div class="stat-item">
+      <div class="stat-num">15–25%</div>
+      <div class="stat-label">Commission Rate</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">48h</div>
+      <div class="stat-label">Payout Speed</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Earning Potential</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">Free</div>
+      <div class="stat-label">To Join</div>
+    </div>
+  </div>
+
+  <!-- Benefits -->
+  <div class="section-container">
+    <div class="section-header">
+      <div class="section-tag">Why Partner With Us</div>
+      <h2 class="section-title">Everything you need to succeed</h2>
+      <p class="section-desc">We believe opportunities and benefits increase when you help others win. That's our partnership philosophy.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="benefit-title">High Commissions</div>
+        <div class="benefit-desc">Earn 15% up to 25% on every referred merchant that subscribes. The more you refer, the more you earn — with no ceiling.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="benefit-title">Real-Time Dashboard</div>
+        <div class="benefit-desc">Track all your referrals, commissions, and payouts from your dedicated affiliate dashboard — updated in real time.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="benefit-title">Dedicated Support</div>
+        <div class="benefit-desc">Our support and technical team work for you. We'll guide you to understand our product and services in detail.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="benefit-title">Fast Payments</div>
+        <div class="benefit-desc">Receive your commissions within 48 hours of the referred merchant closing their invoice. Directly to your bank account.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="benefit-title">Open to Everyone</div>
+        <div class="benefit-desc">Developers, designers, freelancers, bloggers, influencers, consultants, marketing agencies — anyone can join.</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="benefit-title">Unique Affiliate Links</div>
+        <div class="benefit-desc">Share your personalized U-BSOL package links on social media, email, blogs, or any channel of your choice.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- How It Works -->
+  <div class="section-container" style="padding-top: 0;">
+    <div class="section-header">
+      <div class="section-tag">Simple Process</div>
+      <h2 class="section-title">How it works</h2>
+      <p class="section-desc">Get started in minutes and start earning within your first referral.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <div class="step-title">Apply</div>
+        <div class="step-desc">Fill the application form below. Quick and easy — takes under 2 minutes.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <div class="step-title">Get Approved</div>
+        <div class="step-desc">Complete your profile and KYC. Our team reviews and notifies you once approved.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <div class="step-title">Share Your Link</div>
+        <div class="step-desc">Get your unique affiliate links from the dashboard and share them anywhere.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <div class="step-title">Earn Commission</div>
+        <div class="step-desc">Earn 15%–25% commission every time someone subscribes through your link.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section-container" style="padding-top: 0;">
+    <div class="section-header">
+      <div class="section-tag">Got Questions?</div>
+      <h2 class="section-title">Affiliate Program FAQ</h2>
+      <p class="section-desc">If you don't see an answer to your question, you can send us an email from our <a href="contact.html" style="color: var(--orange);">contact form</a>.</p>
+    </div>
+    <div class="faq-grid" id="faqGrid">
+      <div class="faq-item">
+        <div class="faq-header" onclick="toggleFAQ(this)">
+          <span class="faq-question">How can I become an Affiliate partner?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-body">
+          <div class="faq-body-inner">It's easy! Fill the application form on this page. Once you submit the form, you will be redirected to your dashboard where you need to complete your profile and update your KYC details. After that our team will process your application and notify you once it is approved.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-header" onclick="toggleFAQ(this)">
+          <span class="faq-question">Who can become an Affiliate partner?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-body">
+          <div class="faq-body-inner">Anyone! We welcome developers, designers, freelancers, bloggers, influencers, marketing agencies, businessmen, professionals, consultants, and more.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-header" onclick="toggleFAQ(this)">
+          <span class="faq-question">How does the affiliate program work?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-body">
+          <div class="faq-body-inner">After becoming our affiliate partner we will provide you an affiliate ID associated with U-BSOL different package links. You can share those links within your friend circle, community, social media, etc. You will be rewarded an affiliate commission if anyone purchases our package through your shared links.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-header" onclick="toggleFAQ(this)">
+          <span class="faq-question">How much can I earn as a U-BSOL affiliate partner?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-body">
+          <div class="faq-body-inner">You can easily earn from 15% up to 25% commissions from every paid customer that you referred. There is no cap on the number of referrals you can make.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-header" onclick="toggleFAQ(this)">
+          <span class="faq-question">How do I know about my referred customers?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-body">
+          <div class="faq-body-inner">All your referred customers' details will be listed in your dashboard. You can see this under the buddies list in your dashboard.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-header" onclick="toggleFAQ(this)">
+          <span class="faq-question">How do affiliate payments work?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-body">
+          <div class="faq-body-inner">Payment information will be listed in your dashboard immediately after the referred customer completes their invoice payment. We will also send you a notification. The affiliate commission amount will be transferred to your bank account within 48 hours after closing the invoice.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-header" onclick="toggleFAQ(this)">
+          <span class="faq-question">Who is there to support me?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-body">
+          <div class="faq-body-inner">Our supporting team and technical team will work for you as your team. We will help you and guide you to understand our product and services in more detail. If you have any question regarding our application, we are here for you.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-header" onclick="toggleFAQ(this)">
+          <span class="faq-question">Can I refer myself?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-body">
+          <div class="faq-body-inner">No. You cannot refer yourself and you will not receive a commission on your own accounts. Self-referrals, fraudulent transactions, and suspected affiliate fraud will result in account termination.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Form -->
+  <div class="form-section" id="apply">
+    <div class="form-container">
+      <div class="section-header">
+        <div class="section-tag">Join Us</div>
+        <h2 class="section-title">Apply to Partner Program</h2>
+        <p class="section-desc">Fill the form below. Once complete, you'll receive a confirmation email and our team will review your application.</p>
+      </div>
+      <div class="form-card">
+        <div class="success-banner" id="successBanner">
+          🎉 Application submitted! We'll review your application and get back to you shortly.
+        </div>
+        <form id="affiliateForm" onsubmit="handleFormSubmit(event)">
+
+          <div class="form-section-label">Account Login Info</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="aff_name">Full Name *</label>
+              <input id="aff_name" type="text" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="aff_email">Email Address *</label>
+              <input id="aff_email" type="email" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="aff_password">Password *</label>
+              <input id="aff_password" type="password" placeholder="Min. 8 characters" required minlength="8">
+            </div>
+            <div class="form-group">
+              <label for="aff_confirm">Confirm Password *</label>
+              <input id="aff_confirm" type="password" placeholder="Repeat password" required>
+            </div>
+          </div>
+
+          <div class="form-section-label">Contact Address</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="aff_phone">Contact Number *</label>
+              <input id="aff_phone" type="tel" placeholder="+91 9XXXXXXXXX" required>
+            </div>
+            <div class="form-group">
+              <label for="aff_postcode">Postcode *</label>
+              <input id="aff_postcode" type="text" placeholder="676509" required>
+            </div>
+            <div class="form-group">
+              <label for="aff_state">State</label>
+              <input id="aff_state" type="text" placeholder="Kerala">
+            </div>
+            <div class="form-group">
+              <label for="aff_district">District</label>
+              <input id="aff_district" type="text" placeholder="Malappuram">
+            </div>
+            <div class="form-group full">
+              <label for="aff_address">Full Address *</label>
+              <textarea id="aff_address" placeholder="Street, City, State, Country" required></textarea>
+            </div>
+          </div>
+
+          <div class="checkbox-row">
+            <input type="checkbox" id="aff_terms" required>
+            <label for="aff_terms">I have read and accept the <a href="terms-conditions.html">Terms & Conditions</a> and <a href="privacy-policy.html">Privacy Policy</a> of U-BSOL.</label>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            Submit Application →
+          </button>
+          <p class="form-note">* All marked fields are required.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-container"></div>
+
+  <script src="components.js?v=3"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      injectComponents('');
+    });
+
+    function toggleFAQ(header) {
+      const item = header.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      // close all
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      // open clicked (if was closed)
+      if (!isOpen) item.classList.add('open');
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const password = document.getElementById('aff_password').value;
+      const confirm = document.getElementById('aff_confirm').value;
+      if (password !== confirm) {
+        alert('Passwords do not match. Please try again.');
+        return;
+      }
+      // Show success banner
+      const banner = document.getElementById('successBanner');
+      const form = document.getElementById('affiliateForm');
+      banner.style.display = 'block';
+      form.style.display = 'none';
+      // Scroll to banner
+      banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  </script>
+</body>
+</html>
