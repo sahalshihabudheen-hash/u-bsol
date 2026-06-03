@@ -364,6 +364,9 @@
 
   <div id="footer-container"></div>
   <script type="module" src="components.js"></script>
-  <script>injectComponents('features');</script>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  injectComponents('features');
+});</script>
 </body>
 </html>

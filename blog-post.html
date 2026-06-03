@@ -209,7 +209,10 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 <div id="footer-container"></div>
 <script type="module" src="components.js"></script>
 <script>
-injectComponents('blog');
+
+document.addEventListener('DOMContentLoaded', () => {
+  injectComponents('blog');
+});
 
 const posts = {
   '1': {

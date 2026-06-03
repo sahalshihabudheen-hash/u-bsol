@@ -394,7 +394,10 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
 <script type="module" src="components.js"></script>
 <script>
-injectComponents('blog');
+
+document.addEventListener('DOMContentLoaded', () => {
+  injectComponents('blog');
+});
 
 // Reveal on scroll
 const observer = new IntersectionObserver(entries => {

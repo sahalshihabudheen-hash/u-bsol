@@ -676,7 +676,10 @@
 
   <script type="module" src="components.js"></script>
   <script>
-    injectComponents('about');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      injectComponents('about');
+    });
 
     // Reveal on scroll
     const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');

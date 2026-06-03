@@ -557,7 +557,10 @@
   <div id="footer-container"></div>
   <script type="module" src="components.js"></script>
   <script>
-    injectComponents('packages');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      injectComponents('packages');
+    });
 
     // ── PLAN DATA ──
     const plans = {

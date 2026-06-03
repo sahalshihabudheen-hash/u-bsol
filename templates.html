@@ -654,7 +654,10 @@
   <script type="module" src="components.js"></script>
   <script>
     // Injected standard navbar and footer components
-    injectComponents('templates');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      injectComponents('templates');
+    });
 
     // Live preview links configured for easy customized updates (will give links later, handles gracefully now)
     const PREVIEW_LINKS = {
